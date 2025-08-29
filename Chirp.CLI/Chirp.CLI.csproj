@@ -11,4 +11,10 @@
     <Folder Include="data\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="data\chirp_cli_db.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
