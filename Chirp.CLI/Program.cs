@@ -9,8 +9,7 @@ using CsvHelper.Configuration;
 class Program
 {
     // Define a type for your CSV rows
-    public class MessageRecord
-    {
+    public class MessageRecord {
         public string Author { get; set; } = "";
         public string Message { get; set; } = "";
         public long Timestamp { get; set; }
@@ -20,12 +19,12 @@ class Program
 
     static void Main(string[] args)
     {
-        if (args.Length == 0) throw new ArgumentException("Missing argument.");
+        var csvPath = Path.Combine(AppContext.BaseDirectory, "data", "chirp_cli_db.csv");
 
+        if (args.Length == 0) throw new ArgumentException("Missing argument.");
+        
         if (args[0] == "read")
         {
-            var csvPath = Path.Combine(AppContext.BaseDirectory, "data", "chirp_cli_db.csv");
-
             if (!File.Exists(csvPath))
             {
                 Console.Error.WriteLine($"CSV not found: {csvPath}");
@@ -35,6 +34,16 @@ class Program
 
             ReadCsvFile(csvPath);
             PostMessage();
+        }
+
+        if (args[0] == "cheep") {
+            if (!File.Exists(csvPath))
+            {
+                Console.Error.WriteLine($"CSV not found: {csvPath}");
+                Console.Error.WriteLine($"BaseDir: {AppContext.BaseDirectory}");
+                Environment.Exit(1);
+            }
+            writeIntoCsvFile(csvPath);
         }
     }
 
@@ -52,6 +61,20 @@ class Program
         messages = csv.GetRecords<MessageRecord>().ToList();
     }
 
+    private static void writeIntoCsvFile(string filepath)
+    {
+        String username, date, cheep;
+        
+        using (FileStream fs = new FileStream(filepath, FileMode.Append, FileAccess.Write))
+        using (BufferedStream bs = new BufferedStream(fs))
+        {
+            //Do shit here
+            
+        }
+
+        Console.WriteLine("Data saved to CSV file!"); 
+    }
+
     private static void PostMessage()
     {
         if (messages.Count == 0)
@@ -65,12 +88,8 @@ class Program
             Console.WriteLine($"{m.Author} @  {ConvertTime(m.Timestamp)}: {m.Message}");
         }
     }
-
-
-
-
-    private static string ConvertTime(long ts)
-    {
+    
+    private static string ConvertTime(long ts) {
         string stamp = DateTimeOffset.FromUnixTimeSeconds(ts).UtcDateTime.ToString("o");
         stamp.Split("T");
         
