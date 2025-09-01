@@ -51,32 +51,17 @@ class Program {
 
     private static void writeIntoCsvFile(string cheep, string filepath) {
         var username = Environment.UserName;
-        var date =  DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        var date =  DateTimeOffset.Now.ToUnixTimeSeconds() + 7200; // Converted to danish timezone (+2h CEST)
         var post = username + ",\"" + cheep + "\"," + date;
         
-        using (FileStream fs = new FileStream(filepath, FileMode.Append, FileAccess.Write))
-        using (BufferedStream bs = new BufferedStream(fs)) 
-        using (StreamWriter sw = new StreamWriter(bs)) {
+        
+        using (StreamWriter sw = File.AppendText(filepath)) {
             sw.WriteLine(post);
-            //File.AppendAllText(filepath, post);
             sw.Flush();
-            bs.Flush();
-            fs.Flush(true);
-            
-            Console.WriteLine(post);
         }
         
-        using (StreamReader sr = File.OpenText(filepath))
-        {
-            string s = "";
-            while ((s = sr.ReadLine()) != null)
-            {
-                Console.WriteLine(s);
-            }
-        }
-
-        //ReadCsvFile(filepath);
-        //PrintMessages();
+        ReadCsvFile(filepath);
+        PrintMessages();
     }
     
     private static void PrintMessages() {
@@ -105,7 +90,6 @@ class Program {
         string[] fixedDate = stampDate.Split("/");
         string shortYear = fixedDate[0].Substring(2); // remove first two chars
         string returnedDate = fixedDate[1] + "/" + fixedDate[2] + "/" + shortYear;
-
         
         return returnedDate + " " + returnedTime;
     }

@@ -1,13 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "kaLM1lZp05s=",
+  "dgSpecHash": "XVrFFDvnTFI=",
   "success": true,
-  "projectFilePath": "/home/marcus/RiderProjects/Chirp/Chirp.CLI/Chirp.CLI.csproj",
+  "projectFilePath": "C:\\Users\\bruger\\Desktop\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj",
   "expectedPackageFiles": [
-    "/home/marcus/.nuget/packages/csvhelper/33.1.0/csvhelper.33.1.0.nupkg.sha512",
-    "/home/marcus/.nuget/packages/microsoft.netcore.app.ref/8.0.19/microsoft.netcore.app.ref.8.0.19.nupkg.sha512",
-    "/home/marcus/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.19/microsoft.aspnetcore.app.ref.8.0.19.nupkg.sha512",
-    "/home/marcus/.nuget/packages/microsoft.netcore.app.host.linux-x64/8.0.19/microsoft.netcore.app.host.linux-x64.8.0.19.nupkg.sha512"
+    "C:\\Users\\bruger\\.nuget\\packages\\csvhelper\\33.1.0\\csvhelper.33.1.0.nupkg.sha512"
   ],
   "logs": []
 }
