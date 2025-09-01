@@ -1,24 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Linq;
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 
-class Program
-{
-    // Define a type for your CSV rows
+class Program {
     public class MessageRecord {
         public string Author { get; set; } = "";
         public string Message { get; set; } = "";
         public long Timestamp { get; set; }
     }
 
-    private static List<MessageRecord> messages = new();
+    private static List<MessageRecord> messages = [];
 
-    static void Main(string[] args)
-    {
+    static void Main(string[] args) {
         var csvPath = Path.Combine(AppContext.BaseDirectory, "data", "chirp_cli_db.csv");
         if (args.Length == 0) throw new ArgumentException("Missing argument.");
         
@@ -42,10 +37,8 @@ class Program
         }
     }
 
-    private static void ReadCsvFile(string filepath)
-    {
-        var config = new CsvConfiguration(CultureInfo.InvariantCulture)
-        {
+    private static void ReadCsvFile(string filepath) {
+        var config = new CsvConfiguration(CultureInfo.InvariantCulture) {
             HasHeaderRecord = true,
             TrimOptions = TrimOptions.Trim
         };
@@ -92,8 +85,7 @@ class Program
             return;
         }
 
-        foreach (var m in messages)
-        {
+        foreach (var m in messages) {
             Console.WriteLine($"{m.Author} @  {ConvertTime(m.Timestamp)}: {m.Message}");
         }
     }
@@ -116,7 +108,6 @@ class Program
 
         
         return returnedDate + " " + returnedTime;
-        
     }
 
 }
