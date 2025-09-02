@@ -14,7 +14,11 @@ class Program {
     private static List<MessageRecord> messages = [];
 
     static void Main(string[] args) {
-        var csvPath = Path.Combine(AppContext.BaseDirectory, "data", "chirp_cli_db.csv");
+        // goes out of 'bin/Debug/netX.Y/' and into the 'data' folder
+        string csvPath = Path.GetFullPath(
+            Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "data", "chirp_cli_db.csv")
+        );
+        
         if (args.Length == 0) throw new ArgumentException("Missing argument.");
         
         if (!File.Exists(csvPath)) {
@@ -28,7 +32,8 @@ class Program {
                     break;
                 case "cheep":
                     if(args.Length < 2) throw new ArgumentException("Missing new cheep.");
-                    writeIntoCsvFile(args[1] , csvPath);
+                    string message = string.Join(" ", args.Skip(1));
+                    writeIntoCsvFile(message , csvPath);
                     break;
                 default:
                     Console.Error.WriteLine("Not a valid argument: " + args[0]);
@@ -49,6 +54,17 @@ class Program {
         messages = csv.GetRecords<MessageRecord>().ToList();
     }
 
+    private static void PrintMessages() {
+        if (messages.Count == 0) {
+            Console.WriteLine("No messages.");
+            return;
+        }
+
+        foreach (var m in messages) {
+            Console.WriteLine($"{m.Author} @  {ConvertTime(m.Timestamp)}: {m.Message}");
+        }
+    }
+
     private static void writeIntoCsvFile(string cheep, string filepath) {
         var username = Environment.UserName;
         var date =  DateTimeOffset.Now.ToUnixTimeSeconds() + 7200; // Converted to danish timezone (+2h CEST)
@@ -63,18 +79,7 @@ class Program {
         ReadCsvFile(filepath);
         PrintMessages();
     }
-    
-    private static void PrintMessages() {
-        if (messages.Count == 0) {
-            Console.WriteLine("No messages.");
-            return;
-        }
 
-        foreach (var m in messages) {
-            Console.WriteLine($"{m.Author} @  {ConvertTime(m.Timestamp)}: {m.Message}");
-        }
-    }
-    
     private static string ConvertTime(long ts) {
         string stamp = DateTimeOffset.FromUnixTimeSeconds(ts).UtcDateTime.ToString("o");
         stamp.Split("T");
@@ -93,5 +98,4 @@ class Program {
         
         return returnedDate + " " + returnedTime;
     }
-
 }
