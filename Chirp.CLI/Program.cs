@@ -5,13 +5,13 @@ using CsvHelper;
 using CsvHelper.Configuration;
 
 class Program {
-    public class MessageRecord {
+    public record Cheep{
         public string Author { get; set; } = "";
         public string Message { get; set; } = "";
         public long Timestamp { get; set; }
     }
 
-    private static List<MessageRecord> messages = [];
+    private static List<Cheep> messages = [];
 
     static void Main(string[] args) {
         // goes out of 'bin/Debug/netX.Y/' and into the 'data' folder
@@ -53,7 +53,7 @@ class Program {
         using var reader = new StreamReader(filepath);
         using var csv = new CsvReader(reader, config);
 
-        messages = csv.GetRecords<MessageRecord>().ToList();
+        messages = csv.GetRecords<Cheep>().ToList();
     }
     
     static void RepairCsv(string path)
