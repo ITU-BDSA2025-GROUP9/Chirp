@@ -27,6 +27,8 @@ class Program {
         } else {
             switch (args[0]) {
                 case "read":
+                    
+                    //RepairCsv(csvPath);
                     ReadCsvFile(csvPath);
                     PrintMessages();
                     break;
@@ -53,6 +55,28 @@ class Program {
 
         messages = csv.GetRecords<MessageRecord>().ToList();
     }
+    
+    static void RepairCsv(string path)
+    {
+        var lines = File.ReadAllLines(path).ToList();
+        if (lines.Count <= 1) return; // header only or empty
+
+        for (int i = 1; i < lines.Count; i++)
+        {
+            var line = lines[i].Trim();
+            if (line.StartsWith("\"") && line.EndsWith("\""))
+            {
+                line = line.Substring(1, line.Length - 2);
+            }
+            line = line.Replace("\"\"", "\"");
+
+            lines[i] = line;
+        }
+        
+        File.WriteAllLines(path, lines);
+    }
+
+
 
     private static void PrintMessages() {
         if (messages.Count == 0) {
