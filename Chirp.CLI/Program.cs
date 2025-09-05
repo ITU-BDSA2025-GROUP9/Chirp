@@ -4,7 +4,6 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using SimpleDB;
-
 class Program {
     public record Cheep{
         public string Author { get; set; } = "";
