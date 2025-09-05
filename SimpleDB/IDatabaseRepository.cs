@@ -2,7 +2,7 @@
 
 namespace SimpleDB
 {
-    public interface IDatabaseRepository<T>
+    public interface IDatabaseRepository
     {
         void Add(T item);
         IEnumerable<T> GetAll();

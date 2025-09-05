@@ -9,7 +9,7 @@ namespace SimpleDB
     /// A simple CSV-based database implementation that stores and retrieves records of type <typeparamref name="T"/>.
     /// </summary>
     /// <typeparam name="T">The type of objects stored in the database.</typeparam>
-    public sealed class CSVDatabase<T> : IDatabaseRepository<T>
+    public sealed class CSVDatabase : IDatabaseRepository<T>
     {
         private readonly string _filePath;
         private readonly Func<string, T> _fromLine;
