@@ -47,34 +47,40 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "/home/marcus/RiderProjects/Chirp/SimpleDB/SimpleDB.csproj",
       "CsvHelper >= 33.1.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\bruger\\.nuget\\packages\\": {}
+    "/home/marcus/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bruger\\Desktop\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj",
+      "projectUniqueName": "/home/marcus/RiderProjects/Chirp/Chirp.CLI/Chirp.CLI.csproj",
       "projectName": "Chirp.CLI",
-      "projectPath": "C:\\Users\\bruger\\Desktop\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj",
-      "packagesPath": "C:\\Users\\bruger\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bruger\\Desktop\\Chirp\\Chirp.CLI\\obj\\",
+      "projectPath": "/home/marcus/RiderProjects/Chirp/Chirp.CLI/Chirp.CLI.csproj",
+      "packagesPath": "/home/marcus/.nuget/packages/",
+      "outputPath": "/home/marcus/RiderProjects/Chirp/Chirp.CLI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\bruger\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/marcus/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "/usr/lib/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/marcus/RiderProjects/Chirp/SimpleDB/SimpleDB.csproj": {
+              "projectPath": "/home/marcus/RiderProjects/Chirp/SimpleDB/SimpleDB.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -86,7 +92,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -108,13 +115,38 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.19, 8.0.19]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.linux-x64",
+            "version": "[8.0.19, 8.0.19]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.19, 8.0.19]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.413/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.109/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project '/home/marcus/RiderProjects/Chirp/SimpleDB/SimpleDB.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "/home/marcus/RiderProjects/Chirp/SimpleDB/SimpleDB.csproj",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }
