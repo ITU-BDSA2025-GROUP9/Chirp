@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\bruger\\.nuget\\packages\\": {}
+    "C:\\Users\\trold\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bruger\\Desktop\\Chirp\\SimpleDB\\SimpleDB.csproj",
+      "projectUniqueName": "C:\\Users\\trold\\OneDrive\\Dokumenter\\GitHub\\Chirp\\SimpleDB\\SimpleDB.csproj",
       "projectName": "SimpleDB",
-      "projectPath": "C:\\Users\\bruger\\Desktop\\Chirp\\SimpleDB\\SimpleDB.csproj",
-      "packagesPath": "C:\\Users\\bruger\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bruger\\Desktop\\Chirp\\SimpleDB\\obj\\",
+      "projectPath": "C:\\Users\\trold\\OneDrive\\Dokumenter\\GitHub\\Chirp\\SimpleDB\\SimpleDB.csproj",
+      "packagesPath": "C:\\Users\\trold\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\trold\\OneDrive\\Dokumenter\\GitHub\\Chirp\\SimpleDB\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\bruger\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\trold\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"

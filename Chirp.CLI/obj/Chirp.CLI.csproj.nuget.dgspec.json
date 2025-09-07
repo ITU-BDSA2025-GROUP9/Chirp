@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bruger\\Desktop\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj": {}
+    "C:\\Users\\trold\\OneDrive\\Dokumenter\\GitHub\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bruger\\Desktop\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj": {
+    "C:\\Users\\trold\\OneDrive\\Dokumenter\\GitHub\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bruger\\Desktop\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj",
+        "projectUniqueName": "C:\\Users\\trold\\OneDrive\\Dokumenter\\GitHub\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj",
         "projectName": "Chirp.CLI",
-        "projectPath": "C:\\Users\\bruger\\Desktop\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj",
-        "packagesPath": "C:\\Users\\bruger\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bruger\\Desktop\\Chirp\\Chirp.CLI\\obj\\",
+        "projectPath": "C:\\Users\\trold\\OneDrive\\Dokumenter\\GitHub\\Chirp\\Chirp.CLI\\Chirp.CLI.csproj",
+        "packagesPath": "C:\\Users\\trold\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\trold\\OneDrive\\Dokumenter\\GitHub\\Chirp\\Chirp.CLI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\bruger\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\trold\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\bruger\\Desktop\\Chirp\\SimpleDB\\SimpleDB.csproj": {
-                "projectPath": "C:\\Users\\bruger\\Desktop\\Chirp\\SimpleDB\\SimpleDB.csproj"
+              "C:\\Users\\trold\\OneDrive\\Dokumenter\\GitHub\\Chirp\\SimpleDB\\SimpleDB.csproj": {
+                "projectPath": "C:\\Users\\trold\\OneDrive\\Dokumenter\\GitHub\\Chirp\\SimpleDB\\SimpleDB.csproj"
               }
             }
           }
@@ -72,17 +72,17 @@
         }
       }
     },
-    "C:\\Users\\bruger\\Desktop\\Chirp\\SimpleDB\\SimpleDB.csproj": {
+    "C:\\Users\\trold\\OneDrive\\Dokumenter\\GitHub\\Chirp\\SimpleDB\\SimpleDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bruger\\Desktop\\Chirp\\SimpleDB\\SimpleDB.csproj",
+        "projectUniqueName": "C:\\Users\\trold\\OneDrive\\Dokumenter\\GitHub\\Chirp\\SimpleDB\\SimpleDB.csproj",
         "projectName": "SimpleDB",
-        "projectPath": "C:\\Users\\bruger\\Desktop\\Chirp\\SimpleDB\\SimpleDB.csproj",
-        "packagesPath": "C:\\Users\\bruger\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bruger\\Desktop\\Chirp\\SimpleDB\\obj\\",
+        "projectPath": "C:\\Users\\trold\\OneDrive\\Dokumenter\\GitHub\\Chirp\\SimpleDB\\SimpleDB.csproj",
+        "packagesPath": "C:\\Users\\trold\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\trold\\OneDrive\\Dokumenter\\GitHub\\Chirp\\SimpleDB\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\bruger\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\trold\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
