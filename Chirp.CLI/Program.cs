@@ -2,10 +2,23 @@
 using Chirp.CLI;
 using CsvHelper;
 using CsvHelper.Configuration;
+using DocoptNet;
 using SimpleDB;
 
 public class Program
 {
+    const string usage = @"Chirp CLI version.
+    Usage:
+      Chirp read <limit>
+      chirp cheep <message>
+      chirp (-h | --help)
+      chirp --version
+
+    Options:
+      -h --help     Show this screen.
+      --version     Show version.
+    ";
+    
     /// <summary>
     /// Immutable record representing a single cheep entry.
     /// </summary>
@@ -41,8 +54,8 @@ public class Program
     /// <exception cref="ArgumentException">Thrown when required arguments are missing or invalid.</exception>
     static void Main(string[] args)
     {
-        if (args.Length == 0) throw new ArgumentException("Missing argument.");
-
+        var arguments = new Docopt().Apply(usage, args, version: "1.0", exit: true)!;
+        
         csvPath = Path.GetFullPath(
             Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "data", "chirp_cli_db.csv")
         );
@@ -57,7 +70,18 @@ public class Program
             getId: c => (int)(c.Timestamp % int.MaxValue)
         );
 
-        switch (args[0])
+        if (arguments["read"].IsTrue)
+        {
+            Console.WriteLine("padpdasidiasodha :)");
+        }
+        else if (arguments["cheep"].IsTrue) {
+            
+        } else {
+            throw new ArgumentException("Missing argument.");
+        }
+
+
+        /*switch (args[0])
         {
             case "read":
                 ReadCsvFile();
@@ -74,7 +98,7 @@ public class Program
             default:
                 Console.Error.WriteLine("Not a valid argument: " + args[0]);
                 break;
-        }
+        }*/
     }
 
     /// <summary>
