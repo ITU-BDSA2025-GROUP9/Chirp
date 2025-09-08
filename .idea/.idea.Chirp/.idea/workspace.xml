@@ -9,7 +9,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7266b04b-ac72-49d8-a177-c097c4b18dec" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chirp.CLI/Chirp.CLI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Chirp.CLI/Chirp.CLI.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Chirp.CLI/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Chirp.CLI/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Chirp.CLI/bin/Debug/net8.0/Chirp.CLI.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/Chirp.CLI/bin/Debug/net8.0/Chirp.CLI.deps.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Chirp.CLI/bin/Debug/net8.0/Chirp.CLI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Chirp.CLI/bin/Debug/net8.0/Chirp.CLI.dll" afterDir="false" />
@@ -17,10 +16,12 @@
       <change beforePath="$PROJECT_DIR$/Chirp.CLI/bin/Debug/net8.0/Chirp.CLI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Chirp.CLI/bin/Debug/net8.0/Chirp.CLI.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Chirp.CLI/data/chirp_cli_db.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Chirp.CLI/data/chirp_cli_db.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Chirp.CLI/obj/Chirp.CLI.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Chirp.CLI/obj/Chirp.CLI.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chirp.CLI/obj/Chirp.CLI.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Chirp.CLI/obj/Chirp.CLI.csproj.nuget.g.props" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Chirp.CLI/obj/Chirp.CLI.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/Chirp.CLI/obj/Chirp.CLI.csproj.nuget.g.targets" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.GlobalUsings.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.GlobalUsings.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.assets.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.csproj.FileListAbsolute.txt" afterDir="false" />
@@ -39,6 +40,9 @@
       <change beforePath="$PROJECT_DIR$/SimpleDB/bin/Debug/net8.0/SimpleDB.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/bin/Debug/net8.0/SimpleDB.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/SimpleDB.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/SimpleDB.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/SimpleDB.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/SimpleDB.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/SimpleDB.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/SimpleDB.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/SimpleDB.GlobalUsings.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/SimpleDB.GlobalUsings.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/SimpleDB.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/SimpleDB.assets.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/SimpleDB.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/SimpleDB.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/SimpleDB.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/SimpleDB.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/SimpleDB.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/SimpleDB.dll" afterDir="false" />
@@ -46,14 +50,17 @@
       <change beforePath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/SimpleDB.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/SimpleDB.sourcelink.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/ref/SimpleDB.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/ref/SimpleDB.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/refint/SimpleDB.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/obj/Debug/net8.0/refint/SimpleDB.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleDB/obj/SimpleDB.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/obj/SimpleDB.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleDB/obj/SimpleDB.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/obj/SimpleDB.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleDB/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleDB/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleDB/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/obj/project.packagespec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SimpleDB/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/obj/rider.project.model.nuget.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SimpleDB/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleDB/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <list id="012def14-7223-4f82-a259-dcace34ec8f8" name="Changes by Isabella" comment="" />
     <list id="24ec59c7-267e-4645-a192-980babdfa0ab" name="Changes by marcus" comment="" />
-    <list id="06e50ecd-5bfb-4afe-9518-484bd7e41906" name="Changes by PølleBølle" comment="">
-      <change beforePath="$PROJECT_DIR$/Chirp.CLI/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Chirp.CLI/Program.cs" afterDir="false" />
-    </list>
+    <list id="06e50ecd-5bfb-4afe-9518-484bd7e41906" name="Changes by PølleBølle" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,17 +89,6 @@
     &quot;accountId&quot;: &quot;228dd23d-91dd-44c5-9802-37eaea68d777&quot;
   }
 }</component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/Chirp.CLI/Program.cs">
-      <ranges>
-        <range start1="4" end1="4" start2="4" end2="5" changelist="7266b04b-ac72-49d8-a177-c097c4b18dec" />
-        <range start1="8" end1="8" start2="9" end2="21" changelist="06e50ecd-5bfb-4afe-9518-484bd7e41906" />
-        <range start1="43" end1="45" start2="56" end2="58" changelist="7266b04b-ac72-49d8-a177-c097c4b18dec" />
-        <range start1="59" end1="60" start2="72" end2="84" changelist="06e50ecd-5bfb-4afe-9518-484bd7e41906" />
-        <range start1="76" end1="77" start2="100" end2="101" changelist="06e50ecd-5bfb-4afe-9518-484bd7e41906" />
-      </ranges>
-    </file>
-  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -114,7 +110,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "CodeWithMe",
+    "settings.editor.selected.configurable": "AndroidSettingsPageId",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -152,6 +148,7 @@
       <updated>1757061383000</updated>
       <workItem from="1757061384815" duration="1150000" />
       <workItem from="1757319405196" duration="4879000" />
+      <workItem from="1757333489773" duration="2101000" />
     </task>
     <servers />
   </component>

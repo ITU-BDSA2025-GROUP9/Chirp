@@ -10,9 +10,9 @@ public class Program
     const string usage = @"Chirp CLI version.
     Usage:
       Chirp read <limit>
-      chirp cheep <message>
-      chirp (-h | --help)
-      chirp --version
+      Chirp cheep <message>
+      Chirp (-h | --help)
+      Chirp --version
 
     Options:
       -h --help     Show this screen.
@@ -70,17 +70,19 @@ public class Program
             getId: c => (int)(c.Timestamp % int.MaxValue)
         );
 
-        if (arguments["read"].IsTrue)
-        {
-            Console.WriteLine("padpdasidiasodha :)");
+        if (arguments["read"].IsTrue) {
+            ReadCsvFile();
+            UserInterface.PrintCheeps(_messages);
         }
-        else if (arguments["cheep"].IsTrue) {
-            
+        
+        // Making sure the cheep isn't empty/missing
+        if (arguments["cheep"].IsTrue && !string.IsNullOrWhiteSpace(arguments["<message>"]?.ToString())) {
+            WriteIntoCsvFile(arguments["<message>"]?.ToString());
+            UserInterface.PrintCheeps(_messages);
         } else {
             throw new ArgumentException("Missing argument.");
         }
-
-
+        
         /*switch (args[0])
         {
             case "read":
