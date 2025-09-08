@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\SimpleDB\\SimpleDB.csproj": {}
+    "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/SimpleDB/SimpleDB.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\SimpleDB\\SimpleDB.csproj": {
+    "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/SimpleDB/SimpleDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\SimpleDB\\SimpleDB.csproj",
+        "projectUniqueName": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/SimpleDB/SimpleDB.csproj",
         "projectName": "SimpleDB",
-        "projectPath": "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\SimpleDB\\SimpleDB.csproj",
-        "packagesPath": "C:\\Users\\Bruger\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\SimpleDB\\obj\\",
+        "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/SimpleDB/SimpleDB.csproj",
+        "packagesPath": "/home/marcus/.nuget/packages/",
+        "outputPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/SimpleDB/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Bruger\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/marcus/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "/usr/lib/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,7 +39,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -62,10 +63,6 @@
             {
               "name": "Microsoft.NETCore.App.Ref",
               "version": "[8.0.19, 8.0.19]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.19, 8.0.19]"
             }
           ],
           "frameworkReferences": {
@@ -73,7 +70,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.109/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
