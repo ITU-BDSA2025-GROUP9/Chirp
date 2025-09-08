@@ -31,10 +31,10 @@ public class Program
     /// Command-line arguments. Supported commands:
     /// <list type="bullet">
     /// <item>
-    /// <description><c>read</c> — load and print all cheeps.</description>
+    /// <description> load and print all cheeps.</description>
     /// </item>
     /// <item>
-    /// <description><c>cheep &lt;message...&gt;</c> — append a new cheep and print all cheeps.</description>
+    /// <description> append a new cheep and print all cheeps.</description>
     /// </item>
     /// </list>
     /// </param>
