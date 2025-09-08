@@ -6,17 +6,39 @@ using SimpleDB;
 
 public class Program
 {
+    /// <summary>
+    /// Immutable record representing a single cheep entry.
+    /// </summary>
     public record Cheep
     {
         public string Author { get; set; } = "";
+        
         public string Message { get; set; } = "";
+        
         public long Timestamp { get; set; }
     }
 
     private static CSVDatabase<Cheep> db = null!;
+
     private static string csvPath = "";
+
     private static IEnumerable<Cheep> _messages = [];
 
+    /// <summary>
+    /// Entry point for the Chirp CLI.
+    /// </summary>
+    /// <param name="args">
+    /// Command-line arguments. Supported commands:
+    /// <list type="bullet">
+    /// <item>
+    /// <description><c>read</c> — load and print all cheeps.</description>
+    /// </item>
+    /// <item>
+    /// <description><c>cheep &lt;message...&gt;</c> — append a new cheep and print all cheeps.</description>
+    /// </item>
+    /// </list>
+    /// </param>
+    /// <exception cref="ArgumentException">Thrown when required arguments are missing or invalid.</exception>
     static void Main(string[] args)
     {
         if (args.Length == 0) throw new ArgumentException("Missing argument.");
@@ -54,29 +76,47 @@ public class Program
                 break;
         }
     }
-    
+
+    /// <summary>
+    /// Loads all cheeps from the CSV database into the in-memory view.
+    /// </summary>
     private static void ReadCsvFile()
     {
         _messages = db.GetAll().ToList();
     }
 
+    /// <summary>
+    /// Appends a new cheep to the CSV database and refreshes the in-memory view.
+    /// </summary>
+    /// <param name="message">The message text of the new cheep.</param>
     private static void WriteIntoCsvFile(string message)
     {
         var username = Environment.UserName;
         var date = DateTimeOffset.Now.ToUnixTimeSeconds();
 
         db.Add(new Cheep { Author = username, Message = message, Timestamp = date });
-
-        // refresh the in-memory view
         _messages = db.GetAll().ToList();
     }
 
+    /// <summary>
+    /// Serializes a <see cref="Cheep"/> into a single CSV line with proper escaping.
+    /// </summary>
+    /// <param name="c">The cheep to serialize.</param>
+    /// <returns>A CSV line containing author, message, and timestamp.</returns>
     private static string ToCsvLine(Cheep c)
     {
         static string Esc(string s) => $"\"{s.Replace("\"", "\"\"")}\"";
         return $"{Esc(c.Author)},{Esc(c.Message)},{c.Timestamp}";
     }
 
+    /// <summary>
+    /// Parses a single CSV line into a <see cref="Cheep"/> instance.
+    /// </summary>
+    /// <param name="line">The CSV line to parse.</param>
+    /// <returns>A <see cref="Cheep"/> parsed from the line.</returns>
+    /// <exception cref="InvalidDataException">
+    /// Thrown when the timestamp field cannot be parsed as a 64-bit integer.
+    /// </exception>
     private static Cheep FromCsvLine(string line)
     {
         using var reader = new StringReader(line);
@@ -97,6 +137,10 @@ public class Program
         return new Cheep { Author = author, Message = message, Timestamp = ts };
     }
 
+    /// <summary>
+    /// Ensures the CSV data file and its parent directory exist. If the file does not exist, an empty file is created.
+    /// </summary>
+    /// <param name="path">Absolute path to the CSV file.</param>
     private static void EnsureDataFile(string path)
     {
         var dir = Path.GetDirectoryName(path);
@@ -104,12 +148,16 @@ public class Program
             Directory.CreateDirectory(dir);
 
         if (!File.Exists(path))
-            File.WriteAllText(path, ""); // create empty file (no header)
+            File.WriteAllText(path, "");
     }
 
+    /// <summary>
+    /// Detects and removes a single header row from the CSV file when present.
+    /// A header row is assumed if the third column of the first line is not a numeric timestamp.
+    /// </summary>
+    /// <param name="path">Absolute path to the CSV file.</param>
     private static void RemoveHeaderIfPresent(string path)
     {
-        // If first line’s third column isn’t a number, assume it’s a header and drop it.
         var lines = File.ReadAllLines(path).ToList();
         if (lines.Count == 0) return;
 
