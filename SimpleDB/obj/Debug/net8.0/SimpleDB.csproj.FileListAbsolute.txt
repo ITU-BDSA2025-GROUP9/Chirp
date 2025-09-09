@@ -81,3 +81,15 @@ C:\Users\mikke\Desktop\Chirp\Chirp\SimpleDB\obj\Debug\net8.0\SimpleDB.dll
 C:\Users\mikke\Desktop\Chirp\Chirp\SimpleDB\obj\Debug\net8.0\refint\SimpleDB.dll
 C:\Users\mikke\Desktop\Chirp\Chirp\SimpleDB\obj\Debug\net8.0\SimpleDB.pdb
 C:\Users\mikke\Desktop\Chirp\Chirp\SimpleDB\obj\Debug\net8.0\ref\SimpleDB.dll
+C:\Users\bruger\Desktop\Chirp\SimpleDB\bin\Debug\net8.0\SimpleDB.deps.json
+C:\Users\bruger\Desktop\Chirp\SimpleDB\bin\Debug\net8.0\SimpleDB.dll
+C:\Users\bruger\Desktop\Chirp\SimpleDB\bin\Debug\net8.0\SimpleDB.pdb
+C:\Users\bruger\Desktop\Chirp\SimpleDB\obj\Debug\net8.0\SimpleDB.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bruger\Desktop\Chirp\SimpleDB\obj\Debug\net8.0\SimpleDB.AssemblyInfoInputs.cache
+C:\Users\bruger\Desktop\Chirp\SimpleDB\obj\Debug\net8.0\SimpleDB.AssemblyInfo.cs
+C:\Users\bruger\Desktop\Chirp\SimpleDB\obj\Debug\net8.0\SimpleDB.csproj.CoreCompileInputs.cache
+C:\Users\bruger\Desktop\Chirp\SimpleDB\obj\Debug\net8.0\SimpleDB.sourcelink.json
+C:\Users\bruger\Desktop\Chirp\SimpleDB\obj\Debug\net8.0\SimpleDB.dll
+C:\Users\bruger\Desktop\Chirp\SimpleDB\obj\Debug\net8.0\refint\SimpleDB.dll
+C:\Users\bruger\Desktop\Chirp\SimpleDB\obj\Debug\net8.0\SimpleDB.pdb
+C:\Users\bruger\Desktop\Chirp\SimpleDB\obj\Debug\net8.0\ref\SimpleDB.dll

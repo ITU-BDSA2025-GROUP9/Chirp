@@ -9,7 +9,7 @@ public class Program
 {
     const string usage = @"Chirp CLI version.
     Usage:
-      Chirp read <limit>
+      Chirp read [<limit>]
       Chirp cheep <message>
       Chirp (-h | --help)
       Chirp --version
@@ -25,16 +25,13 @@ public class Program
     public record Cheep
     {
         public string Author { get; set; } = "";
-        
         public string Message { get; set; } = "";
-        
         public long Timestamp { get; set; }
+        
     }
 
-    private static CSVDatabase<Cheep> db = null!;
-
-    private static string csvPath = "";
-
+    private static CSVDatabase<Cheep> _db = null!;
+    private static string _csvPath = "";
     private static IEnumerable<Cheep> _messages = [];
 
     /// <summary>
@@ -56,15 +53,15 @@ public class Program
     {
         var arguments = new Docopt().Apply(usage, args, version: "1.0", exit: true)!;
         
-        csvPath = Path.GetFullPath(
+        _csvPath = Path.GetFullPath(
             Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "data", "chirp_cli_db.csv")
         );
 
-        EnsureDataFile(csvPath);
-        RemoveHeaderIfPresent(csvPath);
+        EnsureDataFile(_csvPath);
+        RemoveHeaderIfPresent(_csvPath);
 
-        db = new CSVDatabase<Cheep>(
-            filePath: csvPath,
+        _db = new CSVDatabase<Cheep>(
+            filePath: _csvPath,
             fromLine: FromCsvLine,
             toLine: ToCsvLine,
             getId: c => (int)(c.Timestamp % int.MaxValue)
@@ -72,35 +69,15 @@ public class Program
 
         if (arguments["read"].IsTrue) {
             ReadCsvFile();
-            UserInterface.PrintCheeps(_messages);
-        }
-        
-        // Making sure the cheep isn't empty/missing
-        if (arguments["cheep"].IsTrue && !string.IsNullOrWhiteSpace(arguments["<message>"]?.ToString())) {
-            WriteIntoCsvFile(arguments["<message>"]?.ToString());
-            UserInterface.PrintCheeps(_messages);
+            var limit = !arguments["<limit>"].IsNullOrEmpty ? int.Parse(arguments["<limit>"].ToString()) : _messages.Count();
+            UserInterface.PrintCheeps(_messages, limit);
+            
+        } else if (arguments["cheep"].IsTrue && !string.IsNullOrWhiteSpace(arguments["<message>"]?.ToString())) {
+            WriteIntoCsvFile(arguments["<message>"].ToString());
+            UserInterface.PrintCheeps(_messages,_messages.Count());
         } else {
-            throw new ArgumentException("Missing argument.");
+            throw new ArgumentException("Missing or nonvalid argument.");
         }
-        
-        /*switch (args[0])
-        {
-            case "read":
-                ReadCsvFile();
-                UserInterface.PrintCheeps(_messages);
-                break;
-
-            case "cheep":
-                if (args.Length < 2) throw new ArgumentException("Missing new cheep.");
-                var message = string.Join(" ", args.Skip(1));
-                WriteIntoCsvFile(message);
-                UserInterface.PrintCheeps(_messages);
-                break;
-
-            default:
-                Console.Error.WriteLine("Not a valid argument: " + args[0]);
-                break;
-        }*/
     }
 
     /// <summary>
@@ -108,7 +85,7 @@ public class Program
     /// </summary>
     private static void ReadCsvFile()
     {
-        _messages = db.GetAll().ToList();
+        _messages = _db.GetAll().ToList();
     }
 
     /// <summary>
@@ -117,11 +94,12 @@ public class Program
     /// <param name="message">The message text of the new cheep.</param>
     private static void WriteIntoCsvFile(string message)
     {
+        if (string.IsNullOrWhiteSpace(message)) throw new ArgumentException("Cheep cannot be null or empty.");
         var username = Environment.UserName;
         var date = DateTimeOffset.Now.ToUnixTimeSeconds();
-
-        db.Add(new Cheep { Author = username, Message = message, Timestamp = date });
-        _messages = db.GetAll().ToList();
+        
+        _db.Add(new Cheep { Author = username, Message = message, Timestamp = date });
+        _messages = _db.GetAll().ToList();
     }
 
     /// <summary>
@@ -153,8 +131,8 @@ public class Program
         };
         using var csv = new CsvReader(reader, config);
         csv.Read();
-        var author = csv.GetField(0);
-        var message = csv.GetField(1);
+        var author = csv.GetField(0)!;
+        var message = csv.GetField(1)!;
         var tsField = csv.GetField(2);
 
         if (!long.TryParse(tsField, out var ts))
