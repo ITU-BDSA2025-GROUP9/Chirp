@@ -5,28 +5,28 @@ public static class UserInterface
 {
     public static void PrintCheeps(IEnumerable<Program.Cheep> cheeps, int limit)
     {
+        if (limit < 0) throw new ArgumentException("Limit cannot be negative: " + limit);
+        if (cheeps == null) throw new ArgumentException("List of cheeps cannot be null");
+        
         var list = cheeps.ToList();
         if (list.Count == 0) throw new ArgumentException("No cheeps found.");
-
-        if (limit < list.Count) {
-            for (var i = 0; i < limit; i++) {
-                CheepToString(list[i]);
-            }
-        } else {
-            foreach (var m in list)
-                CheepToString(m);
+        
+        var cheepCount = Math.Min(limit, list.Count);
+        for (var i = 0; i < cheepCount; i++) {
+            Console.WriteLine(CheepToString(list[i]));
         }
     }
 
-    private static string ConvertTime(long ts)
+    public static string ConvertTime(long ts)
     {
         var time = DateTimeOffset.FromUnixTimeSeconds(ts).ToLocalTime();
         return time.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture);
     }
 
-    private static void CheepToString(Program.Cheep c)
+    public static string CheepToString(Program.Cheep c)
     {
-        Console.WriteLine($"{c.Author} @ {ConvertTime(c.Timestamp)}: {c.Message}");
+        if(string.IsNullOrEmpty(c.Author) || string.IsNullOrEmpty(c.Message)) throw new ArgumentException("Invalid cheep: Author and Message cannot be null or empty.");
+        return $"{c.Author} @ {ConvertTime(c.Timestamp)}: {c.Message}";
     }
 }
   

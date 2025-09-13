@@ -1,12 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KJiF7xWm0eQ=",
+  "dgSpecHash": "5ESocJZNe4M=",
   "success": true,
-  "projectFilePath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\mikke\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.18\\microsoft.netcore.app.ref.8.0.18.nupkg.sha512",
-    "C:\\Users\\mikke\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.18\\microsoft.windowsdesktop.app.ref.8.0.18.nupkg.sha512",
-    "C:\\Users\\mikke\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.18\\microsoft.aspnetcore.app.ref.8.0.18.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\bruger\\Desktop\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
