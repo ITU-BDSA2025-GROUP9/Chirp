@@ -49,7 +49,7 @@ public class Program
     /// </list>
     /// </param>
     /// <exception cref="ArgumentException">Thrown when required arguments are missing or invalid.</exception>
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
         var arguments = new Docopt().Apply(usage, args, version: "1.0", exit: true)!;
         
@@ -58,8 +58,7 @@ public class Program
         );
 
         EnsureDataFile(_csvPath);
-        RemoveHeaderIfPresent(_csvPath);
-
+    
         _db = new CSVDatabase<Cheep>(
             filePath: _csvPath,
             fromLine: FromCsvLine,

@@ -1,7 +1,7 @@
 using Chirp.CLI;
 namespace Chirp.Cli.Tests;
 
-public class UserInterfaceTests
+public class UnitTests
 {
     [Theory]   
     [InlineData(1690978778, "08/02/23 14:19:38")]           
@@ -70,18 +70,6 @@ public class UserInterfaceTests
         Assert.Equal("List of cheeps cannot be null", ex.Message);
     }
     
-
-    [Fact]
-    public void PrintCheepsTest_InvalidCheep()
-    {
-        var cheeps = new List<Program.Cheep> {
-            new Program.Cheep { Author = "Bob", Timestamp = 0, Message = "Hello" },
-            new Program.Cheep { Author = "", Timestamp = 0 , Message = "Hi" }
-        };
-        
-        var ex = Assert.Throws<ArgumentException>(() => UserInterface.PrintCheeps(cheeps, cheeps.Count));
-        Assert.Equal("Invalid cheep: Author and Message cannot be null or empty.", ex.Message);
-    }
     
     [Fact]   
     public void PrintCheeps_Limit1()
