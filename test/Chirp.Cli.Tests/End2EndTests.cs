@@ -1,6 +1,7 @@
 using System.Diagnostics;
-namespace Chirp.Cli.Tests;
+using FluentAssertions;
 
+namespace Chirp.Cli.Tests;
 public class End2EndTests
 {
     
@@ -32,7 +33,7 @@ public class End2EndTests
         var outputLines = output.Split("\n");
         var exp = expectedOutput.Split("\n");
         for(var i = 0; i < exp.Length-1; i++) {
-            Assert.Equal(exp[i], outputLines[i]);
+            outputLines[i].Should().Be(exp[i]);
         }
     }
     
@@ -54,7 +55,6 @@ public class End2EndTests
             output = reader.ReadToEnd();
             process.WaitForExit();
         }
-        
-        Assert.EndsWith("Test: Hello!!!\r\n", output);
+        output.Should().EndWith("Test: Hello!!!\r\n");
     }
 }

@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "k527F0J3VgM=",
+  "dgSpecHash": "j9B0rG+23Bo=",
   "success": true,
   "projectFilePath": "C:\\Users\\bruger\\Desktop\\Chirp\\test\\SimpleDB.Tests\\SimpleDB.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bruger\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
+    "C:\\Users\\bruger\\.nuget\\packages\\fluentassertions\\8.6.0\\fluentassertions.8.6.0.nupkg.sha512",
     "C:\\Users\\bruger\\.nuget\\packages\\microsoft.codecoverage\\17.8.0\\microsoft.codecoverage.17.8.0.nupkg.sha512",
     "C:\\Users\\bruger\\.nuget\\packages\\microsoft.net.test.sdk\\17.8.0\\microsoft.net.test.sdk.17.8.0.nupkg.sha512",
     "C:\\Users\\bruger\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",

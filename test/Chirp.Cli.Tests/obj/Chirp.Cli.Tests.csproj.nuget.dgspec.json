@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bruger\\Desktop\\Chirp\\test\\Chirp.Cli.Tests\\Chirp.Cli.Tests.csproj": {}
+    "C:\\Users\\bruger\\Desktop\\Chirp\\test\\Chirp.CLI.Tests\\Chirp.CLI.Tests.csproj": {}
   },
   "projects": {
     "C:\\Users\\bruger\\Desktop\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj": {
@@ -134,14 +134,14 @@
         }
       }
     },
-    "C:\\Users\\bruger\\Desktop\\Chirp\\test\\Chirp.Cli.Tests\\Chirp.Cli.Tests.csproj": {
+    "C:\\Users\\bruger\\Desktop\\Chirp\\test\\Chirp.CLI.Tests\\Chirp.CLI.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bruger\\Desktop\\Chirp\\test\\Chirp.Cli.Tests\\Chirp.Cli.Tests.csproj",
-        "projectName": "Chirp.Cli.Tests",
-        "projectPath": "C:\\Users\\bruger\\Desktop\\Chirp\\test\\Chirp.Cli.Tests\\Chirp.Cli.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\bruger\\Desktop\\Chirp\\test\\Chirp.CLI.Tests\\Chirp.CLI.Tests.csproj",
+        "projectName": "Chirp.CLI.Tests",
+        "projectPath": "C:\\Users\\bruger\\Desktop\\Chirp\\test\\Chirp.CLI.Tests\\Chirp.CLI.Tests.csproj",
         "packagesPath": "C:\\Users\\bruger\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bruger\\Desktop\\Chirp\\test\\Chirp.Cli.Tests\\obj\\",
+        "outputPath": "C:\\Users\\bruger\\Desktop\\Chirp\\test\\Chirp.CLI.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\bruger\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -177,6 +177,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[8.6.0, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.8.0, )"

@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "yY1gCSoltPE=",
+  "dgSpecHash": "CW0nDfm1sks=",
   "success": true,
-  "projectFilePath": "C:\\Users\\bruger\\Desktop\\Chirp\\test\\Chirp.Cli.Tests\\Chirp.Cli.Tests.csproj",
+  "projectFilePath": "C:\\Users\\bruger\\Desktop\\Chirp\\test\\Chirp.CLI.Tests\\Chirp.CLI.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bruger\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\bruger\\.nuget\\packages\\csvhelper\\33.1.0\\csvhelper.33.1.0.nupkg.sha512",
     "C:\\Users\\bruger\\.nuget\\packages\\docopt.net\\0.8.1\\docopt.net.0.8.1.nupkg.sha512",
+    "C:\\Users\\bruger\\.nuget\\packages\\fluentassertions\\8.6.0\\fluentassertions.8.6.0.nupkg.sha512",
     "C:\\Users\\bruger\\.nuget\\packages\\microsoft.codecoverage\\17.8.0\\microsoft.codecoverage.17.8.0.nupkg.sha512",
     "C:\\Users\\bruger\\.nuget\\packages\\microsoft.net.test.sdk\\17.8.0\\microsoft.net.test.sdk.17.8.0.nupkg.sha512",
     "C:\\Users\\bruger\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",

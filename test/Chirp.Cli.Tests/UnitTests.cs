@@ -1,4 +1,6 @@
 using Chirp.CLI;
+using FluentAssertions;
+
 namespace Chirp.Cli.Tests;
 
 public class UnitTests
@@ -13,7 +15,7 @@ public class UnitTests
     [InlineData(-1690978778, "06/01/16 13:40:22")]
     public void ConvertTimeTest(long timestamp, string expOutput)
     {
-        Assert.Equal(expOutput, UserInterface.ConvertTime(timestamp));
+        UserInterface.ConvertTime(timestamp).Should().Be(expOutput);
     }
     
     
@@ -29,7 +31,7 @@ public class UnitTests
             Message = message
         };
         
-        Assert.Equal(expOutput, UserInterface.CheepToString(cheep));
+        UserInterface.CheepToString(cheep).Should().Be(expOutput);
     }
     
     
@@ -51,7 +53,7 @@ public class UnitTests
         };
         
         var ex = Assert.Throws<ArgumentException>(() => UserInterface.CheepToString(cheep));
-        Assert.Equal("Invalid cheep: Author and Message cannot be null or empty.", ex.Message);
+        ex.Message.Should().Be("Invalid cheep: Author and Message cannot be null or empty.");
     }
     
     
@@ -60,14 +62,14 @@ public class UnitTests
     {
         var emptyCheeps = new List<Program.Cheep>();
         var ex = Assert.Throws<ArgumentException>(() => UserInterface.PrintCheeps(emptyCheeps, emptyCheeps.Count));
-        Assert.Equal("No cheeps found.", ex.Message);
+        ex.Message.Should().Be("No cheeps found.");
     }
     
     [Fact]
     public void PrintCheepsTest_NullList()
     {
         var ex = Assert.Throws<ArgumentException>(() => UserInterface.PrintCheeps(null!, 10));
-        Assert.Equal("List of cheeps cannot be null", ex.Message);
+        ex.Message.Should().Be("List of cheeps cannot be null");
     }
     
     
@@ -85,12 +87,12 @@ public class UnitTests
         UserInterface.PrintCheeps(cheeps, 1);
         
         var output = sw.ToString();
-        Assert.Contains("Hello", output);
-        Assert.Contains("Bob @", output);
-        Assert.Contains("08/02/23 14:19:38", output);
+        output.Should().Contain("Hello");
+        output.Should().Contain("Bob @");
+        output.Should().Contain("08/02/23 14:19:38");
         
-        Assert.DoesNotContain("Lea", output);
-        Assert.DoesNotContain("Hi", output);
+        output.Should().NotContain("Lea @");
+        output.Should().NotContain("Hi");
     }
     
     [Fact]
@@ -108,11 +110,12 @@ public class UnitTests
         UserInterface.PrintCheeps(cheeps, cheeps.Count);
         
         var output = sw.ToString();
-        Assert.Contains("Hello", output);
-        Assert.Contains("Bob @", output);
-        Assert.Contains("08/02/23 14:19:38", output);
-        Assert.Contains("Lea @", output);
-        Assert.Contains("Hi", output);
+        output.Should().Contain("Hello");
+        output.Should().Contain("Bob @");
+        output.Should().Contain("08/02/23 14:19:38");
+        
+        output.Should().Contain("Lea @");
+        output.Should().Contain("Hi");
     }
     
     
@@ -125,9 +128,7 @@ public class UnitTests
         };
         
         var ex = Assert.Throws<ArgumentException>(() => UserInterface.PrintCheeps(cheeps, -1));
-        Assert.Equal("Limit cannot be negative: -1", ex.Message);
+        ex.Message.Should().Be("Limit cannot be negative: -1");
     }
 }
     
-    
-   
