@@ -59,12 +59,13 @@ public class Program
 
         EnsureDataFile(_csvPath);
     
-        _db = new CSVDatabase<Cheep>(
+        _db = CSVDatabase<Cheep>.GetInstance(
             filePath: _csvPath,
             fromLine: FromCsvLine,
             toLine: ToCsvLine,
             getId: c => (int)(c.Timestamp % int.MaxValue)
         );
+
 
         if (arguments["read"].IsTrue) {
             ReadCsvFile();
