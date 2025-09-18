@@ -1,23 +1,45 @@
-name: release - build
+name: release
 
 on:
   push:
-    tags: 
-     - 'v*'
+    tags: ['v*']
+
+permissions:
+  contents: write
 
 jobs:
-  build-test:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup .NET 8
-        uses: actions/setup-dotnet@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
-          cache: true
+          dotnet-version: '8.0.x'
+
       - name: Restore
         run: dotnet restore
       - name: Build (Release)
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build -c Release --no-restore
       - name: Test
-        run: dotnet test --configuration Release --no-build --verbosity normal
+        run: dotnet test -c Release --no-build --verbosity normal
+      - name: Publish & package
+        shell: bash
+        run: |
+          tag="$(git describe --tags --abbrev=0)"
+          app="chirp"
+          project="src/Chirp.CLI/Chirp.CLI.csproj"
+          rids=( linux-x64 win-x64 osx-x64 )
+          for rid in "${rids[@]}"; do
+            out="publish/$rid"
+            dotnet publish "$project" --framework net8.0 --runtime "$rid" -c Release -o "$out" -p:PublishSingleFile=true -p:SelfContained=false
+            zip -j "${app}-${tag}-${rid}.zip" "$out"/*
+          done
+
+      - name: Publish
+        uses: softprops/action-gh-release@v1
+        with:
+          files: "chirp-${{ github.ref_name }}-*.zip"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
