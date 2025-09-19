@@ -105,3 +105,15 @@ C:\Users\bruger\Desktop\Chirp\src\SimpleDB\obj\Debug\net8.0\SimpleDB.dll
 C:\Users\bruger\Desktop\Chirp\src\SimpleDB\obj\Debug\net8.0\refint\SimpleDB.dll
 C:\Users\bruger\Desktop\Chirp\src\SimpleDB\obj\Debug\net8.0\SimpleDB.pdb
 C:\Users\bruger\Desktop\Chirp\src\SimpleDB\obj\Debug\net8.0\ref\SimpleDB.dll
+C:\Users\Bruger\OneDrive - Roskilde Handelsskole\Computer\Skrivebord\første års projektf\Chirp\src\SimpleDB\bin\Debug\net8.0\SimpleDB.deps.json
+C:\Users\Bruger\OneDrive - Roskilde Handelsskole\Computer\Skrivebord\første års projektf\Chirp\src\SimpleDB\bin\Debug\net8.0\SimpleDB.dll
+C:\Users\Bruger\OneDrive - Roskilde Handelsskole\Computer\Skrivebord\første års projektf\Chirp\src\SimpleDB\bin\Debug\net8.0\SimpleDB.pdb
+C:\Users\Bruger\OneDrive - Roskilde Handelsskole\Computer\Skrivebord\første års projektf\Chirp\src\SimpleDB\obj\Debug\net8.0\SimpleDB.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bruger\OneDrive - Roskilde Handelsskole\Computer\Skrivebord\første års projektf\Chirp\src\SimpleDB\obj\Debug\net8.0\SimpleDB.AssemblyInfoInputs.cache
+C:\Users\Bruger\OneDrive - Roskilde Handelsskole\Computer\Skrivebord\første års projektf\Chirp\src\SimpleDB\obj\Debug\net8.0\SimpleDB.AssemblyInfo.cs
+C:\Users\Bruger\OneDrive - Roskilde Handelsskole\Computer\Skrivebord\første års projektf\Chirp\src\SimpleDB\obj\Debug\net8.0\SimpleDB.csproj.CoreCompileInputs.cache
+C:\Users\Bruger\OneDrive - Roskilde Handelsskole\Computer\Skrivebord\første års projektf\Chirp\src\SimpleDB\obj\Debug\net8.0\SimpleDB.sourcelink.json
+C:\Users\Bruger\OneDrive - Roskilde Handelsskole\Computer\Skrivebord\første års projektf\Chirp\src\SimpleDB\obj\Debug\net8.0\SimpleDB.dll
+C:\Users\Bruger\OneDrive - Roskilde Handelsskole\Computer\Skrivebord\første års projektf\Chirp\src\SimpleDB\obj\Debug\net8.0\refint\SimpleDB.dll
+C:\Users\Bruger\OneDrive - Roskilde Handelsskole\Computer\Skrivebord\første års projektf\Chirp\src\SimpleDB\obj\Debug\net8.0\SimpleDB.pdb
+C:\Users\Bruger\OneDrive - Roskilde Handelsskole\Computer\Skrivebord\første års projektf\Chirp\src\SimpleDB\obj\Debug\net8.0\ref\SimpleDB.dll
