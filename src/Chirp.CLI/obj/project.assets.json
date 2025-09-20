@@ -39,6 +39,20 @@
           "lib/netcoreapp2.0/_._": {}
         }
       },
+      "Chirp.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "CsvHelper": "33.1.0",
+          "SimpleDB": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Chirp.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Chirp.Shared.dll": {}
+        }
+      },
       "SimpleDB/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -139,6 +153,11 @@
         "version.txt"
       ]
     },
+    "Chirp.Shared/1.0.0": {
+      "type": "project",
+      "path": "../Chirp.Shared/Chirp.Shared.csproj",
+      "msbuildProject": "../Chirp.Shared/Chirp.Shared.csproj"
+    },
     "SimpleDB/1.0.0": {
       "type": "project",
       "path": "../SimpleDB/SimpleDB.csproj",
@@ -147,25 +166,26 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Chirp.Shared >= 1.0.0",
       "CsvHelper >= 33.1.0",
       "SimpleDB >= 1.0.0",
       "docopt.net >= 0.8.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Bruger\\.nuget\\packages\\": {}
+    "C:\\Users\\marcu\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
+      "projectUniqueName": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
       "projectName": "Chirp.CLI",
-      "projectPath": "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
-      "packagesPath": "C:\\Users\\Bruger\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\src\\Chirp.CLI\\obj\\",
+      "projectPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
+      "packagesPath": "C:\\Users\\marcu\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.CLI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Bruger\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\marcu\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -177,8 +197,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
-              "projectPath": "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\src\\SimpleDB\\SimpleDB.csproj"
+            "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj": {
+              "projectPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj"
+            },
+            "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
+              "projectPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\SimpleDB\\SimpleDB.csproj"
             }
           }
         }
@@ -192,8 +215,7 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.300"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -219,30 +241,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.19, 8.0.19]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[8.0.19, 8.0.19]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.19, 8.0.19]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[8.0.19, 8.0.19]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

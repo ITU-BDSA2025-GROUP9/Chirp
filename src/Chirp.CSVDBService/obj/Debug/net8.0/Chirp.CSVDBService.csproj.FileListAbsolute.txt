@@ -26,3 +26,36 @@ C:\Users\Bruger\OneDrive - Roskilde Handelsskole\Computer\Skrivebord\første år
 C:\Users\Bruger\OneDrive - Roskilde Handelsskole\Computer\Skrivebord\første års projektf\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\Chirp.CSVDBService.pdb
 C:\Users\Bruger\OneDrive - Roskilde Handelsskole\Computer\Skrivebord\første års projektf\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\Chirp.CSVDBService.genruntimeconfig.cache
 C:\Users\Bruger\OneDrive - Roskilde Handelsskole\Computer\Skrivebord\første års projektf\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\ref\Chirp.CSVDBService.dll
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\Chirp.CSVDBService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\Chirp.CSVDBService.AssemblyInfoInputs.cache
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\Chirp.CSVDBService.AssemblyInfo.cs
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\Chirp.CSVDBService.csproj.CoreCompileInputs.cache
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\Chirp.CSVDBService.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\Chirp.CSVDBService.sourcelink.json
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\Chirp.CSVDBService.dll
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\refint\Chirp.CSVDBService.dll
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\Chirp.CSVDBService.pdb
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\bin\Debug\net8.0\appsettings.json
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\bin\Debug\net8.0\Chirp.CSVDBService.exe
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\bin\Debug\net8.0\Chirp.CSVDBService.deps.json
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\bin\Debug\net8.0\Chirp.CSVDBService.runtimeconfig.json
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\bin\Debug\net8.0\Chirp.CSVDBService.dll
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\bin\Debug\net8.0\Chirp.CSVDBService.pdb
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\bin\Debug\net8.0\CsvHelper.dll
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\bin\Debug\net8.0\Chirp.Shared.dll
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\bin\Debug\net8.0\SimpleDB.dll
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\bin\Debug\net8.0\Chirp.Shared.pdb
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\bin\Debug\net8.0\SimpleDB.pdb
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\Chirp.CSVDBService.csproj.AssemblyReference.cache
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\staticwebassets\msbuild.Chirp.CSVDBService.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\staticwebassets\msbuild.build.Chirp.CSVDBService.props
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Chirp.CSVDBService.props
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Chirp.CSVDBService.props
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\scopedcss\bundle\Chirp.CSVDBService.styles.css
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\Chirp.CS.5911E781.Up2Date
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\Chirp.CSVDBService.genruntimeconfig.cache
+C:\Users\marcu\Documents\uni\soft architecture\Chirp\src\Chirp.CSVDBService\obj\Debug\net8.0\ref\Chirp.CSVDBService.dll

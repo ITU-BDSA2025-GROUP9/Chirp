@@ -1,5 +1,6 @@
 using Chirp.CLI;
 using FluentAssertions;
+using Chirp.Shared;
 
 namespace Chirp.Cli.Tests;
 
@@ -25,7 +26,7 @@ public class UnitTests
     [InlineData("Lea", 0, "Hi", "Lea @ 01/01/70 01:00:00: Hi")]
     public void CheepToStringTest_ReturnsExpectedString(string author, long timestamp, string message, string expOutput)
     {
-        var cheep = new Program.Cheep {
+        var cheep = new Cheep {
             Author = author,
             Timestamp = timestamp,
             Message = message
