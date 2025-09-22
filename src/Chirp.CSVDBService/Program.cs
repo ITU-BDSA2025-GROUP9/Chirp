@@ -4,11 +4,12 @@ using Chirp.Shared;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-var dbPath = Path.Combine(AppContext.BaseDirectory, "data", "chirp_db.csv");
+var dbPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..","..","Chirp.CLI", "data", "chirp_cli_db.csv"));
 Directory.CreateDirectory(Path.GetDirectoryName(dbPath)!);
 if (!File.Exists(dbPath)) File.WriteAllText(dbPath, "");
 
 var _db = DatabaseFactory.Create(dbPath);
+;
 
 app.MapPost("/cheep", (Cheep cheep) =>
 {

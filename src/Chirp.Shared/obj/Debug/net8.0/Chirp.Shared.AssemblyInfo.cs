@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Chirp.Shared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b2c407ae34f65c76802744d05074c31e3963843d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+522774e4ca48c1d3e4941f614cdfa38a20a94936")]
 [assembly: System.Reflection.AssemblyProductAttribute("Chirp.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Chirp.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
