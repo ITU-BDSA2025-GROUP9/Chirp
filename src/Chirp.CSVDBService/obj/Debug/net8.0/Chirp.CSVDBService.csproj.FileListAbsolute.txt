@@ -92,3 +92,10 @@ C:/Users/marcu/Documents/uni/soft architecture/Chirp/src/Chirp.CSVDBService/obj/
 /home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.genruntimeconfig.cache
 /home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/ref/Chirp.CSVDBService.dll
 /home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.csproj.CopyComplete
+/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CLI.deps.json
+/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CLI.runtimeconfig.json
+/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/data/chirp_cli_db.csv
+/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CLI
+/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/DocoptNet.dll
+/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CLI.dll
+/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CLI.pdb
