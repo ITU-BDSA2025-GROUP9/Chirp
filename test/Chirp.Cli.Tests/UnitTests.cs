@@ -1,5 +1,6 @@
 using Chirp.CLI;
 using FluentAssertions;
+using Chirp.Shared;
 
 namespace Chirp.Cli.Tests;
 
@@ -25,7 +26,7 @@ public class UnitTests
     [InlineData("Lea", 0, "Hi", "Lea @ 01/01/70 01:00:00: Hi")]
     public void CheepToStringTest_ReturnsExpectedString(string author, long timestamp, string message, string expOutput)
     {
-        var cheep = new Program.Cheep {
+        var cheep = new Cheep {
             Author = author,
             Timestamp = timestamp,
             Message = message
@@ -46,7 +47,7 @@ public class UnitTests
     [InlineData("","Hello")]
     public void CheepToStringTest_ShouldThrowException(string author, string message)
     {
-        var cheep = new Program.Cheep {
+        var cheep = new Cheep {
             Author = author,
             Timestamp = 0,
             Message = message
@@ -60,7 +61,7 @@ public class UnitTests
     [Fact]
     public void PrintCheepsTest_EmptyList()
     {
-        var emptyCheeps = new List<Program.Cheep>();
+        var emptyCheeps = new List<Cheep>();
         var ex = Assert.Throws<ArgumentException>(() => UserInterface.PrintCheeps(emptyCheeps, emptyCheeps.Count));
         ex.Message.Should().Be("No cheeps found.");
     }
@@ -76,9 +77,9 @@ public class UnitTests
     [Fact]   
     public void PrintCheeps_Limit1()
     {
-        var cheeps = new List<Program.Cheep> {
-            new Program.Cheep { Author = "Bob", Timestamp = 1690978778, Message = "Hello" },
-            new Program.Cheep { Author = "Lea", Timestamp = 1690978778, Message = "Hi" }
+        var cheeps = new List<Cheep> {
+            new Cheep { Author = "Bob", Timestamp = 1690978778, Message = "Hello" },
+            new Cheep { Author = "Lea", Timestamp = 1690978778, Message = "Hi" }
         };
 
         using var sw = new StringWriter();
@@ -98,10 +99,10 @@ public class UnitTests
     [Fact]
     public void PrintCheeps_Limit2()
     {
-        var cheeps = new List<Program.Cheep>
+        var cheeps = new List<Cheep>
         {
-            new Program.Cheep { Author = "Bob", Timestamp = 1690978778, Message = "Hello" },
-            new Program.Cheep { Author = "Lea", Timestamp = 1690978778, Message = "Hi" }
+            new Cheep { Author = "Bob", Timestamp = 1690978778, Message = "Hello" },
+            new Cheep { Author = "Lea", Timestamp = 1690978778, Message = "Hi" }
         };
 
         using var sw = new StringWriter();
@@ -122,9 +123,9 @@ public class UnitTests
     [Fact]
     public void PrintCheeps_NegativeLimit()
     {
-        var cheeps = new List<Program.Cheep> {
-            new Program.Cheep { Author = "Bob", Timestamp = 1690978778, Message = "Hello" },
-            new Program.Cheep { Author = "Lea", Timestamp = 1690978778, Message = "Hi" }
+        var cheeps = new List<Cheep> {
+            new Cheep { Author = "Bob", Timestamp = 1690978778, Message = "Hello" },
+            new Cheep { Author = "Lea", Timestamp = 1690978778, Message = "Hi" }
         };
         
         var ex = Assert.Throws<ArgumentException>(() => UserInterface.PrintCheeps(cheeps, -1));

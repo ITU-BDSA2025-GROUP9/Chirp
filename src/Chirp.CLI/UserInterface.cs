@@ -1,9 +1,11 @@
 using System.Globalization;
+using Chirp.Shared;
+
 namespace Chirp.CLI;
 
 public static class UserInterface
 {
-    public static void PrintCheeps(IEnumerable<Program.Cheep> cheeps, int limit)
+    public static void PrintCheeps(IEnumerable<Cheep> cheeps, int limit)
     {
         if (limit < 0) throw new ArgumentException("Limit cannot be negative: " + limit);
         if (cheeps == null) throw new ArgumentException("List of cheeps cannot be null");
@@ -23,10 +25,12 @@ public static class UserInterface
         return time.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture);
     }
 
-    public static string CheepToString(Program.Cheep c)
+    public static string CheepToString(Cheep c)
     {
-        if(string.IsNullOrEmpty(c.Author) || string.IsNullOrEmpty(c.Message)) throw new ArgumentException("Invalid cheep: Author and Message cannot be null or empty.");
+        if (string.IsNullOrEmpty(c.Author) || string.IsNullOrEmpty(c.Message)) 
+            throw new ArgumentException("Invalid cheep: Author and Message cannot be null or empty.");
         return $"{c.Author} @ {ConvertTime(c.Timestamp)}: {c.Message}";
     }
+
 }
   

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "+qRhq0pMAVx2y4dLccznToO5yXkGA0YFl43TEeSV2BhpVN0ds11wOWmS3rTNwh3S/ofxMPNEpmt8G4MwbLvDgg==",
+  "success": true,
+  "projectFilePath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/Chirp.Shared.csproj",
+  "expectedPackageFiles": [
+    "/home/marcus/.nuget/packages/csvhelper/33.1.0/csvhelper.33.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}
