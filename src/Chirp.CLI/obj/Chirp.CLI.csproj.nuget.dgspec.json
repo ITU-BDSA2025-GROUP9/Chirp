@@ -95,11 +95,7 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {
-              "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/SimpleDB/SimpleDB.csproj": {
-                "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/SimpleDB/SimpleDB.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -158,7 +154,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/Chirp.Shared.csproj": {
+                "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/Chirp.Shared.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

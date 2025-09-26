@@ -18,9 +18,11 @@
     <PackageReference Include="docopt.net" Version="0.8.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\SimpleDB\SimpleDB.csproj" />
-    <ProjectReference Include="..\Chirp.Shared\Chirp.Shared.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Chirp.Shared\Chirp.Shared.csproj" />
+        <ProjectReference Include="..\SimpleDB\SimpleDB.csproj" />
+    </ItemGroup>
+
+
 
 </Project>

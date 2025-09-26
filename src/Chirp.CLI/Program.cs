@@ -1,7 +1,8 @@
 ﻿using Chirp.CLI;
 using DocoptNet;
-using SimpleDB;
-using Chirp.Shared;
+using Chirp.Shared;   // for Cheep
+using SimpleDB;       // for DatabaseFactory
+
 
 
 public class Program
@@ -13,7 +14,7 @@ public class Program
       Chirp (-h | --help)
       Chirp --version";
 
-    private static CSVDatabase<Cheep> _db = null!;
+private static IDatabaseRepository<Cheep> _db = null!;
     private static IEnumerable<Cheep> _messages = [];
 
     public static void Main(string[] args)

@@ -39,14 +39,16 @@
       "System.ValueTuple/4.5.0": {},
       "Chirp.Shared/1.0.0": {
         "dependencies": {
-          "CsvHelper": "33.1.0",
-          "SimpleDB": "1.0.0"
+          "CsvHelper": "33.1.0"
         },
         "runtime": {
           "Chirp.Shared.dll": {}
         }
       },
       "SimpleDB/1.0.0": {
+        "dependencies": {
+          "Chirp.Shared": "1.0.0"
+        },
         "runtime": {
           "SimpleDB.dll": {}
         }

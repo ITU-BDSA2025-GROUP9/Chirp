@@ -1,12 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "z/NN8lwwfqP+OU7SCicprM9+wHtxwVavWGIpzupiDYEwHMVKPHeYTCUcjFGHUGQ7TFequB3Gi0g5pvQDCDoSFg==",
+  "dgSpecHash": "rbWRQHRawJxfA09n/GkrqYXTBnzOu+d73uCWJRAL3z77Ow481PYCRp0BXn+1gn0KWnde6HU0Uu0cNa/RFvJKEQ==",
   "success": true,
   "projectFilePath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CSVDBService/Chirp.CSVDBService.csproj",
   "expectedPackageFiles": [
-    "/home/marcus/.nuget/packages/csvhelper/33.1.0/csvhelper.33.1.0.nupkg.sha512",
-    "/home/marcus/.nuget/packages/docopt.net/0.8.1/docopt.net.0.8.1.nupkg.sha512",
-    "/home/marcus/.nuget/packages/system.valuetuple/4.5.0/system.valuetuple.4.5.0.nupkg.sha512"
+    "/home/marcus/.nuget/packages/csvhelper/33.1.0/csvhelper.33.1.0.nupkg.sha512"
   ],
   "logs": []
 }

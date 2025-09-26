@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\test\\SimpleDB.Tests\\SimpleDB.Tests.csproj": {}
+    "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/test/SimpleDB.Tests/SimpleDB.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
+    "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/Chirp.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
-        "projectName": "SimpleDB",
-        "projectPath": "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
-        "packagesPath": "C:\\Users\\Bruger\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\src\\SimpleDB\\obj\\",
+        "projectUniqueName": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/Chirp.Shared.csproj",
+        "projectName": "Chirp.Shared",
+        "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/Chirp.Shared.csproj",
+        "packagesPath": "/home/marcus/.nuget/packages/",
+        "outputPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Bruger\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/marcus/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,13 +32,70 @@
           "warnAsError": [
             "NU1605"
           ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[33.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.119/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/SimpleDB/SimpleDB.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/SimpleDB/SimpleDB.csproj",
+        "projectName": "SimpleDB",
+        "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/SimpleDB/SimpleDB.csproj",
+        "packagesPath": "/home/marcus/.nuget/packages/",
+        "outputPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/SimpleDB/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/marcus/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
         },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/Chirp.Shared.csproj": {
+                "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/Chirp.Shared.csproj"
+              }
+            }
+          }
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -54,40 +111,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.19, 8.0.19]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.19, 8.0.19]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.19, 8.0.19]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.119/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\test\\SimpleDB.Tests\\SimpleDB.Tests.csproj": {
+    "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/test/SimpleDB.Tests/SimpleDB.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\test\\SimpleDB.Tests\\SimpleDB.Tests.csproj",
+        "projectUniqueName": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/test/SimpleDB.Tests/SimpleDB.Tests.csproj",
         "projectName": "SimpleDB.Tests",
-        "projectPath": "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\test\\SimpleDB.Tests\\SimpleDB.Tests.csproj",
-        "packagesPath": "C:\\Users\\Bruger\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\test\\SimpleDB.Tests\\obj\\",
+        "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/test/SimpleDB.Tests/SimpleDB.Tests.csproj",
+        "packagesPath": "/home/marcus/.nuget/packages/",
+        "outputPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/test/SimpleDB.Tests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Bruger\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/marcus/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -99,8 +142,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
-                "projectPath": "C:\\Users\\Bruger\\OneDrive - Roskilde Handelsskole\\Computer\\Skrivebord\\første års projektf\\Chirp\\src\\SimpleDB\\SimpleDB.csproj"
+              "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/SimpleDB/SimpleDB.csproj": {
+                "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/SimpleDB/SimpleDB.csproj"
               }
             }
           }
@@ -109,13 +152,7 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -153,26 +190,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.19, 8.0.19]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.19, 8.0.19]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.19, 8.0.19]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.119/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
