@@ -1,0 +1,48 @@
+name: Deploy to Azure Web App
+on:
+  push:
+    branches:
+      - Workflow
+  workflow_dispatch:
+  
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AZURE_WEBAPP_NAME: bdsagroup9chirpremotedb
+  AZURE_WEBAPP_PACKAGE_PATH: 'src/Chirp.CSVDBService'  
+  DOTNET_VERSION: '8.0.x'                      
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4F55E2DA62464B78A7A64BD26BDE6405 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_B04844043F2F48ADA1D59D6A49148578 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_B8E9FCB7913B4304819C9CF0AB85D9E1 }}
+      
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }} 
+      
+      - name: dotnet build and publish
+        run: |
+          cd ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          dotnet restore
+          dotnet build --configuration Release
+          dotnet publish -c Release --property:PublishDir='./myapp'
+      
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v3
+        with: 
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
+      
+      - name: logout
+        run: az logout
