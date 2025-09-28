@@ -42,7 +42,10 @@
           "CsvHelper": "33.1.0"
         },
         "runtime": {
-          "Chirp.Shared.dll": {}
+          "Chirp.Shared.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "SimpleDB/1.0.0": {
@@ -50,7 +53,10 @@
           "Chirp.Shared": "1.0.0"
         },
         "runtime": {
-          "SimpleDB.dll": {}
+          "SimpleDB.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

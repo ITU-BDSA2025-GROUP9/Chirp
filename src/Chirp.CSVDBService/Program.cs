@@ -2,72 +2,96 @@ using SimpleDB;
 using Chirp.Shared;
 using System.Text;
 
-/// <summary>
-/// Entry point for the Chirp CSV-backed web service.
-/// Provides API endpoints and a minimal HTML frontend
-/// for storing and retrieving cheeps.
-/// </summary>
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-
-/// <summary>
-/// Path to the CSV file used as persistent storage
-/// within the Azure container.
-/// </summary>
-var csvPath = Path.Combine(AppContext.BaseDirectory, "chirp_service_db.csv");
-
-// Ensure the file exists
-if (!File.Exists(csvPath)) File.WriteAllText(csvPath, "");
-
-/// <summary>
-/// Database instance backed by the CSV file.
-/// </summary>
-var _db = DatabaseFactory.Create(csvPath);
-
-/// <summary>
-/// POST /cheep  
-/// Creates a new cheep and saves it to the database.
-/// </summary>
-app.MapPost("/cheep", (Cheep cheep) =>
+try
 {
-    cheep.Timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-    _db.Add(cheep);
-    return Results.Created($"/cheep/{cheep.Timestamp}", cheep);
-});
+    Console.WriteLine("🚀 Starting Chirp CSVDBService...");
+    Console.Out.Flush();
 
-/// <summary>
-/// GET /cheeps  
-/// Retrieves all cheeps from the database.
-/// </summary>
-app.MapGet("/cheeps", () =>
-{
-    var cheeps = _db.GetAll().ToList();
-    return Results.Ok(cheeps);
-});
+    var builder = WebApplication.CreateBuilder(args);
+    var app = builder.Build();
 
-/// <summary>
-/// GET /  
-/// Serves a minimal HTML frontend to display all cheeps.
-/// </summary>
-app.MapGet("/", () =>
-{
-    var cheeps = _db.GetAll().OrderByDescending(c => c.Timestamp).ToList();
-    var html = new StringBuilder();
-    html.Append("<html><head><title>Chirp</title></head><body>");
-    html.Append("<h1>Chirps</h1><ul>");
-    foreach (var cheep in cheeps)
+    var csvPath = Path.Combine(AppContext.BaseDirectory, "chirp_service_db.csv");
+    Console.WriteLine($"📂 Using CSV file: {csvPath}");
+    Console.Out.Flush();
+
+    if (!File.Exists(csvPath))
     {
-        html.Append($"<li><b>{cheep.Author}</b>: {cheep.Message}</li>");
+        Console.WriteLine("⚠️ CSV file not found, creating new one...");
+        File.WriteAllText(csvPath, "");
     }
-    html.Append("</ul></body></html>");
-    return Results.Content(html.ToString(), "text/html");
-});
+    else
+    {
+        Console.WriteLine("✅ CSV file found.");
+    }
+    Console.Out.Flush();
 
-/// <summary>
-/// Configures the service to listen on the PORT defined
-/// by Azure App Service, or defaults to port 8080.
-/// </summary>
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-app.Urls.Add($"http://0.0.0.0:{port}");
+    var _db = DatabaseFactory.Create(csvPath);
+    Console.WriteLine("✅ Database initialized.");
+    Console.Out.Flush();
 
-app.Run();
+    // POST /cheep
+    app.MapPost("/cheep", (Cheep cheep) =>
+    {
+        try
+        {
+            Console.WriteLine($"➡️ POST /cheep (Author='{cheep.Author}', Message='{cheep.Message}')");
+            cheep.Timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            _db.Add(cheep);
+            Console.WriteLine("✅ Cheep stored successfully.");
+            return Results.Created($"/cheep/{cheep.Timestamp}", cheep);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"❌ Error in POST /cheep: {ex}");
+            return Results.Problem(ex.Message);
+        }
+    });
+
+    // GET /cheeps
+    app.MapGet("/cheeps", () =>
+    {
+        try
+        {
+            Console.WriteLine("➡️ GET /cheeps");
+            var cheeps = _db.GetAll().ToList();
+            Console.WriteLine($"✅ Returning {cheeps.Count} cheeps.");
+            return Results.Ok(cheeps);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"❌ Error in GET /cheeps: {ex}");
+            return Results.Problem(ex.Message);
+        }
+    });
+
+    // Web frontend
+    app.MapGet("/", () =>
+    {
+        Console.WriteLine("➡️ GET /");
+        var cheeps = _db.GetAll().OrderByDescending(c => c.Timestamp).ToList();
+        Console.WriteLine($"✅ Rendering {cheeps.Count} cheeps.");
+        var html = new StringBuilder();
+        html.Append("<html><head><title>Chirp</title></head><body>");
+        html.Append("<h1>Chirps</h1><ul>");
+        foreach (var cheep in cheeps)
+        {
+            html.Append($"<li><b>{cheep.Author}</b>: {cheep.Message}</li>");
+        }
+        html.Append("</ul></body></html>");
+        return Results.Content(html.ToString(), "text/html");
+    });
+
+    var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+    app.Urls.Add($"http://0.0.0.0:{port}");
+
+    Console.WriteLine($"🌍 Listening on port {port}");
+    Console.Out.Flush();
+
+    app.Run();
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"🔥 Fatal error: {ex}");
+    Console.Out.Flush();
+    throw;
+}

@@ -14,21 +14,19 @@ public static class CheepCsv
 
     public static Cheep FromCsvLine(string line)
     {
-        using var reader = new StringReader(line);
-        var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+        if (string.IsNullOrWhiteSpace(line)) 
+            throw new ArgumentException("Empty CSV line");
+
+        var parts = line.Split(',').Select(p => p.Trim()).ToArray();
+        if (parts.Length < 3)
+            throw new FormatException($"Invalid CSV line: {line}");
+
+        return new Cheep
         {
-            HasHeaderRecord = false,
-            TrimOptions = TrimOptions.Trim
+            Author = parts[0],
+            Message = parts[1],
+            Timestamp = long.Parse(parts[2])
         };
-        using var csv = new CsvReader(reader, config);
-        csv.Read();
-        var author = csv.GetField(0)!;
-        var message = csv.GetField(1)!;
-        var tsField = csv.GetField(2);
-
-        if (!long.TryParse(tsField, out var ts))
-            throw new InvalidDataException($"Invalid timestamp '{tsField}'.");
-
-        return new Cheep { Author = author, Message = message, Timestamp = ts };
     }
+
 }
