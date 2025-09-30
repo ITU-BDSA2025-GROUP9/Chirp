@@ -1,10 +1,13 @@
+using DefaultNamespace;
+using SQLitePCL;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<DBFacade>();
 builder.Services.AddSingleton<ICheepService, CheepService>();
 
-
+Batteries.Init();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

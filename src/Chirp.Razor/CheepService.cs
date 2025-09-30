@@ -1,3 +1,5 @@
+using DefaultNamespace;
+
 public record CheepViewModel(string Author, string Message, string Timestamp);
 
 public interface ICheepService
@@ -8,23 +10,22 @@ public interface ICheepService
 
 public class CheepService : ICheepService
 {
-    // These would normally be loaded from a database for example
-    private static readonly List<CheepViewModel> _cheeps = new()
+       private readonly DBFacade _db;
+
+        public CheepService(DBFacade db)
         {
-            new CheepViewModel("Helge", "Hello, BDSA students!", UnixTimeStampToDateTimeString(1690892208)),
-            new CheepViewModel("Adrian", "Hej, velkommen til kurset.", UnixTimeStampToDateTimeString(1690895308)),
-        };
+            _db = db;
+        }
 
-    public List<CheepViewModel> GetCheeps()
-    {
-        return _cheeps;
-    }
+        public List<CheepViewModel> GetCheeps()
+        {
+            return _db.GetCheeps();
+        }
 
-    public List<CheepViewModel> GetCheepsFromAuthor(string author)
-    {
-        // filter by the provided author name
-        return _cheeps.Where(x => x.Author == author).ToList();
-    }
+        public List<CheepViewModel> GetCheepsFromAuthor(string author)
+        {
+            return _db.GetCheepsFromAuthor(author);
+        }
 
     private static string UnixTimeStampToDateTimeString(double unixTimeStamp)
     {
