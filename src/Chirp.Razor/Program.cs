@@ -1,9 +1,13 @@
+using Chirp.Razor;
+using SQLitePCL;
+
 var builder = WebApplication.CreateBuilder(args);
+
+Batteries.Init();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<ICheepService, CheepService>();
-
 
 var app = builder.Build();
 
