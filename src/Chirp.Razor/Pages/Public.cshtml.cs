@@ -12,16 +12,20 @@ public class PublicModel : PageModel
     {
         _service = service;
     }
-
+    
     public ActionResult OnGet()
     {
-        Cheeps = _service.GetCheeps(1);
+        var pageQuery = Request.Query["page"];
+
+        int pageno;
+        if (!string.IsNullOrWhiteSpace(pageQuery))
+        {
+            pageno = Int32.Parse(pageQuery);
+        } else {
+            pageno = 1; 
+        }
+        
+        Cheeps = _service.GetCheeps(pageno);
         return Page();
     }
-    
-    /*public ActionResult OnGet([FromQuery] int page)
-    {
-        Cheeps = _service.GetCheeps(page);
-        return Page();
-    }*/
 }

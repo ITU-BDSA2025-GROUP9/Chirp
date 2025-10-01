@@ -1,8 +1,13 @@
-namespace Chirp.Razor;
 using Microsoft.Data.Sqlite;
+using System.Reflection;
+using Microsoft.Extensions.FileProviders;
+
+namespace Chirp.Razor;
+
 public class DBFacade
 {
     private readonly string _connectionString;
+    private readonly int _cheepno = 32;
 
     public DBFacade()
     {
@@ -12,8 +17,55 @@ public class DBFacade
             var temp = Path.GetTempPath();
             dbPath = Path.Combine(temp, "chirp.db");
         }
+
         _connectionString = $"Data Source={dbPath}";
+
+		if(!File.Exists(dbPath)){
+			using var conn = new SqliteConnection(_connectionString);
+			conn.Open();
+		}
+
+		if(new FileInfo(dbPath).Length == 0){
+			InitializeDatabase();
+		}
     }
+
+	private void InitializeDatabase() 
+	{
+   		var assembly = Assembly.GetExecutingAssembly(); 
+		var provider = new EmbeddedFileProvider(assembly);
+
+    	using var conn = new SqliteConnection(_connectionString);
+    	conn.Open();
+
+    	var schemaFile = provider.GetFileInfo("Data/schema.sql");
+    	if (schemaFile.Exists) {
+        	using var stream = schemaFile.CreateReadStream();
+        	using var reader = new StreamReader(stream);
+        	var schemaSql = reader.ReadToEnd();
+
+        	using var cmd = conn.CreateCommand();
+        	cmd.CommandText = schemaSql;
+        	cmd.ExecuteNonQuery();
+    	} else {
+        	throw new FileNotFoundException("Could not find schema.sql as embedded resource.");
+    	}
+
+    	var dumpFile = provider.GetFileInfo("Data/dump.sql");
+    	if (dumpFile.Exists)
+    	{
+        	using var stream = dumpFile.CreateReadStream();
+        	using var reader = new StreamReader(stream);
+        	var dumpSql = reader.ReadToEnd();
+
+        	using var cmd = conn.CreateCommand();
+	        cmd.CommandText = dumpSql;
+	        cmd.ExecuteNonQuery();
+    	} else {
+        	throw new FileNotFoundException("Could not find dump.sql as embedded resource.");
+    	}
+}
+
 
     public List<CheepViewModel> GetCheeps(int page)
     {
@@ -26,14 +78,15 @@ public class DBFacade
             FROM message m
             JOIN user u ON m.author_id = u.user_id
             ORDER BY m.pub_date DESC
-            LIMIT 32 OFFSET @row_count;
+            LIMIT @_cheepno OFFSET @row_count;
             ";
         
         cmd.Parameters.AddWithValue("@row_count", (page-1) * 32);
+        cmd.Parameters.AddWithValue("_cheepno", _cheepno);
         return ReadCheeps(cmd);
     }
 
-    public List<CheepViewModel> GetCheepsFromAuthor(string author)
+    public List<CheepViewModel> GetCheepsFromAuthor(string author, int page)
     {
         using var conn = new SqliteConnection(_connectionString);
         conn.Open();
@@ -44,8 +97,12 @@ public class DBFacade
             FROM message m
             JOIN user u ON m.author_id = u.user_id
             WHERE u.username = @author
-            ORDER BY m.pub_date DESC";
+            ORDER BY m.pub_date DESC
+            LIMIT @_cheepno OFFSET @row_count";
         cmd.Parameters.AddWithValue("@author", author);
+        cmd.Parameters.AddWithValue("@row_count", (page-1) * 32);
+        cmd.Parameters.AddWithValue("_cheepno", _cheepno);
+        
         return ReadCheeps(cmd);
     }
 
