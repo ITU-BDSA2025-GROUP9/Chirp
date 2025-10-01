@@ -11,74 +11,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7266b04b-ac72-49d8-a177-c097c4b18dec" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.CLI.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.CLI.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.CLI.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.CLI.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.CLI.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.CLI.genruntimeconfig.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.CLI.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.CLI1.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.CLI1.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.CLI1.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.CLI2.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.CLI2.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.CLI3.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.CLI4.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.Cli.Tests.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.Cli.Tests.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.Cli.Tests.csproj.AssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.Cli.Tests.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.Cli.Tests.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.Cli.Tests.genruntimeconfig.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.Cli.Tests.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.Cli.Tests1.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.Cli.Tests1.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.Cli.Tests2.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/Chirp.Cli.Tests3.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB.Tests.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB.Tests.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB.Tests.csproj.AssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB.Tests.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB.Tests.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB.Tests.genruntimeconfig.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB.Tests.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB.Tests1.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB.Tests1.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB.Tests2.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB.Tests3.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB1.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB1.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB2.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB2.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB3.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB3.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB4.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/SimpleDB5.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/apphost.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/project.nuget.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/project.nuget1.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/project.nuget2.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/project.nuget3.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/shelf/Uncommitted_changes_before_Update_at_20-09-2025_14_06__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CLI/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CLI/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CLI/bin/Debug/net8.0/Chirp.CLI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CLI/bin/Debug/net8.0/Chirp.CLI.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CLI/bin/Debug/net8.0/Chirp.CLI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CLI/bin/Debug/net8.0/Chirp.CLI.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CLI/obj/Chirp.CLI.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CLI/obj/Chirp.CLI.csproj.nuget.g.props" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CLI/obj/Debug/net8.0/ref/Chirp.CLI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CLI/obj/Debug/net8.0/ref/Chirp.CLI.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CLI/obj/Debug/net8.0/refint/Chirp.CLI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CLI/obj/Debug/net8.0/refint/Chirp.CLI.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CLI/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CLI/obj/project.nuget.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CSVDBService.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CSVDBService.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CSVDBService.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CSVDBService.pdb" afterDir="false" />
@@ -89,6 +31,7 @@
       <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.sourcelink.json" afterDir="false" />
@@ -96,7 +39,6 @@
       <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/refint/Chirp.CSVDBService.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/refint/Chirp.CSVDBService.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SimpleDB/DatabaseFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/SimpleDB/DatabaseFactory.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SimpleDB/HttpDatabaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/SimpleDB/HttpDatabaseRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SimpleDB/IDatabaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/SimpleDB/IDatabaseRepository.cs" afterDir="false" />
     </list>
     <list id="012def14-7223-4f82-a259-dcace34ec8f8" name="Changes by Isabella" comment="" />
     <list id="24ec59c7-267e-4645-a192-980babdfa0ab" name="Changes by marcus" comment="" />
@@ -138,6 +80,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/Chirp.CLI/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Chirp.CLI/UserInterface.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Chirp.CLI/obj/Chirp.CLI.csproj.nuget.dgspec.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Chirp.CLI/obj/project.assets.json" root0="FORCE_HIGHLIGHTING" />
@@ -162,24 +105,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Project.Chirp.CLI.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.Chirp.CLI.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/marcus/Documents/uni/Analysis design and software/exercise&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Project.Chirp.CLI">
     <configuration name="Chirp.CLI" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -291,7 +234,10 @@
       <workItem from="1758873051211" duration="1365000" />
       <workItem from="1758875471899" duration="3693000" />
       <workItem from="1759068628876" duration="2174000" />
-      <workItem from="1759070843188" duration="1292000" />
+      <workItem from="1759070843188" duration="2057000" />
+      <workItem from="1759140519651" duration="4541000" />
+      <workItem from="1759319179127" duration="9964000" />
+      <workItem from="1759333445420" duration="2659000" />
     </task>
     <task id="LOCAL-00001" summary="Added Azure functionality + several new classes.&#10;should work with azure once workflows are set up for it.">
       <option name="closed" value="true" />
@@ -309,7 +255,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758875943668</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added Azure Autodeployment when running through CLI, automatic HTTP get and post implemented and documentation on everything. HttpDatabaseRepository do force use the Azure URl and therfore with current implementation local csv is not accesible. small Cleaning of unused methods and re edditing of parts of old code to simplify or optimize and various areas of the code.">
+      <option name="closed" value="true" />
+      <created>1759072281168</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1759072281168</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TerminalProjectNonSharedOptionsProvider">
@@ -324,7 +278,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Added Azure functionality + several new classes.&#10;should work with azure once workflows are set up for it." />
     <MESSAGE value="excluded from lsat push apparently" />
-    <option name="LAST_COMMIT_MESSAGE" value="excluded from lsat push apparently" />
+    <MESSAGE value="Added Azure Autodeployment when running through CLI, automatic HTTP get and post implemented and documentation on everything. HttpDatabaseRepository do force use the Azure URl and therfore with current implementation local csv is not accesible. small Cleaning of unused methods and re edditing of parts of old code to simplify or optimize and various areas of the code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Azure Autodeployment when running through CLI, automatic HTTP get and post implemented and documentation on everything. HttpDatabaseRepository do force use the Azure URl and therfore with current implementation local csv is not accesible. small Cleaning of unused methods and re edditing of parts of old code to simplify or optimize and various areas of the code." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

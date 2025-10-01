@@ -22,9 +22,15 @@ namespace SimpleDB
         /// <param name="baseUrl">The base URL of the Chirp service (ignored; hardcoded to Azure URL).</param>
         public HttpDatabaseRepository(string baseUrl)
         {
-            _baseUrl = "https://bdsagroup9chirpremotedb-hdhbcsgjhqanaxgy.norwayeast-01.azurewebsites.net".TrimEnd('/');
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                throw new ArgumentException("Base URL cannot be null or empty", nameof(baseUrl));
+
+            _baseUrl = baseUrl.TrimEnd('/');
             _httpClient = new HttpClient();
         }
+
+
+
 
         /// <summary>
         /// Sends a POST request to add a new cheep to the remote database.
@@ -33,8 +39,13 @@ namespace SimpleDB
         public void Add(Cheep item)
         {
             var response = _httpClient.PostAsJsonAsync($"{_baseUrl}/cheep", item).Result;
+            Console.WriteLine($"DEBUG: Posting to {_baseUrl}/cheep");
+
+            response.EnsureSuccessStatusCode();
+
             response.EnsureSuccessStatusCode();
         }
+
 
         /// <summary>
         /// Sends a GET request to retrieve all cheeps from the remote database.

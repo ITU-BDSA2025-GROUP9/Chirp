@@ -2,11 +2,6 @@ using SimpleDB;
 using Chirp.Shared;
 using System.Text;
 
-/// <summary>
-/// Entry point for the Chirp CSV-backed web service.
-/// Provides API endpoints and a minimal HTML frontend
-/// for storing and retrieving cheeps.
-/// </summary>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -14,15 +9,15 @@ var app = builder.Build();
 /// Path to the CSV file used as persistent storage
 /// within the Azure container.
 /// </summary>
-var csvPath = Path.Combine(AppContext.BaseDirectory, "chirp_service_db.csv");
+var csvPath = Path.Combine("/home", "chirp_service_db.csv");
 
 // Ensure the file exists
 if (!File.Exists(csvPath)) File.WriteAllText(csvPath, "");
 
 /// <summary>
-/// Database instance backed by the CSV file.
+/// Database instance backed by the CSV file, created via DatabaseFactory.
 /// </summary>
-var _db = DatabaseFactory.Create(csvPath);
+var _db = DatabaseFactory.CreateCsv(csvPath);
 
 /// <summary>
 /// POST /cheep  
@@ -69,5 +64,6 @@ app.MapGet("/", () =>
 /// </summary>
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 app.Urls.Add($"http://0.0.0.0:{port}");
+
 
 app.Run();

@@ -4,11 +4,25 @@ namespace SimpleDB
 {
     public static class DatabaseFactory
     {
-        public static IDatabaseRepository<Cheep> Create(string source)
+        /// <summary>
+        /// Creates a repository that talks to a remote HTTP service.
+        /// </summary>
+        public static IDatabaseRepository<Cheep> CreateHttp(string baseUrl)
         {
-            // force HTTP usage:
-            return new HttpDatabaseRepository("https://bdsagroup9chirpremotedb-hdhbcsgjhqanaxgy.norwayeast-01.azurewebsites.net");
+            return new HttpDatabaseRepository(baseUrl);
         }
-        
+
+        /// <summary>
+        /// Creates a repository that persists data in a local CSV file.
+        /// </summary>
+        public static IDatabaseRepository<Cheep> CreateCsv(string filePath)
+        {
+            return CSVDatabase<Cheep>.GetInstance(
+                filePath,
+                CheepCsv.FromCsvLine,
+                CheepCsv.ToCsvLine,
+                c => (int)c.Timestamp
+            );
+        }
     }
 }
