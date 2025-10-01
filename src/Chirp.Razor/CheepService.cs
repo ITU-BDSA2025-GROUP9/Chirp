@@ -6,7 +6,7 @@ public record CheepViewModel(string Author, string Message, string Timestamp);
 
 public interface ICheepService
 {
-    List<CheepViewModel> GetCheeps();
+    List<CheepViewModel> GetCheeps(int page);
     List<CheepViewModel> GetCheepsFromAuthor(string author);
 }
 
@@ -19,9 +19,9 @@ public class CheepService : ICheepService
         _db = db; 
     }
 
-    public List<CheepViewModel> GetCheeps()
+    public List<CheepViewModel> GetCheeps(int page)
     {
-        return _db.GetCheeps(); 
+        return _db.GetCheeps(1); 
     }
 
     public List<CheepViewModel> GetCheepsFromAuthor(string author)

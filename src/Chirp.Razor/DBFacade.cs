@@ -15,7 +15,7 @@ public class DBFacade
         _connectionString = $"Data Source={dbPath}";
     }
 
-    public List<CheepViewModel> GetCheeps()
+    public List<CheepViewModel> GetCheeps(int page)
     {
         using var conn = new SqliteConnection(_connectionString);
         conn.Open();
@@ -25,7 +25,11 @@ public class DBFacade
             SELECT u.username, m.text, m.pub_date
             FROM message m
             JOIN user u ON m.author_id = u.user_id
-            ORDER BY m.pub_date DESC";
+            ORDER BY m.pub_date DESC
+            LIMIT 32 OFFSET @row_count;
+            ";
+        
+        cmd.Parameters.AddWithValue("@row_count", (page-1) * 32);
         return ReadCheeps(cmd);
     }
 
