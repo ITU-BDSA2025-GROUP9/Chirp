@@ -15,7 +15,16 @@ public class UserTimelineModel : PageModel
 
     public ActionResult OnGet(string author)
     {
-        Cheeps = _service.GetCheepsFromAuthor(author);
+		var pageQuery = Request.Query["page"];
+
+        int pageno;
+        if (!string.IsNullOrWhiteSpace(pageQuery))
+        {
+            pageno = Int32.Parse(pageQuery);
+        } else {
+            pageno = 1; 
+        }
+        Cheeps = _service.GetCheepsFromAuthor(author, pageno);
         return Page();
     }
 }
