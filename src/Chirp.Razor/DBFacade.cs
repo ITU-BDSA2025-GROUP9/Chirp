@@ -1,6 +1,7 @@
 using Microsoft.Data.Sqlite;
 using System.Reflection;
 using Microsoft.Extensions.FileProviders;
+using System.Globalization;
 
 namespace Chirp.Razor;
 
@@ -64,7 +65,7 @@ public class DBFacade
     	} else {
         	throw new FileNotFoundException("Could not find dump.sql as embedded resource.");
     	}
-}
+	}
 
 
     public List<CheepViewModel> GetCheeps(int page)
@@ -120,9 +121,9 @@ public class DBFacade
         return list;
     }
 
-    private static string UnixToLocal(long unixSeconds) =>
+    public static string UnixToLocal(long unixSeconds) =>
         DateTimeOffset.FromUnixTimeSeconds(unixSeconds)
             .ToLocalTime()
-            .ToString("MM/dd/yy H:mm:ss");
+            .ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture);
     
 }
