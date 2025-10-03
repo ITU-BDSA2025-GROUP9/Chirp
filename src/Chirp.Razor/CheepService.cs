@@ -1,38 +1,35 @@
-using DefaultNamespace;
+using Microsoft.Data.Sqlite;
+
+namespace Chirp.Razor;
 
 public record CheepViewModel(string Author, string Message, string Timestamp);
 
 public interface ICheepService
 {
-    public List<CheepViewModel> GetCheeps();
-    public List<CheepViewModel> GetCheepsFromAuthor(string author);
+    List<CheepViewModel> GetCheeps(int page);
+    List<CheepViewModel> GetCheepsFromAuthor(string author, int page);
 }
 
 public class CheepService : ICheepService
 {
-       private readonly DBFacade _db;
+    private readonly DBFacade _db; 
 
-        public CheepService(DBFacade db)
-        {
-            _db = db;
-        }
-
-        public List<CheepViewModel> GetCheeps()
-        {
-            return _db.GetCheeps();
-        }
-
-        public List<CheepViewModel> GetCheepsFromAuthor(string author)
-        {
-            return _db.GetCheepsFromAuthor(author);
-        }
-
-    private static string UnixTimeStampToDateTimeString(double unixTimeStamp)
+    public CheepService(DBFacade db)
     {
-        // Unix timestamp is seconds past epoch
-        DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-        dateTime = dateTime.AddSeconds(unixTimeStamp);
-        return dateTime.ToString("MM/dd/yy H:mm:ss");
+        _db = db; 
     }
 
+    public List<CheepViewModel> GetCheeps(int page)
+    {
+        if (page <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {page}");
+        return _db.GetCheeps(page); 
+    }
+
+    public List<CheepViewModel> GetCheepsFromAuthor(string author, int page)
+    {
+        if (page <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {page}");
+        if (string.IsNullOrWhiteSpace(author)) throw new ArgumentNullException($"Author cannot be null or empty. Invalid author: {author}");
+        
+        return _db.GetCheepsFromAuthor(author, page); 
+    }
 }
