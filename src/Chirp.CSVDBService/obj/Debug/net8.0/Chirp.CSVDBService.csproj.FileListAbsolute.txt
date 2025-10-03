@@ -92,3 +92,36 @@ C:/Users/marcu/Documents/uni/soft architecture/Chirp/src/Chirp.CSVDBService/obj/
 /home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.genruntimeconfig.cache
 /home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/ref/Chirp.CSVDBService.dll
 /home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.csproj.CopyComplete
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/appsettings.Development.json
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/appsettings.json
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CSVDBService
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CSVDBService.deps.json
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CSVDBService.runtimeconfig.json
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CSVDBService.dll
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CSVDBService.pdb
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/CsvHelper.dll
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.Shared.dll
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/SimpleDB.dll
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/SimpleDB.pdb
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.Shared.pdb
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.csproj.AssemblyReference.cache
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.GeneratedMSBuildEditorConfig.editorconfig
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.AssemblyInfoInputs.cache
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.AssemblyInfo.cs
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.csproj.CoreCompileInputs.cache
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.MvcApplicationPartsAssemblyInfo.cache
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.sourcelink.json
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/staticwebassets.build.json
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/staticwebassets.development.json
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/staticwebassets/msbuild.Chirp.CSVDBService.Microsoft.AspNetCore.StaticWebAssets.props
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/staticwebassets/msbuild.build.Chirp.CSVDBService.props
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.Chirp.CSVDBService.props
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.Chirp.CSVDBService.props
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/staticwebassets.pack.json
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/scopedcss/bundle/Chirp.CSVDBService.styles.css
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.csproj.CopyComplete
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.dll
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/refint/Chirp.CSVDBService.dll
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.pdb
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.genruntimeconfig.cache
+/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/Debug/net8.0/ref/Chirp.CSVDBService.dll
