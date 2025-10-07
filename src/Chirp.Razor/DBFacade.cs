@@ -1,129 +1,144 @@
 using Microsoft.Data.Sqlite;
-using System.Reflection;
-using Microsoft.Extensions.FileProviders;
-using System.Globalization;
+using Chirp.Shared;
 
 namespace Chirp.Razor;
 
+/// <summary>
+/// Provides access to the underlying SQLite database.
+/// Responsible for initializing schema, seeding data, and executing queries.
+/// </summary>
 public class DBFacade
 {
     private readonly string _connectionString;
-    private readonly int _cheepno = 32;
 
-    public DBFacade()
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DBFacade"/> class.
+    /// Ensures the database file and schema exist.
+    /// </summary>
+    /// <param name="dbPath">Path to the SQLite database file.</param>
+    public DBFacade(string dbPath)
     {
-        var dbPath = Environment.GetEnvironmentVariable("CHIRPDBPATH");
-        if (string.IsNullOrWhiteSpace(dbPath))
-        {
-            var temp = Path.GetTempPath();
-            dbPath = Path.Combine(temp, "chirp.db");
-        }
-
+        Directory.CreateDirectory(Path.GetDirectoryName(dbPath)!);
         _connectionString = $"Data Source={dbPath}";
 
-		if(!File.Exists(dbPath)){
-			using var conn = new SqliteConnection(_connectionString);
-			conn.Open();
-		}
+        if (!File.Exists(dbPath))
+        {
+            using var conn = new SqliteConnection(_connectionString);
+            conn.Open();
+        }
 
-		if(new FileInfo(dbPath).Length == 0){
-			InitializeDatabase();
-		}
+        InitializeDatabase();
     }
 
-	private void InitializeDatabase() 
-	{
-   		var assembly = Assembly.GetExecutingAssembly(); 
-		var provider = new EmbeddedFileProvider(assembly);
-
-    	using var conn = new SqliteConnection(_connectionString);
-    	conn.Open();
-
-    	var schemaFile = provider.GetFileInfo("Data/schema.sql");
-    	if (schemaFile.Exists) {
-        	using var stream = schemaFile.CreateReadStream();
-        	using var reader = new StreamReader(stream);
-        	var schemaSql = reader.ReadToEnd();
-
-        	using var cmd = conn.CreateCommand();
-        	cmd.CommandText = schemaSql;
-        	cmd.ExecuteNonQuery();
-    	} else {
-        	throw new FileNotFoundException("Could not find schema.sql as embedded resource.");
-    	}
-
-    	var dumpFile = provider.GetFileInfo("Data/dump.sql");
-    	if (dumpFile.Exists)
-    	{
-        	using var stream = dumpFile.CreateReadStream();
-        	using var reader = new StreamReader(stream);
-        	var dumpSql = reader.ReadToEnd();
-
-        	using var cmd = conn.CreateCommand();
-	        cmd.CommandText = dumpSql;
-	        cmd.ExecuteNonQuery();
-    	} else {
-        	throw new FileNotFoundException("Could not find dump.sql as embedded resource.");
-    	}
-	}
-
-
-    public List<CheepViewModel> GetCheeps(int page)
+    /// <summary>
+    /// Ensures that the database contains the required tables and seed data.
+    /// If the schema or dump files are missing, the database remains empty.
+    /// </summary>
+    private void InitializeDatabase()
     {
         using var conn = new SqliteConnection(_connectionString);
         conn.Open();
 
+        var checkCmd = conn.CreateCommand();
+        checkCmd.CommandText = "SELECT name FROM sqlite_master WHERE type='table' AND name='message';";
+        var exists = checkCmd.ExecuteScalar() != null;
+
+        if (!exists)
+            ExecuteSqlFromFile(conn, Path.Combine("Data", "schema.sql"));
+
+        try
+        {
+            var countCmd = conn.CreateCommand();
+            countCmd.CommandText = "SELECT COUNT(*) FROM message;";
+            var count = Convert.ToInt32(countCmd.ExecuteScalar());
+
+            if (count == 0)
+                ExecuteSqlFromFile(conn, Path.Combine("Data", "dump.sql"));
+        }
+        catch (SqliteException)
+        {
+            ExecuteSqlFromFile(conn, Path.Combine("Data", "schema.sql"));
+            ExecuteSqlFromFile(conn, Path.Combine("Data", "dump.sql"));
+        }
+    }
+
+    /// <summary>
+    /// Executes a SQL script from the given file path.
+    /// </summary>
+    /// <param name="conn">An open SQLite connection.</param>
+    /// <param name="path">Path to a .sql file.</param>
+    private static void ExecuteSqlFromFile(SqliteConnection conn, string path)
+    {
+        if (!File.Exists(path)) return;
+
+        var sql = File.ReadAllText(path);
         using var cmd = conn.CreateCommand();
+        cmd.CommandText = sql;
+        cmd.ExecuteNonQuery();
+    }
+
+    /// <summary>
+    /// Retrieves all cheeps from the database, sorted by publication date.
+    /// </summary>
+    /// <returns>A list of <see cref="Cheep"/> records.</returns>
+    public List<Cheep> GetCheeps()
+    {
+        var list = new List<Cheep>();
+        using var conn = new SqliteConnection(_connectionString);
+        conn.Open();
+
+        var cmd = conn.CreateCommand();
         cmd.CommandText = @"
             SELECT u.username, m.text, m.pub_date
             FROM message m
             JOIN user u ON m.author_id = u.user_id
-            ORDER BY m.pub_date DESC
-            LIMIT @_cheepno OFFSET @row_count;
-            ";
-        
-        cmd.Parameters.AddWithValue("@row_count", (page-1) * 32);
-        cmd.Parameters.AddWithValue("_cheepno", _cheepno);
-        return ReadCheeps(cmd);
+            ORDER BY m.pub_date DESC";
+
+        using var reader = cmd.ExecuteReader();
+        while (reader.Read())
+        {
+            list.Add(new Cheep
+            {
+                Author = reader.GetString(0),
+                Message = reader.GetString(1),
+                Timestamp = reader.GetInt64(2)
+            });
+        }
+
+        return list;
     }
 
-    public List<CheepViewModel> GetCheepsFromAuthor(string author, int page)
+    /// <summary>
+    /// Retrieves all cheeps posted by a specific author.
+    /// </summary>
+    /// <param name="author">The author’s username.</param>
+    /// <returns>A list of <see cref="Cheep"/> records.</returns>
+    public List<Cheep> GetCheepsFromAuthor(string author)
     {
+        var list = new List<Cheep>();
         using var conn = new SqliteConnection(_connectionString);
         conn.Open();
 
-        using var cmd = conn.CreateCommand();
+        var cmd = conn.CreateCommand();
         cmd.CommandText = @"
             SELECT u.username, m.text, m.pub_date
             FROM message m
             JOIN user u ON m.author_id = u.user_id
             WHERE u.username = @author
-            ORDER BY m.pub_date DESC
-            LIMIT @_cheepno OFFSET @row_count";
+            ORDER BY m.pub_date DESC";
         cmd.Parameters.AddWithValue("@author", author);
-        cmd.Parameters.AddWithValue("@row_count", (page-1) * 32);
-        cmd.Parameters.AddWithValue("_cheepno", _cheepno);
-        
-        return ReadCheeps(cmd);
-    }
 
-    private static List<CheepViewModel> ReadCheeps(SqliteCommand cmd)
-    {
-        var list = new List<CheepViewModel>();
-        using var r = cmd.ExecuteReader();
-        while (r.Read())
+        using var reader = cmd.ExecuteReader();
+        while (reader.Read())
         {
-            var author = r.GetString(0);
-            var message = r.GetString(1);
-            var ts = r.GetInt64(2);
-            list.Add(new CheepViewModel(author, message, UnixToLocal(ts)));
+            list.Add(new Cheep
+            {
+                Author = reader.GetString(0),
+                Message = reader.GetString(1),
+                Timestamp = reader.GetInt64(2)
+            });
         }
+
         return list;
     }
-
-    public static string UnixToLocal(long unixSeconds) =>
-        DateTimeOffset.FromUnixTimeSeconds(unixSeconds)
-            .ToLocalTime()
-            .ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture);
-    
 }

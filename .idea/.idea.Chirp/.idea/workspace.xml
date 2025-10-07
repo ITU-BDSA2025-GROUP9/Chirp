@@ -12,11 +12,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7266b04b-ac72-49d8-a177-c097c4b18dec" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Chirp.CSVDBService.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Chirp.CSVDBService.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/project.nuget.cache" afterDir="false" />
     </list>
     <list id="012def14-7223-4f82-a259-dcace34ec8f8" name="Changes by Isabella" comment="" />
     <list id="24ec59c7-267e-4645-a192-980babdfa0ab" name="Changes by marcus" comment="" />
@@ -58,8 +53,9 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/publish/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Chirp.CLI/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Chirp.CLI/UserInterface.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Chirp.CLI/UserInterface.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Chirp.CLI/obj/Chirp.CLI.csproj.nuget.dgspec.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Chirp.CLI/obj/project.assets.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Chirp.CLI/obj/project.packagespec.json" root0="FORCE_HIGHLIGHTING" />
@@ -67,6 +63,11 @@
     <setting file="file://$PROJECT_DIR$/src/Chirp.CSVDBService/appsettings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Chirp.CSVDBService.csproj.nuget.dgspec.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Chirp.CSVDBService/obj/project.assets.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/CheepService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/DBFacade.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/Pages/Public.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/Pages/Public.cshtml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/test/SimpleDB.Tests/obj/SimpleDB.Tests.csproj.nuget.dgspec.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/test/SimpleDB.Tests/obj/project.assets.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/test/SimpleDB.Tests/obj/project.packagespec.json" root0="FORCE_HIGHLIGHTING" />
@@ -90,7 +91,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;chirp-razor-sqlite&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/marcus/Documents/uni/Analysis design and software/exercise&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -217,6 +218,9 @@
       <workItem from="1759319179127" duration="9964000" />
       <workItem from="1759333445420" duration="2659000" />
       <workItem from="1759472859780" duration="1469000" />
+      <workItem from="1759758293095" duration="1889000" />
+      <workItem from="1759760207649" duration="1095000" />
+      <workItem from="1759829550007" duration="1636000" />
     </task>
     <task id="LOCAL-00001" summary="Added Azure functionality + several new classes.&#10;should work with azure once workflows are set up for it.">
       <option name="closed" value="true" />
@@ -242,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759072281168</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added azure auto deployment to razor pages, added Httpdatabaserepository to razor pages, removed all use of CLI. added Documention to razor classes. fixed some sql storing issues where chirps got stored as temp files rather than in a database.&#10;Co-authored-by: krini &lt;nielsenkristine2004@gmail.com&gt;">
+      <option name="closed" value="true" />
+      <created>1759830751830</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1759830751830</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TerminalProjectNonSharedOptionsProvider">
@@ -258,7 +270,8 @@
     <MESSAGE value="Added Azure functionality + several new classes.&#10;should work with azure once workflows are set up for it." />
     <MESSAGE value="excluded from lsat push apparently" />
     <MESSAGE value="Added Azure Autodeployment when running through CLI, automatic HTTP get and post implemented and documentation on everything. HttpDatabaseRepository do force use the Azure URl and therfore with current implementation local csv is not accesible. small Cleaning of unused methods and re edditing of parts of old code to simplify or optimize and various areas of the code." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Azure Autodeployment when running through CLI, automatic HTTP get and post implemented and documentation on everything. HttpDatabaseRepository do force use the Azure URl and therfore with current implementation local csv is not accesible. small Cleaning of unused methods and re edditing of parts of old code to simplify or optimize and various areas of the code." />
+    <MESSAGE value="Added azure auto deployment to razor pages, added Httpdatabaserepository to razor pages, removed all use of CLI. added Documention to razor classes. fixed some sql storing issues where chirps got stored as temp files rather than in a database.&#10;Co-authored-by: krini &lt;nielsenkristine2004@gmail.com&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added azure auto deployment to razor pages, added Httpdatabaserepository to razor pages, removed all use of CLI. added Documention to razor classes. fixed some sql storing issues where chirps got stored as temp files rather than in a database.&#10;Co-authored-by: krini &lt;nielsenkristine2004@gmail.com&gt;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

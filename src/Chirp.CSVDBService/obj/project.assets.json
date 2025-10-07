@@ -88,19 +88,19 @@
     ]
   },
   "packageFolders": {
-    "/home/bolle/.nuget/packages/": {}
+    "/home/marcus/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/Chirp.CSVDBService.csproj",
+      "projectUniqueName": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CSVDBService/Chirp.CSVDBService.csproj",
       "projectName": "Chirp.CSVDBService",
-      "projectPath": "/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/Chirp.CSVDBService.csproj",
-      "packagesPath": "/home/bolle/.nuget/packages/",
-      "outputPath": "/home/bolle/Projects/group9/Chirp/src/Chirp.CSVDBService/obj/",
+      "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CSVDBService/Chirp.CSVDBService.csproj",
+      "packagesPath": "/home/marcus/.nuget/packages/",
+      "outputPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CSVDBService/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/bolle/.nuget/NuGet/NuGet.Config"
+        "/home/marcus/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -112,11 +112,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/bolle/Projects/group9/Chirp/src/Chirp.Shared/Chirp.Shared.csproj": {
-              "projectPath": "/home/bolle/Projects/group9/Chirp/src/Chirp.Shared/Chirp.Shared.csproj"
+            "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/Chirp.Shared.csproj": {
+              "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/Chirp.Shared.csproj"
             },
-            "/home/bolle/Projects/group9/Chirp/src/SimpleDB/SimpleDB.csproj": {
-              "projectPath": "/home/bolle/Projects/group9/Chirp/src/SimpleDB/SimpleDB.csproj"
+            "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/SimpleDB/SimpleDB.csproj": {
+              "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/SimpleDB/SimpleDB.csproj"
             }
           }
         }
@@ -141,12 +141,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.20, 8.0.20]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -155,7 +149,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.120/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.119/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
