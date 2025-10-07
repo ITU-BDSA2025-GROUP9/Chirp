@@ -3,13 +3,13 @@
   &lt;Assembly Path="C:\Users\bruger\Desktop\Chirp\src\Chirp.CLI\bin\Debug\net8.0\Chirp.CLI.dll" /&gt;
   &lt;Assembly Path="/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/bin/Debug/net8.0/Chirp.Shared.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ac63b716_002Db140_002D4d9a_002D8f9d_002D6fcb0d8bedd9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ConvertTimeTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::A8EBC5D5-95D3-498E-9D5E-36ADEFC784C3::net8.0::Chirp.Cli.Tests.ProgramTests.TestReadCheep&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ac63b716_002Db140_002D4d9a_002D8f9d_002D6fcb0d8bedd9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ConvertTimeTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A8EBC5D5-95D3-498E-9D5E-36ADEFC784C3::net8.0::Chirp.Cli.Tests.ProgramTests.TestReadCheep&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b32eab83_002D6905_002D4ffc_002D8b4e_002Ddef8d3f19f83/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestReadCheep" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::A8EBC5D5-95D3-498E-9D5E-36ADEFC784C3::net8.0::Chirp.Cli.Tests.ProgramTests.TestReadCheep&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b32eab83_002D6905_002D4ffc_002D8b4e_002Ddef8d3f19f83/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestReadCheep" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A8EBC5D5-95D3-498E-9D5E-36ADEFC784C3::net8.0::Chirp.Cli.Tests.ProgramTests.TestReadCheep&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\test\\SimpleDB.Tests\\SimpleDB.Tests.csproj": {}
+    "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\test\\SimpleDB.Tests\\SimpleDB.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj": {
+    "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj",
         "projectName": "Chirp.Shared",
-        "projectPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj",
-        "packagesPath": "C:\\Users\\marcu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.Shared\\obj\\",
+        "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj",
+        "packagesPath": "C:\\Users\\mikke\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\marcu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\mikke\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -68,17 +68,17 @@
         }
       }
     },
-    "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
+    "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
+        "projectUniqueName": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
         "projectName": "SimpleDB",
-        "projectPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
-        "packagesPath": "C:\\Users\\marcu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\SimpleDB\\obj\\",
+        "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
+        "packagesPath": "C:\\Users\\mikke\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\marcu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\mikke\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -90,8 +90,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj": {
-                "projectPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj"
+              "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj": {
+                "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj"
               }
             }
           }
@@ -130,17 +130,17 @@
         }
       }
     },
-    "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\test\\SimpleDB.Tests\\SimpleDB.Tests.csproj": {
+    "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\test\\SimpleDB.Tests\\SimpleDB.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\test\\SimpleDB.Tests\\SimpleDB.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\test\\SimpleDB.Tests\\SimpleDB.Tests.csproj",
         "projectName": "SimpleDB.Tests",
-        "projectPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\test\\SimpleDB.Tests\\SimpleDB.Tests.csproj",
-        "packagesPath": "C:\\Users\\marcu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\test\\SimpleDB.Tests\\obj\\",
+        "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\test\\SimpleDB.Tests\\SimpleDB.Tests.csproj",
+        "packagesPath": "C:\\Users\\mikke\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\test\\SimpleDB.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\marcu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\mikke\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -152,8 +152,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
-                "projectPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\SimpleDB\\SimpleDB.csproj"
+              "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
+                "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\SimpleDB.csproj"
               }
             }
           }

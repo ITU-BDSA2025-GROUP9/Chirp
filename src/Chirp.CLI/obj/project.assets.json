@@ -175,19 +175,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\marcu\\.nuget\\packages\\": {}
+    "C:\\Users\\mikke\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
+      "projectUniqueName": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
       "projectName": "Chirp.CLI",
-      "projectPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
-      "packagesPath": "C:\\Users\\marcu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.CLI\\obj\\",
+      "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
+      "packagesPath": "C:\\Users\\mikke\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.CLI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\marcu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\mikke\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -199,11 +199,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj": {
-              "projectPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj"
+            "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj": {
+              "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj"
             },
-            "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
-              "projectPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\SimpleDB\\SimpleDB.csproj"
+            "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
+              "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\SimpleDB.csproj"
             }
           }
         }

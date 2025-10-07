@@ -1,15 +1,14 @@
 using System.Globalization;
 using Chirp.Razor.Models;
 using Chirp.Razor.Repositories;
+using Chirp.Razor.DTO;
 
 namespace Chirp.Razor;
 
-public record CheepViewModel(string Author, string Message, string Timestamp);
-
 public interface ICheepService
 {
-    List<CheepViewModel> GetCheeps(int page);
-    List<CheepViewModel> GetCheepsFromAuthor(string author, int page);
+    List<CheepDTO> GetCheeps(int page);
+    List<CheepDTO> GetCheepsFromAuthor(string author, int page);
 }
 
 public class CheepService : ICheepService
@@ -22,8 +21,10 @@ public class CheepService : ICheepService
         _cheepRepository = cheepRepository;
     }
 
-    public List<CheepViewModel> GetCheeps(int page)
+    public List<CheepDTO> GetCheeps(int page)
     {
+        if (page <= 0) throw new ArgumentOutOfRangeException(nameof(page));
+        
         return _cheepRepository.GetAllCheeps()
             .Skip((page - 1) * PageSize)
             .Take(PageSize)
@@ -31,8 +32,11 @@ public class CheepService : ICheepService
             .ToList();
     }
 
-    public List<CheepViewModel> GetCheepsFromAuthor(string author, int page)
+    public List<CheepDTO> GetCheepsFromAuthor(string author, int page)
     {
+        if (string.IsNullOrWhiteSpace(author)) throw new ArgumentException("Author is required", nameof(author));
+        if (page <= 0) throw new ArgumentOutOfRangeException(nameof(page));
+        
         return _cheepRepository.GetCheepsByAuthor(author)
             .Skip((page - 1) * PageSize)
             .Take(PageSize)
@@ -40,10 +44,10 @@ public class CheepService : ICheepService
             .ToList();
     }
 
-    private static CheepViewModel Map(Cheep c) =>
+    private static CheepDTO Map(Cheep c) =>
         new(
-            c.Author.Name,
-            c.Text,
-            c.TimeStamp.ToLocalTime().ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture)
+            Author: c.Author.Name,
+            Message: c.Text,
+            Timestamp: c.TimeStamp.ToLocalTime().ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture)
         );
 }
