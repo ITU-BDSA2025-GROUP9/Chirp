@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "tx8ZzfmaXQc=",
+  "dgSpecHash": "3KZ3s0+0WUQ=",
   "success": true,
-  "projectFilePath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CSVDBService/Chirp.CSVDBService.csproj",
+  "projectFilePath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.CSVDBService\\Chirp.CSVDBService.csproj",
   "expectedPackageFiles": [
-    "/home/marcus/.nuget/packages/csvhelper/33.1.0/csvhelper.33.1.0.nupkg.sha512"
+    "C:\\Users\\marcu\\.nuget\\packages\\csvhelper\\33.1.0\\csvhelper.33.1.0.nupkg.sha512"
   ],
   "logs": []
 }
