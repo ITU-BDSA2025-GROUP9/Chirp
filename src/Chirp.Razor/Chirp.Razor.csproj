@@ -1,18 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFramework>net$(NETCoreAppMaximumVersion)</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.8" />
+        <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.2" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.8" />
-    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.2" />
-  </ItemGroup>
-    
-  <ItemGroup>
-    <EmbeddedResource Include="Data/**/*" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Chirp.Shared\Chirp.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="Data/schema.sql" CopyToOutputDirectory="PreserveNewest" />
+        <Content Include="Data/dump.sql" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+
 
 </Project>

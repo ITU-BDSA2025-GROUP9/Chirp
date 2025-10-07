@@ -9,7 +9,10 @@ var app = builder.Build();
 /// Path to the CSV file used as persistent storage
 /// within the Azure container.
 /// </summary>
-var csvPath = Path.Combine("/home", "chirp_service_db.csv");
+var csvPath = Path.Combine(
+    Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+    "chirp_service_db.csv"
+);
 
 // Ensure the file exists
 if (!File.Exists(csvPath)) File.WriteAllText(csvPath, "");
