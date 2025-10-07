@@ -5623,19 +5623,19 @@
     ]
   },
   "packageFolders": {
-    "/home/marcus/.nuget/packages/": {}
+    "C:\\Users\\marcu\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/test/SimpleDB.Tests/SimpleDB.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\test\\SimpleDB.Tests\\SimpleDB.Tests.csproj",
       "projectName": "SimpleDB.Tests",
-      "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/test/SimpleDB.Tests/SimpleDB.Tests.csproj",
-      "packagesPath": "/home/marcus/.nuget/packages/",
-      "outputPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/test/SimpleDB.Tests/obj/",
+      "projectPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\test\\SimpleDB.Tests\\SimpleDB.Tests.csproj",
+      "packagesPath": "C:\\Users\\marcu\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\test\\SimpleDB.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/marcus/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\marcu\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -5647,8 +5647,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/SimpleDB/SimpleDB.csproj": {
-              "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/SimpleDB/SimpleDB.csproj"
+            "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
+              "projectPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\SimpleDB\\SimpleDB.csproj"
             }
           }
         }
@@ -5657,6 +5657,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -5700,7 +5705,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.119/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
