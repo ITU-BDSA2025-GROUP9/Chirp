@@ -16,10 +16,12 @@ if (builder.Environment.IsDevelopment())
 }
 else
 {
-    var azureDir = "/home/site/wwwroot/App_Data";
+    // ✅ Use persistent storage under /home/data for Azure
+    var azureDir = "/home/data";
     Directory.CreateDirectory(azureDir);
     dbPath = Path.Combine(azureDir, "chirp.db");
 }
+
 
 // Initialize SQLite DB from schema.sql and dump.sql if it doesn’t exist yet
 if (!File.Exists(dbPath))
