@@ -1,11 +1,8 @@
 namespace Chirp.Razor.DTO
 {
-    /// <summary>
-    /// does not expose database/internal structure.
-    /// </summary>
-    public record CheepDTO(
-        string Author,
-        string Message,
-        string Timestamp
-    );
+    public class CheepDTO {
+        public string Author { get; set; } = string.Empty;
+        public string Message { get; set; } = string.Empty;
+        public string Timestamp { get; set; } = string.Empty;
+    }
 }

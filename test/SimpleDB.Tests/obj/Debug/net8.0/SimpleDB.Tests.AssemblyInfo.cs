@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SimpleDB.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d97261ca71475269fe3dc26d04bd57f3c9fe6ac")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+06c5d3df59f346607f1192fa986062cf6c3f42ea")]
 [assembly: System.Reflection.AssemblyProductAttribute("SimpleDB.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SimpleDB.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

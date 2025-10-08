@@ -2,6 +2,7 @@ using System.Globalization;
 using Chirp.Razor.Models;
 using Chirp.Razor.Repositories;
 using Chirp.Razor.DTO;
+using System.Linq;
 
 namespace Chirp.Razor;
 
@@ -44,10 +45,10 @@ public class CheepService : ICheepService
             .ToList();
     }
 
-    private static CheepDTO Map(Cheep c) =>
-        new(
-            Author: c.Author.Name,
-            Message: c.Text,
-            Timestamp: c.TimeStamp.ToLocalTime().ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture)
-        );
+    private static CheepDTO Map(Cheep c) => new CheepDTO
+    {
+        Author = c.Author.Name,
+        Message = c.Text,
+        Timestamp = c.TimeStamp.ToLocalTime().ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture)
+    };
 }
