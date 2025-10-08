@@ -29,6 +29,12 @@
         <Content Include="Data/schema.sql" CopyToOutputDirectory="PreserveNewest" />
         <Content Include="Data/dump.sql" CopyToOutputDirectory="PreserveNewest" />
     </ItemGroup>
+    <ItemGroup>
+        <None Update="Data\**\*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
 
 
 </Project>
