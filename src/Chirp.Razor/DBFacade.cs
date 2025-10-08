@@ -1,5 +1,6 @@
 using Microsoft.Data.Sqlite;
-using Chirp.Shared;
+using Chirp.Razor.Models;
+
 
 namespace Chirp.Razor;
 
@@ -81,64 +82,66 @@ public class DBFacade
     /// Retrieves all cheeps from the database, sorted by publication date.
     /// </summary>
     /// <returns>A list of <see cref="Cheep"/> records.</returns>
-    public List<Cheep> GetCheeps()
+public List<Cheep> GetCheeps()
+{
+    var list = new List<Cheep>();
+    using var conn = new SqliteConnection(_connectionString);
+    conn.Open();
+
+    var cmd = conn.CreateCommand();
+    cmd.CommandText = @"
+        SELECT u.username, m.text, m.pub_date
+        FROM message m
+        JOIN user u ON m.author_id = u.user_id
+        ORDER BY m.pub_date DESC";
+
+    using var reader = cmd.ExecuteReader();
+    while (reader.Read())
     {
-        var list = new List<Cheep>();
-        using var conn = new SqliteConnection(_connectionString);
-        conn.Open();
-
-        var cmd = conn.CreateCommand();
-        cmd.CommandText = @"
-            SELECT u.username, m.text, m.pub_date
-            FROM message m
-            JOIN user u ON m.author_id = u.user_id
-            ORDER BY m.pub_date DESC";
-
-        using var reader = cmd.ExecuteReader();
-        while (reader.Read())
+        list.Add(new Cheep
         {
-            list.Add(new Cheep
-            {
-                Author = reader.GetString(0),
-                Message = reader.GetString(1),
-                Timestamp = reader.GetInt64(2)
-            });
-        }
-
-        return list;
+            Author = new Author { Name = reader.GetString(0) },
+            Text = reader.GetString(1),
+            TimeStamp = DateTimeOffset.FromUnixTimeSeconds(reader.GetInt64(2)).DateTime
+        });
     }
+
+    return list;
+}
+
 
     /// <summary>
     /// Retrieves all cheeps posted by a specific author.
     /// </summary>
     /// <param name="author">The author’s username.</param>
     /// <returns>A list of <see cref="Cheep"/> records.</returns>
-    public List<Cheep> GetCheepsFromAuthor(string author)
+public List<Cheep> GetCheepsFromAuthor(string author)
+{
+    var list = new List<Cheep>();
+    using var conn = new SqliteConnection(_connectionString);
+    conn.Open();
+
+    var cmd = conn.CreateCommand();
+    cmd.CommandText = @"
+        SELECT u.username, m.text, m.pub_date
+        FROM message m
+        JOIN user u ON m.author_id = u.user_id
+        WHERE u.username = @author
+        ORDER BY m.pub_date DESC";
+    cmd.Parameters.AddWithValue("@author", author);
+
+    using var reader = cmd.ExecuteReader();
+    while (reader.Read())
     {
-        var list = new List<Cheep>();
-        using var conn = new SqliteConnection(_connectionString);
-        conn.Open();
-
-        var cmd = conn.CreateCommand();
-        cmd.CommandText = @"
-            SELECT u.username, m.text, m.pub_date
-            FROM message m
-            JOIN user u ON m.author_id = u.user_id
-            WHERE u.username = @author
-            ORDER BY m.pub_date DESC";
-        cmd.Parameters.AddWithValue("@author", author);
-
-        using var reader = cmd.ExecuteReader();
-        while (reader.Read())
+        list.Add(new Cheep
         {
-            list.Add(new Cheep
-            {
-                Author = reader.GetString(0),
-                Message = reader.GetString(1),
-                Timestamp = reader.GetInt64(2)
-            });
-        }
-
-        return list;
+            Author = new Author { Name = reader.GetString(0) },
+            Text = reader.GetString(1),
+            TimeStamp = DateTimeOffset.FromUnixTimeSeconds(reader.GetInt64(2)).DateTime
+        });
     }
+
+    return list;
+}
+
 }

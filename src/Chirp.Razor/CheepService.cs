@@ -22,23 +22,24 @@ public class CheepService : ICheepService
         _cheepRepository = cheepRepository;
     }
 
-    public List<CheepViewModel> GetCheeps(int page)
-    {
-        return _cheepRepository.GetAllCheeps()
-            .Skip((page - 1) * PageSize)
-            .Take(PageSize)
-            .Select(Map)
-            .ToList();
-    }
+public List<CheepViewModel> GetCheeps(int page)
+{
+    return _cheepRepository.GetAllCheeps()
+        .Skip((page - 1) * PageSize)
+        .Take(PageSize)
+        .Select((Cheep c) => Map(c))  // <-- specify type explicitly
+        .ToList();
+}
 
-    public List<CheepViewModel> GetCheepsFromAuthor(string author, int page)
-    {
-        return _cheepRepository.GetCheepsByAuthor(author)
-            .Skip((page - 1) * PageSize)
-            .Take(PageSize)
-            .Select(Map)
-            .ToList();
-    }
+public List<CheepViewModel> GetCheepsFromAuthor(string author, int page)
+{
+    return _cheepRepository.GetCheepsByAuthor(author)
+        .Skip((page - 1) * PageSize)
+        .Take(PageSize)
+        .Select((Cheep c) => Map(c))  // <-- same here
+        .ToList();
+}
+	
 
     private static CheepViewModel Map(Cheep c) =>
         new(

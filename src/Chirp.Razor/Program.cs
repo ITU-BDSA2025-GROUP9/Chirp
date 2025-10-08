@@ -1,15 +1,12 @@
 using Chirp.Razor;
 using Chirp.Razor.Database;
 using Chirp.Razor.Repositories;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
-/// <summary>
-/// Entry point for the Chirp Razor application.
-/// Configures dependency injection, EF Core database context, and middleware.
-/// </summary>
 var builder = WebApplication.CreateBuilder(args);
 
-// Determine database file path depending on environment.
+// Determine database file path
 string dbPath;
 if (builder.Environment.IsDevelopment())
 {
@@ -19,25 +16,67 @@ if (builder.Environment.IsDevelopment())
 }
 else
 {
-    var azureDir = "/home/site/wwwroot/App_Data";
+    // ✅ Use persistent storage under /home/data for Azure
+    var azureDir = "/home/data";
     Directory.CreateDirectory(azureDir);
     dbPath = Path.Combine(azureDir, "chirp.db");
 }
 
-// Register EF Core with SQLite, using the same chirp.db file
+
+// Initialize SQLite DB from schema.sql and dump.sql if it doesn’t exist yet
+if (!File.Exists(dbPath))
+{
+    Console.WriteLine("Creating chirp.db from schema.sql and dump.sql...");
+
+    var dataDir = Path.Combine(AppContext.BaseDirectory, "Data");
+    var schemaPath = Path.Combine(dataDir, "schema.sql");
+    var dumpPath = Path.Combine(dataDir, "dump.sql");
+
+    using var conn = new SqliteConnection($"Data Source={dbPath}");
+    conn.Open();
+
+    void ExecuteSql(string path)
+    {
+        if (File.Exists(path))
+        {
+            var sql = File.ReadAllText(path);
+            using var cmd = conn.CreateCommand();
+            cmd.CommandText = sql;
+            cmd.ExecuteNonQuery();
+        }
+    }
+
+    ExecuteSql(schemaPath);
+    ExecuteSql(dumpPath);
+    conn.Close();
+
+    Console.WriteLine("✅ chirp.db initialized successfully.");
+}
+else
+{
+    Console.WriteLine($"Using existing database at {dbPath}");
+}
+
+// Register EF Core with SQLite
 builder.Services.AddDbContext<ChirpDbContext>(options =>
     options.UseSqlite($"Data Source={dbPath}"));
 
-// Register repository + service using scoped lifetimes (one per web request)
+// Register repositories and services
 builder.Services.AddScoped<ICheepRepository, CheepRepository>();
 builder.Services.AddScoped<ICheepService, CheepService>();
 
-// Register Razor Pages
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// Configure middleware
+// No EF migrations — schema comes from SQL files
+// but ensure EF can read the DB
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ChirpDbContext>();
+    db.Database.EnsureCreated(); // no schema overwrite
+}
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");

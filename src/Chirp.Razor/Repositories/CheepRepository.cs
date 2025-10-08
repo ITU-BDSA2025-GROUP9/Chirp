@@ -1,34 +1,24 @@
-using Chirp.Razor.Database;
 using Chirp.Razor.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace Chirp.Razor.Repositories;
 
 public class CheepRepository : ICheepRepository
 {
-    private readonly ChirpDbContext _context;
+    private readonly DBFacade _db;
 
-    public CheepRepository(ChirpDbContext context)
+    public CheepRepository(IWebHostEnvironment env)
     {
-        _context = context;
+        var dbPath = Path.Combine(env.ContentRootPath, "App_Data", "chirp.db");
+        _db = new DBFacade(dbPath);
     }
 
-    public IEnumerable<Cheep> GetAllCheeps() =>
-        _context.Cheeps
-            .Include(c => c.Author)
-            .OrderByDescending(c => c.TimeStamp)
-            .ToList();
+    public IEnumerable<Cheep> GetAllCheeps() => _db.GetCheeps();
 
-    public IEnumerable<Cheep> GetCheepsByAuthor(string authorName) =>
-        _context.Cheeps
-            .Include(c => c.Author)
-            .Where(c => c.Author.Name == authorName)
-            .OrderByDescending(c => c.TimeStamp)
-            .ToList();
+    public IEnumerable<Cheep> GetCheepsByAuthor(string authorName) => _db.GetCheepsFromAuthor(authorName);
 
     public void AddCheep(Cheep cheep)
     {
-        _context.Cheeps.Add(cheep);
-        _context.SaveChanges();
+        throw new NotImplementedException("Posting new cheeps not implemented yet.");
     }
 }
+
