@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\test\\Chirp.Cli.Tests\\Chirp.Cli.Tests.csproj": {}
+    "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\test\\Chirp.Cli.Tests\\Chirp.Cli.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\test\\Chirp.Cli.Tests\\Chirp.Cli.Tests.csproj": {
+    "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\test\\Chirp.Cli.Tests\\Chirp.Cli.Tests.csproj",
-        "projectName": "Chirp.Cli.Tests",
-        "projectPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\test\\Chirp.Cli.Tests\\Chirp.Cli.Tests.csproj",
-        "packagesPath": "C:\\Users\\marcu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\test\\Chirp.Cli.Tests\\obj\\",
+        "projectUniqueName": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
+        "projectName": "Chirp.CLI",
+        "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
+        "packagesPath": "C:\\Users\\mikke\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.CLI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\marcu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\mikke\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,8 +26,209 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj": {
-                "projectPath": "C:\\Users\\marcu\\Documents\\uni\\soft architecture\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj"
+              "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj": {
+                "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj"
+              },
+              "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
+                "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\SimpleDB.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[33.1.0, )"
+            },
+            "docopt.net": {
+              "target": "Package",
+              "version": "[0.8.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj",
+        "projectName": "Chirp.Shared",
+        "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj",
+        "packagesPath": "C:\\Users\\mikke\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mikke\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[33.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
+        "projectName": "SimpleDB",
+        "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
+        "packagesPath": "C:\\Users\\mikke\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mikke\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj": {
+                "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\test\\Chirp.Cli.Tests\\Chirp.Cli.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\test\\Chirp.Cli.Tests\\Chirp.Cli.Tests.csproj",
+        "projectName": "Chirp.Cli.Tests",
+        "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\test\\Chirp.Cli.Tests\\Chirp.Cli.Tests.csproj",
+        "packagesPath": "C:\\Users\\mikke\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\test\\Chirp.Cli.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mikke\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj": {
+                "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj"
               }
             }
           }
