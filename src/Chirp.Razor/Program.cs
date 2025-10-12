@@ -22,41 +22,6 @@ else
     dbPath = Path.Combine(azureDir, "chirp.db");
 }
 
-
-// Initialize SQLite DB from schema.sql and dump.sql if it doesn’t exist yet
-if (!File.Exists(dbPath))
-{
-    Console.WriteLine("Creating chirp.db from schema.sql and dump.sql...");
-
-    var dataDir = Path.Combine(AppContext.BaseDirectory, "Data");
-    var schemaPath = Path.Combine(dataDir, "schema.sql");
-    var dumpPath = Path.Combine(dataDir, "dump.sql");
-
-    using var conn = new SqliteConnection($"Data Source={dbPath}");
-    conn.Open();
-
-    void ExecuteSql(string path)
-    {
-        if (File.Exists(path))
-        {
-            var sql = File.ReadAllText(path);
-            using var cmd = conn.CreateCommand();
-            cmd.CommandText = sql;
-            cmd.ExecuteNonQuery();
-        }
-    }
-
-    ExecuteSql(schemaPath);
-    ExecuteSql(dumpPath);
-    conn.Close();
-
-    Console.WriteLine("✅ chirp.db initialized successfully.");
-}
-else
-{
-    Console.WriteLine($"Using existing database at {dbPath}");
-}
-
 // Register EF Core with SQLite
 builder.Services.AddDbContext<ChirpDbContext>(options =>
     options.UseSqlite($"Data Source={dbPath}"));
@@ -75,6 +40,7 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ChirpDbContext>();
     db.Database.EnsureCreated(); // no schema overwrite
+    DbInitializer.SeedDatabase(db);
 }
 
 if (!app.Environment.IsDevelopment())
@@ -90,3 +56,4 @@ app.UseRouting();
 app.MapRazorPages();
 
 app.Run();
+public partial class Program { }

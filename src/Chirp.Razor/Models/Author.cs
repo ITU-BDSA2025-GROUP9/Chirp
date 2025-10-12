@@ -6,7 +6,7 @@ namespace Chirp.Razor.Models
 {
     public class Author
     {
-        public int Id { get; set; } // EF Core will recognize this as the primary key by convention
+        public int AuthorId { get; set; } // EF Core will recognize this as the primary key by convention
 
         [Required]
         public string Name { get; set; } = string.Empty;

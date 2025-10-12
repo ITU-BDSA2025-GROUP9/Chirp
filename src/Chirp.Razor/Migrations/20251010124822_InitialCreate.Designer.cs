@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Chirp.Razor.Migrations
 {
     [DbContext(typeof(ChirpDbContext))]
-    [Migration("20251007144629_InitialCreate")]
+    [Migration("20251010124822_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -22,44 +22,51 @@ namespace Chirp.Razor.Migrations
 
             modelBuilder.Entity("Chirp.Razor.Models.Author", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AuthorId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("user_id");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("email");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("username");
 
-                    b.HasKey("Id");
+                    b.HasKey("AuthorId");
 
-                    b.ToTable("Authors");
+                    b.ToTable("user", (string)null);
                 });
 
             modelBuilder.Entity("Chirp.Razor.Models.Cheep", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CheepId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("message_id");
 
                     b.Property<int>("AuthorId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("author_id");
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("text");
 
                     b.Property<DateTime>("TimeStamp")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("pub_date");
 
-                    b.HasKey("Id");
+                    b.HasKey("CheepId");
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("Cheeps");
+                    b.ToTable("message", (string)null);
                 });
 
             modelBuilder.Entity("Chirp.Razor.Models.Cheep", b =>

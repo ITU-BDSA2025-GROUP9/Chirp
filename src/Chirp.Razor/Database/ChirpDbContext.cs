@@ -17,19 +17,18 @@ namespace Chirp.Razor.Database
             modelBuilder.Entity<Author>().ToTable("user");
             modelBuilder.Entity<Author>(entity =>
             {
-                entity.HasKey(a => a.Id);
-                entity.Property(a => a.Id).HasColumnName("user_id");
+                entity.HasKey(a => a.AuthorId);
+                entity.Property(a => a.AuthorId).HasColumnName("user_id");
                 entity.Property(a => a.Name).HasColumnName("username");
                 entity.Property(a => a.Email).HasColumnName("email");
-                entity.Ignore(a => a.Cheeps); // optional — EF can still infer this from Cheep
             });
 
             // Map Cheep -> "message" table
             modelBuilder.Entity<Cheep>().ToTable("message");
             modelBuilder.Entity<Cheep>(entity =>
             {
-                entity.HasKey(c => c.Id);
-                entity.Property(c => c.Id).HasColumnName("message_id");
+                entity.HasKey(c => c.CheepId);
+                entity.Property(c => c.CheepId).HasColumnName("message_id");
                 entity.Property(c => c.Text).HasColumnName("text");
                 entity.Property(c => c.TimeStamp).HasColumnName("pub_date");
                 entity.Property(c => c.AuthorId).HasColumnName("author_id");
