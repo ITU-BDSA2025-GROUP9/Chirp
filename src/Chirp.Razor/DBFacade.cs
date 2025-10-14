@@ -1,22 +1,12 @@
 using Microsoft.Data.Sqlite;
 using Chirp.Razor.Models;
 
-
 namespace Chirp.Razor;
 
-/// <summary>
-/// Provides access to the underlying SQLite database.
-/// Responsible for initializing schema, seeding data, and executing queries.
-/// </summary>
 public class DBFacade
 {
     private readonly string _connectionString;
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="DBFacade"/> class.
-    /// Ensures the database file and schema exist.
-    /// </summary>
-    /// <param name="dbPath">Path to the SQLite database file.</param>
     public DBFacade(string dbPath)
     {
         Directory.CreateDirectory(Path.GetDirectoryName(dbPath)!);
@@ -31,18 +21,14 @@ public class DBFacade
         InitializeDatabase();
     }
 
-    /// <summary>
-    /// Ensures that the database contains the required tables and seed data.
-    /// If the schema or dump files are missing, the database remains empty.
-    /// </summary>
     private void InitializeDatabase()
     {
         using var conn = new SqliteConnection(_connectionString);
         conn.Open();
 
-        var checkCmd = conn.CreateCommand();
-        checkCmd.CommandText = "SELECT name FROM sqlite_master WHERE type='table' AND name='message';";
-        var exists = checkCmd.ExecuteScalar() != null;
+        var tableExists = conn.CreateCommand();
+        tableExists.CommandText = "SELECT name FROM sqlite_master WHERE type='table' AND name='message';";
+        var exists = tableExists.ExecuteScalar() != null;
 
         if (!exists)
             ExecuteSqlFromFile(conn, Path.Combine("Data", "schema.sql"));
@@ -63,85 +49,61 @@ public class DBFacade
         }
     }
 
-    /// <summary>
-    /// Executes a SQL script from the given file path.
-    /// </summary>
-    /// <param name="conn">An open SQLite connection.</param>
-    /// <param name="path">Path to a .sql file.</param>
     private static void ExecuteSqlFromFile(SqliteConnection conn, string path)
     {
         if (!File.Exists(path)) return;
-
         var sql = File.ReadAllText(path);
         using var cmd = conn.CreateCommand();
         cmd.CommandText = sql;
         cmd.ExecuteNonQuery();
     }
 
-    /// <summary>
-    /// Retrieves all cheeps from the database, sorted by publication date.
-    /// </summary>
-    /// <returns>A list of <see cref="Cheep"/> records.</returns>
-public List<Cheep> GetCheeps()
-{
-    var list = new List<Cheep>();
-    using var conn = new SqliteConnection(_connectionString);
-    conn.Open();
-
-    var cmd = conn.CreateCommand();
-    cmd.CommandText = @"
-        SELECT u.username, m.text, m.pub_date
-        FROM message m
-        JOIN user u ON m.author_id = u.user_id
-        ORDER BY m.pub_date DESC";
-
-    using var reader = cmd.ExecuteReader();
-    while (reader.Read())
+    public List<Cheep> GetCheeps()
     {
-        list.Add(new Cheep
-        {
-            Author = new Author { Name = reader.GetString(0) },
-            Text = reader.GetString(1),
-            TimeStamp = DateTimeOffset.FromUnixTimeSeconds(reader.GetInt64(2)).DateTime
-        });
+        const string query = @"
+            SELECT u.username, m.text, m.pub_date
+            FROM message m
+            JOIN user u ON m.author_id = u.user_id
+            ORDER BY m.pub_date DESC";
+
+        return ExecuteQuery(query);
     }
 
-    return list;
-}
-
-
-    /// <summary>
-    /// Retrieves all cheeps posted by a specific author.
-    /// </summary>
-    /// <param name="author">The author’s username.</param>
-    /// <returns>A list of <see cref="Cheep"/> records.</returns>
-public List<Cheep> GetCheepsFromAuthor(string author)
-{
-    var list = new List<Cheep>();
-    using var conn = new SqliteConnection(_connectionString);
-    conn.Open();
-
-    var cmd = conn.CreateCommand();
-    cmd.CommandText = @"
-        SELECT u.username, m.text, m.pub_date
-        FROM message m
-        JOIN user u ON m.author_id = u.user_id
-        WHERE u.username = @author
-        ORDER BY m.pub_date DESC";
-    cmd.Parameters.AddWithValue("@author", author);
-
-    using var reader = cmd.ExecuteReader();
-    while (reader.Read())
+    public List<Cheep> GetCheepsFromAuthor(string author)
     {
-        list.Add(new Cheep
-        {
-            Author = new Author { Name = reader.GetString(0) },
-            Text = reader.GetString(1),
-            TimeStamp = DateTimeOffset.FromUnixTimeSeconds(reader.GetInt64(2)).DateTime
-        });
+        const string query = @"
+            SELECT u.username, m.text, m.pub_date
+            FROM message m
+            JOIN user u ON m.author_id = u.user_id
+            WHERE u.username = @author
+            ORDER BY m.pub_date DESC";
+
+        return ExecuteQuery(query, ("@author", author));
     }
 
-    return list;
-}
+    private List<Cheep> ExecuteQuery(string query, params (string Name, object Value)[] parameters)
+    {
+        var list = new List<Cheep>();
+        using var conn = new SqliteConnection(_connectionString);
+        conn.Open();
 
+        using var cmd = conn.CreateCommand();
+        cmd.CommandText = query;
+
+        foreach (var (name, value) in parameters)
+            cmd.Parameters.AddWithValue(name, value);
+
+        using var reader = cmd.ExecuteReader();
+        while (reader.Read())
+        {
+            list.Add(new Cheep
+            {
+                Author = new Author { Name = reader.GetString(0) },
+                Text = reader.GetString(1),
+                TimeStamp = DateTimeOffset.FromUnixTimeSeconds(reader.GetInt64(2)).DateTime
+            });
+        }
+
+        return list;
+    }
 }

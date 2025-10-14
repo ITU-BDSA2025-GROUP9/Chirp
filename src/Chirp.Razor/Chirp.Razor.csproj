@@ -17,24 +17,18 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="9.0.9" />
         <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.2" />
-    </ItemGroup>
-
-
-    <ItemGroup>
-        <ProjectReference Include="..\Chirp.Shared\Chirp.Shared.csproj" />
     </ItemGroup>
 
     <ItemGroup>
         <Content Include="Data/schema.sql" CopyToOutputDirectory="PreserveNewest" />
         <Content Include="Data/dump.sql" CopyToOutputDirectory="PreserveNewest" />
     </ItemGroup>
+
     <ItemGroup>
         <None Update="Data\**\*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>
-
-
-
 </Project>

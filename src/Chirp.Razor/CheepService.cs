@@ -14,37 +14,31 @@ public interface ICheepService
 
 public class CheepService : ICheepService
 {
-    private readonly ICheepRepository _cheepRepository;
+    private readonly ICheepRepository _repository;
     private const int PageSize = 32;
 
-    public CheepService(ICheepRepository cheepRepository)
+    public CheepService(ICheepRepository repository)
     {
-        _cheepRepository = cheepRepository;
+        _repository = repository;
     }
 
-public List<CheepViewModel> GetCheeps(int page)
-{
-    return _cheepRepository.GetAllCheeps()
-        .Skip((page - 1) * PageSize)
-        .Take(PageSize)
-        .Select((Cheep c) => Map(c))  // <-- specify type explicitly
-        .ToList();
-}
+    public List<CheepViewModel> GetCheeps(int page) =>
+        _repository.GetAllCheeps()
+            .Skip((page - 1) * PageSize)
+            .Take(PageSize)
+            .Select(Map)
+            .ToList();
 
-public List<CheepViewModel> GetCheepsFromAuthor(string author, int page)
-{
-    return _cheepRepository.GetCheepsByAuthor(author)
-        .Skip((page - 1) * PageSize)
-        .Take(PageSize)
-        .Select((Cheep c) => Map(c))  // <-- same here
-        .ToList();
-}
-	
+    public List<CheepViewModel> GetCheepsFromAuthor(string author, int page) =>
+        _repository.GetCheepsByAuthor(author)
+            .Skip((page - 1) * PageSize)
+            .Take(PageSize)
+            .Select(Map)
+            .ToList();
 
-    private static CheepViewModel Map(Cheep c) =>
-        new(
-            c.Author.Name,
-            c.Text,
-            c.TimeStamp.ToLocalTime().ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture)
-        );
+    private static CheepViewModel Map(Cheep c) => new(
+        c.Author.Name,
+        c.Text,
+        c.TimeStamp.ToLocalTime().ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture)
+    );
 }
