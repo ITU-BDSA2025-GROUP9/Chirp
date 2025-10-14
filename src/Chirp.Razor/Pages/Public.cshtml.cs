@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Chirp.Razor.DTO;
+using Chirp.Razor;
 
 namespace Chirp.Razor.Pages;
 
 public class PublicModel : PageModel
 {
     private readonly ICheepService _service;
-    public required List<CheepViewModel> Cheeps { get; set; }
+    public required List<CheepDTO> Cheeps { get; set; }
 
     public PublicModel(ICheepService service)
     {
@@ -25,7 +27,7 @@ public class PublicModel : PageModel
         try {
             Cheeps = _service.GetCheeps(pageno);
         } catch (ArgumentOutOfRangeException) {
-            Cheeps = new List<CheepViewModel>();
+            Cheeps = new List<CheepDTO>();
         } 
         
         return Page();
