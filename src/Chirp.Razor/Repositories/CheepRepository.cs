@@ -16,9 +16,5 @@ public class CheepRepository : ICheepRepository
 
     public IEnumerable<Cheep> GetCheepsByAuthor(string authorName) => _db.GetCheepsFromAuthor(authorName);
 
-    public void AddCheep(Cheep cheep)
-    {
-        throw new NotImplementedException("Posting new cheeps not implemented yet.");
-    }
+    public void AddCheep(Cheep cheep) => throw new NotImplementedException();
 }
-

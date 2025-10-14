@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj": {}
+    "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CLI/Chirp.CLI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj": {
+    "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CLI/Chirp.CLI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
+        "projectUniqueName": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CLI/Chirp.CLI.csproj",
         "projectName": "Chirp.CLI",
-        "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.CLI\\Chirp.CLI.csproj",
-        "packagesPath": "C:\\Users\\mikke\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.CLI\\obj\\",
+        "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CLI/Chirp.CLI.csproj",
+        "packagesPath": "/home/marcus/.nuget/packages/",
+        "outputPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CLI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\mikke\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/marcus/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,11 +26,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj": {
-                "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj"
+              "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/Chirp.Shared.csproj": {
+                "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/Chirp.Shared.csproj"
               },
-              "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
-                "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\SimpleDB.csproj"
+              "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/SimpleDB/SimpleDB.csproj": {
+                "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/SimpleDB/SimpleDB.csproj"
               }
             }
           }
@@ -39,11 +39,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -75,21 +70,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.119/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj": {
+    "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/Chirp.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj",
+        "projectUniqueName": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/Chirp.Shared.csproj",
         "projectName": "Chirp.Shared",
-        "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj",
-        "packagesPath": "C:\\Users\\mikke\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\obj\\",
+        "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/Chirp.Shared.csproj",
+        "packagesPath": "/home/marcus/.nuget/packages/",
+        "outputPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\mikke\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/marcus/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -107,11 +102,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -139,21 +129,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.119/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\SimpleDB.csproj": {
+    "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/SimpleDB/SimpleDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
+        "projectUniqueName": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/SimpleDB/SimpleDB.csproj",
         "projectName": "SimpleDB",
-        "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\SimpleDB.csproj",
-        "packagesPath": "C:\\Users\\mikke\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\SimpleDB\\obj\\",
+        "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/SimpleDB/SimpleDB.csproj",
+        "packagesPath": "/home/marcus/.nuget/packages/",
+        "outputPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/SimpleDB/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\mikke\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/marcus/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -165,8 +155,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj": {
-                "projectPath": "C:\\Users\\mikke\\Desktop\\Chirp\\Chirp\\src\\Chirp.Shared\\Chirp.Shared.csproj"
+              "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/Chirp.Shared.csproj": {
+                "projectPath": "/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.Shared/Chirp.Shared.csproj"
               }
             }
           }
@@ -175,11 +165,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -201,7 +186,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.119/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -225,8 +225,8 @@ C:/Users/marcu/Documents/uni/soft architecture/Chirp/src/Chirp.CLI/bin/Debug/net
 /home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CLI/bin/Debug/net8.0/DocoptNet.dll
 /home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CLI/bin/Debug/net8.0/Chirp.Shared.dll
 /home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CLI/bin/Debug/net8.0/SimpleDB.dll
-/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CLI/bin/Debug/net8.0/SimpleDB.pdb
 /home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CLI/bin/Debug/net8.0/Chirp.Shared.pdb
+/home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CLI/bin/Debug/net8.0/SimpleDB.pdb
 /home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.csproj.AssemblyReference.cache
 /home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.GeneratedMSBuildEditorConfig.editorconfig
 /home/marcus/Documents/uni/Analysis design and software/projekt/Chirp/src/Chirp.CLI/obj/Debug/net8.0/Chirp.CLI.AssemblyInfoInputs.cache

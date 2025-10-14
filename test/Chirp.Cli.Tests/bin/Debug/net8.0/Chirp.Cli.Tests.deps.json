@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v8.0": {
-      "Chirp.CLI.Tests/1.0.0": {
+      "Chirp.Cli.Tests/1.0.0": {
         "dependencies": {
           "Chirp.CLI": "1.0.0",
           "FluentAssertions": "8.6.0",
@@ -16,7 +16,7 @@
           "xunit.runner.visualstudio": "2.5.3"
         },
         "runtime": {
-          "Chirp.CLI.Tests.dll": {}
+          "Chirp.Cli.Tests.dll": {}
         }
       },
       "coverlet.collector/6.0.0": {},
@@ -1003,7 +1003,7 @@
         "runtime": {
           "lib/netstandard2.0/xunit.abstractions.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.0.0"
+            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -1058,36 +1058,29 @@
           "docopt.net": "0.8.1"
         },
         "runtime": {
-          "Chirp.CLI.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Chirp.CLI.dll": {}
         }
       },
       "Chirp.Shared/1.0.0": {
         "dependencies": {
-          "CsvHelper": "33.1.0",
-          "SimpleDB": "1.0.0"
+          "CsvHelper": "33.1.0"
         },
         "runtime": {
-          "Chirp.Shared.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Chirp.Shared.dll": {}
         }
       },
       "SimpleDB/1.0.0": {
+        "dependencies": {
+          "Chirp.Shared": "1.0.0"
+        },
         "runtime": {
-          "SimpleDB.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "SimpleDB.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "Chirp.CLI.Tests/1.0.0": {
+    "Chirp.Cli.Tests/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

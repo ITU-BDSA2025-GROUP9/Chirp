@@ -6,44 +6,51 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Determine database file path
-string dbPath;
-if (builder.Environment.IsDevelopment())
+var env = builder.Environment;
+var dataRoot = env.IsDevelopment() 
+    ? Path.Combine(AppContext.BaseDirectory, "App_Data") 
+    : "/home/data";
+
+Directory.CreateDirectory(dataRoot);
+var dbPath = Path.Combine(dataRoot, "chirp.db");
+
+if (!File.Exists(dbPath))
 {
-    var localDir = Path.Combine(AppContext.BaseDirectory, "App_Data");
-    Directory.CreateDirectory(localDir);
-    dbPath = Path.Combine(localDir, "chirp.db");
-}
-else
-{
-    // ✅ Use persistent storage under /home/data for Azure
-    var azureDir = "/home/data";
-    Directory.CreateDirectory(azureDir);
-    dbPath = Path.Combine(azureDir, "chirp.db");
+    var connStr = $"Data Source={dbPath}";
+    var dataDir = Path.Combine(AppContext.BaseDirectory, "Data");
+    var schemaPath = Path.Combine(dataDir, "schema.sql");
+    var dumpPath = Path.Combine(dataDir, "dump.sql");
+
+    using var conn = new SqliteConnection(connStr);
+    conn.Open();
+
+    foreach (var path in new[] { schemaPath, dumpPath })
+    {
+        if (File.Exists(path))
+        {
+            var sql = File.ReadAllText(path);
+            using var cmd = conn.CreateCommand();
+            cmd.CommandText = sql;
+            cmd.ExecuteNonQuery();
+        }
+    }
 }
 
-// Register EF Core with SQLite
-builder.Services.AddDbContext<ChirpDbContext>(options =>
-    options.UseSqlite($"Data Source={dbPath}"));
+builder.Services.AddDbContext<ChirpDbContext>(opt =>
+    opt.UseSqlite($"Data Source={dbPath}"));
 
-// Register repositories and services
 builder.Services.AddScoped<ICheepRepository, CheepRepository>();
 builder.Services.AddScoped<ICheepService, CheepService>();
-
 builder.Services.AddRazorPages();
+
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddAzureWebAppDiagnostics();
+builder.Logging.SetMinimumLevel(LogLevel.Information);
 
 var app = builder.Build();
 
-// No EF migrations — schema comes from SQL files
-// but ensure EF can read the DB
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<ChirpDbContext>();
-    db.Database.EnsureCreated(); // no schema overwrite
-    DbInitializer.SeedDatabase(db);
-}
-
-if (!app.Environment.IsDevelopment())
+if (!env.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
@@ -52,8 +59,9 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-
 app.MapRazorPages();
 
+var logger = app.Services.GetRequiredService<ILogger<Program>>();
+logger.LogInformation("Chirp.Razor started using database: {Path}", dbPath);
+
 app.Run();
-public partial class Program { }
