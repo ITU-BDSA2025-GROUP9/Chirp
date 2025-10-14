@@ -12,54 +12,54 @@ namespace Chirp.Razor.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Authors",
+                name: "user",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    user_id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Email = table.Column<string>(type: "TEXT", nullable: false)
+                    username = table.Column<string>(type: "TEXT", nullable: false),
+                    email = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Authors", x => x.Id);
+                    table.PrimaryKey("PK_user", x => x.user_id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cheeps",
+                name: "message",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    message_id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Text = table.Column<string>(type: "TEXT", nullable: false),
-                    TimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    AuthorId = table.Column<int>(type: "INTEGER", nullable: false)
+                    text = table.Column<string>(type: "TEXT", nullable: false),
+                    pub_date = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    author_id = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cheeps", x => x.Id);
+                    table.PrimaryKey("PK_message", x => x.message_id);
                     table.ForeignKey(
-                        name: "FK_Cheeps_Authors_AuthorId",
-                        column: x => x.AuthorId,
-                        principalTable: "Authors",
-                        principalColumn: "Id",
+                        name: "FK_message_user_author_id",
+                        column: x => x.author_id,
+                        principalTable: "user",
+                        principalColumn: "user_id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cheeps_AuthorId",
-                table: "Cheeps",
-                column: "AuthorId");
+                name: "IX_message_author_id",
+                table: "message",
+                column: "author_id");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Cheeps");
+                name: "message");
 
             migrationBuilder.DropTable(
-                name: "Authors");
+                name: "user");
         }
     }
 }
