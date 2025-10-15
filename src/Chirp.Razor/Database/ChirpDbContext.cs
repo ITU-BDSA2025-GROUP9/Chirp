@@ -38,8 +38,8 @@ public class ChirpDbContext : DbContext
         modelBuilder.Entity<Author>(entity =>
         {
             entity.ToTable("user");
-            entity.HasKey(a => a.Id);
-            entity.Property(a => a.Id).HasColumnName("user_id");
+            entity.HasKey(a => a.AuthorId);
+            entity.Property(a => a.AuthorId).HasColumnName("user_id");
             entity.Property(a => a.Name).HasColumnName("username");
             entity.Property(a => a.Email).HasColumnName("email");
             entity.Ignore(a => a.Cheeps); // Avoid circular reference when loading
@@ -49,8 +49,8 @@ public class ChirpDbContext : DbContext
         modelBuilder.Entity<Cheep>(entity =>
         {
             entity.ToTable("message");
-            entity.HasKey(c => c.Id);
-            entity.Property(c => c.Id).HasColumnName("message_id");
+            entity.HasKey(c => c.CheepId);
+            entity.Property(c => c.CheepId).HasColumnName("message_id");
             entity.Property(c => c.Text).HasColumnName("text");
             entity.Property(c => c.TimeStamp).HasColumnName("pub_date");
             entity.Property(c => c.AuthorId).HasColumnName("author_id");

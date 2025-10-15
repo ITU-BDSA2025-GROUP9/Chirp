@@ -9,13 +9,15 @@ public class UserTimelineModel : PageModel
 {
     private readonly ICheepService _service;
     public required List<CheepDTO> Cheeps { get; set; }
+    public int CurrentPage; 
+    public string CurrentAuthor = string.Empty; 
 
     public UserTimelineModel(ICheepService service)
     {
         _service = service;
     }
-
-    public ActionResult OnGet(string author)
+    
+    public async Task<IActionResult> OnGetAsync(string author)
     {
         var pageQuery = Request.Query["page"];
         int pageno;
@@ -23,10 +25,15 @@ public class UserTimelineModel : PageModel
         if (!int.TryParse(pageQuery, out pageno) || pageno <= 0) {
             pageno = 1;
         }
-
-        try {
-            Cheeps = _service.GetCheepsFromAuthor(author, pageno);
-        } catch (ArgumentException) {
+        CurrentPage = pageno;
+        CurrentAuthor = author;
+        
+        try
+        {
+            Cheeps = await _service.GetCheepsFromAuthor(author, pageno);
+        }
+        catch (ArgumentException)
+        {
             Cheeps = new List<CheepDTO>();
         } 
         

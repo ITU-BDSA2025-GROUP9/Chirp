@@ -23,32 +23,6 @@ Directory.CreateDirectory(dataRoot);
 var dbPath = Path.Combine(dataRoot, "chirp.db");
 
 /// <summary>
-/// Initialize SQLite database if it does not already exist.
-/// Reads schema.sql and dump.sql from the Data directory to set up tables and seed data.
-/// </summary>
-if (!File.Exists(dbPath))
-{
-    var connStr = $"Data Source={dbPath}";
-    var dataDir = Path.Combine(AppContext.BaseDirectory, "Data");
-    var schemaPath = Path.Combine(dataDir, "schema.sql");
-    var dumpPath = Path.Combine(dataDir, "dump.sql");
-
-    using var conn = new SqliteConnection(connStr);
-    conn.Open();
-
-    foreach (var path in new[] { schemaPath, dumpPath })
-    {
-        if (File.Exists(path))
-        {
-            var sql = File.ReadAllText(path);
-            using var cmd = conn.CreateCommand();
-            cmd.CommandText = sql;
-            cmd.ExecuteNonQuery();
-        }
-    }
-}
-
-/// <summary>
 /// Register Entity Framework Core with SQLite backend.
 /// The context manages access to Author and Cheep entities.
 /// </summary>
@@ -76,6 +50,14 @@ builder.Logging.SetMinimumLevel(LogLevel.Information);
 /// Build the web application and configure the HTTP request pipeline.
 /// </summary>
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ChirpDbContext>();
+    db.Database.EnsureCreated();
+    DbInitializer.SeedDatabase(db);
+}
+
 
 /// <summary>
 /// Configure error handling and security policies for production.

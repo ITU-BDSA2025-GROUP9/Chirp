@@ -1,10 +1,12 @@
+using System;
 using System.ComponentModel.DataAnnotations;
+using Chirp.Razor.Models;
 
 namespace Chirp.Razor.Models;
 
 public class Cheep
 {
-    public int Id { get; set; }
+    public int CheepId { get; set; }
 
     [Required]
     public string Text { get; set; } = string.Empty;

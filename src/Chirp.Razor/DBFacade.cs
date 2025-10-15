@@ -2,7 +2,7 @@ using Microsoft.Data.Sqlite;
 using Chirp.Razor.Models;
 
 namespace Chirp.Razor;
-
+/*
 /// <summary>
 /// Provides low-level access to the SQLite database used by the Chirp application.
 /// Responsible for database creation, schema initialization, seeding data,
@@ -149,3 +149,4 @@ public class DBFacade
         return list;
     }
 }
+*/

@@ -1,10 +1,12 @@
+using System;
 using System.ComponentModel.DataAnnotations;
+using Chirp.Razor.Models;
 
 namespace Chirp.Razor.Models;
 
 public class Author
 {
-    public int Id { get; set; }
+    public int AuthorId { get; set; }
 
     [Required]
     public string Name { get; set; } = string.Empty;
