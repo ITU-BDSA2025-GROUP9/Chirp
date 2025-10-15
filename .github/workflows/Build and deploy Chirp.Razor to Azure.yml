@@ -44,15 +44,12 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_RAZOR }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_RAZOR }}
 
-      - name: Simulate manual ZIP deploy
-        run: |
-          echo "Deploying chirp.zip manually via Azure CLI..."
-          az webapp deploy \
-            --resource-group bdsagroup9chirprazor \
-            --name bdsagroup9chirprazor \
-            --src-path chirp.zip \
-            --type zip \
-            --verbose
+  - name: Deploy to Azure Web App
+    uses: azure/webapps-deploy@v3
+    with:
+      app-name: 'bdsagroup9chirprazor'
+      package: 'chirp.zip'
+
 
       - name: Verify deployment timestamp
         run: |
