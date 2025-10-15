@@ -12,26 +12,37 @@
   <component name="ChangeListManager">
     <list default="true" id="7266b04b-ac72-49d8-a177-c097c4b18dec" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CSVDBService.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CSVDBService.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CSVDBService.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CSVDBService.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.Shared.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.Shared.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.Shared.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.Shared.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/SimpleDB.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/SimpleDB.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/SimpleDB.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/SimpleDB.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/ref/Chirp.CSVDBService.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/ref/Chirp.CSVDBService.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/refint/Chirp.CSVDBService.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/refint/Chirp.CSVDBService.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Razor/Models/Cheep.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Razor/Models/Cheep.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Chirp.Cli.Tests/obj/Debug/net8.0/Chirp.Cli.Tests.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/test/Chirp.Cli.Tests/obj/Debug/net8.0/Chirp.Cli.Tests.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Chirp.Cli.Tests/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/test/Chirp.Cli.Tests/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/SimpleDB.Tests/obj/Debug/net8.0/SimpleDB.Tests.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/test/SimpleDB.Tests/obj/Debug/net8.0/SimpleDB.Tests.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/SimpleDB.Tests/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/test/SimpleDB.Tests/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CSVDBService.deps.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CSVDBService.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CSVDBService.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.CSVDBService.runtimeconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.Shared.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/Chirp.Shared.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/CsvHelper.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/SimpleDB.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/SimpleDB.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/appsettings.Development.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/bin/Debug/net8.0/appsettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.AssemblyInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.AssemblyInfoInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.MvcApplicationPartsAssemblyInfo.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.csproj.AssemblyReference.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.csproj.CoreCompileInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.genruntimeconfig.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/Chirp.CSVDBService.sourcelink.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/ref/Chirp.CSVDBService.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/refint/Chirp.CSVDBService.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/staticwebassets.build.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/staticwebassets/msbuild.build.Chirp.CSVDBService.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.Chirp.CSVDBService.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.CSVDBService/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.Chirp.CSVDBService.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Razor/Pages/Public.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Razor/Pages/Public.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Razor/Pages/UserTimeline.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Razor/Pages/UserTimeline.cshtml.cs" afterDir="false" />
     </list>
     <list id="012def14-7223-4f82-a259-dcace34ec8f8" name="Changes by Isabella" comment="" />
     <list id="5953e8f1-b027-4a29-853c-9f653d3b12b4" name="Changes by Kristine" comment="" />
@@ -90,11 +101,11 @@
     <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/Database/ChirpDbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/Models/Author.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/Models/Cheep.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/Pages/Public.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/Pages/Public.cshtml" root0="FORCE_HIGHLIGHTING" root1="SKIP_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/Pages/Public.cshtml.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/Pages/Shared/_Layout.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/Pages/UserTimeline.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/Pages/UserTimeline.cshtml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/Pages/UserTimeline.cshtml.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/Properties/launchSettings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/Repositories/CheepRepository.cs" root0="FORCE_HIGHLIGHTING" />
@@ -303,7 +314,23 @@
       <option name="project" value="LOCAL" />
       <updated>1759915414212</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added alias to cheep model for improved efcore mapping">
+      <option name="closed" value="true" />
+      <created>1760536056866</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1760536056866</updated>
+    </task>
+    <task id="LOCAL-00007" summary="depricated CheepDTO usage in pages to remove commpile interruption on azure deployment workflow">
+      <option name="closed" value="true" />
+      <created>1760536507570</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1760536507570</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TerminalProjectNonSharedOptionsProvider">
@@ -321,7 +348,9 @@
     <MESSAGE value="Added Azure Autodeployment when running through CLI, automatic HTTP get and post implemented and documentation on everything. HttpDatabaseRepository do force use the Azure URl and therfore with current implementation local csv is not accesible. small Cleaning of unused methods and re edditing of parts of old code to simplify or optimize and various areas of the code." />
     <MESSAGE value="Added azure auto deployment to razor pages, added Httpdatabaserepository to razor pages, removed all use of CLI. added Documention to razor classes. fixed some sql storing issues where chirps got stored as temp files rather than in a database.&#10;Co-authored-by: krini &lt;nielsenkristine2004@gmail.com&gt;" />
     <MESSAGE value="Fixed bug in several Chirp.Razor classes using chrip.shared records rather than new model classes resulting in faulty ef core references. fixed azure deployment workflow" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug in several Chirp.Razor classes using chrip.shared records rather than new model classes resulting in faulty ef core references. fixed azure deployment workflow" />
+    <MESSAGE value="added alias to cheep model for improved efcore mapping" />
+    <MESSAGE value="depricated CheepDTO usage in pages to remove commpile interruption on azure deployment workflow" />
+    <option name="LAST_COMMIT_MESSAGE" value="depricated CheepDTO usage in pages to remove commpile interruption on azure deployment workflow" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
