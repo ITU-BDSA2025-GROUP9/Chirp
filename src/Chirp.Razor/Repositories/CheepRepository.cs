@@ -52,16 +52,16 @@ public class CheepRepository : ICheepRepository
         return cheeps.Select(CheepToDTO).ToList();
      }
 
-	private static CheepDTO CheepToDTO(Cheep c) => new(
+	public static CheepDTO CheepToDTO(Cheep c) => new(
         c.Author.Name,
         c.Text,
         c.TimeStamp.ToLocalTime().ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture)
     );
     
-	private static Cheep DTOToCheep(CheepDTO dto, Author author) => new Cheep
+	public static Cheep DTOToCheep(CheepDTO dto, Author author) => new Cheep
 	{
     	Text = dto.Message,
     	Author = author,
-    	TimeStamp = DateTime.UtcNow
+    	TimeStamp = DateTime.ParseExact(dto.Timestamp, "MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture)
 	};
 }

@@ -52,7 +52,7 @@ public class CheepService : ICheepService
     /// <param name="page">The page number to retrieve (1-based).</param>
     /// <returns>A list of formatted <see cref="CheepDTO"/> objects.</returns>
   	public async Task<List<CheepDTO>> GetCheeps(int page) {
-		if (page <= 0) throw new ArgumentOutOfRangeException(nameof(page));
+		if (page <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {page}");
 
         var allCheeps = await _repository.ReadAllCheeps();
         return allCheeps

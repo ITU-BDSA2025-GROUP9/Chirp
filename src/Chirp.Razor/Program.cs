@@ -87,3 +87,4 @@ logger.LogInformation("Chirp.Razor started using database: {Path}", dbPath);
 /// Start the web host.
 /// </summary>
 app.Run();
+public partial class Program { }
