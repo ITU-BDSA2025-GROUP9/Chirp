@@ -104,7 +104,7 @@ app.MapRazorPages();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ChirpDbContext>();
-    db.Database.EnsureCreated(); // ✅ Creates chirp.db if it doesn’t exist
+    db.Database.EnsureCreated(); 
 
 }
 

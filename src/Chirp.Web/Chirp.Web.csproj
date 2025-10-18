@@ -6,7 +6,6 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
-    <!-- Reference lower layers -->
     <ItemGroup>
         <ProjectReference Include="..\Chirp.Infrastructure\Chirp.Infrastructure.csproj" />
         <ProjectReference Include="..\Chirp.Core\Chirp.Core.csproj" />
@@ -20,12 +19,10 @@
     </ItemGroup>
 
 
-    <!-- Logging, configuration, etc. -->
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="9.0.9" />
     </ItemGroup>
 
-    <!-- Optional: keep your schema/dump SQL if your Web app initializes the DB -->
     <ItemGroup>
         <Content Include="..\Chirp.Infrastructure\Data\schema.sql" CopyToOutputDirectory="PreserveNewest" />
         <Content Include="..\Chirp.Infrastructure\Data\dump.sql" CopyToOutputDirectory="PreserveNewest" />
