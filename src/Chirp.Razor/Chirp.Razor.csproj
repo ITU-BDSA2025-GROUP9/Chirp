@@ -1,34 +1,27 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
-    <PropertyGroup>
+<Project Sdk="Microsoft.NET.Sdk">
+<PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <!-- Web/UI layer should NOT directly depend on EF packages -->
+    <!-- It only references the Core and Infrastructure projects -->
     <ItemGroup>
-        <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.8" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-            <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.8" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-            <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
-        <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="9.0.9" />
-        <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.2" />
+        <ProjectReference Include="..\Chirp.Infrastructure\Chirp.Infrastructure.csproj" />
+        <ProjectReference Include="..\Chirp.Core\Chirp.Core.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-        <Content Include="Data/schema.sql" CopyToOutputDirectory="PreserveNewest" />
-        <Content Include="Data/dump.sql" CopyToOutputDirectory="PreserveNewest" />
-    </ItemGroup>
+
 
     <ItemGroup>
         <None Update="Data\**\*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
+    </ItemGroup>
+
+    <!-- Logging and hosting packages are fine -->
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="9.0.9" />
     </ItemGroup>
 </Project>
