@@ -14,20 +14,8 @@ public class Author
     /// Primary key for the author entity.
     /// Mapped to "user_id" in the database.
     /// </summary>
-    public int Id { get; set; }
-
-    /// <summary>
-    /// Legacy alias for backward compatibility.
-    /// Allows existing code referring to AuthorId to compile and function normally.
-    /// This simply forwards to Id under the hood.
-    /// </summary>
-    [NotMapped] // ✅ prevents EF from trying to create a "AuthorId" column
-    public int AuthorId
-    {
-        get => Id;
-        set => Id = value;
-    }
-
+    public int AuthorId { get; set; }
+    
     /// <summary>
     /// The username of the author.
     /// </summary>

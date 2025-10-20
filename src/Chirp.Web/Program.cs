@@ -5,8 +5,6 @@ using Chirp.Infrastructure.Service;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
-
-
 /// <summary>
 /// Entry point for the Chirp.Razor web application.
 /// Configures the database, dependency injection, and the ASP.NET Core request pipeline.
@@ -24,33 +22,6 @@ var dataRoot = env.IsDevelopment()
 
 Directory.CreateDirectory(dataRoot);
 var dbPath = Path.Combine(dataRoot, "chirp.db");
-
-/// <summary>
-/// Initialize SQLite database if it does not already exist.
-/// Reads schema.sql and dump.sql from the Data directory to set up tables and seed data.
-/// </summary>
-if (!File.Exists(dbPath))
-{
-    var connStr = $"Data Source={dbPath}";
-    var dataDir = Path.Combine(AppContext.BaseDirectory, "..", "Chirp.Infrastructure", "Data");
-    var schemaPath = Path.GetFullPath(Path.Combine(dataDir, "schema.sql"));
-    var dumpPath = Path.GetFullPath(Path.Combine(dataDir, "dump.sql"));
-
-
-    using var conn = new SqliteConnection(connStr);
-    conn.Open();
-
-    foreach (var path in new[] { schemaPath, dumpPath })
-    {
-        if (File.Exists(path))
-        {
-            var sql = File.ReadAllText(path);
-            using var cmd = conn.CreateCommand();
-            cmd.CommandText = sql;
-            cmd.ExecuteNonQuery();
-        }
-    }
-}
 
 /// <summary>
 /// Register Entity Framework Core with SQLite backend.
@@ -80,6 +51,13 @@ builder.Logging.SetMinimumLevel(LogLevel.Information);
 /// </summary>
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ChirpDbContext>();
+    db.Database.EnsureCreated();
+    Chirp.Infrastructure.Data.DbInitializer.SeedDatabase(db);
+}
+
 /// <summary>
 /// Configure error handling and security policies for production.
 /// </summary>
@@ -99,30 +77,13 @@ app.UseRouting();
 app.MapRazorPages();
 
 /// <summary>
-/// Create database (if needed) and optionally seed sample data.
-/// </summary>
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<ChirpDbContext>();
-    db.Database.EnsureCreated(); 
-
-}
-
-/// <summary>
 /// Log startup success and database path for debugging and verification.
 /// </summary>
 var logger = app.Services.GetRequiredService<ILogger<Program>>();
 logger.LogInformation("Chirp.Razor started using database: {Path}", dbPath);
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<ChirpDbContext>();
-    Chirp.Infrastructure.Data.DbInitializer.SeedDatabase(context);
-}
-
-
 /// <summary>
 /// Start the web host.
 /// </summary>
 app.Run();
+public partial class Program { }

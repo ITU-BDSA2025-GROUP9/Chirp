@@ -26,29 +26,26 @@ public class Repository : IRepository
         _context = context;
     }
 
-    public IEnumerable<Cheep> GetAllCheeps(int pageNumber, int pageSize)
-        => _context.Cheeps
+    public async Task<IEnumerable<Cheep>> GetAllCheeps(int pageNumber, int pageSize)
+        => await _context.Cheeps
             .Include(c => c.Author)
             .OrderByDescending(c => c.TimeStamp)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
-            .ToList();
+            .ToListAsync();
 
-    public IEnumerable<Cheep> GetCheepsByAuthor(string authorName, int pageNumber, int pageSize)
-        => _context.Cheeps
+    public async Task<IEnumerable<Cheep>> GetCheepsByAuthor(string authorName, int pageNumber, int pageSize)
+        => await _context.Cheeps
             .Include(c => c.Author)
             .Where(c => c.Author.Name == authorName)
             .OrderByDescending(c => c.TimeStamp)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
-            .ToList();
+            .ToListAsync();
 
-    public void AddCheep(string authorName, string authorEmail, string text)
+    public async Task AddCheep(string authorName, string authorEmail, string text)
     {
-        if (text.Length > 160)
-            throw new ArgumentException("Cheep text cannot exceed 160 characters.", nameof(text));
-
-        var author = FindByName(authorName) ?? Create(authorName, authorEmail);
+        var author = await FindByName(authorName) ?? await Create(authorName, authorEmail);
 
         var cheep = new Cheep
         {
@@ -57,21 +54,21 @@ public class Repository : IRepository
             TimeStamp = DateTime.UtcNow
         };
 
-        _context.Cheeps.Add(cheep);
-        _context.SaveChanges();
+        await _context.Cheeps.AddAsync(cheep);
+        await _context.SaveChangesAsync();
     }
 
-    public Author? FindByName(string name)
-        => _context.Authors.FirstOrDefault(a => a.Name == name);
+    public async Task<Author?> FindByName(string name)
+        => await _context.Authors.FirstOrDefaultAsync(a => a.Name == name);
 
-    public Author? FindByEmail(string email)
-        => _context.Authors.FirstOrDefault(a => a.Email == email);
+    public async Task<Author?> FindByEmail(string email)
+        => await _context.Authors.FirstOrDefaultAsync(a => a.Email == email);
 
-    public Author Create(string name, string email)
+    public async Task<Author> Create(string name, string email)
     {
         var author = new Author { Name = name, Email = email };
-        _context.Authors.Add(author);
-        _context.SaveChanges();
+        await _context.Authors.AddAsync(author);
+        await  _context.SaveChangesAsync();
         return author;
     }
 }

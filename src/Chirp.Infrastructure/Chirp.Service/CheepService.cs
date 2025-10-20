@@ -1,6 +1,7 @@
 using Chirp.Core.DTO;
 using Chirp.Core.Interfaces;
 using System.Globalization;
+using Chirp.Core;
 
 namespace Chirp.Infrastructure.Service;
 
@@ -40,15 +41,12 @@ public class CheepService : ICheepService
     /// This method uses the repository to fetch raw <c>Cheep</c> entities and projects
     /// them into lightweight data transfer objects (<see cref="CheepDTO"/>) for use in the UI or API layer.
     /// </remarks>
-    public IEnumerable<CheepDTO> GetCheeps(int pageNumber, int pageSize)
-        => _repository.GetAllCheeps(pageNumber, pageSize)
-            .Select(c => new CheepDTO
-            {
-                AuthorName = c.Author.Name,
-                AuthorEmail = c.Author.Email,
-                Text = c.Text,
-                TimeStamp = c.TimeStamp
-            });
+    public async Task<IEnumerable<CheepDTO>> GetCheeps(int pageNumber, int pageSize)
+    {
+        if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
+        var cheeps = await _repository.GetAllCheeps(pageNumber, pageSize);
+        return cheeps.Select(CheepToDTO);
+    }
 
     /// <summary>
     /// Retrieves a paginated list of cheeps authored by a specific user.
@@ -63,15 +61,13 @@ public class CheepService : ICheepService
     /// This method queries the repository for cheeps belonging to a given author and maps
     /// the resulting entities into <see cref="CheepDTO"/> instances for presentation.
     /// </remarks>
-    public IEnumerable<CheepDTO> GetCheepsByAuthor(string authorName, int pageNumber, int pageSize)
-        => _repository.GetCheepsByAuthor(authorName, pageNumber, pageSize)
-            .Select(c => new CheepDTO
-            {
-                AuthorName = c.Author.Name,
-                AuthorEmail = c.Author.Email,
-                Text = c.Text,
-                TimeStamp = c.TimeStamp
-            });
+    public async Task<IEnumerable<CheepDTO>> GetCheepsByAuthor(string authorName, int pageNumber, int pageSize)
+    {
+        if (string.IsNullOrWhiteSpace(authorName)) throw new ArgumentException("Author is required", nameof(authorName));
+        if (pageNumber <= 0) throw new ArgumentOutOfRangeException(nameof(pageNumber));
+        var cheeps = await _repository.GetCheepsByAuthor(authorName, pageNumber, pageSize);
+        return cheeps.Select(CheepToDTO);
+    }
 
     /// <summary>
     /// Adds a new cheep (post) to the database for the specified author.
@@ -83,6 +79,18 @@ public class CheepService : ICheepService
     /// This method delegates the actual data persistence to the repository layer.
     /// It assumes that the repository will handle author creation or lookup as needed.
     /// </remarks>
-    public void AddCheep(string authorName, string authorEmail, string text)
-        => _repository.AddCheep(authorName, authorEmail, text);
+    public async Task AddCheep(string authorName, string authorEmail, string text)
+    {
+        if (string.IsNullOrWhiteSpace(authorName)) throw new ArgumentException("Author is required", nameof(authorName));
+        if (text.Length > 160) throw new ArgumentException("Cheep text cannot exceed 160 characters.", nameof(text));
+        
+        await _repository.AddCheep(authorName, authorEmail, text);
+    }
+
+    public static CheepDTO CheepToDTO(Cheep c) => new(
+        c.Author.Name,
+        c.Text,
+        c.TimeStamp.ToString(),
+        c.Author.Email
+    );
 }

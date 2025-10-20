@@ -11,20 +11,38 @@ namespace Chirp.Web.Pages;
 public class UserTimelineModel : PageModel
 {
     private readonly ICheepService _service;
+    public required IEnumerable<CheepDTO> Cheeps { get; set; }
+    public readonly int pageSize = 32; 
+    public int CurrentPage; 
+    public string CurrentAuthor = string.Empty; 
 
-    public required List<CheepDTO> Cheeps { get; set; } = new();
 
     public UserTimelineModel(ICheepService service)
     {
         _service = service;
     }
-
-    public ActionResult OnGet(string author)
+    
+    public async Task<IActionResult> OnGetAsync(string author)
     {
-        var pageno = 1;
-        author = Uri.UnescapeDataString(author);
-        Cheeps = _service.GetCheepsByAuthor(author, pageno, 32).ToList();
+        var pageQuery = Request.Query["page"];
+        int pageno;
+        
+        if (!int.TryParse(pageQuery, out pageno) || pageno <= 0) {
+            pageno = 1;
+        }
+        
+        CurrentPage = pageno;
+        CurrentAuthor = author;
+        
+        try
+        {
+            Cheeps = await _service.GetCheepsByAuthor(author, pageno, pageSize);
+        }
+        catch (ArgumentException)
+        {
+            Cheeps = new List<CheepDTO>();
+        } 
+        
         return Page();
     }
-
 }

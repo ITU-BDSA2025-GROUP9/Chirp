@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 using Chirp.Core;
 
 namespace Chirp.Infrastructure.Database;
@@ -57,15 +58,12 @@ public class ChirpDbContext : DbContext
             entity.ToTable("user");
 
             // Primary key
-            entity.HasKey(a => a.Id);
+            entity.HasKey(a => a.AuthorId);
 
             // Column mappings
-            entity.Property(a => a.Id).HasColumnName("user_id");
+            entity.Property(a => a.AuthorId).HasColumnName("user_id");
             entity.Property(a => a.Name).HasColumnName("username");
             entity.Property(a => a.Email).HasColumnName("email");
-
-            // Ignore properties not persisted to the database
-            entity.Ignore(a => a.AuthorId);
         });
 
         // --- Cheep entity mapping ---
@@ -75,10 +73,10 @@ public class ChirpDbContext : DbContext
             entity.ToTable("message");
 
             // Primary key
-            entity.HasKey(c => c.Id);
+            entity.HasKey(c => c.CheepId);
 
             // Column mappings
-            entity.Property(c => c.Id).HasColumnName("message_id");
+            entity.Property(c => c.CheepId).HasColumnName("message_id");
             entity.Property(c => c.Text).HasColumnName("text");
 
             // Map and convert the timestamp column between DateTime and string
@@ -86,15 +84,12 @@ public class ChirpDbContext : DbContext
                 .HasColumnName("pub_date")
                 .HasConversion(
                     // Convert DateTime → string when saving to the database
-                    v => v.ToString("yyyy-MM-dd HH:mm:ss"),
+                    v => v.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture),
                     // Convert string → DateTime when reading from the database
                     v => ParseOrDefault(v)
                 );
 
             entity.Property(c => c.AuthorId).HasColumnName("author_id");
-
-            // Ignore properties not persisted to the database
-            entity.Ignore(c => c.CheepId);
 
             // Define one-to-many relationship: Author → Cheeps
             entity.HasOne(c => c.Author)
