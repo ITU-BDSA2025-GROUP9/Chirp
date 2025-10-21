@@ -5,10 +5,10 @@ namespace Chirp.Core.Interfaces;
 /// </summary>
 public interface IRepository
 {
-    IEnumerable<Cheep> GetAllCheeps(int pageNumber, int pageSize);
-    IEnumerable<Cheep> GetCheepsByAuthor(string authorName, int pageNumber, int pageSize);
-    void AddCheep(string authorName, string authorEmail, string text);
-    Author? FindByName(string name);
-    Author? FindByEmail(string email);
-    Author Create(string name, string email);
+    Task<List<Cheep>> GetAllCheeps(int pageNumber, int pageSize);
+    Task<List<Cheep>> GetCheepsByAuthor(string authorName, int pageNumber, int pageSize);
+    Task  AddCheep(string authorName, string authorEmail, string text);
+    Task<Author?> FindByName(string name);
+    Task<Author?> FindByEmail(string email);
+    Task<Author> Create(string name, string email);
 }

@@ -8,19 +8,33 @@ namespace Chirp.Web.Pages;
 public class PublicModel : PageModel
 {
     private readonly ICheepService _service;
-    public required List<CheepDTO> Cheeps { get; set; } = new();
+    public required IEnumerable<CheepDTO> Cheeps { get; set; }
+    private readonly int pageSize = 32; 
+    public int CurrentPage;
 
     public PublicModel(ICheepService service)
     {
         _service = service;
     }
 
-    public IActionResult OnGet()
+    public async Task<IActionResult> OnGetAsync()
     {
         var pageQuery = Request.Query["page"];
-        int pageno = int.TryParse(pageQuery, out var num) && num > 0 ? num : 1;
-
-        Cheeps = _service.GetCheeps(pageno, 32).ToList();
+        int pageno;
+    
+        if (!int.TryParse(pageQuery, out pageno) || pageno <= 0) {
+            pageno = 1;
+        }
+        CurrentPage = pageno;
+        try
+        {
+            Cheeps = await _service.GetCheeps(pageno, pageSize);
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            Cheeps = new List<CheepDTO>();
+        }
+        
         return Page();
     }
 }

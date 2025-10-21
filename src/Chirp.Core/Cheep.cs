@@ -12,18 +12,7 @@ public class Cheep
     /// Primary key for the cheep.
     /// Mapped to "message_id" in the database.
     /// </summary>
-    public int Id { get; set; }
-
-    /// <summary>
-    /// Legacy alias for backward compatibility with older code using CheepId.
-    /// This property is ignored by EF Core.
-    /// </summary>
-    [NotMapped]
-    public int CheepId
-    {
-        get => Id;
-        set => Id = value;
-    }
+    public int CheepId { get; set; }
 
     /// <summary>
     /// The text content of the cheep.
