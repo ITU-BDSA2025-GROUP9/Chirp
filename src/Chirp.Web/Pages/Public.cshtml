@@ -31,7 +31,7 @@
         <div class="pagination">
             @if (Model.CurrentPage > 1)
             {
-                <a class="btn" href="/?page=@(Model.CurrentPage - 1)"> <button > Previous </button> </a>
+                <a class="btn" href="/?page=@(Model.CurrentPage - 1)"> <button> Previous </button> </a>
             }
             
             <a class="btn" href="/?page=@(Model.CurrentPage + 1)"> <button> Next </button> </a>
@@ -44,7 +44,7 @@
             <em> No cheeps on current pagenumber: @(Model.CurrentPage) </em>
             
             <br> <br>
-            <a class="btn" href="/?page=@(Model.CurrentPage - 1)"> <button > Previous </button> </a>
+            <a class="btn" href="/?page=@(Model.CurrentPage - 1)"> <button> Previous </button> </a>
         }
         else
         {

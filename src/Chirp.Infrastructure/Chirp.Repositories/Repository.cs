@@ -26,7 +26,7 @@ public class Repository : IRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<Cheep>> GetAllCheeps(int pageNumber, int pageSize)
+    public async Task<List<Cheep>> GetAllCheeps(int pageNumber, int pageSize)
         => await _context.Cheeps
             .Include(c => c.Author)
             .OrderByDescending(c => c.TimeStamp)
@@ -34,7 +34,7 @@ public class Repository : IRepository
             .Take(pageSize)
             .ToListAsync();
 
-    public async Task<IEnumerable<Cheep>> GetCheepsByAuthor(string authorName, int pageNumber, int pageSize)
+    public async Task<List<Cheep>> GetCheepsByAuthor(string authorName, int pageNumber, int pageSize)
         => await _context.Cheeps
             .Include(c => c.Author)
             .Where(c => c.Author.Name == authorName)

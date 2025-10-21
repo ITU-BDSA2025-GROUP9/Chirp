@@ -41,11 +41,11 @@ public class CheepService : ICheepService
     /// This method uses the repository to fetch raw <c>Cheep</c> entities and projects
     /// them into lightweight data transfer objects (<see cref="CheepDTO"/>) for use in the UI or API layer.
     /// </remarks>
-    public async Task<IEnumerable<CheepDTO>> GetCheeps(int pageNumber, int pageSize)
+    public async Task<List<CheepDTO>> GetCheeps(int pageNumber, int pageSize)
     {
         if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
         var cheeps = await _repository.GetAllCheeps(pageNumber, pageSize);
-        return cheeps.Select(CheepToDTO);
+        return cheeps.Select(CheepToDTO).ToList();
     }
 
     /// <summary>
@@ -61,12 +61,12 @@ public class CheepService : ICheepService
     /// This method queries the repository for cheeps belonging to a given author and maps
     /// the resulting entities into <see cref="CheepDTO"/> instances for presentation.
     /// </remarks>
-    public async Task<IEnumerable<CheepDTO>> GetCheepsByAuthor(string authorName, int pageNumber, int pageSize)
+    public async Task<List<CheepDTO>> GetCheepsByAuthor(string authorName, int pageNumber, int pageSize)
     {
         if (string.IsNullOrWhiteSpace(authorName)) throw new ArgumentException("Author is required", nameof(authorName));
         if (pageNumber <= 0) throw new ArgumentOutOfRangeException(nameof(pageNumber));
         var cheeps = await _repository.GetCheepsByAuthor(authorName, pageNumber, pageSize);
-        return cheeps.Select(CheepToDTO);
+        return cheeps.Select(CheepToDTO).ToList();
     }
 
     /// <summary>
@@ -82,6 +82,7 @@ public class CheepService : ICheepService
     public async Task AddCheep(string authorName, string authorEmail, string text)
     {
         if (string.IsNullOrWhiteSpace(authorName)) throw new ArgumentException("Author is required", nameof(authorName));
+        if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Cheep text is required and cannot be null or empty", nameof(text));
         if (text.Length > 160) throw new ArgumentException("Cheep text cannot exceed 160 characters.", nameof(text));
         
         await _repository.AddCheep(authorName, authorEmail, text);
@@ -90,7 +91,7 @@ public class CheepService : ICheepService
     public static CheepDTO CheepToDTO(Cheep c) => new(
         c.Author.Name,
         c.Text,
-        c.TimeStamp.ToString(),
+        c.TimeStamp.ToLocalTime().ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture),
         c.Author.Email
     );
 }

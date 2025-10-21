@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using FluentAssertions;
+using Chirp.Web;
 
 namespace Chirp.Razor.Tests;
 public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
@@ -19,12 +20,11 @@ public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
         var response = await _client.GetAsync("/");
         response.EnsureSuccessStatusCode();
         var content = await response.Content.ReadAsStringAsync();
-
-
+        
         content.Should().Contain("Chirp!");
         content.Should().Contain("Public Timeline");
     }
-
+    
     [Theory]
     [InlineData("Helge")]
     [InlineData("Adrian")]
@@ -37,8 +37,7 @@ public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
         content.Should().Contain("Chirp!");
         content.Should().Contain($"{author}'s Timeline");
     }
-
-
+    
     [Theory]
     [InlineData("NonExistentUser123")]
     [InlineData("Invalid!User")]
@@ -66,8 +65,7 @@ public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
         content.Should().Contain("Chirp!");
         content.Should().Contain("Public Timeline");
     }
-
-
+    
     [Theory]
     [InlineData("Helge", "?page=-1")]
     [InlineData("Helge", "?page=abc")]
@@ -81,8 +79,7 @@ public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
         content.Should().Contain($"{author}'s Timeline");
         content.Should().NotContain("There are no cheeps so far.");
     }
-
-
+    
     [Theory]
     [InlineData("NonexistentUser123", "")]
     [InlineData("NonexistentUser123", "?page=1")]
@@ -106,15 +103,16 @@ public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
         var response = await _client.GetAsync("/?page=999");
         response.EnsureSuccessStatusCode();
         var content = await response.Content.ReadAsStringAsync();
-        content.Should().Contain("There are no cheeps so far.");
+        content.Should().Contain("No cheeps on current pagenumber:");
     }
-
+    
     [Fact]
     public async Task PrivateTimeline_ShouldOnlyContainUserCheeps()
     {
         var response = await _client.GetAsync("/Helge");
         response.EnsureSuccessStatusCode();
         var content = await response.Content.ReadAsStringAsync();
+        
         content.Should().Contain("Helge's Timeline");
         content.Should().NotContain("Bob");
     }
@@ -135,8 +133,7 @@ public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
         page2.Should().NotBeNullOrEmpty();
         page2.Should().NotContain(page1);
     }
-
-
+    
     [Fact]
     public async Task PrivateTimeline_Page2_ShouldNotContainPage1Cheeps()
     {
@@ -152,5 +149,47 @@ public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
         page1.Should().NotBeNullOrEmpty();
         page2.Should().NotBeNullOrEmpty();
         page2.Should().NotContain(page1);
+    }
+    
+    [Fact]
+    public async Task PublicTimeline_ShouldContainNextButton()
+    {
+        var response = await _client.GetAsync("/");
+        response.EnsureSuccessStatusCode();
+        var content = await response.Content.ReadAsStringAsync();
+
+        content.Should().Contain("<button> Next </button>");
+    }
+    
+    [Fact]
+    public async Task PublicTimeline_Page2_ShouldContainPreviousButton()
+    {
+        var response = await _client.GetAsync("/?page=2");
+        response.EnsureSuccessStatusCode();
+        var content = await response.Content.ReadAsStringAsync();
+
+        content.Should().Contain("<button> Previous </button>");
+    }
+    
+    [Theory]
+    [InlineData("Helge")]
+    [InlineData("Adrian")]
+    public async Task PrivateTimeline_ShouldContainReturnToPublicTimelineButton(string author)
+    {
+        var response = await _client.GetAsync($"/{author}");
+        response.EnsureSuccessStatusCode();
+        var content = await response.Content.ReadAsStringAsync();
+        
+        content.Should().Contain("<button> Return to Public Timeline </button>");
+    }
+    
+    [Fact]
+    public async Task PublicTimeline_ShouldNotContainReturnToPublicTimelineButton()
+    {
+        var response = await _client.GetAsync($"/");
+        response.EnsureSuccessStatusCode();
+        var content = await response.Content.ReadAsStringAsync();
+        
+        content.Should().NotContain("<button> Return to Public Timeline </button>");
     }
 }
