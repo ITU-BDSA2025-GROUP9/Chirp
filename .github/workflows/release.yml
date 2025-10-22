@@ -29,7 +29,7 @@ jobs:
         run: |
           tag="$(git describe --tags --abbrev=0)"
           app="chirp"
-          project="src/Chirp.CLI/Chirp.CLI.csproj"
+          project="src/Chirp.Web/Chirp.Web.csproj"
           rids=( linux-x64 win-x64 osx-x64 )
           for rid in "${rids[@]}"; do
             out="publish/$rid"
