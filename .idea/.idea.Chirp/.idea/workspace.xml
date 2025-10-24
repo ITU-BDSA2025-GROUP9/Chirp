@@ -5,6 +5,7 @@
     <projectFile profileName="http">src/Chirp.CSVDBService/Chirp.CSVDBService.csproj</projectFile>
     <projectFile profileName="https">src/Chirp.CSVDBService/Chirp.CSVDBService.csproj</projectFile>
     <projectFile>src/Chirp.Shared/Chirp.Shared.csproj</projectFile>
+    <projectFile profileName="IIS Express">src/Chirp.Web/Chirp.Web.csproj</projectFile>
     <projectFile profileName="http">src/Chirp.Web/Chirp.Web.csproj</projectFile>
     <projectFile profileName="https">src/Chirp.Web/Chirp.Web.csproj</projectFile>
   </component>
@@ -13,7 +14,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7266b04b-ac72-49d8-a177-c097c4b18dec" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Chirp.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Chirp.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Pages/Public.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Pages/Public.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/wwwroot/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/wwwroot/css/style.css" afterDir="false" />
     </list>
     <list id="012def14-7223-4f82-a259-dcace34ec8f8" name="Changes by Isabella" comment="" />
     <list id="5953e8f1-b027-4a29-853c-9f653d3b12b4" name="Changes by Kristine" comment="" />
@@ -86,7 +89,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;File-cleaning&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/marcus/Documents/uni/Analysis design and software/exercise&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -176,6 +179,22 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration name="Chirp.Web: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/src/Chirp.Web/Chirp.Web.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -219,6 +238,7 @@
       <workItem from="1759918432469" duration="4618000" />
       <workItem from="1760085092495" duration="53000" />
       <workItem from="1760446870235" duration="2615000" />
+      <workItem from="1761271186755" duration="1391000" />
     </task>
     <task id="LOCAL-00001" summary="Added Azure functionality + several new classes.&#10;should work with azure once workflows are set up for it.">
       <option name="closed" value="true" />
