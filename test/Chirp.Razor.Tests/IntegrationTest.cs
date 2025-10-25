@@ -186,7 +186,7 @@ public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
     [Fact]
     public async Task PublicTimeline_ShouldNotContainReturnToPublicTimelineButton()
     {
-        var response = await _client.GetAsync($"/");
+        var response = await _client.GetAsync("/");
         response.EnsureSuccessStatusCode();
         var content = await response.Content.ReadAsStringAsync();
         

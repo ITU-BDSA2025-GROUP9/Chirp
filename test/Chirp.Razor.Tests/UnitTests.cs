@@ -26,8 +26,8 @@ public class UnitTests : IDisposable
         _context = new ChirpDbContext(builder.Options);
         _context.Database.EnsureCreated();
 
-        Author a1 = new Author { Name = "Alice", Email = "alice@itu.dk" };
-        Author a2 = new Author { Name = "Bob", Email = "bob@itu.dk" };
+        Author a1 = new Author { UserName = "Alice", Email = "alice@itu.dk" };
+        Author a2 = new Author { UserName = "Bob", Email = "bob@itu.dk" };
 
         _context.Authors.AddRange(
             a1, a2
@@ -53,7 +53,7 @@ public class UnitTests : IDisposable
     [Fact]
     public void CheepToDTO_ShouldMapCorrectly()
     {
-        var author = new Author { Name = "Alice", Email = "alice@itu.dk" };
+        var author = new Author { UserName = "Alice", Email = "alice@itu.dk" };
         var ts = DateTime.UtcNow;
         var cheep = new Cheep
         {
@@ -62,7 +62,7 @@ public class UnitTests : IDisposable
             TimeStamp = ts
         };
 
-        var dto = CheepService.CheepToDTO(cheep);
+        var dto = CheepService.CheepToDto(cheep);
 
         dto.Author.Should().Be("Alice");
         dto.Message.Should().Be("Test");
@@ -104,7 +104,7 @@ public class UnitTests : IDisposable
     
         cheeps.Should().NotBeNullOrEmpty();
         cheeps.Count.Should().Be(3);
-        cheeps.Should().OnlyContain(c => !string.IsNullOrWhiteSpace(c.Author.Name) && !string.IsNullOrWhiteSpace(c.Text));
+        cheeps.Should().OnlyContain(c => !string.IsNullOrWhiteSpace(c.Author.UserName) && !string.IsNullOrWhiteSpace(c.Text));
         
         var cheepsPage2 = await _repo.GetAllCheeps(2, 10);
         cheepsPage2.Should().BeEmpty();
@@ -116,7 +116,7 @@ public class UnitTests : IDisposable
         var cheeps = await _repo.GetCheepsByAuthor("Alice", 1, 10);
         cheeps.Should().NotBeEmpty();
         cheeps.Count.Should().Be(2);
-        cheeps.Should().OnlyContain(c => c.Author.Name == "Alice");
+        cheeps.Should().OnlyContain(c => c.Author.UserName == "Alice");
         
         var cheepsPage2 = await _repo.GetCheepsByAuthor("Alice", 2, 10);
         cheepsPage2.Should().BeEmpty();
@@ -128,15 +128,15 @@ public class UnitTests : IDisposable
         var author = await _repo.Create("Helge", "helge@itu.dk");
 
         author.Should().NotBeNull();
-        author.Name.Should().Be("Helge");
+        author.UserName.Should().Be("Helge");
         author.Email.Should().Be("helge@itu.dk");
 
-        await _repo.AddCheep(author.Name, author.Email, "Test");
+        await _repo.AddCheep(author.UserName, author.Email, "Test");
         var cheeps = await _repo.GetCheepsByAuthor("Helge", 1, 10);
         
         cheeps.Should().NotBeEmpty();
         cheeps.Count.Should().Be(1);
-        cheeps.Should().OnlyContain(c => c.Author.Name == "Helge");
+        cheeps.Should().OnlyContain(c => c.Author.UserName == "Helge");
     }
 
     [Fact]
@@ -151,7 +151,7 @@ public class UnitTests : IDisposable
         
         cheeps.Should().NotBeEmpty();
         cheeps.Count.Should().Be(1);
-        cheeps.Should().OnlyContain(c => c.Author.Name == "NewUser");
+        cheeps.Should().OnlyContain(c => c.Author.UserName == "NewUser");
     }
     
     [Fact]
@@ -165,7 +165,7 @@ public class UnitTests : IDisposable
 
         result.Should().NotBeNull();
         result!.Email.Should().Be("helge@itu.dk");
-        result!.Name.Should().Be("Helge");
+        result!.UserName.Should().Be("Helge");
     }
     
     [Fact]
@@ -186,7 +186,7 @@ public class UnitTests : IDisposable
 
         result.Should().NotBeNull();
         result!.Email.Should().Be("helge@itu.dk");
-        result!.Name.Should().Be("Helge");
+        result!.UserName.Should().Be("Helge");
     }
     
     [Fact]
@@ -353,7 +353,7 @@ public class UnitTests : IDisposable
    {
        await _service.AddCheep("Alice", "alice@itu.dk", "New message");
 
-       var authors = _context.Authors.Where(a => a.Name == "Alice").ToList();
+       var authors = _context.Authors.Where(a => a.UserName == "Alice").ToList();
        authors.Count.Should().Be(1);
    }
 }

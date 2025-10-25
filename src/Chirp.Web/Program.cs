@@ -1,3 +1,4 @@
+using Chirp.Core;
 using Chirp.Core.Interfaces;
 using Chirp.Infrastructure.Database;
 using Chirp.Infrastructure.Repositories;
@@ -29,6 +30,10 @@ var dbPath = Path.Combine(dataRoot, "chirp.db");
 /// </summary>
 builder.Services.AddDbContext<ChirpDbContext>(opt =>
     opt.UseSqlite($"Data Source={dbPath}"));
+
+builder.Services.AddDefaultIdentity<Author>(options =>  
+        options.SignIn.RequireConfirmedAccount = true)      
+    .AddEntityFrameworkStores<ChirpDbContext>(); 
 
 /// <summary>
 /// Register application services for dependency injection.
@@ -74,6 +79,8 @@ if (!env.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapRazorPages();
 
 /// <summary>
