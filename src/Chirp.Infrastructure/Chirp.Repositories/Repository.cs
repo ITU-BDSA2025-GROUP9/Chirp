@@ -37,7 +37,7 @@ public class Repository : IRepository
     public async Task<List<Cheep>> GetCheepsByAuthor(string authorName, int pageNumber, int pageSize)
         => await _context.Cheeps
             .Include(c => c.Author)
-            .Where(c => c.Author.Name == authorName)
+            .Where(c => c.Author.UserName == authorName)
             .OrderByDescending(c => c.TimeStamp)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
@@ -59,14 +59,14 @@ public class Repository : IRepository
     }
 
     public async Task<Author?> FindByName(string name)
-        => await _context.Authors.FirstOrDefaultAsync(a => a.Name == name);
+        => await _context.Authors.FirstOrDefaultAsync(a => a.UserName == name);
 
     public async Task<Author?> FindByEmail(string email)
         => await _context.Authors.FirstOrDefaultAsync(a => a.Email == email);
 
     public async Task<Author> Create(string name, string email)
     {
-        var author = new Author { Name = name, Email = email };
+        var author = new Author { UserName = name, Email = email };
         await _context.Authors.AddAsync(author);
         await  _context.SaveChangesAsync();
         return author;

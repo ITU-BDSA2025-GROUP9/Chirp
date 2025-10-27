@@ -45,7 +45,7 @@ public class CheepService : ICheepService
     {
         if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
         var cheeps = await _repository.GetAllCheeps(pageNumber, pageSize);
-        return cheeps.Select(CheepToDTO).ToList();
+        return cheeps.Select(CheepToDto).ToList();
     }
 
     /// <summary>
@@ -66,7 +66,7 @@ public class CheepService : ICheepService
         if (string.IsNullOrWhiteSpace(authorName)) throw new ArgumentException("Author is required", nameof(authorName));
         if (pageNumber <= 0) throw new ArgumentOutOfRangeException(nameof(pageNumber));
         var cheeps = await _repository.GetCheepsByAuthor(authorName, pageNumber, pageSize);
-        return cheeps.Select(CheepToDTO).ToList();
+        return cheeps.Select(CheepToDto).ToList();
     }
 
     /// <summary>
@@ -88,10 +88,10 @@ public class CheepService : ICheepService
         await _repository.AddCheep(authorName, authorEmail, text);
     }
 
-    public static CheepDTO CheepToDTO(Cheep c) => new(
-        c.Author.Name,
+    public static CheepDTO CheepToDto(Cheep c) => new(
+        c.Author.UserName!,
         c.Text,
         c.TimeStamp.ToLocalTime().ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture),
-        c.Author.Email
+        c.Author.Email!
     );
 }

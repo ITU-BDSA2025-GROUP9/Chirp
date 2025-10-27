@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using Chirp.Core;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Chirp.Infrastructure.Database;
 
@@ -14,7 +16,7 @@ namespace Chirp.Infrastructure.Database;
 /// used by repositories and services to query and persist entities such as
 /// <see cref="Author"/> and <see cref="Cheep"/>.
 /// </remarks>
-public class ChirpDbContext : DbContext
+public class ChirpDbContext : IdentityDbContext<Author, IdentityRole<int>, int>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="ChirpDbContext"/> class.
@@ -51,21 +53,7 @@ public class ChirpDbContext : DbContext
     /// </remarks>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // --- Author entity mapping ---
-        modelBuilder.Entity<Author>(entity =>
-        {
-            // Table name
-            entity.ToTable("user");
-
-            // Primary key
-            entity.HasKey(a => a.AuthorId);
-
-            // Column mappings
-            entity.Property(a => a.AuthorId).HasColumnName("user_id");
-            entity.Property(a => a.Name).HasColumnName("username");
-            entity.Property(a => a.Email).HasColumnName("email");
-        });
-
+        base.OnModelCreating(modelBuilder);
         // --- Cheep entity mapping ---
         modelBuilder.Entity<Cheep>(entity =>
         {
@@ -109,8 +97,6 @@ public class ChirpDbContext : DbContext
     /// </returns>
     private static DateTime ParseOrDefault(string value)
     {
-        if (DateTime.TryParse(value, out var parsed))
-            return parsed;
-        return DateTime.UtcNow;
+        return DateTime.TryParse(value, out var parsed) ? parsed : DateTime.UtcNow;
     }
 }

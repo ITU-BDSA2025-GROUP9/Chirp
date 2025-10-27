@@ -1,25 +1,22 @@
+/* BASIC STYLING */
 body {
-    background: #eccaca;
+    background: #e8f1fe;
     font-family: 'Trebuchet MS', sans-serif;
 }
 
+h2 {
+    margin-top: 10px;
+    padding-top: 10px;
+}
 
 a {
-    color: #0055cc;
+    color: #5778c4;
     text-decoration: none;
 }
 
 a:hover {
+    color: #324d8d;
     text-decoration: underline;
-}
-
-
-a {
-  color: #26776F;
-}
-
-a:hover {
-  color: #333;
 }
 
 input[type="email"],
@@ -27,7 +24,7 @@ input[type="text"],
 input[type="tel"],
 input[type="password"] {
     background: white;
-    border: 1px solid #e6c0bf;
+    border: 1px solid #1b73f5;
     padding: 2px;
     font-family: 'Trebuchet MS', sans-serif;
     font-size: 14px;
@@ -50,33 +47,33 @@ input[type="submit"] {
   color: white;
 }
 
+/* PAGE */
 div.page {
   background: white;
-  border: 1px solid #cc6e6e;
-  width: 80%;
-  margin: 30px auto;
+  border: 1px solid #1b73f5;
+  width: 90%;
+  margin: 20px auto;
+    border-radius: 10px;
 }
 
 div.page > h1 {
-  background: #cc6e6e;
+  background: #5698f8;
   margin: 0;
   padding: 10px 14px;
   color: white;
   letter-spacing: 1px;
-  text-shadow: 0 0 3px #772424;
+  text-shadow: 0 0 3px #0400a3;
   font-weight: normal;
   font-size: 80px;
-}
-
-h2 {
-    margin-top: 10px;
-    padding-top: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 div.page h1 img {
   height: 1em;
 }
 
+/* NAVIGATION BAR */
 div.page div.navigation {
   background: #DEE9E8;
   padding: 4px 12px;
@@ -88,8 +85,9 @@ div.page div.navigation {
 }
 
 div.page div.navigation a {
-  color: #444;
+  color: #383838;
   font-weight: bold;
+    text-transform: uppercase;
 }
 
 div.page div.navigation form {
@@ -124,6 +122,8 @@ div.page div.footer {
   color: #888;
   padding: 5px 10px;
   font-size: 12px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 div.page div.followstatus {
@@ -265,18 +265,27 @@ form * {
     margin: 2px 0;
 }
 
+.pagination {
+    display: flex;
+    gap: 8px;
+}
+
 button {
-    background-color: #cc6e6e;
-    border: none;
+    background-color: #8b89ed;
+    border:1px solid transparent;
+    border-radius: 15px;
     color: white;
-    padding: 8px 16px;
+    padding: 10px 20px;
     text-align: center;
+    font-size: larger;
     text-decoration: none;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #8b4949;
+    background-color: #3532e0;
+    border-color: #3532e0;
+    text-decoration: none;
 }
 
 ul.nav {
