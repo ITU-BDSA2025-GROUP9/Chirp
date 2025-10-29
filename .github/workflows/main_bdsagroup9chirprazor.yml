@@ -20,13 +20,14 @@ jobs:
         with:
           dotnet-version: '8.x'
 
-      - name: Clean old publish folder
+      - name: Clean and prepare publish folder
         run: |
           rm -rf src/Chirp.Web/publish
           mkdir -p src/Chirp.Web/publish
 
       - name: Publish app
-        run: dotnet publish src/Chirp.Web/Chirp.Web.csproj -c Release -o src/Chirp.Web/publish
+        working-directory: src/Chirp.Web
+        run: dotnet publish Chirp.Web.csproj -c Release -o publish
 
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
@@ -46,7 +47,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: published-app
-          path: ./src/Chirp.Web/publish
+          path: src/Chirp.Web/publish
 
       - name: Login to Azure
         uses: azure/login@v2
