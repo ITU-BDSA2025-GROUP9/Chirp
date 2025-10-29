@@ -89,7 +89,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "#65 on workflow",
+    "git-widget-placeholder": "#66 on workflow",
     "last_opened_file_path": "/home/marcus/Documents/uni/Analysis design and software/exercise",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -241,7 +241,7 @@
       <workItem from="1761271186755" duration="1391000" />
       <workItem from="1761296465428" duration="5524000" />
       <workItem from="1761729968148" duration="3457000" />
-      <workItem from="1761743908443" duration="2500000" />
+      <workItem from="1761743908443" duration="3016000" />
     </task>
     <task id="LOCAL-00001" summary="Added Azure functionality + several new classes.&#10;should work with azure once workflows are set up for it.">
       <option name="closed" value="true" />
@@ -379,7 +379,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761746098412</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="final try">
+      <option name="closed" value="true" />
+      <created>1761746521937</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1761746521937</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TerminalProjectNonSharedOptionsProvider">
@@ -419,7 +427,8 @@
     <MESSAGE value="workflow changes, publishing publish folder rather than myapp" />
     <MESSAGE value="workflow changes" />
     <MESSAGE value=":(" />
-    <option name="LAST_COMMIT_MESSAGE" value=":(" />
+    <MESSAGE value="final try" />
+    <option name="LAST_COMMIT_MESSAGE" value="final try" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
