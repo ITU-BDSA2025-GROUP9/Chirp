@@ -28,6 +28,6 @@
 
 
     <ItemGroup>
-      <Folder Include="Publish\" />
+      <Folder Include="publish\" />
     </ItemGroup>
 </Project>
