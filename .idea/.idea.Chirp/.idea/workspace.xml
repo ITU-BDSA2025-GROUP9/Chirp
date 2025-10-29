@@ -89,7 +89,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "#73 on workflow",
+    "git-widget-placeholder": "#74 on workflow",
     "last_opened_file_path": "/home/marcus/Documents/uni/Analysis design and software/exercise",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -427,7 +427,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761750152415</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="d">
+      <option name="closed" value="true" />
+      <created>1761750587404</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1761750587404</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TerminalProjectNonSharedOptionsProvider">
@@ -473,7 +481,8 @@
     <MESSAGE value="letters" />
     <MESSAGE value="test" />
     <MESSAGE value="l" />
-    <option name="LAST_COMMIT_MESSAGE" value="l" />
+    <MESSAGE value="d" />
+    <option name="LAST_COMMIT_MESSAGE" value="d" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
