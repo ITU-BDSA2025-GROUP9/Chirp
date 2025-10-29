@@ -72,4 +72,4 @@ jobs:
         with:
           app-name: 'bdsagroup9chirprazor'
           slot-name: 'Production'
-          package: '${{ github.workspace }}/src/Chirp.Web.zip'
+          package: '${{ github.workspace }}/src/Chirp.Web/published-app/chirp.zip'
