@@ -25,14 +25,19 @@ jobs:
         run: dotnet publish Chirp.Web.csproj -c Release -o publish
 
       - name: Create deployment ZIP
-        working-directory: src/Chirp.Web/publish
-        run: zip -r ../../chirp.zip .
+        working-directory: src/Chirp.Web
+        run: |
+          echo "Zipping publish folder..."
+          zip -r chirp.zip publish
+          echo "Created:"
+          ls -lh chirp.zip
 
-      - name: Upload artifact for deployment
+      - name: Upload chirp.zip as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: chirp-zip
+          name: chirp-package
           path: src/Chirp.Web/chirp.zip
+
 
   deploy:
     runs-on: ubuntu-latest
@@ -42,15 +47,15 @@ jobs:
       contents: read
 
     steps:
-      - name: Download ZIP artifact
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: chirp-zip
+          name: chirp-package
           path: ./
 
       - name: Verify ZIP exists
         run: |
-          echo "Listing workspace contents:"
+          echo "Workspace contents:"
           ls -R .
 
       - name: Login to Azure
@@ -65,4 +70,4 @@ jobs:
         with:
           app-name: 'bdsagroup9chirprazor'
           slot-name: 'Production'
-          package: '${{ github.workspace }}/chirp.zip'
+          package: '${{ github.workspace }}/chirp-package/chirp.zip'
