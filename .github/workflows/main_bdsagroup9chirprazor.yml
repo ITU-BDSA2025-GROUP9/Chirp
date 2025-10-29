@@ -26,9 +26,13 @@ jobs:
       - name: Build with dotnet
         run: dotnet build src/Chirp.Web/Chirp.Web.csproj --configuration Release
 
+      - name: dotnet clean
+        run: dotnet clean src/Chirp.Web/Chirp.Web.csproj
+
       - name: dotnet publish
         run: dotnet publish src/Chirp.Web/Chirp.Web.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
-
+      
+      
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
