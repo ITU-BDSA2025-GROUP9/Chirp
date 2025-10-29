@@ -25,6 +25,7 @@ jobs:
         run: dotnet publish Chirp.Web.csproj -c Release -o ./publish
         
       - name: zip publish
+        working-directory: src/Chirp.Web
         run: |
           cd publish
           zip -r ../chirp.zip
