@@ -20,14 +20,19 @@ jobs:
         with:
           dotnet-version: '8.x'
 
+      - name: Clean old publish folder
+        run: |
+          rm -rf src/Chirp.Web/publish
+          mkdir -p src/Chirp.Web/publish
+
       - name: Publish app
-        run: dotnet publish src/Chirp.Web/Chirp.Web.csproj -c Release -o publish
+        run: dotnet publish src/Chirp.Web/Chirp.Web.csproj -c Release -o src/Chirp.Web/publish
 
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
         with:
           name: published-app
-          path: publish
+          path: src/Chirp.Web/publish
 
   deploy:
     runs-on: ubuntu-latest
@@ -41,7 +46,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: published-app
-          path: ./publish
+          path: ./src/Chirp.Web/publish
 
       - name: Login to Azure
         uses: azure/login@v2
@@ -55,4 +60,4 @@ jobs:
         with:
           app-name: 'bdsagroup9chirprazor'
           slot-name: 'Production'
-          package: '${{ github.workspace }}/publish'
+          package: '${{ github.workspace }}/src/Chirp.Web/publish'
