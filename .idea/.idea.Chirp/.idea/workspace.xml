@@ -41,7 +41,7 @@
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="local-authentication" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -232,7 +232,8 @@
       <workItem from="1760085092495" duration="53000" />
       <workItem from="1760446870235" duration="2615000" />
       <workItem from="1761271186755" duration="1391000" />
-      <workItem from="1761296465428" duration="5258000" />
+      <workItem from="1761296465428" duration="5524000" />
+      <workItem from="1761729968148" duration="3457000" />
     </task>
     <task id="LOCAL-00001" summary="Added Azure functionality + several new classes.&#10;should work with azure once workflows are set up for it.">
       <option name="closed" value="true" />
