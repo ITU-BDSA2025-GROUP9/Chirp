@@ -24,13 +24,14 @@ jobs:
         run: dotnet build src/Chirp.Web/Chirp.Web.csproj --configuration Release
 
       - name: Publish with dotnet
-        run: dotnet publish src/Chirp.Web/Chirp.Web.csproj -c Release -o src/Chirp.Web/publish
-
+        run: dotnet publish src/Chirp.Web/Chirp.Web.csproj -c Release -o publish
+    
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: published-app
-          path: src/Chirp.Web/publish
+          path: publish
+
 
   deploy:
     runs-on: ubuntu-latest
@@ -58,4 +59,5 @@ jobs:
         with:
           app-name: 'bdsagroup9chirprazor'
           slot-name: 'Production'
-          package: '${{ github.workspace }}/publish'
+          package: '${{ github.workspace }}/published-app/publish'
+

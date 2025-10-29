@@ -13,10 +13,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7266b04b-ac72-49d8-a177-c097c4b18dec" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/main_bdsagroup9chirprazor.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/main_bdsagroup9chirprazor.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="7266b04b-ac72-49d8-a177-c097c4b18dec" name="Changes" comment="" />
     <list id="5953e8f1-b027-4a29-853c-9f653d3b12b4" name="Changes by Kristine" comment="" />
     <list id="24ec59c7-267e-4645-a192-980babdfa0ab" name="Changes by marcus" comment="" />
     <list id="06e50ecd-5bfb-4afe-9518-484bd7e41906" name="Changes by PølleBølle" comment="" />
@@ -92,7 +89,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "#62 on workflow",
+    "git-widget-placeholder": "#63 on workflow",
     "last_opened_file_path": "/home/marcus/Documents/uni/Analysis design and software/exercise",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -244,7 +241,7 @@
       <workItem from="1761271186755" duration="1391000" />
       <workItem from="1761296465428" duration="5524000" />
       <workItem from="1761729968148" duration="3457000" />
-      <workItem from="1761743908443" duration="1316000" />
+      <workItem from="1761743908443" duration="2019000" />
     </task>
     <task id="LOCAL-00001" summary="Added Azure functionality + several new classes.&#10;should work with azure once workflows are set up for it.">
       <option name="closed" value="true" />
@@ -358,7 +355,23 @@
       <option name="project" value="LOCAL" />
       <updated>1761744592096</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="workflow changes, publishing publish folder rather than myapp">
+      <option name="closed" value="true" />
+      <created>1761745252573</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1761745252573</updated>
+    </task>
+    <task id="LOCAL-00016" summary="workflow changes">
+      <option name="closed" value="true" />
+      <created>1761745905895</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1761745905895</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TerminalProjectNonSharedOptionsProvider">
@@ -395,6 +408,7 @@
     <MESSAGE value="sln mistake" />
     <MESSAGE value="&gt;:(" />
     <MESSAGE value="workflow change" />
+    <MESSAGE value="workflow changes, publishing publish folder rather than myapp" />
     <MESSAGE value="workflow changes" />
     <option name="LAST_COMMIT_MESSAGE" value="workflow changes" />
   </component>
