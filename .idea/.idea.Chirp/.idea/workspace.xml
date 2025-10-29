@@ -13,9 +13,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7266b04b-ac72-49d8-a177-c097c4b18dec" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/main_bdsagroup9chirprazor.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/main_bdsagroup9chirprazor.yml" afterDir="false" />
-    </list>
+    <list default="true" id="7266b04b-ac72-49d8-a177-c097c4b18dec" name="Changes" comment="" />
     <list id="5953e8f1-b027-4a29-853c-9f653d3b12b4" name="Changes by Kristine" comment="" />
     <list id="24ec59c7-267e-4645-a192-980babdfa0ab" name="Changes by marcus" comment="" />
     <list id="06e50ecd-5bfb-4afe-9518-484bd7e41906" name="Changes by PølleBølle" comment="" />
@@ -91,7 +89,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "#69 on workflow",
+    "git-widget-placeholder": "#71 on workflow",
     "last_opened_file_path": "/home/marcus/Documents/uni/Analysis design and software/exercise",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -397,7 +395,23 @@
       <option name="project" value="LOCAL" />
       <updated>1761749080489</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="ups">
+      <option name="closed" value="true" />
+      <created>1761749302511</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1761749302512</updated>
+    </task>
+    <task id="LOCAL-00021" summary="letters">
+      <option name="closed" value="true" />
+      <created>1761749489695</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1761749489695</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TerminalProjectNonSharedOptionsProvider">
@@ -439,7 +453,9 @@
     <MESSAGE value=":(" />
     <MESSAGE value="final try" />
     <MESSAGE value="zip deployment for workflow" />
-    <option name="LAST_COMMIT_MESSAGE" value="zip deployment for workflow" />
+    <MESSAGE value="ups" />
+    <MESSAGE value="letters" />
+    <option name="LAST_COMMIT_MESSAGE" value="letters" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
