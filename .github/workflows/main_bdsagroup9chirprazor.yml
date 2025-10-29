@@ -22,7 +22,7 @@ jobs:
 
       - name: Publish app
         working-directory: src/Chirp.Web
-        run: dotnet publish Chirp.Web.csproj -c Release -o ./publish
+        run: dotnet publish Chirp.Web.csproj -c Release -o ./Publish
         
       - name: zip publish
         run: |
