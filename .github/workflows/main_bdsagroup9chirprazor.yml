@@ -22,20 +22,29 @@ jobs:
 
       - name: Publish app
         working-directory: src/Chirp.Web
-        run: dotnet publish Chirp.Web.csproj -c Release -o ./publish
-        
-      - name: zip publish
+        run: |
+          dotnet publish Chirp.Web.csproj -c Release -o publish
+          echo "Publish completed. Listing contents:"
+          ls -la publish
+
+      - name: Zip publish folder
         working-directory: src/Chirp.Web
         run: |
-          cd publish
-          zip -r ../chirp.zip
-          cd ..
+          echo "📦 Zipping published files..."
+          if [ -z "$(ls -A publish)" ]; then
+            echo "Publish folder is empty! Aborting."
+            exit 1
+          fi
+          zip -r chirp.zip publish
+          echo "Created chirp.zip"
+          ls -lh chirp.zip
 
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
         with:
           name: published-app
-          path: src/Chirp.Web/publish
+          path: src/Chirp.Web/chirp.zip
+
 
   deploy:
     runs-on: ubuntu-latest
