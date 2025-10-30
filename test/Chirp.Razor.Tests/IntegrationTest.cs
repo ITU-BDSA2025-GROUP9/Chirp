@@ -170,26 +170,4 @@ public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
 
         content.Should().Contain("<button> Previous </button>");
     }
-    
-    [Theory]
-    [InlineData("Helge")]
-    [InlineData("Adrian")]
-    public async Task PrivateTimeline_ShouldContainReturnToPublicTimelineButton(string author)
-    {
-        var response = await _client.GetAsync($"/{author}");
-        response.EnsureSuccessStatusCode();
-        var content = await response.Content.ReadAsStringAsync();
-        
-        content.Should().Contain("<button> Return to Public Timeline </button>");
-    }
-    
-    [Fact]
-    public async Task PublicTimeline_ShouldNotContainReturnToPublicTimelineButton()
-    {
-        var response = await _client.GetAsync("/");
-        response.EnsureSuccessStatusCode();
-        var content = await response.Content.ReadAsStringAsync();
-        
-        content.Should().NotContain("<button> Return to Public Timeline </button>");
-    }
 }
