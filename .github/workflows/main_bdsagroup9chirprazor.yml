@@ -71,4 +71,5 @@ jobs:
           app-name: 'bdsagroup9chirprazor'
           slot-name: 'Production'
           package: '${{ github.workspace }}/chirp.zip'
+          clean: true
 
