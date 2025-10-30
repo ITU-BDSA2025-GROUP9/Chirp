@@ -25,12 +25,12 @@ jobs:
         run: dotnet publish Chirp.Web.csproj -c Release -o publish
 
       - name: Create deployment ZIP
-        working-directory: src/Chirp.Web
+        working-directory: src/Chirp.Web/publish
         run: |
           echo "Zipping publish folder..."
-          zip -r chirp.zip publish
+          zip -r ../chirp.zip .
           echo "Created:"
-          ls -lh chirp.zip
+          ls -lh ../chirp.zip
 
       - name: Upload chirp.zip as artifact
         uses: actions/upload-artifact@v4
@@ -71,3 +71,4 @@ jobs:
           app-name: 'bdsagroup9chirprazor'
           slot-name: 'Production'
           package: '${{ github.workspace }}/chirp.zip'
+
