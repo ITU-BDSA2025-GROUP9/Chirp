@@ -37,17 +37,11 @@ builder.Services.AddDefaultIdentity<Author>(options =>
         options.SignIn.RequireConfirmedAccount = true)      
     .AddEntityFrameworkStores<ChirpDbContext>(); 
 
-builder.Services.AddAuthentication(options =>
-    {
-        options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = "GitHub";
-    })
-    .AddCookie()
+builder.Services.AddAuthentication()
     .AddGitHub(o =>
     {
-        o.ClientId = builder.Configuration["authentication:github:clientId"];
-        o.ClientSecret = builder.Configuration["authentication:github:clientSecret"];
+        o.ClientId = builder.Configuration["authentication:github:clientId"]!;
+        o.ClientSecret = builder.Configuration["authentication:github:clientSecret"]!;
         o.CallbackPath = "/signin-github";
     });
 
