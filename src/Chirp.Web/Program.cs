@@ -3,7 +3,8 @@ using Chirp.Core.Interfaces;
 using Chirp.Infrastructure.Database;
 using Chirp.Infrastructure.Repositories;
 using Chirp.Infrastructure.Service;
-using Microsoft.Data.Sqlite;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using AspNet.Security.OAuth.GitHub;
 using Microsoft.EntityFrameworkCore;
 
 /// <summary>
@@ -24,6 +25,7 @@ var dataRoot = env.IsDevelopment()
 Directory.CreateDirectory(dataRoot);
 var dbPath = Path.Combine(dataRoot, "chirp.db");
 
+builder.Services.AddSession();
 /// <summary>
 /// Register Entity Framework Core with SQLite backend.
 /// The context manages access to Author and Cheep entities.
@@ -34,6 +36,14 @@ builder.Services.AddDbContext<ChirpDbContext>(opt =>
 builder.Services.AddDefaultIdentity<Author>(options =>  
         options.SignIn.RequireConfirmedAccount = true)      
     .AddEntityFrameworkStores<ChirpDbContext>(); 
+
+builder.Services.AddAuthentication()
+    .AddGitHub(o =>
+    {
+        o.ClientId = builder.Configuration["authentication_github_clientId"]!;
+        o.ClientSecret = builder.Configuration["authentication_github_clientSecret"]!;
+        o.CallbackPath = "/signin-github";
+    });
 
 /// <summary>
 /// Register application services for dependency injection.
@@ -81,6 +91,7 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseSession(); 
 app.MapRazorPages();
 
 /// <summary>

@@ -6,12 +6,9 @@
     var routeName = HttpContext.GetRouteValue("author");
 }
 
-<a class="btn" href="/" style="float: right; font-size: 15px; ">
-    <button> Return to Public Timeline </button>
-</a>
-
 <div>
     <h2>@routeName's Timeline</h2>
+    <partial name="Shared/_PostPartial" />
 
     @if (Model.Cheeps.Any())
     {

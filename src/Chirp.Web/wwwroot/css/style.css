@@ -35,8 +35,8 @@ input[type="password"] {
 }
 
 input[type="submit"] {
-  background: #571010;
-  border: 1px solid #3b0707;
+  background: #8b89ed;
+  border: 1px solid transparent;
   padding: 1px 3px;
   font-family: 'Trebuchet MS', sans-serif;
   font-size: 14px;
@@ -171,7 +171,7 @@ div.page div.cheepbox {
   margin: 10px 0;
   padding: 5px;
   background: #F0FAF9;
-  border: 1px solid #e29494;
+  border: 1px solid #1b73f5;;
   border-radius: 2px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -180,7 +180,7 @@ div.page div.cheepbox {
 div.page div.cheepbox h3 {
   margin: 0;
   font-size: 1em;
-  color: #7e2c2c;
+  color: #5778c4;
 }
 
 div.page div.cheepbox p {
