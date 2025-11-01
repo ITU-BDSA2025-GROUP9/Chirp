@@ -88,6 +88,15 @@ public class CheepService : ICheepService
         await _repository.AddCheep(authorName, authorEmail, text);
     }
 
+    public async Task AddCheep(Author author, string text)
+    {
+        if (author == null) throw new ArgumentNullException("Author is required " + nameof(author));
+        if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Cheep text is required and cannot be null or empty", nameof(text));
+        if (text.Length > 160) throw new ArgumentException("Cheep text cannot exceed 160 characters.", nameof(text));
+
+        await _repository.AddCheep(author, text);
+    }
+    
     public static CheepDTO CheepToDto(Cheep c) => new(
         c.Author.UserName!,
         c.Text,
