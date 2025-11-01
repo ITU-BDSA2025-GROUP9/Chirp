@@ -8,7 +8,7 @@
 
 <div>
     <h2>@routeName's Timeline</h2>
-    <partial name="Shared/_PostPartial" />
+    @{ await Html.RenderPartialAsync("Shared/_PostPartial", Model.Input);}
 
     @if (Model.Cheeps.Any())
     {
@@ -34,7 +34,9 @@
                 <a class="btn" href="/@(Model.CurrentAuthor)?page=@(Model.CurrentPage - 1)"> <button> Previous </button> </a>
             }
             
-            <a class="btn" href="/@(Model.CurrentAuthor)?page=@(Model.CurrentPage + 1)"> <button> Next </button> </a>
+            @if (Model.HasNextPage){
+                <a class="btn" href="/@(Model.CurrentAuthor)?page=@(Model.CurrentPage + 1)"> <button> Next </button> </a>
+            }
         </div>
     }
     else

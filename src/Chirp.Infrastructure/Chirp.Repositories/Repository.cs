@@ -57,6 +57,19 @@ public class Repository : IRepository
         await _context.Cheeps.AddAsync(cheep);
         await _context.SaveChangesAsync();
     }
+    
+    public async Task AddCheep(Author author, string text)
+    {
+        var cheep = new Cheep
+        {
+            Author = author,
+            Text = text,
+            TimeStamp = DateTime.UtcNow
+        };
+
+        await _context.Cheeps.AddAsync(cheep);
+        await _context.SaveChangesAsync();
+    }
 
     public async Task<Author?> FindByName(string name)
         => await _context.Authors.FirstOrDefaultAsync(a => a.UserName == name);

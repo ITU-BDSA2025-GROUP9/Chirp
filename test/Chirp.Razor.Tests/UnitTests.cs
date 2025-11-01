@@ -26,8 +26,8 @@ public class UnitTests : IDisposable
         _context = new ChirpDbContext(builder.Options);
         _context.Database.EnsureCreated();
 
-        Author a1 = new Author { UserName = "Alice", Email = "alice@itu.dk" };
-        Author a2 = new Author { UserName = "Bob", Email = "bob@itu.dk" };
+        var a1 = new Author { UserName = "Alice", Email = "alice@itu.dk" };
+        var a2 = new Author { UserName = "Bob", Email = "bob@itu.dk" };
 
         _context.Authors.AddRange(
             a1, a2
@@ -152,6 +152,19 @@ public class UnitTests : IDisposable
         cheeps.Should().NotBeEmpty();
         cheeps.Count.Should().Be(1);
         cheeps.Should().OnlyContain(c => c.Author.UserName == "NewUser");
+    }
+    
+    [Fact]
+    public async Task AddCheepAuthor_ShouldAddAuthor()
+    {
+        var author = new Author { UserName = "NewUser", Email = "newuser@itu.dk" };
+        await _repo.AddCheep(author, "Test");
+        
+        var cheeps = await _repo.GetCheepsByAuthor("NewUser", 1, 10);
+        
+        cheeps.Should().NotBeEmpty();
+        cheeps.Count.Should().Be(1);
+        cheeps.Should().OnlyContain(c => c.Author.UserName == "NewUser" && c.Text == "Test");
     }
     
     [Fact]
@@ -324,6 +337,39 @@ public class UnitTests : IDisposable
 
        await act.Should().ThrowAsync<ArgumentException>()
            .WithMessage("*cannot exceed 160 characters*");
+   }
+   
+   [Fact]
+   public async Task AddCheep_160lengthText_ShouldNotThrowException()
+   {
+       var longCheep = new string('x', 160);
+
+       Func<Task> act = async () => await _service.AddCheep("Helge", "helge@itu.dk", longCheep);
+
+       await act.Should().NotThrowAsync<ArgumentException>();
+   }
+   
+   [Fact]
+   public async Task AddCheepAuthor_InvalidText_ShouldThrowException()
+   {
+       var longCheep = new string('x', 161);
+       var author = new Author { UserName = "Helge", Email = "helge@itu.dk" };
+
+       Func<Task> act = async () => await _service.AddCheep(author, longCheep);
+
+       await act.Should().ThrowAsync<ArgumentException>()
+           .WithMessage("*cannot exceed 160 characters*");
+   }
+   
+   [Fact]
+   public async Task AddCheepAuthor_160lengthText_ShouldNotThrowException()
+   {
+       var longCheep = new string('x', 160);
+       var author = new Author { UserName = "Helge", Email = "helge@itu.dk" };
+
+       Func<Task> act = async () => await _service.AddCheep(author, longCheep);
+
+       await act.Should().NotThrowAsync<ArgumentException>();
    }
    
    [Theory]

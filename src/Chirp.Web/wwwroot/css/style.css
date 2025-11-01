@@ -109,7 +109,7 @@ div.page div.navigation form button {
 
 div.page h2 {
   margin: 0 0 15px 0;
-  color: #571010;
+  color: #4c1b7a;
   text-shadow: 0 1px 2px #ccc;
 }
 
@@ -151,6 +151,7 @@ div.page ul.cheeps li {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   min-height: 48px;
+  word-wrap: break-word;
 }
 
 div.page ul.cheeps p {
@@ -188,7 +189,9 @@ div.page div.cheepbox p {
 }
 
 div.page div.cheepbox input[type="text"] {
-  width: 585px;
+  width: 50%;
+  min-width: 150px;
+  color: black;
 }
 
 div.page div.cheepbox input[type="submit"] {
@@ -310,4 +313,14 @@ ul.nav li a {
 
 ul.nav li a:hover {
     background-color: #8b4949;
+}
+
+span.field-validation-error{
+    color: #d8000c;          
+    background-color: #ffd2d2;
+    border: 1px solid #d8000c;
+    border-radius: 3px;
+    padding: 2px 3px;
+    font-size: 13px;
+    margin-top: 2px;
 }
