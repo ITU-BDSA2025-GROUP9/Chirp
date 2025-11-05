@@ -6,6 +6,8 @@ using Chirp.Infrastructure.Service;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using AspNet.Security.OAuth.GitHub;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.AspNetCore.Http.StatusCodes;
+
 
 /// <summary>
 /// Entry point for the Chirp.Razor web application.
@@ -60,6 +62,24 @@ builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 builder.Logging.AddAzureWebAppDiagnostics();
 builder.Logging.SetMinimumLevel(LogLevel.Information);
+
+
+builder.Services.AddHsts(options =>
+{
+    options.Preload = true;
+    options.IncludeSubDomains = true;
+    options.MaxAge = TimeSpan.FromDays(60);
+    options.ExcludedHosts.Add("example.com");
+    options.ExcludedHosts.Add("www.example.com");
+});
+
+builder.Services.AddHttpsRedirection(options =>
+{
+    options.RedirectStatusCode = Status307TemporaryRedirect;
+    options.HttpsPort = 7140;
+});
+
+
 
 /// <summary>
 /// Build the web application and configure the HTTP request pipeline.
