@@ -126,12 +126,12 @@ namespace Chirp.Web.Areas.Identity.Pages.Account
                 }
                 else if (existingUserByName != null)
                 {
-                    ModelState.AddModelError(nameof(Input.Username), "This username is already taken.");
+                    ModelState.AddModelError(string.Empty, "This username is already taken.");
                     return Page();
                 }
                 else if (existingUserByEmail != null)
                 {
-                    ModelState.AddModelError(nameof(Input.Email), "This email is already registered.");
+                    ModelState.AddModelError(string.Empty, "This email is already registered.");
                     return Page();
                 }
                 
