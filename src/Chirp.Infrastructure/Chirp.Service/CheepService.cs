@@ -100,7 +100,7 @@ public class CheepService : ICheepService
     public static CheepDTO CheepToDto(Cheep c) => new(
         c.Author.UserName!,
         c.Text,
-        c.TimeStamp.ToLocalTime().ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture),
+        c.TimeStamp.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture),
         c.Author.Email!
     );
 }

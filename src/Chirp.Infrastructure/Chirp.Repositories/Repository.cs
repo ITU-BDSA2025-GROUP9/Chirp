@@ -51,7 +51,7 @@ public class Repository : IRepository
         {
             Text = text,
             Author = author,
-            TimeStamp = DateTime.UtcNow
+            TimeStamp = DateTime.UtcNow.ToLocalTime()
         };
 
         await _context.Cheeps.AddAsync(cheep);
@@ -64,7 +64,7 @@ public class Repository : IRepository
         {
             Author = author,
             Text = text,
-            TimeStamp = DateTime.UtcNow
+            TimeStamp = DateTime.UtcNow.ToLocalTime()
         };
 
         await _context.Cheeps.AddAsync(cheep);
