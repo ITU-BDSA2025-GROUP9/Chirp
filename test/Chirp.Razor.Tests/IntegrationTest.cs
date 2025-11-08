@@ -67,9 +67,9 @@ public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
     }
     
     [Theory]
-    [InlineData("Helge", "?page=-1")]
-    [InlineData("Helge", "?page=abc")]
-    [InlineData("Adrian", "?page=0")]
+    [InlineData("Roger Histand", "?page=-1")]
+    [InlineData("Roger Histand", "?page=abc")]
+    [InlineData("Jacqualine Gilcoine", "?page=0")]
     public async Task ValidAuthorAndInvalidPageQuery_ShouldDefaultToPrivatePage1(string author, string query)
     {
         var response = await _client.GetAsync($"/{author}/{query}");

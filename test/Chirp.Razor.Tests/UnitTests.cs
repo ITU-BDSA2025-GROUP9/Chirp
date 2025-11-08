@@ -67,7 +67,7 @@ public class UnitTests : IDisposable
         dto.Author.Should().Be("Alice");
         dto.Message.Should().Be("Test");
         dto.AuthorEmail.Should().Be("alice@itu.dk");
-        dto.TimeStamp.Should().Be(cheep.TimeStamp.ToLocalTime().ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture));
+        dto.TimeStamp.Should().Be(cheep.TimeStamp.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture));
     }
  
     [Fact]

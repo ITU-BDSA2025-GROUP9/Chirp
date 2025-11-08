@@ -63,23 +63,7 @@ builder.Logging.AddConsole();
 builder.Logging.AddAzureWebAppDiagnostics();
 builder.Logging.SetMinimumLevel(LogLevel.Information);
 
-
-builder.Services.AddHsts(options =>
-{
-    options.Preload = true;
-    options.IncludeSubDomains = true;
-    options.MaxAge = TimeSpan.FromDays(60);
-    options.ExcludedHosts.Add("example.com");
-    options.ExcludedHosts.Add("www.example.com");
-});
-
-builder.Services.AddHttpsRedirection(options =>
-{
-    options.RedirectStatusCode = Status307TemporaryRedirect;
-    options.HttpsPort = 7140;
-});
-
-
+builder.Services.AddHsts(o => o.MaxAge = TimeSpan.FromDays(60));
 
 /// <summary>
 /// Build the web application and configure the HTTP request pipeline.
