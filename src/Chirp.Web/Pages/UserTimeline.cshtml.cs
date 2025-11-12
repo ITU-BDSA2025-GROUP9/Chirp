@@ -64,4 +64,30 @@ public class UserTimelineModel : PageModel
         await _service.AddCheep(user, Input.Text);
         return RedirectToPage("/UserTimeline");
     }
+    
+    public async Task<IActionResult> OnPostFollowAsync(string author)
+    {
+        var currentUser = await _userManager.GetUserAsync(User);
+        if (currentUser == null) return RedirectToPage("/Account/Login");
+    
+        await _service.FollowAuthor(currentUser.UserName!, author);
+        return RedirectToPage("/UserTimeline");
+    }
+    
+    public async Task<IActionResult> OnPostUnfollowAsync(string author)
+    {
+        var currentUser = await _userManager.GetUserAsync(User);
+        if (currentUser == null) return RedirectToPage("/Account/Login");
+
+        await _service.UnfollowAuthor(currentUser.UserName!, author);
+        return RedirectToPage("/UserTimeline");
+    }
+    
+    public async Task<bool> IsFollowing(string author)
+    {
+        var currentUser = await _userManager.GetUserAsync(User);
+        if (currentUser == null) return false;
+        
+        return await _service.IsFollowing(currentUser.UserName!, author);
+    }
 }

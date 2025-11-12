@@ -84,4 +84,51 @@ public class Repository : IRepository
         await  _context.SaveChangesAsync();
         return author;
     }
+    
+    public async Task<bool> FollowAuthor(string followerName, string followeeName)
+    {
+        var follower = await _context.Authors
+            .Include(a => a.Following)
+            .FirstOrDefaultAsync(a => a.UserName == followerName);
+        
+        var followee = await _context.Authors
+            .FirstOrDefaultAsync(a => a.UserName == followeeName);
+
+        if (follower == null || followee == null)
+            return false;
+
+        if (follower.Following.Contains(followee))
+            return false;
+
+        follower.Following.Add(followee);
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> UnfollowAuthor(string followerName, string followeeName)
+    {
+        var follower = await _context.Authors
+            .Include(a => a.Following)
+            .FirstOrDefaultAsync(a => a.UserName == followerName);
+        var followee = await _context.Authors
+            .FirstOrDefaultAsync(a => a.UserName == followeeName);
+
+        if (follower == null || followee == null)
+            return false;
+
+        if (!follower.Following.Contains(followee))
+            return false;
+
+        follower.Following.Remove(followee);
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> IsFollowing(string followerName, string followeeName)
+    {
+        return await _context.Authors
+            .AnyAsync(a => a.UserName == followerName && 
+                           a.Following.Any(f => f.UserName == followeeName));
+    }
+
 }

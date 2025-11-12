@@ -8,4 +8,7 @@ public interface ICheepService
     Task<List<CheepDTO>> GetCheepsByAuthor(string authorName, int pageNumber, int pageSize);
     Task AddCheep(string authorName, string authorEmail, string text);
     Task  AddCheep(Author author, string text);
+    Task<bool> FollowAuthor(string followerName, string followeeName);
+    Task<bool> UnfollowAuthor(string followerName, string followeeName);
+    Task<bool> IsFollowing(string followerName, string followeeName);
 }
