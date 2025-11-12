@@ -103,4 +103,40 @@ public class CheepService : ICheepService
         c.TimeStamp.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture),
         c.Author.Email!
     );
+    
+    
+    public async Task<bool> FollowAuthor(string followerName, string followeeName)
+    {
+        if (followerName.Equals(followeeName))
+            throw new InvalidOperationException("You cannot follow yourself.");
+
+        return await _repository.FollowAuthor(followerName, followeeName);
+    }
+
+    public async Task<bool> UnfollowAuthor(string followerName, string followeeName)
+    {
+        if (followerName.Equals(followeeName))
+            throw new InvalidOperationException("You cannot unfollow yourself.");
+
+        return await _repository.UnfollowAuthor(followerName, followeeName);
+    }
+
+    public async Task<bool> IsFollowing(string followerName, string followeeName)
+    {
+        return await _repository.IsFollowing(followerName, followeeName);
+    }
+    
+    public async Task<List<CheepDTO>> GetUserTimelineCheeps(string authorName, int pageNumber, int pageSize)
+    {
+        var user = await _repository.FindByName(authorName);
+        if (user == null) throw new ArgumentException("User not found", nameof(authorName));
+
+        var followees = await _repository.GetAllFollowees(authorName);
+        followees.Add(authorName);
+         
+        var cheeps = await _repository.GetCheepsByAuthors(followees, pageNumber, pageSize);
+        return cheeps.Select(CheepToDto).ToList();
+    }
+
+
 }

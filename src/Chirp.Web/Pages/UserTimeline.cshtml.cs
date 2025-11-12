@@ -40,8 +40,18 @@ public class UserTimelineModel : PageModel
         
         try
         {
-            var cheepsList = await _service.GetCheepsByAuthor(author, pageno, pageSize + 1); // Get 33 cheeps to check, if a next page exists
-            Cheeps = cheepsList.Take(pageSize); 
+            var user = await _userManager.GetUserAsync(User);
+            List<CheepDTO> cheepsList;
+            if (user != null && user.UserName == author)
+            {
+                cheepsList = await _service.GetUserTimelineCheeps(author, pageno, pageSize + 1);
+            }
+            else
+            {
+                cheepsList = await _service.GetCheepsByAuthor(author, pageno, pageSize + 1);
+            }
+
+            Cheeps = cheepsList.Take(pageSize);
             HasNextPage = cheepsList.Count > pageSize;
         }
         catch (ArgumentException)
@@ -63,5 +73,31 @@ public class UserTimelineModel : PageModel
         
         await _service.AddCheep(user, Input.Text);
         return RedirectToPage("/UserTimeline");
+    }
+    
+    public async Task<IActionResult> OnPostFollowAsync(string author)
+    {
+        var currentUser = await _userManager.GetUserAsync(User);
+        if (currentUser == null) return RedirectToPage("/Account/Login");
+    
+        await _service.FollowAuthor(currentUser.UserName!, author);
+        return RedirectToPage("/UserTimeline");
+    }
+    
+    public async Task<IActionResult> OnPostUnfollowAsync(string author)
+    {
+        var currentUser = await _userManager.GetUserAsync(User);
+        if (currentUser == null) return RedirectToPage("/Account/Login");
+
+        await _service.UnfollowAuthor(currentUser.UserName!, author);
+        return RedirectToPage("/UserTimeline");
+    }
+    
+    public async Task<bool> IsFollowing(string author)
+    {
+        var currentUser = await _userManager.GetUserAsync(User);
+        if (currentUser == null) return false;
+        
+        return await _service.IsFollowing(currentUser.UserName!, author);
     }
 }
