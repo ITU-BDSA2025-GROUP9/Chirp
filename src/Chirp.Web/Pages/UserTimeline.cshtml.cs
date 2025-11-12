@@ -40,8 +40,18 @@ public class UserTimelineModel : PageModel
         
         try
         {
-            var cheepsList = await _service.GetCheepsByAuthor(author, pageno, pageSize + 1); // Get 33 cheeps to check, if a next page exists
-            Cheeps = cheepsList.Take(pageSize); 
+            var user = await _userManager.GetUserAsync(User);
+            List<CheepDTO> cheepsList;
+            if (user != null && user.UserName == author)
+            {
+                cheepsList = await _service.GetUserTimelineCheeps(author, pageno, pageSize + 1);
+            }
+            else
+            {
+                cheepsList = await _service.GetCheepsByAuthor(author, pageno, pageSize + 1);
+            }
+
+            Cheeps = cheepsList.Take(pageSize);
             HasNextPage = cheepsList.Count > pageSize;
         }
         catch (ArgumentException)

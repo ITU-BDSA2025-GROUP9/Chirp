@@ -99,8 +99,9 @@ public class Repository : IRepository
 
         if (follower.Following.Contains(followee))
             return false;
-
+        
         follower.Following.Add(followee);
+        followee.Followers.Add(follower);
         await _context.SaveChangesAsync();
         return true;
     }
@@ -120,6 +121,7 @@ public class Repository : IRepository
             return false;
 
         follower.Following.Remove(followee);
+        followee.Followers.Remove(follower);
         await _context.SaveChangesAsync();
         return true;
     }
@@ -129,6 +131,31 @@ public class Repository : IRepository
         return await _context.Authors
             .AnyAsync(a => a.UserName == followerName && 
                            a.Following.Any(f => f.UserName == followeeName));
+    }
+    
+    public async Task<List<Cheep>> GetCheepsByAuthors(List<string> authors, int pageNumber, int pageSize)
+    {
+        return await _context.Cheeps
+            .Include(c => c.Author)
+            .Where(c => authors.Contains(c.Author.UserName!))
+            .OrderByDescending(c => c.TimeStamp)
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+    }
+    
+    public async Task<List<string>> GetAllFollowees(string authorName)
+    {
+        var user = await _context.Authors
+            .Include(a => a.Following)
+            .FirstOrDefaultAsync(a => a.UserName == authorName);
+
+        if (user == null) return new List<string>();
+
+        return user.Following
+            .OrderBy(a => a.UserName)
+            .Select(a => a.UserName!)
+            .ToList();
     }
 
 }

@@ -125,5 +125,18 @@ public class CheepService : ICheepService
     {
         return await _repository.IsFollowing(followerName, followeeName);
     }
+    
+    public async Task<List<CheepDTO>> GetUserTimelineCheeps(string authorName, int pageNumber, int pageSize)
+    {
+        var user = await _repository.FindByName(authorName);
+        if (user == null) throw new ArgumentException("User not found", nameof(authorName));
+
+        var followees = await _repository.GetAllFollowees(authorName);
+        followees.Add(authorName);
+         
+        var cheeps = await _repository.GetCheepsByAuthors(followees, pageNumber, pageSize);
+        return cheeps.Select(CheepToDto).ToList();
+    }
+
 
 }
