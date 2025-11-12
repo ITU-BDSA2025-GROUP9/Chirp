@@ -72,10 +72,21 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<ChirpDbContext>(); 
-    db.Database.Migrate();
-    Chirp.Infrastructure.Data.DbInitializer.SeedDatabase(db);
+    var db = scope.ServiceProvider.GetRequiredService<ChirpDbContext>();
+
+    if (db.Database.IsRelational())
+    {
+        // Normal run
+        db.Database.Migrate();
+        Chirp.Infrastructure.Data.DbInitializer.SeedDatabase(db);
+    }
+    else
+    {
+        // Run for testing in memory (in future)
+        db.Database.EnsureCreated();
+    }
 }
+
 
 /// <summary>
 /// Configure error handling and security policies for production.

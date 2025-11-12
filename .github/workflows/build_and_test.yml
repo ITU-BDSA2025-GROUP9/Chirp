@@ -18,6 +18,10 @@ jobs:
         dotnet-version: 8.0.x
     - name: Restore dependencies
       run: dotnet restore
+    - name: Restore Playwright Tool
+      run: dotnet tool restore
+    - name: Install Playwright Browsers
+      run:  npx playwright install --with-deps
     - name: Build
       run: dotnet build --no-restore
     - name: Test
