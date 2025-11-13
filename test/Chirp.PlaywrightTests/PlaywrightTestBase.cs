@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Chirp.PlaywrightTests;
 
-[SetUpFixture] // this ensures NUnit runs setup/teardown once per test run
+[SetUpFixture]
 public class PlaywrightTestBase
 {
     private static Process? _webProcess;
@@ -33,7 +33,7 @@ public class PlaywrightTestBase
 
         Console.WriteLine("Starting Chirp.Web...");
 
-        // Wait until app starts up
+        // Wait until app stats up
         var started = false;
         var start = DateTime.UtcNow;
         while (!started && (DateTime.UtcNow - start).TotalSeconds < 20)
@@ -60,7 +60,7 @@ public class PlaywrightTestBase
     {
         if (_webProcess is { HasExited: false })
         {
-            Console.WriteLine("Stopping Chirp.Web...");
+            Console.WriteLine("Stopping...");
             _webProcess.Kill(true);
             _webProcess.Dispose();
         }
