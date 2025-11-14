@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Chirp.Core;
 using Chirp.Core.Interfaces;
 using Chirp.Infrastructure.Database;
@@ -5,6 +6,7 @@ using Chirp.Infrastructure.Repositories;
 using Chirp.Infrastructure.Service;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using AspNet.Security.OAuth.GitHub;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
@@ -45,6 +47,10 @@ builder.Services.AddAuthentication()
         o.ClientId = builder.Configuration["authentication_github_clientId"]!;
         o.ClientSecret = builder.Configuration["authentication_github_clientSecret"]!;
         o.CallbackPath = "/signin-github";
+        
+        o.Scope.Add("user:email");
+        o.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
+        o.ClaimActions.MapJsonKey(ClaimTypes.Name, "login");
     });
 
 /// <summary>

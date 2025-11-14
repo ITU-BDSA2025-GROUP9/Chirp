@@ -9,14 +9,14 @@
     {
         <form method="post" asp-page-handler="Unfollow">
             <input type="hidden" name="author" value="@Model.Author" />
-            <button type="submit">Unfollow</button>
+            <button class="followbtn" type="submit">Unfollow</button>
         </form>
     }
     else
     {
         <form method="post" asp-page-handler="Follow">
             <input type="hidden" name="author" value="@Model.Author" />
-            <button type="submit">Follow</button>
+            <button class="followbtn" type="submit">Follow</button>
         </form>
     }
 }

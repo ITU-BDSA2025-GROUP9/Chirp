@@ -14,19 +14,17 @@
         <ul id="messagelist" class="cheeps">
             @foreach (var cheep in Model.Cheeps) {
                 <li>
-                    <p>
+                    <div class="followcontainer">
                         <strong>
                             <a href="/@cheep.Author">@cheep.Author</a>
                         </strong>
-                        <br>
-                        @cheep.Message
-                        <small>&mdash; @cheep.TimeStamp</small>
-                        
                         @{
                             await Html.RenderPartialAsync("Shared/_FollowPartial",
-                                new FollowButtonViewModel(cheep.Author, await Model.IsFollowing(cheep.Author))
-                            );}
-
+                                new FollowButtonViewModel(cheep.Author, await Model.IsFollowing(cheep.Author)));}
+                    </div>
+                    @cheep.Message
+                    <small>&mdash; @cheep.TimeStamp</small>
+                  
                 </li>
             }
         </ul>
