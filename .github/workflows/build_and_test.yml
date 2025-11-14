@@ -21,7 +21,7 @@ jobs:
     - name: Restore Playwright Tool
       run: dotnet tool restore
     - name: Install Playwright Browsers
-      run:  npx playwright install --with-deps
+      run: dotnet playwright install --with-deps
     - name: Build
       run: dotnet build --no-restore
     - name: Test
