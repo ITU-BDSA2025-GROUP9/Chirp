@@ -21,7 +21,7 @@ jobs:
     - name: Restore Playwright Tool
       run: dotnet tool restore
     - name: Install Playwright Browsers
-    - run: pwsh ./test/Chirp.PlaywrightTests/bin/Debug/net8.0/playwright.ps1 install --with-deps
+      run: pwsh ./test/Chirp.PlaywrightTests/bin/Debug/net8.0/playwright.ps1 install --with-deps
     - name: Build
       run: dotnet build --no-restore
     - name: Test
