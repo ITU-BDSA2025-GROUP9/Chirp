@@ -651,4 +651,136 @@ public class UnitTests : IDisposable
        page2.Should().NotContain(c =>
            page1.Any(f => f.Author == c.Author && f.Message == c.Message));
    }
+   
+   [Fact]
+   public async Task FollowAuthor_ShouldAddFollowerAndFollowee()
+   {
+       var result = await _repo.FollowAuthor("Alice", "Bob");
+       result.Should().BeTrue();
+
+       var alice = await _repo.FindByName("Alice");
+       var bob = await _repo.FindByName("Bob");
+
+       alice!.Following.Should().Contain(bob!);
+       bob!.Followers.Should().Contain(alice);
+   }
+   
+   [Fact]
+   public async Task FollowAuthor_SelfFollow_ShouldReturnFalse()
+   {
+       var result = await _repo.FollowAuthor("Alice", "Alice");
+       result.Should().BeFalse();
+   }
+   
+   [Fact]
+   public async Task FollowAuthor_DuplicateFollow_ShouldReturnFalse()
+   {
+       await _repo.FollowAuthor("Alice", "Bob");
+       var secondFollow = await _repo.FollowAuthor("Alice", "Bob");
+       secondFollow.Should().BeFalse();
+   }
+
+   [Fact]
+   public async Task UnfollowAuthor_ShouldRemoveFollowerAndFollowee()
+   {
+       await _repo.FollowAuthor("Alice", "Bob");
+       var result = await _repo.UnfollowAuthor("Alice", "Bob");
+       result.Should().BeTrue();
+
+       var alice = await _repo.FindByName("Alice");
+       var bob = await _repo.FindByName("Bob");
+
+       alice!.Following.Should().NotContain(bob!);
+       bob!.Followers.Should().NotContain(alice);
+   }
+   
+   [Fact]
+   public async Task UnfollowAuthor_NotFollowing_ShouldReturnFalse()
+   {
+       var result = await _repo.UnfollowAuthor("Alice", "Bob");
+       result.Should().BeFalse();
+   }
+   
+   [Fact]
+   public async Task IsFollowing_repoShouldReturnTrue_WhenFollowing()
+   {
+       await _repo.FollowAuthor("Alice", "Bob");
+       var result = await _repo.IsFollowing("Alice", "Bob");
+       result.Should().BeTrue();
+   }
+   
+   [Fact]
+   public async Task IsFollowing_repoShouldReturnFalse_WhenNotFollowing()
+   {
+       var result = await _repo.IsFollowing("Alice", "Bob");
+       result.Should().BeFalse();
+   }
+
+   [Fact]
+   public async Task GetAllFollowees_ShouldReturnCorrectList()
+   {
+       await _repo.Create("Helge", "helge@itu.dk");
+       await _repo.FollowAuthor("Alice", "Bob");
+       await _repo.FollowAuthor("Alice", "Helge");
+
+       var followees = await _repo.GetAllFollowees("Alice");
+       followees.Should().HaveCount(2); 
+       followees.Should().Contain(f => f == "Bob");
+       followees.Should().Contain(f => f == "Helge");
+       
+       await _repo.UnfollowAuthor("Alice", "Bob");
+       followees = await _repo.GetAllFollowees("Alice");
+       followees.Should().HaveCount(1); 
+       followees.Should().Contain("Helge");
+   }
+   
+   [Fact]
+   public async Task GetAllFollowees_UnknownUser_ShouldReturnEmpty()
+   {
+       var followees = await _repo.GetAllFollowees("Unknown");
+       followees.Should().BeEmpty();
+   }
+   
+   [Fact]
+   public async Task GetAllFollowees_WithNoFollowee_ShouldReturnEmpty()
+   {
+       var followees = await _repo.GetAllFollowees("Alice");
+       followees.Should().BeEmpty();
+   }
+   
+   [Fact]
+   public async Task GetAllFollowees_UserHasNoFollowees_OtherUsersFollowingDoesNotAffect()
+   {
+       await _repo.Create("Helge", "helge@itu.dk");
+       await _repo.FollowAuthor("Bob", "Helge");
+       
+       var aliceFollowees = await _repo.GetAllFollowees("Alice");
+       aliceFollowees.Should().BeEmpty();
+   }
+   
+   [Fact]
+   public async Task GetAllFollowees_UserHasFollowersButFollowsNoOne_ShouldReturnEmpty()
+   {
+       await _repo.FollowAuthor("Bob", "Alice");
+       var aliceFollowees = await _repo.GetAllFollowees("Alice");
+       aliceFollowees.Should().BeEmpty(); 
+   }
+   
+   [Fact]
+   public async Task GetCheepsByAuthors_ShouldReturnCorrectCheeps()
+   {
+       var authors = new List<string> { "Alice", "Bob" };
+       await _repo.AddCheep("Alice", "alice@itu.dk", "Alice Cheep 1");
+       await _repo.AddCheep("Bob", "bob@itu.dk", "Bob Cheep 1");
+       
+       var page1 = await _repo.GetCheepsByAuthors(authors, 1, 3); 
+
+       page1.Should().NotBeEmpty();
+       page1.Should().OnlyContain(c => c.Author.UserName == "Alice" || c.Author.UserName == "Bob");
+       page1.Should().HaveCount(3);
+   
+       var page2 = await _repo.GetCheepsByAuthors(authors, 2, 3);
+       page2.Should().OnlyContain(c => c.Author.UserName == "Alice" || c.Author.UserName == "Bob");
+   }
+
 }

@@ -87,6 +87,7 @@ public class Repository : IRepository
     
     public async Task<bool> FollowAuthor(string followerName, string followeeName)
     {
+        if (followerName == followeeName) return false;
         var follower = await _context.Authors
             .Include(a => a.Following)
             .FirstOrDefaultAsync(a => a.UserName == followerName);
@@ -109,6 +110,7 @@ public class Repository : IRepository
 
     public async Task<bool> UnfollowAuthor(string followerName, string followeeName)
     {
+        if (followerName == followeeName) return false;
         var follower = await _context.Authors
             .Include(a => a.Following)
             .FirstOrDefaultAsync(a => a.UserName == followerName);
