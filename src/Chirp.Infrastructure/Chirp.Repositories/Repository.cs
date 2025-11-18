@@ -92,6 +92,7 @@ public class Repository : IRepository
             .FirstOrDefaultAsync(a => a.UserName == followerName);
         
         var followee = await _context.Authors
+            .Include(a => a.Followers)
             .FirstOrDefaultAsync(a => a.UserName == followeeName);
 
         if (follower == null || followee == null)
@@ -112,6 +113,7 @@ public class Repository : IRepository
             .Include(a => a.Following)
             .FirstOrDefaultAsync(a => a.UserName == followerName);
         var followee = await _context.Authors
+            .Include(a => a.Followers)
             .FirstOrDefaultAsync(a => a.UserName == followeeName);
 
         if (follower == null || followee == null)
