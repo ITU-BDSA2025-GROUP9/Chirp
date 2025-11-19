@@ -64,7 +64,7 @@ public class CheepService : ICheepService
     public async Task<List<CheepDTO>> GetCheepsByAuthor(string authorName, int pageNumber, int pageSize)
     {
         if (string.IsNullOrWhiteSpace(authorName)) throw new ArgumentException("Author is required", nameof(authorName));
-        if (pageNumber <= 0) throw new ArgumentOutOfRangeException(nameof(pageNumber));
+        if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
         var cheeps = await _repository.GetCheepsByAuthor(authorName, pageNumber, pageSize);
         return cheeps.Select(CheepToDto).ToList();
     }
@@ -107,6 +107,10 @@ public class CheepService : ICheepService
     
     public async Task<bool> FollowAuthor(string followerName, string followeeName)
     {
+        if (string.IsNullOrWhiteSpace(followerName))
+            throw new ArgumentException("Follower name cannot be null or empty");
+        if (string.IsNullOrWhiteSpace(followeeName))
+            throw new ArgumentException("Followee name cannot be null or empty");
         if (followerName.Equals(followeeName))
             throw new InvalidOperationException("You cannot follow yourself.");
 
@@ -115,6 +119,10 @@ public class CheepService : ICheepService
 
     public async Task<bool> UnfollowAuthor(string followerName, string followeeName)
     {
+        if (string.IsNullOrWhiteSpace(followerName))
+            throw new ArgumentException("Follower name cannot be null or empty");
+        if (string.IsNullOrWhiteSpace(followeeName))
+            throw new ArgumentException("Followee name cannot be null or empty");
         if (followerName.Equals(followeeName))
             throw new InvalidOperationException("You cannot unfollow yourself.");
 
@@ -123,11 +131,19 @@ public class CheepService : ICheepService
 
     public async Task<bool> IsFollowing(string followerName, string followeeName)
     {
+        if (string.IsNullOrWhiteSpace(followerName))
+            throw new ArgumentException("Follower name cannot be null or empty");
+        if (string.IsNullOrWhiteSpace(followeeName))
+            throw new ArgumentException("Followee name cannot be null or empty");
+        
         return await _repository.IsFollowing(followerName, followeeName);
     }
     
     public async Task<List<CheepDTO>> GetUserTimelineCheeps(string authorName, int pageNumber, int pageSize)
     {
+        if (string.IsNullOrWhiteSpace(authorName)) throw new ArgumentException("Author is required", nameof(authorName));
+        if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
+        
         var user = await _repository.FindByName(authorName);
         if (user == null) throw new ArgumentException("User not found", nameof(authorName));
 

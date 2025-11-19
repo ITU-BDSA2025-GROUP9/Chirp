@@ -87,11 +87,13 @@ public class Repository : IRepository
     
     public async Task<bool> FollowAuthor(string followerName, string followeeName)
     {
+        if (followerName == followeeName) return false;
         var follower = await _context.Authors
             .Include(a => a.Following)
             .FirstOrDefaultAsync(a => a.UserName == followerName);
         
         var followee = await _context.Authors
+            .Include(a => a.Followers)
             .FirstOrDefaultAsync(a => a.UserName == followeeName);
 
         if (follower == null || followee == null)
@@ -108,10 +110,12 @@ public class Repository : IRepository
 
     public async Task<bool> UnfollowAuthor(string followerName, string followeeName)
     {
+        if (followerName == followeeName) return false;
         var follower = await _context.Authors
             .Include(a => a.Following)
             .FirstOrDefaultAsync(a => a.UserName == followerName);
         var followee = await _context.Authors
+            .Include(a => a.Followers)
             .FirstOrDefaultAsync(a => a.UserName == followeeName);
 
         if (follower == null || followee == null)

@@ -402,4 +402,385 @@ public class UnitTests : IDisposable
        var authors = _context.Authors.Where(a => a.UserName == "Alice").ToList();
        authors.Count.Should().Be(1);
    }
+   
+   
+   [Fact]
+   public async Task FollowAuthor_ShouldAllowValidFollow()
+   {
+       var result = await _service.FollowAuthor("Alice", "Bob");
+       
+       result.Should().BeTrue();
+       
+       var isFollowing = await _service.IsFollowing("Alice", "Bob");
+       isFollowing.Should().BeTrue();
+   }
+   
+   [Fact]
+   public async Task FollowAuthor_ShouldNotAllowSelfFollow()
+   {
+       Func<Task> act = async () => await _service.FollowAuthor("Alice", "Alice");
+
+       await act.Should().ThrowAsync<InvalidOperationException>()
+           .WithMessage("You cannot follow yourself.");
+   }
+   
+   
+   [Theory]
+   [InlineData(null, "Bob")]
+   [InlineData("", "Bob")]
+   [InlineData("   ", "Bob")]
+   [InlineData("Alice", null)]
+   [InlineData("Alice", "")]
+   [InlineData("Alice", "   ")]
+   public async Task FollowAuthor_InvalidFollowerFollowee_ShouldThrow(string follower, string followee)
+   {
+       Func<Task> act = async () => await _service.FollowAuthor(follower, followee);
+       await act.Should().ThrowAsync<ArgumentException>();
+   }
+   
+   [Fact]
+   public async Task FollowAuthor_Twice_ShouldReturnFalse()
+   {
+       var first = await _service.FollowAuthor("Alice", "Bob");
+       var second = await _service.FollowAuthor("Alice", "Bob");
+
+       first.Should().BeTrue();
+       second.Should().BeFalse();
+
+       var isFollowing = await _service.IsFollowing("Alice", "Bob");
+       isFollowing.Should().BeTrue();
+   }
+   
+   [Fact]
+   public async Task FollowAuthor_ShouldUpdateFollowersAndFollowing()
+   {
+       await _service.FollowAuthor("Alice", "Bob");
+
+       var alice = await _repo.FindByName("Alice");
+       var bob = await _repo.FindByName("Bob");
+       
+       alice!.Following.Should().Contain(bob!);
+       bob!.Followers.Should().Contain(alice);
+   }
+
+   
+   [Fact]
+   public async Task FollowAuthor_FolloweeDoesNotExist_ShouldReturnFalse()
+   {
+       var result = await _service.FollowAuthor("Alice", "Unknown");
+       result.Should().BeFalse();
+   }
+   
+   [Fact]
+   public async Task FollowAuthor_FollowerDoesNotExist_ShouldReturnFalse()
+   {
+       var result = await _service.FollowAuthor("Unknown","Alice");
+       result.Should().BeFalse();
+   }
+   
+   [Fact]
+   public async Task UnfollowAuthor_ShouldAllowValidUnfollow()
+   {
+       await _service.FollowAuthor("Alice", "Bob");
+
+       var result = await _service.UnfollowAuthor("Alice", "Bob");
+       result.Should().BeTrue();
+
+       var isFollowing = await _service.IsFollowing("Alice", "Bob");
+       isFollowing.Should().BeFalse();
+   }
+   
+   [Fact]
+   public async Task UnfollowAuthor_ShouldNotAllowSelfUnfollow()
+   {
+       Func<Task> act = async () => await _service.UnfollowAuthor("Alice", "Alice");
+       await act.Should().ThrowAsync<InvalidOperationException>()
+           .WithMessage("You cannot unfollow yourself.");
+   }
+   
+   [Fact]
+   public async Task UnfollowAuthor_WhenNotFollowing_ShouldReturnFalse()
+   {
+       var result = await _service.UnfollowAuthor("Alice", "Bob");
+       result.Should().BeFalse();
+   }
+   
+   [Fact]
+   public async Task UnfollowAuthor_ShouldNotAffectOtherFollowers()
+   {
+       await _repo.Create("Helge", "helge@itu.dk");
+       await _service.FollowAuthor("Alice", "Bob");
+       await _service.FollowAuthor("Helge", "Bob");
+
+       await _service.UnfollowAuthor("Alice", "Bob");
+
+       var result =  await _service.IsFollowing("Helge", "Bob");
+       result.Should().BeTrue();
+   }
+   
+   [Fact]
+   public async Task UnfollowAuthor_FolloweeDoesNotExist_ShouldReturnFalse()
+   {
+       var result = await _service.UnfollowAuthor("Alice", "Unknown");
+       result.Should().BeFalse();
+   }
+   
+   [Fact]
+   public async Task UnfollowAuthor_FollowerDoesNotExist_ShouldReturnFalse()
+   {
+       var result = await _service.UnfollowAuthor("Unknown", "Alice");
+       result.Should().BeFalse();
+   }
+   
+   [Theory]
+   [InlineData(null, "Bob")]
+   [InlineData("", "Bob")]
+   [InlineData("   ", "Bob")]
+   [InlineData("Alice", null)]
+   [InlineData("Alice", "")]
+   [InlineData("Alice", "   ")]
+   public async Task UnfollowAuthor_InvalidFollowerFollowee_ShouldThrow(string follower, string followee)
+   {
+       Func<Task> act = async () => await _service.UnfollowAuthor(follower, followee);
+       await act.Should().ThrowAsync<ArgumentException>();
+   }
+
+   [Fact]
+   public async Task IsFollowing_ShouldReturnFalse_WhenNotFollowing()
+   {
+       var result = await _service.IsFollowing("Alice", "Bob");
+       result.Should().BeFalse();
+   }
+   
+   [Fact]
+   public async Task IsFollowing_ShouldReturnTrue_WhenFollowing()
+   {
+       await _service.FollowAuthor("Alice", "Bob");
+       var result = await _service.IsFollowing("Alice", "Bob");
+
+       result.Should().BeTrue();
+   }
+   
+   [Theory]
+   [InlineData(null, "Bob")]
+   [InlineData("", "Bob")]
+   [InlineData("   ", "Bob")]
+   [InlineData("Alice", null)]
+   [InlineData("Alice", "")]
+   [InlineData("Alice", "   ")]
+   public async Task IsFollowing_InvalidFollowerFollowee_ShouldThrow(string follower, string followee)
+   {
+       Func<Task> act = async () => await _service.IsFollowing(follower, followee);
+       await act.Should().ThrowAsync<ArgumentException>();
+   }
+   
+   [Fact]
+   public async Task IsFollowing_FolloweeDoesNotExist_ShouldReturnFalse()
+   {
+       var result = await _service.IsFollowing("Alice", "Unknown");
+       result.Should().BeFalse();
+   }
+   
+   [Fact]
+   public async Task IsFollowing_FollowerDoesNotExist_ShouldReturnFalse()
+   {
+       var result = await _service.IsFollowing("Unknown", "Alice");
+       result.Should().BeFalse();
+   }
+   
+   [Fact]
+   public async Task GetUserTimelineCheeps_ShouldReturnOwnAndFolloweeCheeps()
+   {
+       await _service.FollowAuthor("Alice", "Bob");
+       
+       var result = await _service.GetUserTimelineCheeps("Alice", 1, 10);
+
+       result.Should().NotBeEmpty();
+       result.Should().HaveCount(3); // 2 Alice + 1 Bob = 3
+
+       result.Should().OnlyContain(c => c.Author == "Alice" || c.Author == "Bob");
+   }
+   
+   [Fact]
+   public async Task GetUserTimelineCheeps_UnknownUser_ShouldThrow()
+   {
+       Func<Task> act = async () => await _service.GetUserTimelineCheeps("Unknown", 1, 10);
+
+       await act.Should().ThrowAsync<ArgumentException>()
+           .WithMessage("*User not found*");
+   }
+   
+   [Theory]
+   [InlineData(null)]
+   [InlineData("")]
+   [InlineData("   ")]
+   public async Task GetUserTimelineCheeps_InvalidAuthor_ShouldThrow(string author)
+   {
+       Func<Task> act = async () => await _service.GetUserTimelineCheeps(author, 1, 10);
+
+       await act.Should().ThrowAsync<ArgumentException>()
+           .WithMessage("*Author is required*");
+   }
+   
+   [Theory]
+   [InlineData(0)]
+   [InlineData(-1)]
+   public async Task GetUserTimelineCheeps_InvalidPageNumber_ShouldThrow(int page)
+   {
+       Func<Task> act = async () => await _service.GetUserTimelineCheeps("Alice", page, 10);
+
+       await act.Should().ThrowAsync<ArgumentOutOfRangeException>()
+           .WithMessage($"*Pagenumber must be greater than 0. Invalid pagenumber: {page}*");
+   }
+   
+   [Fact]
+   public async Task GetUserTimelineCheeps_Page2_ShouldNotContainFirstPageCheeps()
+   {
+       for (int i = 0; i < 10; i++)
+           await _repo.AddCheep("Bob", "bob@itu.dk", "New message " + i);
+
+       await _service.FollowAuthor("Alice", "Bob");
+
+       var page1 = await _service.GetUserTimelineCheeps("Alice", 1, 5);
+       var page2 = await _service.GetUserTimelineCheeps("Alice", 2, 5);
+
+       page1.Should().NotBeEmpty();
+       page1.Should().HaveCount(5);
+       page2.Should().NotBeEmpty();
+
+       page2.Should().NotContain(c =>
+           page1.Any(f => f.Author == c.Author && f.Message == c.Message));
+   }
+   
+   [Fact]
+   public async Task FollowAuthor_ShouldAddFollowerAndFollowee()
+   {
+       var result = await _repo.FollowAuthor("Alice", "Bob");
+       result.Should().BeTrue();
+
+       var alice = await _repo.FindByName("Alice");
+       var bob = await _repo.FindByName("Bob");
+
+       alice!.Following.Should().Contain(bob!);
+       bob!.Followers.Should().Contain(alice);
+   }
+   
+   [Fact]
+   public async Task FollowAuthor_SelfFollow_ShouldReturnFalse()
+   {
+       var result = await _repo.FollowAuthor("Alice", "Alice");
+       result.Should().BeFalse();
+   }
+   
+   [Fact]
+   public async Task FollowAuthor_DuplicateFollow_ShouldReturnFalse()
+   {
+       await _repo.FollowAuthor("Alice", "Bob");
+       var secondFollow = await _repo.FollowAuthor("Alice", "Bob");
+       secondFollow.Should().BeFalse();
+   }
+
+   [Fact]
+   public async Task UnfollowAuthor_ShouldRemoveFollowerAndFollowee()
+   {
+       await _repo.FollowAuthor("Alice", "Bob");
+       var result = await _repo.UnfollowAuthor("Alice", "Bob");
+       result.Should().BeTrue();
+
+       var alice = await _repo.FindByName("Alice");
+       var bob = await _repo.FindByName("Bob");
+
+       alice!.Following.Should().NotContain(bob!);
+       bob!.Followers.Should().NotContain(alice);
+   }
+   
+   [Fact]
+   public async Task UnfollowAuthor_NotFollowing_ShouldReturnFalse()
+   {
+       var result = await _repo.UnfollowAuthor("Alice", "Bob");
+       result.Should().BeFalse();
+   }
+   
+   [Fact]
+   public async Task IsFollowing_repoShouldReturnTrue_WhenFollowing()
+   {
+       await _repo.FollowAuthor("Alice", "Bob");
+       var result = await _repo.IsFollowing("Alice", "Bob");
+       result.Should().BeTrue();
+   }
+   
+   [Fact]
+   public async Task IsFollowing_repoShouldReturnFalse_WhenNotFollowing()
+   {
+       var result = await _repo.IsFollowing("Alice", "Bob");
+       result.Should().BeFalse();
+   }
+
+   [Fact]
+   public async Task GetAllFollowees_ShouldReturnCorrectList()
+   {
+       await _repo.Create("Helge", "helge@itu.dk");
+       await _repo.FollowAuthor("Alice", "Bob");
+       await _repo.FollowAuthor("Alice", "Helge");
+
+       var followees = await _repo.GetAllFollowees("Alice");
+       followees.Should().HaveCount(2); 
+       followees.Should().Contain(f => f == "Bob");
+       followees.Should().Contain(f => f == "Helge");
+       
+       await _repo.UnfollowAuthor("Alice", "Bob");
+       followees = await _repo.GetAllFollowees("Alice");
+       followees.Should().HaveCount(1); 
+       followees.Should().Contain("Helge");
+   }
+   
+   [Fact]
+   public async Task GetAllFollowees_UnknownUser_ShouldReturnEmpty()
+   {
+       var followees = await _repo.GetAllFollowees("Unknown");
+       followees.Should().BeEmpty();
+   }
+   
+   [Fact]
+   public async Task GetAllFollowees_WithNoFollowee_ShouldReturnEmpty()
+   {
+       var followees = await _repo.GetAllFollowees("Alice");
+       followees.Should().BeEmpty();
+   }
+   
+   [Fact]
+   public async Task GetAllFollowees_UserHasNoFollowees_OtherUsersFollowingDoesNotAffect()
+   {
+       await _repo.Create("Helge", "helge@itu.dk");
+       await _repo.FollowAuthor("Bob", "Helge");
+       
+       var aliceFollowees = await _repo.GetAllFollowees("Alice");
+       aliceFollowees.Should().BeEmpty();
+   }
+   
+   [Fact]
+   public async Task GetAllFollowees_UserHasFollowersButFollowsNoOne_ShouldReturnEmpty()
+   {
+       await _repo.FollowAuthor("Bob", "Alice");
+       var aliceFollowees = await _repo.GetAllFollowees("Alice");
+       aliceFollowees.Should().BeEmpty(); 
+   }
+   
+   [Fact]
+   public async Task GetCheepsByAuthors_ShouldReturnCorrectCheeps()
+   {
+       var authors = new List<string> { "Alice", "Bob" };
+       await _repo.AddCheep("Alice", "alice@itu.dk", "Alice Cheep 1");
+       await _repo.AddCheep("Bob", "bob@itu.dk", "Bob Cheep 1");
+       
+       var page1 = await _repo.GetCheepsByAuthors(authors, 1, 3); 
+
+       page1.Should().NotBeEmpty();
+       page1.Should().OnlyContain(c => c.Author.UserName == "Alice" || c.Author.UserName == "Bob");
+       page1.Should().HaveCount(3);
+   
+       var page2 = await _repo.GetCheepsByAuthors(authors, 2, 3);
+       page2.Should().OnlyContain(c => c.Author.UserName == "Alice" || c.Author.UserName == "Bob");
+   }
+
 }
