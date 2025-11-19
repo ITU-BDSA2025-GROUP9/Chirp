@@ -1,0 +1,41 @@
+@page "/{author}/aboutme"
+@model Chirp.Web.Pages.UserInformation
+
+@{
+    ViewData["Title"] = "Chirp!";
+    Layout = "Shared/_Layout";
+    var routeName = HttpContext.GetRouteValue("author");
+}
+
+@using Chirp.Core
+@inject SignInManager<Author> SignInManager  
+@inject UserManager<Author> UserManager   
+ 
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    
+</head>
+<body>
+<div>
+    @if (routeName!.Equals(User.Identity!.Name) && SignInManager.IsSignedIn(User))
+    {
+        <h2> About me </h2>
+    }
+    else
+    {
+        if (SignInManager.IsSignedIn(User))
+        {
+            <h2> 403 - Forbidden </h2>
+        }
+        else
+        {
+            <h2> 401 - Unauthorized </h2>
+            <em> You are not logged in. Redirect to <a asp-area="Identity" asp-page="/Account/Login"> login </a> </em>
+        }
+    }
+</div>
+</body>
+</html>
