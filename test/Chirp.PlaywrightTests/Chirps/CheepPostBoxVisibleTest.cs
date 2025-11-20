@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 
 namespace Chirp.PlaywrightTests.Chirps;
 
+// This was generated awkwardly. It will be replaced
+
 [TestFixture]
 public class CheepPostBoxVisibleTest : PageTest
 {
