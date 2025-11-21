@@ -12,17 +12,50 @@
 @inject UserManager<Author> UserManager   
  
 <!DOCTYPE html>
-
 <html>
-<head>
-    <title></title>
-    
-</head>
 <body>
 <div>
+    
     @if (routeName!.Equals(User.Identity!.Name) && SignInManager.IsSignedIn(User))
     {
         <h2> About me </h2>
+        
+        <p> This is your personal information page. This page provides an overview 
+            of all personal information that Chirp! stores about you. You can download a complete overview down below.</p>
+        
+        <h3 style="display: inline-block;"> Your username: </h3> 
+        <p style="display: inline-block;">@(User.Identity.Name)</p>
+        <br>
+        <h3 style="display: inline-block;"> Your email: </h3> 
+        <p style="display: inline-block;">@(User.Identity.Name)</p>
+        
+        <h3> Dates and timestamps of your cheeps </h3>
+        if (Model.Cheeps.Any())
+        {
+            <ul id="messagelist" class="cheeps">
+                @foreach (var cheep in Model.Cheeps)
+                {
+                    <li>
+                        <small>@cheep.TimeStamp</small>
+                    </li>
+                }
+            </ul>
+
+            <div class="pagination">
+                @if (Model.CurrentPage > 1)
+                {
+                    <a class="btn" href="/@(Model.CurrentAuthor)/aboutme/?page=@(Model.CurrentPage - 1)"> <button> Previous </button> </a>
+                }
+
+                @if (Model.HasNextPage)
+                {
+                    <a class="btn" href="/@(Model.CurrentAuthor)/aboutme/?page=@(Model.CurrentPage + 1)"> <button> Next </button> </a>
+                }
+            </div>
+        }
+
+        <br>
+        <button> Download Your Information Here </button>
     }
     else
     {
