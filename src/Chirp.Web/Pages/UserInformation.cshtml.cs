@@ -13,7 +13,7 @@ public class UserInformation : PageModel
 {
     private readonly ICheepService _service;
     private readonly UserManager<Author> _userManager;
-    private readonly IRepository _repository;   // NEW
+    private readonly IRepository _repository;
 
     
     public required IEnumerable<CheepDTO> Cheeps { get; set; }
@@ -23,9 +23,9 @@ public class UserInformation : PageModel
     public string CurrentAuthor = string.Empty; 
     
     
-    public IEnumerable<string> Followees { get; set; } = new List<string>(); // NEW
-    public string? Email { get; set; }                                        // NEW
-    
+    public IEnumerable<string> Followees { get; set; } = new List<string>();
+    public string? Email { get; set; }
+
     [BindProperty]
     public LoginModel.InputModel Input { get; set; } = new();
     
@@ -51,16 +51,12 @@ public class UserInformation : PageModel
         try
         {
             var user = await _userManager.GetUserAsync(User);
-            List<CheepDTO> cheepsList;
+            List<CheepDTO> cheepsList = new  List<CheepDTO>();
 
-            Email = user?.Email; // Email of the current user
-            Followees = await _repository.GetAllFollowees(author); // All authors this user follows
+            Email = user?.Email;
+            Followees = await _repository.GetAllFollowees(author);
             
             if (user != null && user.UserName == author)
-            {
-                cheepsList = await _service.GetUserTimelineCheeps(author, pageno, pageSize + 1);
-            }
-            else
             {
                 cheepsList = await _service.GetCheepsByAuthor(author, pageno, pageSize + 1);
             }
@@ -116,7 +112,7 @@ public class UserInformation : PageModel
 
         while (true)
         {
-            // Get cheeps page by page until we run out
+            // Get cheeps page by page
             var cheepsPage = await _service.GetCheepsByAuthor(user.UserName!, page, exportPageSize);
             
             if (cheepsPage.Count == 0) { break; }
