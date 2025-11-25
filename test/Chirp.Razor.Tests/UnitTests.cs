@@ -66,19 +66,18 @@ public class UnitTests : IDisposable
 
         dto.Author.Should().Be("Alice");
         dto.Message.Should().Be("Test");
-        dto.AuthorEmail.Should().Be("alice@itu.dk");
         dto.TimeStamp.Should().Be(cheep.TimeStamp.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture));
     }
  
     [Fact]
     public void CheepDTO_ShouldHaveValidProperties()
     {
-        var cheep = new CheepDTO("Bob", "Hello world", "08/02/23 14:19:38", "bob@itu.dk");
+        var cheep = new CheepDTO("Bob", "Hello world", "08/02/23 14:19:38", 1);
 
         cheep.Author.Should().Be("Bob");
         cheep.Message.Should().Be("Hello world");
         cheep.TimeStamp.Should().Be("08/02/23 14:19:38");
-        cheep.AuthorEmail.Should().Be("bob@itu.dk");
+        cheep.CheepId.Should().Be(1);
     }
    
     [Theory]
@@ -93,7 +92,7 @@ public class UnitTests : IDisposable
     [InlineData(null, null)]
     public void CheepDTO_InvalidArguments_ShouldThrowException(string author, string message)
     {
-        Action act = () => new CheepDTO(author, message, "10/15/25 14:30:00", $"{author}@itu.dk");
+        Action act = () => new CheepDTO(author, message, "10/15/25 14:30:00", 1);
         act.Should().Throw<ArgumentException>();
     }
     
@@ -230,7 +229,7 @@ public class UnitTests : IDisposable
 
        cheeps.Should().NotBeEmpty();
        cheeps.Count.Should().Be(3);
-       cheeps.Should().OnlyContain(c => !string.IsNullOrWhiteSpace(c.Author) && !string.IsNullOrWhiteSpace(c.Message) && !string.IsNullOrWhiteSpace(c.TimeStamp) && !string.IsNullOrWhiteSpace(c.AuthorEmail));
+       cheeps.Should().OnlyContain(c => !string.IsNullOrWhiteSpace(c.Author) && !string.IsNullOrWhiteSpace(c.Message) && !string.IsNullOrWhiteSpace(c.TimeStamp));
 
        var cheepsPage2 = await _service.GetCheeps(2, 10);
        cheepsPage2.Should().BeEmpty();
@@ -325,7 +324,7 @@ public class UnitTests : IDisposable
        cheeps.Should().NotBeEmpty();
        cheeps.Count.Should().Be(3);
        
-       cheeps.Should().ContainSingle(c => c.Author == "Alice" && c.Message == "Test" && c.AuthorEmail == "alice@itu.dk");
+       cheeps.Should().ContainSingle(c => c.Author == "Alice" && c.Message == "Test");
    }
    
    [Fact]

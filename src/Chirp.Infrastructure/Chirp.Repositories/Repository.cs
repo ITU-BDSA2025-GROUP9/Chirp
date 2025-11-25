@@ -161,5 +161,17 @@ public class Repository : IRepository
             .Select(a => a.UserName!)
             .ToList();
     }
+    
+    public async Task<bool> DeleteCheep(int cheepId)
+    {
+        var cheep = await _context.Cheeps.FindAsync(cheepId);
+        if (cheep == null)
+            return false;
+
+        _context.Cheeps.Remove(cheep);
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
 
 }
