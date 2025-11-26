@@ -40,7 +40,7 @@ namespace Chirp.PlaywrightTests.Chirps
                 await page.Locator("#Text").FillAsync(cheepText);
                 await page.GetByRole(AriaRole.Button, new() { Name = "Share" }).ClickAsync();
                 await page.GetByRole(AriaRole.Link, new() { Name = "my timeline" }).ClickAsync();
-                await Assertions.Expect(page.GetByText("test This is a test")).ToBeVisibleAsync();
+                await Assertions.Expect(page.GetByText("test Delete This is a test")).ToBeVisibleAsync();
 
                 cheepCreated = true;
             }
