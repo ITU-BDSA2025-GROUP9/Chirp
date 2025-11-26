@@ -88,4 +88,10 @@ public class PublicModel : PageModel
         
         return await _service.IsFollowing(currentUser.UserName!, author);
     }
+
+    public async Task<IActionResult> OnPostDeleteCheepAsync(int id)
+    { 
+        await _service.DeleteCheep(id);
+        return RedirectToPage("/Public"); 
+    }
 }

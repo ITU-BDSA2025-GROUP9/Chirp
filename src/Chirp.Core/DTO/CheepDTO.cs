@@ -10,18 +10,19 @@ public class CheepDTO
     public string AuthorEmail { get; set; } = string.Empty;
     public string Message { get; set; } = string.Empty;
     public string TimeStamp { get; set; } = string.Empty;
+    public int CheepId { get; set; }
      
-    public CheepDTO(string Author, string Message, string Timestamp, string AuthorEmail)
+    public CheepDTO(string author, string message, string timestamp, int cheepId)
     {
-        if (string.IsNullOrWhiteSpace(Author))
-            throw new ArgumentException($"Author cannot be null or empty. Invalid author: '{Author}'");
+        if (string.IsNullOrWhiteSpace(author))
+            throw new ArgumentException($"Author cannot be null or empty. Invalid author: '{author}'");
 
-        if (string.IsNullOrWhiteSpace(Message))
-            throw new ArgumentException($"Message cannot be null or empty. Invalid message: '{Message}'");
+        if (string.IsNullOrWhiteSpace(message))
+            throw new ArgumentException($"Message cannot be null or empty. Invalid message: '{message}'");
             
-        this.Author = Author;
-        this.Message = Message;
-        this.TimeStamp = Timestamp;
-        this.AuthorEmail = AuthorEmail;
+        this.Author = author;
+        this.Message = message;
+        this.TimeStamp = timestamp;
+        this.CheepId = cheepId;
     }
 }

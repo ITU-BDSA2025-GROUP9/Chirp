@@ -20,3 +20,11 @@
         </form>
     }
 }
+else if (Model.Author == User.Identity!.Name)
+{ 
+    <form class="delete-form" method="post" asp-page-handler="DeleteCheep"
+          onsubmit="return confirm('Are you sure you want to delete this cheep?');">
+        <input type="hidden" name="id" value="@Model.CheepId"/>
+        <button class="deletebtn" type="submit">Delete</button>
+    </form>
+}

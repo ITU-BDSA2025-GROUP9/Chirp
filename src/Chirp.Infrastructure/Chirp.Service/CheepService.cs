@@ -101,7 +101,7 @@ public class CheepService : ICheepService
         c.Author.UserName!,
         c.Text,
         c.TimeStamp.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture),
-        c.Author.Email!
+        c.CheepId
     );
     
     
@@ -152,6 +152,16 @@ public class CheepService : ICheepService
          
         var cheeps = await _repository.GetCheepsByAuthors(followees, pageNumber, pageSize);
         return cheeps.Select(CheepToDto).ToList();
+    }
+
+    public async Task<bool> DeleteCheep(int cheepId)
+    {
+        return await _repository.DeleteCheep(cheepId);
+    }
+
+    public async Task<bool> DeleteAuthor(string authorName)
+    {
+        return await _repository.DeleteAuthor(authorName);
     }
 
 

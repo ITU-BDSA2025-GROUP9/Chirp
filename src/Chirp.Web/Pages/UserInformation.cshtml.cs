@@ -13,6 +13,7 @@ public class UserInformation : PageModel
 {
     private readonly ICheepService _service;
     private readonly UserManager<Author> _userManager;
+    SignInManager<Author> _signInManager;
     private readonly IRepository _repository;
 
     
@@ -29,10 +30,11 @@ public class UserInformation : PageModel
     [BindProperty]
     public LoginModel.InputModel Input { get; set; } = new();
     
-    public UserInformation(ICheepService service, UserManager<Author> userManager,  IRepository repository)
+    public UserInformation(SignInManager<Author> signInManager, ICheepService service, UserManager<Author> userManager,  IRepository repository)
     {
         _service = service;
         _userManager = userManager;
+        _signInManager = signInManager;
         _repository = repository;
     }
     
@@ -136,4 +138,12 @@ public class UserInformation : PageModel
 
         return File(bytes, "text/csv", fileName);
     }
+    
+    
+      public async Task<IActionResult> OnPostDeleteAsync(string author)
+      {
+          await _signInManager.SignOutAsync();
+          await _service.DeleteAuthor(author);
+          return RedirectToPage("/Public");
+      }
 }
