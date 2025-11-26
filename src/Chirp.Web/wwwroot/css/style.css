@@ -124,13 +124,19 @@ div.page div.navigation form {
     border: 1px solid #d8000c;
 }
 
-.deletebtn:hover{
+.deletebtn:hover, .forgetbtn:hover{
     color: white;
     border: 1px solid transparent;
     background-color: #d8000c;
     text-decoration: none;
 }
 
+.forgetbtn{
+    color: #d8000c;
+    background-color: #ffd2d2;
+    border: 1px solid #d8000c;
+    margin-top: 20px;
+}
 
 .followcontainer{
     display: flex;
