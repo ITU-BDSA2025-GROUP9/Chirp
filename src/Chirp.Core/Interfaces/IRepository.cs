@@ -19,4 +19,5 @@ public interface IRepository
     Task<List<string>> GetAllFollowees(string authorName);
     Task<bool> DeleteCheep(int cheepId);
     Task<bool> DeleteAuthor(string authorName);
+    Task<bool> AuthorByNameExists(string authorName);
 }

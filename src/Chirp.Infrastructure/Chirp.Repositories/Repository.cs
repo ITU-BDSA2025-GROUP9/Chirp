@@ -195,4 +195,13 @@ public class Repository : IRepository
         await _context.SaveChangesAsync();
         return true;
     }
+    
+    public async Task<bool> AuthorByNameExists(string authorName)
+    {
+        if (string.IsNullOrWhiteSpace(authorName))
+            return false;
+
+        return await _context.Authors
+            .AnyAsync(a => a.UserName == authorName);
+    }
 }
