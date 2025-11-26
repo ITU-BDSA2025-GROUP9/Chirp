@@ -13,4 +13,5 @@ public interface ICheepService
     Task<bool> IsFollowing(string followerName, string followeeName);
     Task<List<CheepDTO>> GetUserTimelineCheeps(string authorName, int pageNumber, int pageSize);
     Task<bool> DeleteCheep(int cheepId);
+    Task<bool> DeleteAuthor(string authorName);
 }

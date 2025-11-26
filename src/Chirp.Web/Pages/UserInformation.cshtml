@@ -84,8 +84,15 @@
             </div>
         <br>
         <form method="post" asp-page-handler="Download">
-            <button type="submit">Download Your Information Here</button>
+            <button type="submit">Download Your Information</button>
         </form>
+        
+        
+        <form method="post" asp-page-handler="Delete"
+              onsubmit="return confirm('Are you sure you want to delete your account?');">
+            <button type="submit"> Forget me! </button>
+        </form>
+        
     }
     else
         {

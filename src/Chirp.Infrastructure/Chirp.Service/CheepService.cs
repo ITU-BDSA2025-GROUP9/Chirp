@@ -159,5 +159,10 @@ public class CheepService : ICheepService
         return await _repository.DeleteCheep(cheepId);
     }
 
+    public async Task<bool> DeleteAuthor(string authorName)
+    {
+        return await _repository.DeleteAuthor(authorName);
+    }
+
 
 }

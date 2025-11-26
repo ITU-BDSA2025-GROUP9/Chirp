@@ -173,5 +173,26 @@ public class Repository : IRepository
         return true;
     }
 
+    public async Task<bool> DeleteAuthor(string authorName)
+    {
+        var author = await _context.Authors
+            .Include(a => a.Cheeps)
+            .Include(a => a.Followers)
+            .Include(a => a.Following)
+            .FirstOrDefaultAsync(a => a.UserName == authorName);
 
+        if (author == null) return false;
+        
+        _context.Cheeps.RemoveRange(author.Cheeps);
+        
+        foreach (Author followers in author.Followers.ToList())
+            followers.Following.Remove(author);
+        
+        foreach (Author followee in author.Following.ToList())
+            followee.Followers.Remove(author);
+        
+        _context.Authors.Remove(author);
+        await _context.SaveChangesAsync();
+        return true;
+    }
 }
