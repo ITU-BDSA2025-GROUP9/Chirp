@@ -164,5 +164,8 @@ public class CheepService : ICheepService
         return await _repository.DeleteAuthor(authorName);
     }
 
-
+    public Task<bool> AuthorByNameExists(string authorName)
+    {
+        return _repository.AuthorByNameExists(authorName);
+    }
 }

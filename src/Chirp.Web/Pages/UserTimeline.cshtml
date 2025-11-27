@@ -6,54 +6,63 @@
     Layout = "Shared/_Layout";
     var routeName = HttpContext.GetRouteValue("author");
 }
+@if(Model.AuthorExists){
+    <div>
+        <h2>@routeName's Timeline</h2>
+        @{ await Html.RenderPartialAsync("Shared/_PostPartial", Model.Input);}
 
-<div>
-    <h2>@routeName's Timeline</h2>
-    @{ await Html.RenderPartialAsync("Shared/_PostPartial", Model.Input);}
-
-    @if (Model.Cheeps.Any())
-    {
-        <ul id="messagelist" class="cheeps">
-            @foreach (var cheep in Model.Cheeps)
-            { 
-                <li>
-                    <div class="followcontainer">
-                        <strong>
-                            <a href="/@cheep.Author">@cheep.Author</a>
-                        </strong>
-                        @{ await Html.RenderPartialAsync("Shared/_FollowPartial",
-                               new FollowButtonViewModel(cheep.CheepId, cheep.Author, await Model.IsFollowing(cheep.Author))); }
-                    </div>
-                    @cheep.Message
-                    <small>&mdash; @cheep.TimeStamp</small>
-                </li>
-            }
-        </ul>
-        
-        @* Next/previous button for pagination *@
-        <div class="pagination">
-            @if (Model.CurrentPage > 1)
-            {
-                <a class="btn" href="/@(Model.CurrentAuthor)?page=@(Model.CurrentPage - 1)"> <button> Previous </button> </a>
-            }
-            
-            @if (Model.HasNextPage){
-                <a class="btn" href="/@(Model.CurrentAuthor)?page=@(Model.CurrentPage + 1)"> <button> Next </button> </a>
-            }
-        </div>
-    }
-    else
-    {
-        @if (Model.CurrentPage > 1)
+        @if (Model.Cheeps.Any())
         {
-            <em> No cheeps on current pagenumber: @(Model.CurrentPage) </em>
+            <ul id="messagelist" class="cheeps">
+                @foreach (var cheep in Model.Cheeps)
+                { 
+                    <li>
+                        <div class="followcontainer">
+                            <strong>
+                                <a href="/@cheep.Author">@cheep.Author</a>
+                            </strong>
+                            @{ await Html.RenderPartialAsync("Shared/_FollowPartial",
+                                   new FollowButtonViewModel(cheep.CheepId, cheep.Author, await Model.IsFollowing(cheep.Author))); }
+                        </div>
+                        @cheep.Message
+                        <small>&mdash; @cheep.TimeStamp</small>
+                    </li>
+                }
+            </ul>
+        
+            @* Next/previous button for pagination *@
+            <div class="pagination">
+                @if (Model.CurrentPage > 1)
+                {
+                    <a class="btn" href="/@(Model.CurrentAuthor)?page=@(Model.CurrentPage - 1)"> <button> Previous </button> </a>
+                }
             
-            <br> <br>
-            <a class="btn" href="/@(Model.CurrentAuthor)?page=@(Model.CurrentPage - 1)"> <button> Previous </button> </a>
+                @if (Model.HasNextPage){
+                    <a class="btn" href="/@(Model.CurrentAuthor)?page=@(Model.CurrentPage + 1)"> <button> Next </button> </a>
+                }
+            </div>
         }
         else
         {
-            <em> There are no cheeps so far.</em>
+            @if (Model.CurrentPage > 1)
+            {
+                <em> No cheeps on current pagenumber: @(Model.CurrentPage) </em>
+            
+                <br> <br>
+                <a class="btn" href="/@(Model.CurrentAuthor)?page=@(Model.CurrentPage - 1)"> <button> Previous </button> </a>
+            }
+            else
+            {
+                <em> There are no cheeps so far.</em>
+            }
         }
-    }
-</div>
+    </div>
+}
+else
+{
+    
+    <div>
+        <h2>User '@routeName' does not exist</h2>
+        <em> The user you are trying to view cannot be found.</em>
+    </div>
+}

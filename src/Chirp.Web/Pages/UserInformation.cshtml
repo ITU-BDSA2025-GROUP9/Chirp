@@ -18,7 +18,9 @@
         <h2> About me </h2>
         
         <p> This is your personal information page. This page provides an overview 
-            of all personal information that Chirp! stores about you. You can download a complete overview down below.</p>
+            of all personal information that Chirp! stores about you. You can download a complete overview down below.
+            If you wish to delete your account, click on 'Forget me!' down below.
+            </p>
         
         <h3 style="display: inline-block;"> Your username: </h3> 
         <p style="display: inline-block;">@(User.Identity.Name)</p>
@@ -44,18 +46,26 @@
                     <div class="pagination">
                         @if (Model.CurrentPage > 1)
                         {
-                            <a class="btn" href="/@(Model.CurrentAuthor)/aboutme/?page=@(Model.CurrentPage - 1)"> <button> Previous </button> </a>
+                            <a class="btn" href="/@(Model.CurrentAuthor)/aboutme/?page=@(Model.CurrentPage - 1)"> <button class="aboutmebtn"> Previous </button> </a>
                         }
 
                         @if (Model.HasNextPage)
                         {
-                            <a class="btn" href="/@(Model.CurrentAuthor)/aboutme/?page=@(Model.CurrentPage + 1)"> <button> Next </button> </a>
+                            <a class="btn" href="/@(Model.CurrentAuthor)/aboutme/?page=@(Model.CurrentPage + 1)"> <button class="aboutmebtn"> Next </button> </a>
                         }
                     </div>
                 }
                 else
                 {
-                    <p>You haven't posted any cheeps yet.</p>
+                    if (Model.CurrentPage > 1)
+                    {
+                        <p> No cheeps on this page. </p>
+                        <a class="btn" href="/@(Model.CurrentAuthor)/aboutme/?page=@(Model.CurrentPage - 1)"> <button class="aboutmebtn"> Previous </button> </a>
+                    }
+                    else
+                    {
+                        <p>You haven't posted any cheeps yet.</p>
+                    }
                 }
             </div>
         

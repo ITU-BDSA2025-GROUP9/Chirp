@@ -41,15 +41,15 @@ public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
     [Theory]
     [InlineData("NonExistentUser123")]
     [InlineData("Invalid!User")]
-    public async Task CanSeePrivateTimeline_InvalidAuthor(string author)
+    public async Task CanSeeNotPrivateTimeline_InvalidAuthor(string author)
     {
         var response = await _client.GetAsync($"/{author}");
         response.EnsureSuccessStatusCode();
         var content = await response.Content.ReadAsStringAsync();
 
         content.Should().Contain("Chirp!");
-        content.Should().Contain($"{author}'s Timeline");
-        content.Should().Contain("There are no cheeps so far.");
+        content.Should().Contain($"User '{author}' does not exist");
+        content.Should().Contain("The user you are trying to view cannot be found.");
     }
 
     [Theory]
@@ -86,15 +86,16 @@ public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
     [InlineData("NonexistentUser123", "?page=-1")]
     [InlineData("NonexistentUser123", "?page=abc")]
     [InlineData("Invalid!User", "?page=0")]
-    public async Task InvalidAuthorAndPageQuery_ShouldReturnEmptyTimeline(string author, string query)
+    public async Task InvalidAuthorAndPageQuery_ShouldReturnNotExistTimeline(string author, string query)
     {
         var response = await _client.GetAsync($"/{author}/{query}");
         response.EnsureSuccessStatusCode();
 
         var content = await response.Content.ReadAsStringAsync();
 
-        content.Should().Contain($"{author}'s Timeline");
-        content.Should().Contain("There are no cheeps so far.");
+        content.Should().Contain("Chirp!");
+        content.Should().Contain($"User '{author}' does not exist");
+        content.Should().Contain("The user you are trying to view cannot be found.");
     }
 
     [Fact]

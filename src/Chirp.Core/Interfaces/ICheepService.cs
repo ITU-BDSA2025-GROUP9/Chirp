@@ -14,4 +14,5 @@ public interface ICheepService
     Task<List<CheepDTO>> GetUserTimelineCheeps(string authorName, int pageNumber, int pageSize);
     Task<bool> DeleteCheep(int cheepId);
     Task<bool> DeleteAuthor(string authorName);
+    Task<bool> AuthorByNameExists(string authorName);
 }

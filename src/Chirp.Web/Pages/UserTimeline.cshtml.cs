@@ -16,7 +16,8 @@ public class UserTimelineModel : PageModel
     public bool HasNextPage { get; set; }
     public readonly int pageSize = 32; 
     public int CurrentPage; 
-    public string CurrentAuthor = string.Empty; 
+    public string CurrentAuthor = string.Empty;
+    public bool AuthorExists; 
 
     [BindProperty]
     public InputModel Input { get; set; } = new();
@@ -28,6 +29,9 @@ public class UserTimelineModel : PageModel
     
     public async Task<IActionResult> OnGetAsync(string author)
     {
+        AuthorExists  = await _service.AuthorByNameExists(author);
+        if(!AuthorExists)  return Page();
+        
         var pageQuery = Request.Query["page"];
         int pageno;
         
