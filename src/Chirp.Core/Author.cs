@@ -23,5 +23,10 @@ public class Author : IdentityUser<int>
     /// <summary>
     /// The list of Author following this author. 
     /// </summary>
-    public List<Author> Followers { get; set; } = new(); 
+    public List<Author> Followers { get; set; } = new();
+
+    /// <summary>
+    ///  A string representing the URL or file path to the profile image.
+    /// </summary>
+    public string ProfileImage { get; set; } = string.Empty;
 }
