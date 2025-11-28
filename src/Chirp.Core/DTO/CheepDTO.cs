@@ -6,17 +6,13 @@ namespace Chirp.Core.DTO;
 /// </summary>
 public class CheepDTO
 {
-    public string Author { get; set; } = string.Empty;
-    public string AuthorEmail { get; set; } = string.Empty;
+    public AuthorDTO Author { get; set; }
     public string Message { get; set; } = string.Empty;
     public string TimeStamp { get; set; } = string.Empty;
     public int CheepId { get; set; }
      
-    public CheepDTO(string author, string message, string timestamp, int cheepId)
+    public CheepDTO(AuthorDTO author, string message, string timestamp, int cheepId)
     {
-        if (string.IsNullOrWhiteSpace(author))
-            throw new ArgumentException($"Author cannot be null or empty. Invalid author: '{author}'");
-
         if (string.IsNullOrWhiteSpace(message))
             throw new ArgumentException($"Message cannot be null or empty. Invalid message: '{message}'");
             

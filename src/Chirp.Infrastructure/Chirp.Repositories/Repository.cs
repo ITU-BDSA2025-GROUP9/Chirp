@@ -79,7 +79,8 @@ public class Repository : IRepository
 
     public async Task<Author> Create(string name, string email)
     {
-        var author = new Author { UserName = name, Email = email };
+        var defaultImg = "/images/bird1-profile.png"; 
+        var author = new Author { UserName = name, Email = email, ProfileImage = defaultImg };
         await _context.Authors.AddAsync(author);
         await  _context.SaveChangesAsync();
         return author;
@@ -203,5 +204,17 @@ public class Repository : IRepository
 
         return await _context.Authors
             .AnyAsync(a => a.UserName == authorName);
+    }
+    
+    public async Task SetProfileImage(string authorName, string profileImage)
+    {
+        var author = await _context.Authors
+            .FirstOrDefaultAsync(a => a.UserName == authorName);
+
+        if (author == null)
+            return;
+
+        author.ProfileImage = profileImage;
+        await _context.SaveChangesAsync();
     }
 }

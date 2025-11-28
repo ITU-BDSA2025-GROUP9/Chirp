@@ -28,6 +28,14 @@
         <h3 style="display: inline-block;"> Your email: </h3> 
         <p style="display: inline-block;">@Model.Email</p>
         
+      
+        <p> @Model.imageCounter </p>
+        <form method="post" asp-page-handler="ImageProfile">
+            <input type="hidden" name="author" value="@(User.Identity.Name))"/>
+            <button class="btn" type="submit"> Change profile picture </button>
+        </form>
+        
+        
         <div style="display:flex; gap:2rem; align-items:flex-start; margin-top:1.5rem;">
             <!-- Left column -- Cheeps posted -->
             <div style="flex: 1">
@@ -116,4 +124,4 @@
                 <em> You are not logged in. Redirect to <a asp-area="Identity" asp-page="/Account/Login"> login </a> </em>
             }
         }
-   </div>
+    </div>

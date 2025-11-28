@@ -21,7 +21,8 @@ public class UserInformation : PageModel
     public bool HasNextPage { get; set; }
     public readonly int pageSize = 5; 
     public int CurrentPage; 
-    public string CurrentAuthor = string.Empty; 
+    public string CurrentAuthor = string.Empty;
+    public int imageCounter = 1;  
     
     
     public IEnumerable<string> Followees { get; set; } = new List<string>();
@@ -145,5 +146,16 @@ public class UserInformation : PageModel
           await _signInManager.SignOutAsync();
           await _service.DeleteAuthor(author);
           return RedirectToPage("/Public");
+      }
+
+      public async Task<IActionResult> OnPostImageProfileAsync(string author)
+      {
+          imageCounter++;
+          if(imageCounter > 5) imageCounter = 1;
+          
+          var image = "/images/bird" + imageCounter + "-profile.png"; 
+          await _service.SetProfileImage(author, image);
+
+          return RedirectToPage();
       }
 }

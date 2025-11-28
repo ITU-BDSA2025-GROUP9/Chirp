@@ -98,12 +98,17 @@ public class CheepService : ICheepService
     }
     
     public static CheepDTO CheepToDto(Cheep c) => new(
-        c.Author.UserName!,
+        AuthorToDto(c.Author),
         c.Text,
         c.TimeStamp.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture),
         c.CheepId
     );
     
+    public static AuthorDTO AuthorToDto(Author a) => new(
+        a.UserName!,
+        a.Email!,
+        a.ProfileImage
+    );
     
     public async Task<bool> FollowAuthor(string followerName, string followeeName)
     {
@@ -167,5 +172,13 @@ public class CheepService : ICheepService
     public Task<bool> AuthorByNameExists(string authorName)
     {
         return _repository.AuthorByNameExists(authorName);
+    }
+    
+    public async Task SetProfileImage(string authorName, string profileImage)
+    {
+        if (string.IsNullOrWhiteSpace(authorName)) throw new ArgumentException("Author is required", nameof(authorName));
+        if (string.IsNullOrWhiteSpace(profileImage)) throw new ArgumentException("Profile image is required", nameof(profileImage));
+        
+        await _repository.SetProfileImage(authorName, profileImage);
     }
 }

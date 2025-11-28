@@ -20,4 +20,5 @@ public interface IRepository
     Task<bool> DeleteCheep(int cheepId);
     Task<bool> DeleteAuthor(string authorName);
     Task<bool> AuthorByNameExists(string authorName);
+    Task SetProfileImage(string authorName, string profileImage);
 }
