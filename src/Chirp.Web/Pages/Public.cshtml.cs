@@ -1,45 +1,28 @@
 ﻿using Chirp.Core;
 using Chirp.Core.DTO;
-using Chirp.Core.Interfaces;
+using Chirp.Infrastructure.Interfaces;
 using Chirp.Web.Pages.Shared;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
 namespace Chirp.Web.Pages;
 
-public class PublicModel : PageModel
+public class PublicModel : ChirpPage
 {
-    private readonly ICheepService _service;
-    private readonly UserManager<Author> _userManager;
-    public required IEnumerable<CheepDTO> Cheeps { get; set; }
-    public bool HasNextPage { get; set; }
-    private readonly int pageSize = 32; 
-    public int CurrentPage;
-    
     [BindProperty]
     public InputModel Input { get; set; } = new();
     
-    public PublicModel(ICheepService service, UserManager<Author> userManager)
-    {
-        _service = service;
-        _userManager = userManager;
-    }
+    public PublicModel(ICheepService cheepService, IAuthorService authorService, UserManager<Author> userManager)
+        : base(cheepService, authorService, userManager) {}
 
     public async Task<IActionResult> OnGetAsync()
     {
-        var pageQuery = Request.Query["page"];
-        int pageno;
-    
-        if (!int.TryParse(pageQuery, out pageno) || pageno <= 0) {
-            pageno = 1;
-        }
-        CurrentPage = pageno;
+        CurrentPage = GetPageNumber();
+        
         try
         {
-            var cheepsList = await _service.GetCheeps(pageno, pageSize + 1); // Get 33 cheeps to check, if a next page exists
-            Cheeps = cheepsList.Take(pageSize); 
-            HasNextPage = cheepsList.Count > pageSize;
+            var cheepsList = await CheepService.GetCheeps(CurrentPage,PageSize + 1); // Get 33 cheeps to check, if a next page exists
+            ApplyPagination(cheepsList);
         }
         catch (ArgumentOutOfRangeException)
         {
@@ -51,7 +34,7 @@ public class PublicModel : PageModel
     
     public async Task<IActionResult> OnPostPostCheepAsync()
     {
-        var user = await _userManager.GetUserAsync(User);
+        var user = await GetCurrentUserAsync();
         if (user == null)
             return RedirectToPage("/Account/Login");
 
@@ -59,39 +42,31 @@ public class PublicModel : PageModel
             return await OnGetAsync();
         }
         
-        await _service.AddCheep(user, Input.Text);
+        await CheepService.AddCheep(user, Input.Text);
+        return RedirectToPage("/Public");
+    }
+    
+    public async Task<IActionResult> OnPostDeleteCheepAsync(int id)
+    { 
+        await CheepService.DeleteCheep(id);
+        return RedirectToPage("/Public"); 
+    }
+    
+    public async Task<IActionResult> OnPostUnfollowAsync(string author)
+    {
+        var currentUser = await GetCurrentUserAsync();
+        if (currentUser == null) return RedirectToPage("/Account/Login");
+
+        await AuthorService.UnfollowAuthor(currentUser.UserName!, author);
         return RedirectToPage("/Public");
     }
     
     public async Task<IActionResult> OnPostFollowAsync(string author)
     {
-        var currentUser = await _userManager.GetUserAsync(User);
-        if (currentUser == null) return RedirectToPage("/Account/Login");
-    
-        await _service.FollowAuthor(currentUser.UserName!, author);
-        return RedirectToPage("/Public");
-    }
-    
-    public async Task<IActionResult> OnPostUnfollowAsync(string author)
-    {
-        var currentUser = await _userManager.GetUserAsync(User);
+        var currentUser = await GetCurrentUserAsync();
         if (currentUser == null) return RedirectToPage("/Account/Login");
 
-        await _service.UnfollowAuthor(currentUser.UserName!, author);
+        await AuthorService.FollowAuthor(currentUser.UserName!, author);
         return RedirectToPage("/Public");
-    }
-    
-    public async Task<bool> IsFollowing(string author)
-    {
-        var currentUser = await _userManager.GetUserAsync(User);
-        if (currentUser == null) return false;
-        
-        return await _service.IsFollowing(currentUser.UserName!, author);
-    }
-
-    public async Task<IActionResult> OnPostDeleteCheepAsync(int id)
-    { 
-        await _service.DeleteCheep(id);
-        return RedirectToPage("/Public"); 
     }
 }

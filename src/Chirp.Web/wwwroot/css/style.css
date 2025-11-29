@@ -34,6 +34,19 @@ input[type="password"] {
     color: #571010;
 }
 
+.profilepicture {
+    width: 60px;
+    height: 60px;
+    max-width: none;
+    max-height: none;
+    flex: 0 0 auto;
+    border-radius: 12%;
+    border: 2px solid #1b73f5;
+    object-fit: cover;
+    display: block;
+    float: none;
+}
+
 /* share button */
 input[type="submit"] {
   background: #8b89ed;
@@ -231,10 +244,10 @@ div.page ul.cheeps p {
   margin: 0;
 }
 
-div.page ul.cheeps li img {
+/*div.page ul.cheeps li img {
   float: left;
   padding: 0 10px 0 0;
-}
+}*/
 
 /* Timestamp */
 div.page ul.cheeps li small {

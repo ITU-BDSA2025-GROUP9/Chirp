@@ -18,11 +18,12 @@
                 { 
                     <li>
                         <div class="followcontainer">
+                            <img class="profilepicture" src="@cheep.Author.ProfileImage">
                             <strong>
-                                <a href="/@cheep.Author">@cheep.Author</a>
+                                <a href="/@cheep.Author.Name">@cheep.Author.Name</a>
                             </strong>
                             @{ await Html.RenderPartialAsync("Shared/_FollowPartial",
-                                   new FollowButtonViewModel(cheep.CheepId, cheep.Author, await Model.IsFollowing(cheep.Author))); }
+                                   new FollowButtonViewModel(cheep.CheepId, cheep.Author.Name, await Model.IsFollowing(cheep.Author.Name))); }
                         </div>
                         @cheep.Message
                         <small>&mdash; @cheep.TimeStamp</small>

@@ -69,13 +69,7 @@ public class ChirpDbContext : IdentityDbContext<Author, IdentityRole<int>, int>
 
             // Map and convert the timestamp column between DateTime and string
             entity.Property(c => c.TimeStamp)
-                .HasColumnName("pub_date")
-                .HasConversion(
-                    // Convert DateTime → string when saving to the database
-                    v => v.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture),
-                    // Convert string → DateTime when reading from the database
-                    v => ParseOrDefault(v)
-                );
+                .HasColumnName("pub_date");
 
             entity.Property(c => c.AuthorId).HasColumnName("author_id");
 
@@ -84,19 +78,5 @@ public class ChirpDbContext : IdentityDbContext<Author, IdentityRole<int>, int>
                 .WithMany(a => a.Cheeps)
                 .HasForeignKey(c => c.AuthorId);
         });
-    }
-
-    /// <summary>
-    /// Attempts to parse a string into a <see cref="DateTime"/> object.
-    /// Returns <see cref="DateTime.UtcNow"/> if parsing fails.
-    /// </summary>
-    /// <param name="value">The string representation of the date/time value.</param>
-    /// <returns>
-    /// A valid <see cref="DateTime"/> object if parsing succeeds;
-    /// otherwise, <see cref="DateTime.UtcNow"/>.
-    /// </returns>
-    private static DateTime ParseOrDefault(string value)
-    {
-        return DateTime.TryParse(value, out var parsed) ? parsed : DateTime.UtcNow;
     }
 }
