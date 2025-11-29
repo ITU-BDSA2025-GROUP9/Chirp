@@ -1,67 +1,44 @@
 using Chirp.Core;
 using Chirp.Core.DTO;
-using Chirp.Core.Interfaces;
-using Chirp.Web.Areas.Identity.Pages.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text;
-
+using Chirp.Infrastructure.Interfaces;
+using Chirp.Web.Pages.Shared;
 namespace Chirp.Web.Pages;
 
-public class UserInformation : PageModel
+public class UserInformation : ChirpPage
 {
-    private readonly ICheepService _service;
-    private readonly UserManager<Author> _userManager;
-    SignInManager<Author> _signInManager;
-    private readonly IRepository _repository;
-
-    
-    public required IEnumerable<CheepDTO> Cheeps { get; set; }
-    public bool HasNextPage { get; set; }
-    public readonly int pageSize = 5; 
-    public int CurrentPage; 
-    public string CurrentAuthor = string.Empty;
+    private readonly SignInManager<Author> _signInManager;
+    public required IEnumerable<string> Followees { get; set; }
     public string CurrentProfileImage = string.Empty;
-    public IEnumerable<string> Followees { get; set; } = new List<string>();
-    public string? Email { get; set; }
-    
-    public UserInformation(SignInManager<Author> signInManager, ICheepService service, UserManager<Author> userManager,  IRepository repository)
+    public string CurrentAuthor = string.Empty;
+    public string? Email;
+
+    public UserInformation(ICheepService cheepService, IAuthorService authorService, SignInManager<Author> signInManager, UserManager<Author> userManager)
+        : base(cheepService, authorService, userManager)
     {
-        _service = service;
-        _userManager = userManager;
         _signInManager = signInManager;
-        _repository = repository;
+        PageSize = 5; 
     }
     
     public async Task<IActionResult> OnGetAsync(string author)
     {
-        var user = await _userManager.GetUserAsync(User);
-        CurrentProfileImage = user?.ProfileImage ?? "/images/bird1-profile.png"; // default is first picture
+        var user = await GetCurrentUserAsync();
+        CurrentProfileImage = user?.ProfileImage ?? "/images/bird1-profile.png";
         Email = user?.Email;
-        
-        var pageQuery = Request.Query["page"];
-        int pageno;
-        
-        if (!int.TryParse(pageQuery, out pageno) || pageno <= 0) {
-            pageno = 1;
-        }
-        
-        CurrentPage = pageno;
+        CurrentPage = GetPageNumber();
         CurrentAuthor = author;
         
         try
         {
-            List<CheepDTO> cheepsList = new  List<CheepDTO>();
-           
-            Followees = await _repository.GetAllFollowees(author);
             if (user != null && user.UserName == author)
             {
-                cheepsList = await _service.GetCheepsByAuthor(author, pageno, pageSize + 1);
+                Followees = await AuthorService.GetAllFollowees(author);
+                var cheepsList = await CheepService.GetCheepsByAuthor(author, CurrentPage, PageSize + 1);
+                ApplyPagination(cheepsList);
             }
-
-            Cheeps = cheepsList.Take(pageSize);
-            HasNextPage = cheepsList.Count > pageSize;
         }
         catch (ArgumentException)
         {
@@ -75,7 +52,7 @@ public class UserInformation : PageModel
     // For the Download
     public async Task<IActionResult> OnPostDownloadAsync(string author)
     {
-        var user = await _userManager.GetUserAsync(User);
+        var user = await GetCurrentUserAsync();
         if (user == null || !string.Equals(user.UserName, author, StringComparison.OrdinalIgnoreCase))
         {
             return Forbid();
@@ -94,7 +71,7 @@ public class UserInformation : PageModel
         sb.AppendLine();
 
         // Followees
-        var followees = await _repository.GetAllFollowees(user.UserName!);
+        var followees = await AuthorService.GetAllFollowees(user.UserName!);
         sb.AppendLine("Users you follow");
 
         foreach (var followee in followees)
@@ -112,7 +89,7 @@ public class UserInformation : PageModel
         while (true)
         {
             // Get cheeps page by page
-            var cheepsPage = await _service.GetCheepsByAuthor(user.UserName!, page, exportPageSize);
+            var cheepsPage = await CheepService.GetCheepsByAuthor(user.UserName!, page, exportPageSize);
             
             if (cheepsPage.Count == 0) { break; }
 
@@ -136,21 +113,20 @@ public class UserInformation : PageModel
         return File(bytes, "text/csv", fileName);
     }
     
-    
-      public async Task<IActionResult> OnPostDeleteAsync(string author)
-      {
-          await _signInManager.SignOutAsync();
-          await _service.DeleteAuthor(author);
-          return RedirectToPage("/Public");
-      }
+    public async Task<IActionResult> OnPostDeleteAsync(string author)
+    {
+        await _signInManager.SignOutAsync();
+        await AuthorService.DeleteAuthor(author);
+        return RedirectToPage("/Public");
+    }
+      
+    [BindProperty]
+    public string? SelectedImage { get; set; }
+    public async Task<IActionResult> OnPostImageProfileAsync(string author)
+    {
+        if (SelectedImage == null) return RedirectToPage();
 
-      [BindProperty]
-      public string? SelectedImage { get; set; }
-      public async Task<IActionResult> OnPostImageProfileAsync(string author)
-      {
-          if (SelectedImage == null) return RedirectToPage();
-
-          await _service.SetProfileImage(author, SelectedImage);
-          return RedirectToPage();
-      }
+        await AuthorService.SetProfileImage(author, SelectedImage);
+        return RedirectToPage();
+    }
 }

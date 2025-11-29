@@ -1,15 +1,12 @@
 using System.Security.Claims;
 using Chirp.Core;
-using Chirp.Core.Interfaces;
 using Chirp.Infrastructure.Database;
 using Chirp.Infrastructure.Repositories;
-using Chirp.Infrastructure.Service;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using AspNet.Security.OAuth.GitHub;
+using Chirp.Infrastructure.Chirp.Repositories;
+using Chirp.Infrastructure.Chirp.Service;
+using Chirp.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
-using static Microsoft.AspNetCore.Http.StatusCodes;
-
 
 /// <summary>
 /// Entry point for the Chirp.Razor web application.
@@ -57,8 +54,10 @@ builder.Services.AddAuthentication()
 /// Register application services for dependency injection.
 /// Repository handles database queries; CheepService manages view models and paging logic.
 /// </summary>
-builder.Services.AddScoped<IRepository, Repository>();
+builder.Services.AddScoped<ICheepRepository, CheepRepository>();
+builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 builder.Services.AddScoped<ICheepService, CheepService>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
 
 /// <summary>
 /// Enable Razor Pages and configure application logging.
