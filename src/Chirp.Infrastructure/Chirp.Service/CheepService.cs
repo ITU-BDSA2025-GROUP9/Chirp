@@ -1,9 +1,9 @@
-using Chirp.Core.DTO;
-using Chirp.Core.Interfaces;
 using System.Globalization;
 using Chirp.Core;
+using Chirp.Core.DTO;
+using Chirp.Infrastructure.Interfaces;
 
-namespace Chirp.Infrastructure.Service;
+namespace Chirp.Infrastructure.Chirp.Service;
 
 /// <summary>
 /// Provides application-level operations for managing and retrieving <c>Cheep</c> posts.
@@ -15,7 +15,7 @@ namespace Chirp.Infrastructure.Service;
 /// </remarks>
 public class CheepService : ICheepService
 {
-    private readonly IRepository _repository;
+    private readonly ICheepRepository _repository;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="CheepService"/> class.
@@ -23,7 +23,7 @@ public class CheepService : ICheepService
     /// <param name="repository">
     /// The repository responsible for interacting with the data store containing authors and cheeps.
     /// </param>
-    public CheepService(IRepository repository)
+    public CheepService(ICheepRepository repository)
     {
         _repository = repository;
     }
@@ -45,6 +45,7 @@ public class CheepService : ICheepService
     {
         if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
         var cheeps = await _repository.GetAllCheeps(pageNumber, pageSize);
+        
         return cheeps.Select(CheepToDto).ToList();
     }
 
@@ -66,26 +67,8 @@ public class CheepService : ICheepService
         if (string.IsNullOrWhiteSpace(authorName)) throw new ArgumentException("Author is required", nameof(authorName));
         if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
         var cheeps = await _repository.GetCheepsByAuthor(authorName, pageNumber, pageSize);
-        return cheeps.Select(CheepToDto).ToList();
-    }
-
-    /// <summary>
-    /// Adds a new cheep (post) to the database for the specified author.
-    /// </summary>
-    /// <param name="authorName">The name of the author creating the cheep.</param>
-    /// <param name="authorEmail">The email of the author creating the cheep.</param>
-    /// <param name="text">The text content of the cheep.</param>
-    /// <remarks>
-    /// This method delegates the actual data persistence to the repository layer.
-    /// It assumes that the repository will handle author creation or lookup as needed.
-    /// </remarks>
-    public async Task AddCheep(string authorName, string authorEmail, string text)
-    {
-        if (string.IsNullOrWhiteSpace(authorName)) throw new ArgumentException("Author is required", nameof(authorName));
-        if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Cheep text is required and cannot be null or empty", nameof(text));
-        if (text.Length > 160) throw new ArgumentException("Cheep text cannot exceed 160 characters.", nameof(text));
         
-        await _repository.AddCheep(authorName, authorEmail, text);
+        return cheeps.Select(CheepToDto).ToList();
     }
 
     public async Task AddCheep(Author author, string text)
@@ -98,74 +81,29 @@ public class CheepService : ICheepService
     }
     
     public static CheepDTO CheepToDto(Cheep c) => new(
-        c.Author.UserName!,
+        AuthorToDto(c.Author),
         c.Text,
         c.TimeStamp.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture),
         c.CheepId
     );
     
+    public static AuthorDTO AuthorToDto(Author a) => new(
+        a.UserName!,
+        a.Email!,
+        a.ProfileImage
+    );
     
-    public async Task<bool> FollowAuthor(string followerName, string followeeName)
+    public async Task<List<CheepDTO>> GetCheepsByAuthors(List<string> authors, int pageNumber, int pageSize)
     {
-        if (string.IsNullOrWhiteSpace(followerName))
-            throw new ArgumentException("Follower name cannot be null or empty");
-        if (string.IsNullOrWhiteSpace(followeeName))
-            throw new ArgumentException("Followee name cannot be null or empty");
-        if (followerName.Equals(followeeName))
-            throw new InvalidOperationException("You cannot follow yourself.");
-
-        return await _repository.FollowAuthor(followerName, followeeName);
-    }
-
-    public async Task<bool> UnfollowAuthor(string followerName, string followeeName)
-    {
-        if (string.IsNullOrWhiteSpace(followerName))
-            throw new ArgumentException("Follower name cannot be null or empty");
-        if (string.IsNullOrWhiteSpace(followeeName))
-            throw new ArgumentException("Followee name cannot be null or empty");
-        if (followerName.Equals(followeeName))
-            throw new InvalidOperationException("You cannot unfollow yourself.");
-
-        return await _repository.UnfollowAuthor(followerName, followeeName);
-    }
-
-    public async Task<bool> IsFollowing(string followerName, string followeeName)
-    {
-        if (string.IsNullOrWhiteSpace(followerName))
-            throw new ArgumentException("Follower name cannot be null or empty");
-        if (string.IsNullOrWhiteSpace(followeeName))
-            throw new ArgumentException("Followee name cannot be null or empty");
-        
-        return await _repository.IsFollowing(followerName, followeeName);
-    }
-    
-    public async Task<List<CheepDTO>> GetUserTimelineCheeps(string authorName, int pageNumber, int pageSize)
-    {
-        if (string.IsNullOrWhiteSpace(authorName)) throw new ArgumentException("Author is required", nameof(authorName));
+        if (authors.Count == 0) return [];
         if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
         
-        var user = await _repository.FindByName(authorName);
-        if (user == null) throw new ArgumentException("User not found", nameof(authorName));
-
-        var followees = await _repository.GetAllFollowees(authorName);
-        followees.Add(authorName);
-         
-        var cheeps = await _repository.GetCheepsByAuthors(followees, pageNumber, pageSize);
+        var cheeps = await _repository.GetCheepsByAuthors(authors, pageNumber, pageSize);
         return cheeps.Select(CheepToDto).ToList();
     }
-
+    
     public async Task<bool> DeleteCheep(int cheepId)
     {
         return await _repository.DeleteCheep(cheepId);
-    }
-
-    public async Task<bool> DeleteAuthor(string authorName)
-    {
-        return await _repository.DeleteAuthor(authorName);
-    }
-
-    public Task<bool> AuthorByNameExists(string authorName)
-    {
-        return _repository.AuthorByNameExists(authorName);
     }
 }
