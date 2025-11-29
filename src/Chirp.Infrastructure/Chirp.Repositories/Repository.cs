@@ -79,8 +79,7 @@ public class Repository : IRepository
 
     public async Task<Author> Create(string name, string email)
     {
-        var defaultImg = "/images/bird1-profile.png"; 
-        var author = new Author { UserName = name, Email = email, ProfileImage = defaultImg };
+        var author = new Author { UserName = name, Email = email };
         await _context.Authors.AddAsync(author);
         await  _context.SaveChangesAsync();
         return author;

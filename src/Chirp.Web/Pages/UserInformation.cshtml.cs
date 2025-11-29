@@ -22,14 +22,9 @@ public class UserInformation : PageModel
     public readonly int pageSize = 5; 
     public int CurrentPage; 
     public string CurrentAuthor = string.Empty;
-    public int imageCounter = 1;  
-    
-    
+    public string CurrentProfileImage = string.Empty;
     public IEnumerable<string> Followees { get; set; } = new List<string>();
     public string? Email { get; set; }
-
-    [BindProperty]
-    public LoginModel.InputModel Input { get; set; } = new();
     
     public UserInformation(SignInManager<Author> signInManager, ICheepService service, UserManager<Author> userManager,  IRepository repository)
     {
@@ -41,6 +36,10 @@ public class UserInformation : PageModel
     
     public async Task<IActionResult> OnGetAsync(string author)
     {
+        var user = await _userManager.GetUserAsync(User);
+        CurrentProfileImage = user?.ProfileImage ?? "/images/bird1-profile.png"; // default is first picture
+        Email = user?.Email;
+        
         var pageQuery = Request.Query["page"];
         int pageno;
         
@@ -53,12 +52,9 @@ public class UserInformation : PageModel
         
         try
         {
-            var user = await _userManager.GetUserAsync(User);
             List<CheepDTO> cheepsList = new  List<CheepDTO>();
-
-            Email = user?.Email;
+           
             Followees = await _repository.GetAllFollowees(author);
-            
             if (user != null && user.UserName == author)
             {
                 cheepsList = await _service.GetCheepsByAuthor(author, pageno, pageSize + 1);
@@ -148,14 +144,13 @@ public class UserInformation : PageModel
           return RedirectToPage("/Public");
       }
 
+      [BindProperty]
+      public string? SelectedImage { get; set; }
       public async Task<IActionResult> OnPostImageProfileAsync(string author)
       {
-          imageCounter++;
-          if(imageCounter > 5) imageCounter = 1;
-          
-          var image = "/images/bird" + imageCounter + "-profile.png"; 
-          await _service.SetProfileImage(author, image);
+          if (SelectedImage == null) return RedirectToPage();
 
+          await _service.SetProfileImage(author, SelectedImage);
           return RedirectToPage();
       }
 }

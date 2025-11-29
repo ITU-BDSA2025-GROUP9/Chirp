@@ -9,18 +9,17 @@
 
 @using Chirp.Core
 @inject SignInManager<Author> SignInManager  
-@inject UserManager<Author> UserManager   
- 
 
 <div>
     @if (routeName!.Equals(User.Identity!.Name) && SignInManager.IsSignedIn(User))
     {
         <h2> About me </h2>
         
-        <p> This is your personal information page. This page provides an overview 
+        <p>
+            This is your personal information page. This page provides an overview
             of all personal information that Chirp! stores about you. You can download a complete overview down below.
-            If you wish to delete your account, click on 'Forget me!' down below.
-            </p>
+            If you wish to delete your account, click on 'Forget me!'.
+        </p>
         
         <h3 style="display: inline-block;"> Your username: </h3> 
         <p style="display: inline-block;">@(User.Identity.Name)</p>
@@ -29,12 +28,25 @@
         <p style="display: inline-block;">@Model.Email</p>
         
       
-        <p> @Model.imageCounter </p>
+        <h3>Change your profile picture</h3>
         <form method="post" asp-page-handler="ImageProfile">
-            <input type="hidden" name="author" value="@(User.Identity.Name))"/>
-            <button class="btn" type="submit"> Change profile picture </button>
+            <div style="display: flex; gap: 1rem;">
+                
+                @for (var i = 1; i <= 5; i++)
+                {
+                    var img = $"/images/bird{i}-profile.png";
+
+                    <label>
+                        <img class="profilepicture" src="@img"/>
+                        
+                        <input type="radio" name="selectedImage" value="@img"
+                               @(Model.CurrentProfileImage == img ? "checked" : "")/>
+                    </label>
+                }
+            </div>
+            
+            <button class="btn" type="submit">Save</button>
         </form>
-        
         
         <div style="display:flex; gap:2rem; align-items:flex-start; margin-top:1.5rem;">
             <!-- Left column -- Cheeps posted -->

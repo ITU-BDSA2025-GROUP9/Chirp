@@ -29,4 +29,14 @@ public class Author : IdentityUser<int>
     ///  A string representing the URL or file path to the profile image.
     /// </summary>
     public string ProfileImage { get; set; } = string.Empty;
+    
+    // sets random profile picture, when initializing new Author 
+    private static readonly Random _ran = new Random();
+    public Author()
+    {
+        if (string.IsNullOrWhiteSpace(ProfileImage)) {
+            int n = _ran.Next(1, 6);
+            ProfileImage = $"/images/bird{n}-profile.png";
+        }
+    }
 }

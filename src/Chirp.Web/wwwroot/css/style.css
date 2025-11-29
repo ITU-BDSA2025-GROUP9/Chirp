@@ -34,17 +34,17 @@ input[type="password"] {
     color: #571010;
 }
 
-div.page ul.cheeps li img.profilepicture {
-    width: 60px !important;
-    height: 60px !important;
-    max-width: none !important;
-    max-height: none !important;
+.profilepicture {
+    width: 60px;
+    height: 60px;
+    max-width: none;
+    max-height: none;
     flex: 0 0 auto;
     border-radius: 12%;
     border: 2px solid #1b73f5;
     object-fit: cover;
     display: block;
-    float: none !important;
+    float: none;
 }
 
 /* share button */
