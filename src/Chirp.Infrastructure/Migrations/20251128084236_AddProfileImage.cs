@@ -16,6 +16,12 @@ namespace Chirp.Infrastructure.Migrations
                 type: "TEXT",
                 nullable: false,
                 defaultValue: "");
+            
+            migrationBuilder.Sql(@"
+                UPDATE AspNetUsers
+                SET ProfileImage = '/images/bird' || (abs(random()) % 5 + 1) || '-profile.png'
+                WHERE ProfileImage IS NULL OR ProfileImage = '';
+            ");
         }
 
         /// <inheritdoc />
