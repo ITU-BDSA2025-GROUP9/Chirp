@@ -30,8 +30,14 @@ public class Author : IdentityUser<int>
     /// </summary>
     public string ProfileImage { get; set; } = string.Empty;
     
-    // sets random profile picture, when initializing new Author 
+    /// <summary>
+    ///  Shared random number generator used to assign a default profile image.
+    /// </summary>
     private static readonly Random _ran = new Random();
+    
+    /// <summary>
+    ///  Sets random profile picture, when initializing new Author
+    /// </summary>
     public Author()
     {
         if (string.IsNullOrWhiteSpace(ProfileImage)) {
