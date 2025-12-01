@@ -10,7 +10,8 @@ public class CheepDTO
     public string Message { get; set; } = string.Empty;
     public string TimeStamp { get; set; } = string.Empty;
     public int CheepId { get; set; }
-     
+    public List<CommentDTO> Comments { get; set; } = new();
+
     public CheepDTO(AuthorDTO author, string message, string timestamp, int cheepId)
     {
         if (string.IsNullOrWhiteSpace(message))

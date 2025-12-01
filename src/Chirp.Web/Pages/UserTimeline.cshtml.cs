@@ -4,85 +4,80 @@ using Chirp.Infrastructure.Interfaces;
 using Chirp.Web.Pages.Shared;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+
 namespace Chirp.Web.Pages;
 
 public class UserTimelineModel : ChirpPage
 {
     [BindProperty]
     public InputModel Input { get; set; } = new();
+
+    private readonly ICommentService _commentService;
+
     public string CurrentAuthor = string.Empty;
-    public bool AuthorExists; 
-    
-    public UserTimelineModel(ICheepService cheepService, IAuthorService authorService, UserManager<Author> userManager)
-        : base(cheepService, authorService, userManager) {}
-    
+    public bool AuthorExists = true;
+
+    public UserTimelineModel(
+        ICheepService cheepService,
+        IAuthorService authorService,
+        UserManager<Author> userManager,
+        ICommentService commentService)
+        : base(cheepService, authorService, userManager)
+    {
+        _commentService = commentService;
+    }
+
     public async Task<IActionResult> OnGetAsync(string author)
     {
-        AuthorExists  = await AuthorService.AuthorByNameExists(author);
-        if(!AuthorExists)  return Page();
-        
-        CurrentPage = GetPageNumber();
         CurrentAuthor = author;
-        
+        CurrentPage = GetPageNumber();
+
         try
         {
-            var user = await GetCurrentUserAsync();
-            List<CheepDTO> cheepsList;
-            if (user != null && user.UserName == author)
+            AuthorExists = await AuthorService.AuthorByNameExists(author);
+            if (!AuthorExists)
             {
-                var authors = await AuthorService.GetAllFolloweesAndSelf(author);
-                cheepsList = await CheepService.GetCheepsByAuthors(authors,CurrentPage, PageSize + 1);
-            }
-            else
-            {
-                cheepsList = await CheepService.GetCheepsByAuthor(author, CurrentPage, PageSize + 1);
+                Cheeps = new List<CheepDTO>();
+                return Page();
             }
 
+            var cheepsList = await CheepService.GetCheepsByAuthor(author, CurrentPage, PageSize + 1);
             ApplyPagination(cheepsList);
         }
         catch (ArgumentException)
         {
+            AuthorExists = false;
             Cheeps = new List<CheepDTO>();
-        } 
-        
+        }
+
         return Page();
     }
-    
-    public async Task<IActionResult> OnPostPostCheepAsync(string author)
+
+    public async Task<IActionResult> OnPostAddCommentAsync(int cheepId, string content)
     {
         var user = await GetCurrentUserAsync();
         if (user == null)
             return RedirectToPage("/Account/Login");
 
-        if (!ModelState.IsValid)
-            return await OnGetAsync(author);
-        
-        await CheepService.AddCheep(user, Input.Text);
-        return RedirectToPage("/UserTimeline");
+        await _commentService.AddCommentAsync(cheepId, user.Id, content);
+        return RedirectToPage("/UserTimeline", new { author = CurrentAuthor });
     }
-    
-    public async Task<IActionResult> OnPostDeleteCheepAsync(int id)
-    { 
-        await CheepService.DeleteCheep(id);
-        return RedirectToPage("/UserTimeline"); 
-    }
-    
-    public async Task<IActionResult> OnPostUnfollowAsync(string author)
+
+    public async Task<bool> IsFollowing(string author)
     {
         var currentUser = await GetCurrentUserAsync();
-        if (currentUser == null) return RedirectToPage("/Account/Login");
-
-        await AuthorService.UnfollowAuthor(currentUser.UserName!, author);
-        return RedirectToPage("/UserTimeline");
+        if (currentUser == null) return false;
+        return await AuthorService.IsFollowing(currentUser.UserName!, author);
     }
     
-    public async Task<IActionResult> OnPostFollowAsync(string author)
+    public async Task<IActionResult> OnPostDeleteCommentAsync(int commentId)
     {
-        var currentUser = await GetCurrentUserAsync();
-        if (currentUser == null) return RedirectToPage("/Account/Login");
+        var user = await GetCurrentUserAsync();
+        if (user == null)
+            return RedirectToPage("/Account/Login");
 
-        await AuthorService.FollowAuthor(currentUser.UserName!, author);
-        return RedirectToPage("/UserTimeline");
+        await _commentService.DeleteCommentAsync(commentId);
+        return RedirectToPage("/UserTimeline", new { author = CurrentAuthor });
     }
+
 }
