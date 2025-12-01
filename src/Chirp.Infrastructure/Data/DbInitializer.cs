@@ -4,9 +4,24 @@ using Chirp.Infrastructure.Database;
 using Chirp.Core;
 
 namespace Chirp.Infrastructure.Data;
-
+/// <summary>
+/// Database seeder for development and local testing.
+/// Inserts a fixed set of <see cref="Author"/> and <see cref="Cheep"/> records if the database is empty.
+/// This does **not** run incremental migrations or preserve existing data. It's a one-shot bootstrap.
+/// </summary>
+/// <remarks>
+/// - Runs synchronously.
+/// - Uses hard-coded IDs and relationships.
+/// - Only seeds when **either authors or cheeps are missing**, not when both exist.
+/// - Call exactly once during app startup.
+/// </remarks>
 public static class DbInitializer
 {
+    /// <summary>
+    /// Seeds the database with default authors and cheep posts.
+    /// Skips seeding if the database already contains both authors and cheeps.
+    /// </summary>
+    /// <param name="chirpContext">Active EF Core database context for writing seed data.</param>
     public static void SeedDatabase(ChirpDbContext chirpContext)
     {
         if (!(chirpContext.Authors.Any() && chirpContext.Cheeps.Any()))

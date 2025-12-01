@@ -2,7 +2,7 @@ using Chirp.Core;
 namespace Chirp.Infrastructure.Interfaces;
 
 /// <summary>
-/// Abstraction for accessing and managing cheeps and authors.
+/// Abstraction for accessing and managing cheeps.
 /// </summary>
 public interface ICheepRepository
 {
