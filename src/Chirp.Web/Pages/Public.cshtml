@@ -32,10 +32,10 @@
 
                     @if (User.Identity?.IsAuthenticated ?? false)
                     {
-                        <form method="post" asp-page-handler="AddComment">
+                        <form method="post" class="CommentFeature" asp-page-handler="AddComment">
                             <input type="hidden" name="CheepId" value="@cheep.CheepId" />
-                            <input type="text" name="Content" placeholder="Write a comment..." required />
-                            <button type="submit">Comment</button>
+                            <input type="text" class= "WriteComment" name="Content" placeholder="Write a comment..." required />
+                            <button class= "Commentbtn" type="submit">Comment</button>
                         </form>
                     }
                   

@@ -411,3 +411,77 @@ span.field-validation-error{
     font-size: 13px;
     margin-top: 2px;
 }
+
+/* COMMENT STYLE :D*/
+
+/* Outer comment box spacing */
+.comment {
+    background: #DBF3F1;
+    padding: 12px;
+    border-radius: 12px;
+    margin: 14px 0;
+}
+
+/* Row layout: profilepicture and body */
+.comment-inner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.comment .profilepicture {
+    width: 48px;
+    height: 48px;
+    border-width: 2px;
+    border-radius: 12%;
+    object-fit: cover;
+}
+
+/* Comment body fills available space */
+.comment-body {
+    flex: 1;
+    padding: 0;
+    background: none;
+}
+
+.comment-header {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.comment-text p {
+    margin: 4px 0 8px 0;
+    line-height: 1.4;
+}
+
+/* Timestamp and deletebutton inline together*/
+.comment-footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+/* Timestamp*/
+.comment-footer .timestamp {
+    color: #666;
+    font-size: 12px;
+}
+
+/* Delete button */
+.comment-footer form button {
+    display: flex;
+    background: #8b89ed;
+    border: 1px solid transparent;
+    padding: 2px 6px;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 2px;
+    color: white;
+}
+
+.comment-footer form button:hover {
+    background-color: #d8000c;
+}

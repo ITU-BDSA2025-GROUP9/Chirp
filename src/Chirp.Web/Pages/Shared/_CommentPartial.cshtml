@@ -7,25 +7,38 @@
     @foreach (var c in Model)
     {
         <div class="comment">
-            <img src="~/images/@(c.AuthorProfileImage ?? "bird1-profile.png")"
-                 class="profile-img-sm" alt="Profile" />
+            <div class="comment-inner">
 
-            <div class="comment-body">
-                <strong>@c.AuthorName</strong>
-                <p>@c.Content</p>
-                <span class="timestamp">@c.CreatedAt.ToLocalTime()</span>
+                <img src="@(c.AuthorProfileImage ?? "/images/bird1-profile.png")"
+                     class="profilepicture" alt="" />
 
-                @if (User.Identity?.IsAuthenticated ?? false)
-                {
-                    var uid = UserManager.GetUserId(User);
-                    if (uid == c.AuthorId.ToString())
-                    {
-                        <form method="post" asp-page-handler="DeleteComment" style="margin-top:4px;">
-                            <input type="hidden" name="CommentId" value="@c.Id" />
-                            <button type="submit">Delete</button>
-                        </form>
-                    }
-                }
+                <div class="comment-body">
+
+                    <div class="comment-header">
+                        <strong>@c.AuthorName</strong>
+                    </div>
+
+                    <div class="comment-text">
+                        <p>@c.Content</p>
+                    </div>
+
+                    <div class="comment-footer">
+                        <span class="timestamp">@c.CreatedAt.ToLocalTime()</span>
+
+                        @if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                            var uid = UserManager.GetUserId(User);
+                            if (uid == c.AuthorId.ToString())
+                            {
+                                <form method="post" asp-page-handler="DeleteComment">
+                                    <input type="hidden" name="CommentId" value="@c.Id" />
+                                    <button type="submit">Delete</button>
+                                </form>
+                            }
+                        }
+                    </div>
+
+                </div>
             </div>
         </div>
     }
