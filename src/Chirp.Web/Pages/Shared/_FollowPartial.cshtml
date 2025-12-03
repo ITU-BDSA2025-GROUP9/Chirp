@@ -2,23 +2,26 @@
 @inject SignInManager<Author> SignInManager
 @model FollowButtonViewModel
 
+@* Follow/Unfollow Button *@
 @if (SignInManager.IsSignedIn(User) && Model.Author != User.Identity!.Name)
 {
     if (Model.IsFollowing)
     {
-        <form method="post" asp-page-handler="Unfollow">
+        <form method="post" asp-page-handler="Unfollow" class="follow-form">
             <input type="hidden" name="author" value="@Model.Author" />
             <button class="followbtn" type="submit">Unfollow</button>
         </form>
     }
     else
     {
-        <form method="post" asp-page-handler="Follow">
+        <form method="post" asp-page-handler="Follow" class="follow-form">
             <input type="hidden" name="author" value="@Model.Author" />
             <button class="followbtn" type="submit">Follow</button>
         </form>
     }
 }
+
+@* Delete Cheep Button *@
 else if (Model.Author == User.Identity!.Name)
 { 
     <form class="delete-form" method="post" asp-page-handler="DeleteCheep"
@@ -27,3 +30,29 @@ else if (Model.Author == User.Identity!.Name)
         <button class="deletebtn" type="submit">Delete</button>
     </form>
 }
+
+@* Only affecting .follow-form class (for follow buttons) --> saves scroll location *@
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const SCROLL_KEY = 'ScrollY';
+        const FLAG_KEY = 'ScrollUsed';
+
+        // When a follow-form is submitted, store the current scroll position
+        document.querySelectorAll('form.follow-form').forEach(form => {
+            form.addEventListener('submit', () => {
+                sessionStorage.setItem(SCROLL_KEY, window.scrollY.toString());
+                sessionStorage.setItem(FLAG_KEY, '1');
+            });
+        });
+
+        // On load, ONLY restore scroll if it was a "follow" submit
+        if (sessionStorage.getItem(FLAG_KEY) === '1') {
+            const y = parseFloat(sessionStorage.getItem(SCROLL_KEY) || '0');
+            window.scrollTo(0, y);
+        
+            // Clear so normal navigation goes to top
+            sessionStorage.removeItem(FLAG_KEY);
+            sessionStorage.removeItem(SCROLL_KEY);
+       }
+    });
+</script>
