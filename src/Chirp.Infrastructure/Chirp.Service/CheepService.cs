@@ -16,17 +16,17 @@ namespace Chirp.Infrastructure.Chirp.Service;
 public class CheepService : ICheepService
 {
     private readonly ICheepRepository _repository;
-    private readonly ICommentRepository _commentRepository;
+    private readonly ICommentService _commentService;
     /// <summary>
     /// Initializes a new instance of the <see cref="CheepService"/> class.
     /// </summary>
     /// <param name="repository">
     /// The repository responsible for interacting with the data store containing authors and cheeps.
     /// </param>
-    public CheepService(ICheepRepository repository, ICommentRepository commentRepository)
+    public CheepService(ICheepRepository repository, ICommentService commentService)
     {
         _repository = repository;
-        _commentRepository = commentRepository;
+        _commentService = commentService;
     }
 
     /// <summary>
@@ -51,7 +51,7 @@ public class CheepService : ICheepService
 
         foreach (var dto in list)
         {
-            dto.Comments = (await _commentRepository.GetCommentsForCheepAsync(dto.CheepId)).ToList();
+            dto.Comments = (await _commentService.GetCommentsForCheepAsync(dto.CheepId)).ToList();
         }
 
         return list;
@@ -80,7 +80,7 @@ public class CheepService : ICheepService
 
         foreach (var dto in list)
         {
-            dto.Comments = (await _commentRepository.GetCommentsForCheepAsync(dto.CheepId)).ToList();
+            dto.Comments = (await _commentService.GetCommentsForCheepAsync(dto.CheepId)).ToList();
         }
 
         return list;
@@ -114,7 +114,14 @@ public class CheepService : ICheepService
         if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
         
         var cheeps = await _repository.GetCheepsByAuthors(authors, pageNumber, pageSize);
-        return cheeps.Select(CheepToDto).ToList();
+        var list = cheeps.Select(CheepToDto).ToList();
+        
+        foreach (var dto in list)
+        {
+            dto.Comments = (await _commentService.GetCommentsForCheepAsync(dto.CheepId)).ToList();
+        }
+
+        return list;
     }
     
     public async Task<bool> DeleteCheep(int cheepId)

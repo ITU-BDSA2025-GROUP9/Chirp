@@ -110,7 +110,6 @@ div.page div.navigation form {
 
 .followbtn{
     display: flex;
-    /*background: #9095b0;*/
     background: #8b89ed;
     border: 1px solid transparent;
     padding: 2px 6px;
@@ -243,11 +242,6 @@ div.page ul.cheeps li {
 div.page ul.cheeps p {
   margin: 0;
 }
-
-/*div.page ul.cheeps li img {
-  float: left;
-  padding: 0 10px 0 0;
-}*/
 
 /* Timestamp */
 div.page ul.cheeps li small {
@@ -455,7 +449,7 @@ span.field-validation-error{
     line-height: 1.4;
 }
 
-/* Timestamp and deletebutton inline together*/
+/* Timestamp and delete button inline together*/
 .comment-footer {
     display: flex;
     align-items: center;

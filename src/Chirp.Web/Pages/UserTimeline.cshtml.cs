@@ -41,7 +41,9 @@ public class UserTimelineModel : ChirpPage
                 return Page();
             }
 
-            var cheepsList = await CheepService.GetCheepsByAuthor(author, CurrentPage, PageSize + 1);
+            var authors = await AuthorService.GetAllFolloweesAndSelf(author);
+            var cheepsList = await CheepService.GetCheepsByAuthors(authors,CurrentPage, PageSize + 1);
+            
             ApplyPagination(cheepsList);
         }
         catch (ArgumentException)
@@ -52,7 +54,27 @@ public class UserTimelineModel : ChirpPage
 
         return Page();
     }
+    
+    public async Task<IActionResult> OnPostPostCheepAsync()
+    {
+        var user = await GetCurrentUserAsync();
+        if (user == null)
+            return RedirectToPage("/Account/Login");
 
+        if (!ModelState.IsValid){
+            return await OnGetAsync(CurrentAuthor);
+        }
+        
+        await CheepService.AddCheep(user, Input.Text);
+        return RedirectToPage("/UserTimeline");
+    }
+    
+    public async Task<IActionResult> OnPostDeleteCheepAsync(int id)
+    { 
+        await CheepService.DeleteCheep(id);
+        return RedirectToPage("/UserTimeline"); 
+    }
+    
     public async Task<IActionResult> OnPostAddCommentAsync(int cheepId, string content)
     {
         var user = await GetCurrentUserAsync();
@@ -60,14 +82,25 @@ public class UserTimelineModel : ChirpPage
             return RedirectToPage("/Account/Login");
 
         await _commentService.AddCommentAsync(cheepId, user.Id, content);
-        return RedirectToPage("/UserTimeline", new { author = CurrentAuthor });
+        return RedirectToPage("/UserTimeline");
     }
 
-    public async Task<bool> IsFollowing(string author)
+    public async Task<IActionResult> OnPostUnfollowAsync(string author)
     {
         var currentUser = await GetCurrentUserAsync();
-        if (currentUser == null) return false;
-        return await AuthorService.IsFollowing(currentUser.UserName!, author);
+        if (currentUser == null) return RedirectToPage("/Account/Login");
+
+        await AuthorService.UnfollowAuthor(currentUser.UserName!, author);
+        return RedirectToPage("/UserTimeline");
+    }
+    
+    public async Task<IActionResult> OnPostFollowAsync(string author)
+    {
+        var currentUser = await GetCurrentUserAsync();
+        if (currentUser == null) return RedirectToPage("/Account/Login");
+
+        await AuthorService.FollowAuthor(currentUser.UserName!, author);
+        return RedirectToPage("/UserTimeline");
     }
     
     public async Task<IActionResult> OnPostDeleteCommentAsync(int commentId)
@@ -77,7 +110,7 @@ public class UserTimelineModel : ChirpPage
             return RedirectToPage("/Account/Login");
 
         await _commentService.DeleteCommentAsync(commentId);
-        return RedirectToPage("/UserTimeline", new { author = CurrentAuthor });
+        return RedirectToPage("/UserTimeline");
     }
 
 }

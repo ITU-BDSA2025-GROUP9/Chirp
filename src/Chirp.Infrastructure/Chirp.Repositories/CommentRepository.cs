@@ -12,20 +12,12 @@ public class CommentRepository : ICommentRepository
 
     public CommentRepository(ChirpDbContext context) => _context = context;
 
-    public async Task<IEnumerable<CommentDTO>> GetCommentsForCheepAsync(int cheepId)
+    public async Task<IEnumerable<Comment>> GetCommentsForCheepAsync(int cheepId)
     {
         return await _context.Comments
             .Where(c => c.CheepId == cheepId)
             .OrderBy(c => c.CreatedAt)
-            .Select(c => new CommentDTO
-            {
-                Id = c.Id,
-                Content = c.Content,
-                CreatedAt = c.CreatedAt,
-                AuthorName = c.Author.UserName!,
-                AuthorProfileImage = c.Author.ProfileImage,
-                AuthorId = c.AuthorId
-            })
+            .Include(c => c.Author)
             .ToListAsync();
     }
 

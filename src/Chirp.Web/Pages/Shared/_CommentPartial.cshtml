@@ -9,13 +9,13 @@
         <div class="comment">
             <div class="comment-inner">
 
-                <img src="@(c.AuthorProfileImage ?? "/images/bird1-profile.png")"
+                <img src="@(c.Author.ProfileImage ?? "/images/bird1-profile.png")"
                      class="profilepicture" alt="" />
 
                 <div class="comment-body">
 
                     <div class="comment-header">
-                        <strong>@c.AuthorName</strong>
+                        <strong>@c.Author.Name</strong>
                     </div>
 
                     <div class="comment-text">
@@ -23,16 +23,16 @@
                     </div>
 
                     <div class="comment-footer">
-                        <span class="timestamp">@c.CreatedAt.ToLocalTime()</span>
+                        <span class="timestamp">@c.CreatedAt</span>
 
                         @if (User.Identity?.IsAuthenticated ?? false)
                         {
-                            var uid = UserManager.GetUserId(User);
-                            if (uid == c.AuthorId.ToString())
+                            if (c.Author.Name == User.Identity!.Name)
                             {
-                                <form method="post" asp-page-handler="DeleteComment">
-                                    <input type="hidden" name="CommentId" value="@c.Id" />
-                                    <button type="submit">Delete</button>
+                                <form class="delete-form" method="post" asp-page-handler="DeleteComment"
+                                      onsubmit="return confirm('Are you sure you want to delete this comment?');">
+                                    <input type="hidden" name="CommentId" value="@c.Id"/>
+                                    <button class="deletebtn" type="submit">Delete</button>
                                 </form>
                             }
                         }
