@@ -21,6 +21,9 @@ public class UnitTests : IDisposable
     
     private readonly IAuthorRepository _authorRepo;
     private readonly IAuthorService _authorService;
+    
+    private readonly ICommentRepository _commentRepo;
+    private readonly ICommentService _commentService;
 
     public UnitTests()
     {
@@ -45,8 +48,11 @@ public class UnitTests : IDisposable
         );
 
         _context.SaveChanges();
+        _commentRepo = new CommentRepository(_context);
         _cheepRepo = new CheepRepository(_context);
-        _cheepService = new CheepService(_cheepRepo);
+        _commentService = new CommentService(_commentRepo);
+        
+        _cheepService = new CheepService(_cheepRepo, _commentService);
         
         _authorRepo = new AuthorRepository(_context);
         _authorService = new AuthorService(_authorRepo);
