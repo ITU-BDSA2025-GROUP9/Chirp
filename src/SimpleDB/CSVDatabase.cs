@@ -1,11 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
-
-
 namespace SimpleDB
 {
     /// <summary>
@@ -22,9 +14,7 @@ namespace SimpleDB
 
         // The single instance of the database
         private static CSVDatabase<T>? _instance;
-
-        // Lock object (not needed for this assignment since you don’t require thread-safety)
-
+        
         /// <summary>
         /// Private constructor to prevent external instantiation.
         /// </summary>
@@ -53,11 +43,22 @@ namespace SimpleDB
             }
             return _instance;
         }
+        
+        /// <summary>
+        /// Appends given item to the underlying CSV file.
+        /// </summary>
+        /// <param name="item">The item to store.</param>
         public void Add(T item)
         {
             File.AppendAllLines(_filePath, new[] { _toLine(item) });
         }
 
+        /// <summary>
+        /// Reads all CSV lines from the file and returns them as objects.
+        /// </summary>
+        /// <returns>
+        /// An enumerable collection of all stored objects.  
+        /// </returns>
         public IEnumerable<T> GetAll()
         {
             if (!File.Exists(_filePath)) yield break;
@@ -68,11 +69,26 @@ namespace SimpleDB
             }
         }
 
+        /// <summary>
+        /// Finds and returns the first object whose ID matches the provided value.
+        /// </summary>
+        /// <param name="id">The ID of the item to find.</param>
+        /// <returns>
+        /// The matching item.
+        /// </returns>
         public T? FindById(int id)
         {
             return GetAll().FirstOrDefault(e => _getId(e) == id);
         }
-
+        
+        /// <summary>
+        /// Removes an item with the specified ID from the CSV file.
+        /// </summary>
+        /// <param name="id">The ID of the item to remove.</param>
+        /// <returns>
+        /// true if an item was removed.  
+        /// false if no item with the specified ID was found.
+        /// </returns>
         public bool Remove(int id)
         {
             var items = GetAll().ToList();

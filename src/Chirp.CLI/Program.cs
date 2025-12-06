@@ -21,15 +21,14 @@ public class Program
     private static IDatabaseRepository<Cheep> _db = null!;
 
     /// <summary>
-    /// Cached list of cheeps loaded from the database.
+    /// List of cheeps loaded from the database.
     /// </summary>
     private static IEnumerable<Cheep> _messages = [];
 
     public static void Main(string[] args)
     {
         var arguments = new Docopt().Apply(usage, args, version: "1.0", exit: true)!;
-
-        // ✅ Only assign here, don’t redeclare _db
+        
         const string ServiceUrl =
             "https://bdsagroup9chirpremotedb-hdhbcsgjhqanaxgy.swedencentral-01.azurewebsites.net";
         _db = DatabaseFactory.CreateHttp(ServiceUrl);

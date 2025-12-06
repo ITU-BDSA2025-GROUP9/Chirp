@@ -4,14 +4,33 @@ using CsvHelper.Configuration;
 
 namespace Chirp.Shared;
 
+/// <summary>
+/// Provides helper methods for converting <see cref="Cheep"/> objects
+/// to and from CSV-formatted lines.
+/// </summary>
 public static class CheepCsv
 {
+    /// <summary>
+    /// Converts a <see cref="Cheep"/> instance into a single CSV line.
+    /// </summary>
+    /// <param name="c">The <see cref="Cheep"/> object. </param>
+    /// <returns>
+    /// A CSV-formatted string containing the Author, Message, and Timestamp fields.
+    /// </returns>
     public static string ToCsvLine(Cheep c)
     {
         static string Esc(string s) => $"\"{s.Replace("\"", "\"\"")}\"";
         return $"{Esc(c.Author)},{Esc(c.Message)},{c.Timestamp}";
     }
 
+    /// <summary>
+    /// Parses a CSV line into a <see cref="Cheep"/> instance.
+    /// </summary>
+    /// <param name="line"> A CSV-formatted string containing the Author, Message, and Timestamp fields. </param>
+    /// <returns>A new <see cref="Cheep"/> object based on the parsed fields.</returns>
+    /// <exception cref="InvalidDataException">
+    /// Thrown if the timestamp field cannot be parsed as a valid <see cref="long"/>.
+    /// </exception>
     public static Cheep FromCsvLine(string line)
     {
         using var reader = new StringReader(line);

@@ -1,7 +1,5 @@
-using System.Net.Http;
 using System.Net.Http.Json;
 using Chirp.Shared;
-using System.Collections.Generic;
 
 namespace SimpleDB
 {
@@ -17,9 +15,8 @@ namespace SimpleDB
 
         /// <summary>
         /// Initializes a new instance of <see cref="HttpDatabaseRepository"/>.
-        /// The base URL is fixed to the deployed Azure Chirp service.
         /// </summary>
-        /// <param name="baseUrl">The base URL of the Chirp service (ignored; hardcoded to Azure URL).</param>
+        /// <param name="baseUrl">The base URL of the Chirp service.</param>
         public HttpDatabaseRepository(string baseUrl)
         {
             if (string.IsNullOrWhiteSpace(baseUrl))
@@ -28,10 +25,7 @@ namespace SimpleDB
             _baseUrl = baseUrl.TrimEnd('/');
             _httpClient = new HttpClient();
         }
-
-
-
-
+        
         /// <summary>
         /// Sends a POST request to add a new cheep to the remote database.
         /// </summary>
@@ -40,13 +34,9 @@ namespace SimpleDB
         {
             var response = _httpClient.PostAsJsonAsync($"{_baseUrl}/cheep", item).Result;
             Console.WriteLine($"DEBUG: Posting to {_baseUrl}/cheep");
-
-            response.EnsureSuccessStatusCode();
-
             response.EnsureSuccessStatusCode();
         }
-
-
+        
         /// <summary>
         /// Sends a GET request to retrieve all cheeps from the remote database.
         /// </summary>
