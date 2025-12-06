@@ -47,7 +47,7 @@ public class CheepService : ICheepService
         if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
         var cheeps = await _repository.GetAllCheeps(pageNumber, pageSize);
         
-        var list = cheeps.Select(CheepToDto).ToList();
+        var list = cheeps.Select(CheepDTO.ToDto).ToList();
 
         foreach (var dto in list)
         {
@@ -76,7 +76,7 @@ public class CheepService : ICheepService
         if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
         var cheeps = await _repository.GetCheepsByAuthor(authorName, pageNumber, pageSize);
         
-        var list = cheeps.Select(CheepToDto).ToList();
+        var list = cheeps.Select(CheepDTO.ToDto).ToList();
 
         foreach (var dto in list)
         {
@@ -95,18 +95,7 @@ public class CheepService : ICheepService
         await _repository.AddCheep(author, text);
     }
     
-    public static CheepDTO CheepToDto(Cheep c) => new(
-        AuthorToDto(c.Author),
-        c.Text,
-        c.TimeStamp.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture),
-        c.CheepId
-    );
-    
-    public static AuthorDTO AuthorToDto(Author a) => new(
-        a.UserName!,
-        a.Email!,
-        a.ProfileImage
-    );
+
     
     public async Task<List<CheepDTO>> GetCheepsByAuthors(List<string> authors, int pageNumber, int pageSize)
     {
@@ -114,7 +103,7 @@ public class CheepService : ICheepService
         if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
         
         var cheeps = await _repository.GetCheepsByAuthors(authors, pageNumber, pageSize);
-        var list = cheeps.Select(CheepToDto).ToList();
+        var list = cheeps.Select(CheepDTO.ToDto).ToList();
         
         foreach (var dto in list)
         {

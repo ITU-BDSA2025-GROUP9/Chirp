@@ -88,11 +88,11 @@ public class ChirpDbContext : IdentityDbContext<Author, IdentityRole<int>, int>
             entity.ToTable("comment");
 
             // Primary key
-            entity.HasKey(c => c.Id);
+            entity.HasKey(c => c.CommentId);
 
-            entity.Property(c => c.Id).HasColumnName("comment_id");
-            entity.Property(c => c.Content).HasColumnName("text");
-            entity.Property(c => c.CreatedAt).HasColumnName("pub_date");
+            entity.Property(c => c.CommentId).HasColumnName("comment_id");
+            entity.Property(c => c.Text).HasColumnName("text");
+            entity.Property(c => c.TimeStamp).HasColumnName("pub_date");
 
             // Foreign keys
             entity.Property(c => c.CheepId).HasColumnName("message_id");

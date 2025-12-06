@@ -1,3 +1,4 @@
+using System.Globalization;
 namespace Chirp.Core.DTO;
 
 /// <summary>
@@ -7,19 +8,30 @@ namespace Chirp.Core.DTO;
 public class CheepDTO
 {
     public AuthorDTO Author { get; set; }
-    public string Message { get; set; } = string.Empty;
-    public string TimeStamp { get; set; } = string.Empty;
+    public string Message { get; set; }
+    public string TimeStamp { get; set; }
     public int CheepId { get; set; }
-    public List<CommentDTO> Comments { get; set; } = new();
+    public List<CommentDTO> Comments { get; set; } = [];
 
     public CheepDTO(AuthorDTO author, string message, string timestamp, int cheepId)
     {
         if (string.IsNullOrWhiteSpace(message))
             throw new ArgumentException($"Message cannot be null or empty. Invalid message: '{message}'");
-            
-        this.Author = author;
-        this.Message = message;
-        this.TimeStamp = timestamp;
-        this.CheepId = cheepId;
+        if (string.IsNullOrWhiteSpace(timestamp))
+            throw new ArgumentException($"Timestamp cannot be null or empty. Invalid timestamp: '{timestamp}'");
+        if (author == null)
+            throw new ArgumentNullException(nameof(author), "Author cannot be null.");
+        
+        Author = author;
+        Message = message;
+        TimeStamp = timestamp;
+        CheepId = cheepId;
     }
+    
+    public static CheepDTO ToDto(Cheep c) => new(
+        AuthorDTO.ToDto(c.Author),
+        c.Text,
+        c.TimeStamp.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture),
+        c.CheepId
+    );
 }

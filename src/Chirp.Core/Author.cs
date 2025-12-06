@@ -1,6 +1,5 @@
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
-
 namespace Chirp.Core;
 
 /// <summary>
@@ -13,30 +12,31 @@ public class Author : IdentityUser<int>
     /// <summary>
     /// The list of cheeps posted by this author.
     /// </summary>
-    public List<Cheep> Cheeps { get; set; } = new();
+    public List<Cheep> Cheeps { get; set; } = [];
 
     /// <summary>
     /// The list of Author followed by this author. 
     /// </summary>
-    public List<Author> Following { get; set; } = new(); 
-    
+    public List<Author> Following { get; set; } = [];
+
     /// <summary>
     /// The list of Author following this author. 
     /// </summary>
-    public List<Author> Followers { get; set; } = new();
+    public List<Author> Followers { get; set; } = [];
 
     /// <summary>
     ///  A string representing the URL or file path to the profile image.
     /// </summary>
+    [StringLength(160)]
     public string ProfileImage { get; set; } = string.Empty;
     
-    // sets random profile picture, when initializing new Author 
-    private static readonly Random _ran = new Random();
+    
+    // sets random profile picture, when initializing new Author, if is null or empty 
+    private static readonly Random Random = new();
     public Author()
     {
-        if (string.IsNullOrWhiteSpace(ProfileImage)) {
-            int n = _ran.Next(1, 6);
-            ProfileImage = $"/images/bird{n}-profile.png";
-        }
+        if (!string.IsNullOrWhiteSpace(ProfileImage)) return;
+        var n = Random.Next(1, 6);
+        ProfileImage = $"/images/bird{n}-profile.png";
     }
 }

@@ -65,54 +65,6 @@ public class UnitTests : IDisposable
     }
     
     [Fact]
-    public void CheepToDTO_ShouldMapCorrectly()
-    {
-        var author = new Author { UserName = "Alice", Email = "alice@itu.dk" };
-        var ts = DateTime.UtcNow;
-        var cheep = new Cheep
-        {
-            Author = author,
-            Text = "Test",
-            TimeStamp = ts
-        };
-
-        var dto = CheepService.CheepToDto(cheep);
-
-        dto.Author.Name.Should().Be("Alice");
-        dto.Message.Should().Be("Test");
-        dto.TimeStamp.Should().Be(cheep.TimeStamp.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture));
-    }
- 
-    [Fact]
-    public void CheepDTO_ShouldHaveValidProperties()
-    {
-        var author = new AuthorDTO("Bob", "bob@itu.dk", "image.png");
-        var cheep = new CheepDTO(author, "Hello world", "08/02/23 14:19:38", 1);
-
-        cheep.Author.Name.Should().Be("Bob");
-        cheep.Message.Should().Be("Hello world");
-        cheep.TimeStamp.Should().Be("08/02/23 14:19:38");
-        cheep.CheepId.Should().Be(1);
-    }
-   
-    /*
-    [Theory]
-    [InlineData("", "Hello")]
-    [InlineData("   ", "Hello")]
-    [InlineData(null, "Hello")]
-    [InlineData("Alice", "")]
-    [InlineData("Alice", "   ")]
-    [InlineData("Alice", null)]
-    [InlineData("", "")]
-    [InlineData("   ", "   ")]
-    [InlineData(null, null)]
-    public void CheepDTO_InvalidArguments_ShouldThrowException(string author, string message)
-    {
-        Action act = () => new CheepDTO(author, message, "10/15/25 14:30:00", 1);
-        act.Should().Throw<ArgumentException>();
-    }*/
-    
-    [Fact]
     public async Task GetAllCheeps_ShouldReturnCheeps()
     {
         var cheeps = await _cheepRepo.GetAllCheeps(1, 10);

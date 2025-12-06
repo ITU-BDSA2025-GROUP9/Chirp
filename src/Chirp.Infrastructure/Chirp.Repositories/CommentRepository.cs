@@ -16,7 +16,7 @@ public class CommentRepository : ICommentRepository
     {
         return await _context.Comments
             .Where(c => c.CheepId == cheepId)
-            .OrderBy(c => c.CreatedAt)
+            .OrderBy(c => c.TimeStamp)
             .Include(c => c.Author)
             .ToListAsync();
     }

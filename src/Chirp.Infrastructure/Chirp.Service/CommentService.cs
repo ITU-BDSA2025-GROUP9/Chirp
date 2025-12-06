@@ -18,7 +18,7 @@ public class CommentService : ICommentService
     {
         var comments = await _repo.GetCommentsForCheepAsync(cheepId);
 
-        return comments.Select(CommentToDto);
+        return comments.Select(CommentDTO.ToDto);
     }
 
     public async Task AddCommentAsync(int cheepId, int authorId, string content)
@@ -27,24 +27,12 @@ public class CommentService : ICommentService
         {
             CheepId = cheepId,
             AuthorId = authorId,
-            Content = content,
-            CreatedAt = DateTime.UtcNow
+            Text = content,
+            TimeStamp = DateTime.UtcNow
         };
 
         await _repo.AddCommentAsync(comment);
     }
     
-     public static CommentDTO CommentToDto(Comment c) => new(
-        AuthorToDto(c.Author),
-        c.Content,
-        c.CreatedAt.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture),
-        c.Id
-    );
-     
-    public static AuthorDTO AuthorToDto(Author a) => new(
-        a.UserName!,
-        a.Email!,
-        a.ProfileImage
-    );
-
+  
 }
