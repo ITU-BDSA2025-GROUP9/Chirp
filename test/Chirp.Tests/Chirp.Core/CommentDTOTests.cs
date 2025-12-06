@@ -73,4 +73,39 @@ public class CommentDTOTests
         dto.Message.Should().Be("Test");
         dto.TimeStamp.Should().Be(comment.TimeStamp.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture));
     }
+    
+    [Fact]
+    public void CheepsToDtos_ShouldMapCorrectly()
+    {
+        var author = new Author { UserName = "Bob", Email = "bob@itu.dk" };
+        var ts = DateTime.UtcNow;
+        
+        var comments = new List<Comment>
+        {
+            new Comment { Author = author, Text = "Test1", TimeStamp = ts },
+            new Comment { Author = author, Text = "Test2", TimeStamp = ts }
+        };
+        
+        var dtos = CommentDTO.ToDtos(comments);
+        
+        dtos.Should().HaveCount(2);
+        dtos[0].Author.Name.Should().Be("Bob");
+        dtos[0].Author.Email.Should().Be("bob@itu.dk");
+        dtos[0].Message.Should().Be("Test1");
+            
+        dtos[1].Author.Name.Should().Be("Bob");
+        dtos[1].Author.Email.Should().Be("bob@itu.dk");
+        dtos[1].Message.Should().Be("Test2");
+    }
+
+    [Fact]
+    public void CommentToDtos_EmptyComments_ShouldThrow()
+    {
+        List<Comment> comments = null!;
+
+        Action act = () => CommentDTO.ToDtos(comments);
+
+        act.Should().Throw<ArgumentNullException>()
+            .WithMessage("*List of comments cannot be null*");
+    }
 }

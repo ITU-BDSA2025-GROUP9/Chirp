@@ -11,28 +11,24 @@ public class CommentService : ICommentService
 
     public CommentService(ICommentRepository repo) => _repo = repo;
     
-    public Task DeleteCommentAsync(int id)
-        => _repo.DeleteCommentAsync(id);
-
-    public async Task<IEnumerable<CommentDTO>> GetCommentsForCheepAsync(int cheepId)
+    public async Task<List<CommentDTO>> GetCommentsForCheep(int cheepId)
     {
-        var comments = await _repo.GetCommentsForCheepAsync(cheepId);
-
-        return comments.Select(CommentDTO.ToDto);
+        var comments = await _repo.GetCommentsForCheep(cheepId);
+        return CommentDTO.ToDtos(comments);
     }
 
-    public async Task AddCommentAsync(int cheepId, int authorId, string content)
+    public async Task<List<CommentDTO>> GetCommentsByAuthor(string authorName, int pageNumber, int pageSize)
     {
-        var comment = new Comment
-        {
-            CheepId = cheepId,
-            AuthorId = authorId,
-            Text = content,
-            TimeStamp = DateTime.UtcNow
-        };
-
-        await _repo.AddCommentAsync(comment);
+        var comments = await _repo.GetCommentsByAuthor(authorName, pageNumber, pageSize);
+        return CommentDTO.ToDtos(comments);
     }
     
+    public async Task AddComment(Cheep cheep, string text)
+    {
+        await _repo.AddComment(cheep, text);
+    }
+    
+    public Task<bool> DeleteComment(int commentId)
+        => _repo.DeleteComment(commentId);
   
 }

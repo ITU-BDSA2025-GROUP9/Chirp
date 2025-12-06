@@ -4,7 +4,6 @@ using Chirp.Infrastructure.Interfaces;
 using Chirp.Web.Pages.Shared;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace Chirp.Web.Pages;
 
 public class PublicModel : ChirpPage
@@ -77,12 +76,14 @@ public class PublicModel : ChirpPage
 
     public async Task<IActionResult> OnPostAddCommentAsync(int cheepId, string content)
     {
-        var user = await GetCurrentUserAsync();
-        if (user == null)
-            return RedirectToPage("/Account/Login");
+        var cheep = await CheepService.GetCheepById(cheepId);
+        if (cheep == null)
+        {
+            return RedirectToPage("/Public");
+        }
 
-        await _commentService.AddCommentAsync(cheepId, user.Id, content);
-        return RedirectToPage("/Public");
+        await _commentService.AddComment(cheep, content);
+        return RedirectToPage("Public");
     }
 
     public async Task<IActionResult> OnPostDeleteCommentAsync(int commentId)
@@ -91,7 +92,7 @@ public class PublicModel : ChirpPage
         if (user == null)
             return RedirectToPage("/Account/Login");
 
-        await _commentService.DeleteCommentAsync(commentId);
+        await _commentService.DeleteComment(commentId);
         return RedirectToPage("/Public");
     }
 }

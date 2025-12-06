@@ -7,10 +7,7 @@ namespace Chirp.Infrastructure.Chirp.Repositories;
 public class AuthorRepository : IAuthorRepository
 {
     private readonly ChirpDbContext _context;
-    public AuthorRepository(ChirpDbContext context)
-    {
-        _context = context;
-    }
+    public AuthorRepository(ChirpDbContext context) => _context = context;
     
     public async Task<Author> CreateAuthor(string name, string email)
     {
@@ -91,7 +88,6 @@ public class AuthorRepository : IAuthorRepository
             .AnyAsync(a => a.UserName == followerName && 
                            a.Following.Any(f => f.UserName == followeeName));
     }
-
     
     public async Task<bool> DeleteAuthor(string authorName)
     {
@@ -125,15 +121,16 @@ public class AuthorRepository : IAuthorRepository
             .AnyAsync(a => a.UserName == authorName);
     }
     
-    public async Task SetProfileImage(string authorName, string profileImage)
+    public async Task<bool> SetProfileImage(string authorName, string profileImage)
     {
         var author = await _context.Authors
             .FirstOrDefaultAsync(a => a.UserName == authorName);
 
         if (author == null)
-            return;
+            return false;
 
         author.ProfileImage = profileImage;
         await _context.SaveChangesAsync();
+        return true;
     }
 }

@@ -86,4 +86,36 @@ public class AuthorDTOTests
         dto.Email.Should().Be("bob@itu.dk");
         dto.ProfileImage.Should().MatchRegex(@"^/images/bird[1-5]-profile\.png$");
     }
+    
+    [Fact]
+    public void AuthorsToDtos_ShouldMapCorrectly()
+    {
+        var authors = new List<Author>
+        {
+            new Author { UserName = "Alice", Email = "alice@itu.dk", ProfileImage = "image1.png" },
+            new Author { UserName = "Bob", Email = "bob@itu.dk", ProfileImage = "image2.png" }
+        };
+        
+        var dtos = AuthorDTO.ToDtos(authors);
+        
+        dtos.Should().HaveCount(2);
+        dtos[0].Name.Should().Be("Alice");
+        dtos[0].Email.Should().Be("alice@itu.dk");
+        dtos[0].ProfileImage.Should().Be("image1.png");
+            
+        dtos[1].Name.Should().Be("Bob");
+        dtos[1].Email.Should().Be("bob@itu.dk");
+        dtos[1].ProfileImage.Should().Be("image2.png");
+    }
+
+    [Fact]
+    public void AuthorsToDtos_EmptyAuthors_ShouldThrow()
+    {
+        List<Author> authors = null!;
+
+        Action act = () => AuthorDTO.ToDtos(authors);
+
+        act.Should().Throw<ArgumentNullException>()
+            .WithMessage("*List of authors cannot be null*");
+    }
 }

@@ -11,9 +11,9 @@ public class CheepDTO
     public string Message { get; set; }
     public string TimeStamp { get; set; }
     public int CheepId { get; set; }
-    public List<CommentDTO> Comments { get; set; } = [];
+    public List<CommentDTO> Comments { get; set; }
 
-    public CheepDTO(AuthorDTO author, string message, string timestamp, int cheepId)
+    public CheepDTO(AuthorDTO author, string message, string timestamp, int cheepId,  List<CommentDTO> comments)
     {
         if (string.IsNullOrWhiteSpace(message))
             throw new ArgumentException($"Message cannot be null or empty. Invalid message: '{message}'");
@@ -26,12 +26,22 @@ public class CheepDTO
         Message = message;
         TimeStamp = timestamp;
         CheepId = cheepId;
+        Comments = comments;
     }
     
     public static CheepDTO ToDto(Cheep c) => new(
         AuthorDTO.ToDto(c.Author),
         c.Text,
         c.TimeStamp.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture),
-        c.CheepId
+        c.CheepId,
+        CommentDTO.ToDtos(c.Comments)
     );
+    
+    public static List<CheepDTO> ToDtos(List<Cheep> cheeps)
+    {
+        if (cheeps == null)
+            throw new ArgumentNullException(nameof(cheeps), "List of cheeps cannot be null.");
+        
+        return cheeps.Select(ToDto).ToList();
+    }
 }

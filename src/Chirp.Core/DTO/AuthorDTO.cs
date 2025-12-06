@@ -25,4 +25,12 @@ public class AuthorDTO
         a.Email!,
         a.ProfileImage
     );
+    
+    public static List<AuthorDTO> ToDtos(List<Author> authors)
+    {
+        if (authors == null)
+            throw new ArgumentNullException(nameof(authors), "List of authors cannot be null.");
+        
+        return authors.Select(ToDto).ToList();
+    }
 }

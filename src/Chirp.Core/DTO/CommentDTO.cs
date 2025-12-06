@@ -29,4 +29,12 @@ public class CommentDTO
         c.TimeStamp.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture),
         c.CommentId
     );
+
+    public static List<CommentDTO> ToDtos(List<Comment> comments)
+    {
+        if (comments == null)
+            throw new ArgumentNullException(nameof(comments), "List of comments cannot be null.");
+        
+        return comments.Select(ToDto).ToList();
+    }
 }
