@@ -10,6 +10,6 @@ public interface ICheepRepository
     Task<List<Cheep>> GetCheepsByAuthor(string authorName, int pageNumber, int pageSize);
     Task<List<Cheep>> GetCheepsByAuthors(List<string> authors, int pageNumber, int pageSize);
     Task<Cheep?> GetCheepById(int cheepId);
-    Task AddCheep(Author author, string text);
+    Task<int> AddCheep(Author author, string text);
     Task<bool> DeleteCheep(int cheepId);
 }

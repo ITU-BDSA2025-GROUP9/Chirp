@@ -77,12 +77,15 @@ public class PublicModel : ChirpPage
     public async Task<IActionResult> OnPostAddCommentAsync(int cheepId, string content)
     {
         var cheep = await CheepService.GetCheepById(cheepId);
+        var user = await GetCurrentUserAsync();
+        
+        if (user == null) 
+            return RedirectToPage("/Account/Login");
+        
         if (cheep == null)
-        {
             return RedirectToPage("/Public");
-        }
 
-        await _commentService.AddComment(cheep, content);
+        await _commentService.AddComment(cheep,user,content);
         return RedirectToPage("Public");
     }
 

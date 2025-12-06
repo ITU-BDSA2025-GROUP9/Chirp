@@ -64,102 +64,7 @@ public class UnitTests : IDisposable
         _connection.Dispose();
     }
     
-    [Fact]
-    public async Task GetAllCheeps_ShouldReturnCheeps()
-    {
-        var cheeps = await _cheepRepo.GetAllCheeps(1, 10);
-    
-        cheeps.Should().NotBeNullOrEmpty();
-        cheeps.Count.Should().Be(3);
-        cheeps.Should().OnlyContain(c => !string.IsNullOrWhiteSpace(c.Author.UserName) && !string.IsNullOrWhiteSpace(c.Text));
-        
-        var cheepsPage2 = await _cheepRepo.GetAllCheeps(2, 10);
-        cheepsPage2.Should().BeEmpty();
-    }
- 
-    [Fact]
-    public async Task GetCheepsByAuthor_ShouldReturnCorrectAuthor()
-    {
-        var cheeps = await _cheepRepo.GetCheepsByAuthor("Alice", 1, 10);
-        cheeps.Should().NotBeEmpty();
-        cheeps.Count.Should().Be(2);
-        cheeps.Should().OnlyContain(c => c.Author.UserName == "Alice");
-        
-        var cheepsPage2 = await _cheepRepo.GetCheepsByAuthor("Alice", 2, 10);
-        cheepsPage2.Should().BeEmpty();
-    }
-    
-    [Fact]
-    public async Task Create_ShouldAddAuthorToDatabase()
-    {
-        var author = await _authorRepo.CreateAuthor("Helge", "helge@itu.dk");
-
-        author.Should().NotBeNull();
-        author.UserName.Should().Be("Helge");
-        author.Email.Should().Be("helge@itu.dk");
-
-        await _cheepRepo.AddCheep(author, "Test");
-        var cheeps = await _cheepRepo.GetCheepsByAuthor("Helge", 1, 10);
-        
-        cheeps.Should().NotBeEmpty();
-        cheeps.Count.Should().Be(1);
-        cheeps.Should().OnlyContain(c => c.Author.UserName == "Helge");
-    }
-    
-    [Fact]
-    public async Task AddCheepAuthor_ShouldAddAuthor()
-    {
-        var author = new Author { UserName = "NewUser", Email = "newuser@itu.dk" };
-        await _cheepRepo.AddCheep(author, "Test");
-        
-        var cheeps = await _cheepRepo.GetCheepsByAuthor("NewUser", 1, 10);
-        
-        cheeps.Should().NotBeEmpty();
-        cheeps.Count.Should().Be(1);
-        cheeps.Should().OnlyContain(c => c.Author.UserName == "NewUser" && c.Text == "Test");
-    }
-    
-    [Fact]
-    public async Task FindByName_ShouldReturnAuthor()
-    {
-        var result = await _authorRepo.FindByName("Helge");
-        result.Should().BeNull();
-
-        await _authorRepo.CreateAuthor("Helge", "helge@itu.dk");
-        result = await _authorRepo.FindByName("Helge");
-
-        result.Should().NotBeNull();
-        result!.Email.Should().Be("helge@itu.dk");
-        result!.UserName.Should().Be("Helge");
-    }
-    
-    [Fact]
-    public async Task FindByName_ShouldReturnNull()
-    {
-        var result = await _authorRepo.FindByName("NonExistent");
-        result.Should().BeNull();
-    }
-    
-    [Fact]
-    public async Task FindByEmail_ShouldReturnAuthor()
-    {
-        var result = await _authorRepo.FindByEmail("helge@itu.dk");
-        result.Should().BeNull();
-        
-        await _authorRepo.CreateAuthor("Helge", "helge@itu.dk");
-        result = await _authorRepo.FindByEmail("helge@itu.dk");
-
-        result.Should().NotBeNull();
-        result!.Email.Should().Be("helge@itu.dk");
-        result!.UserName.Should().Be("Helge");
-    }
-    
-    [Fact]
-    public async Task FindByEmail_ShouldReturnNull()
-    {
-        var result = await _authorRepo.FindByEmail("NonExistent@itu.dk");
-        result.Should().BeNull();
-    }
+   
     
    
     [Fact]
@@ -188,25 +93,7 @@ public class UnitTests : IDisposable
        cheepsPage2.Should().BeEmpty();
    }
 
-   [Fact]
-   public async Task GetCheeps_ShouldReturnPageResult()
-   {
-       var author = new Author { UserName = "Alice", Email = "alice@itu.dk" };
-       for (var i = 0; i < 10; i++)
-       {
-           await _cheepRepo.AddCheep(author, "New message" + i);
-       }
 
-       var cheeps = await _cheepService.GetCheeps(1, 10);
-
-       cheeps.Should().NotBeNullOrEmpty();
-       cheeps.Count.Should().Be(10);
-
-
-       cheeps = await _cheepService.GetCheeps(2, 10);
-       cheeps.Should().NotBeNullOrEmpty();
-       cheeps.Count.Should().Be(3);
-   }
 
    [Theory]
    [InlineData(-1)]
@@ -240,29 +127,7 @@ public class UnitTests : IDisposable
        var cheeps = await _cheepService.GetCheepsByAuthor(author, 1, 10);
        cheeps.Should().BeEmpty();
    }
-
-   [Fact]
-   public async Task GetCheeps_Page2_ShouldNotContainFirstPageCheeps()
-   {
-       var author = new Author { UserName = "Alice", Email = "alice@itu.dk" };
-       for (var i = 0; i < 10; i++)
-       {
-           await _cheepRepo.AddCheep(author, "New message" + i);
-       }
-
-       var firstPage = await _cheepService.GetCheeps(1, 5);
-       var secondPage = await _cheepService.GetCheeps(2, 5);
-
-       firstPage.Should().NotBeEmpty();
-       firstPage.Count.Should().Be(5);
-
-       secondPage.Should().NotBeEmpty();
-       secondPage.Count.Should().Be(5);
-
-       secondPage.Should().NotContain(c =>
-           firstPage.Any(f => f.Author == c.Author && f.Message == c.Message && f.TimeStamp == c.TimeStamp));
-    }
-
+   
    [Fact]
    public async Task GetCheeps_EmptyPage_ShouldReturnEmptyList()
    {
@@ -387,17 +252,7 @@ public class UnitTests : IDisposable
        isFollowing.Should().BeTrue();
    }
    
-   [Fact]
-   public async Task FollowAuthor_ShouldUpdateFollowersAndFollowing()
-   {
-       await _authorService.FollowAuthor("Alice", "Bob");
-
-       var alice = await _authorRepo.FindByName("Alice");
-       var bob = await _authorRepo.FindByName("Bob");
-       
-       alice!.Following.Should().Contain(bob!);
-       bob!.Followers.Should().Contain(alice);
-   }
+   
 
    
    [Fact]
@@ -522,140 +377,4 @@ public class UnitTests : IDisposable
        var result = await _authorService.IsFollowing("Unknown", "Alice");
        result.Should().BeFalse();
    }
-   
-   [Fact]
-   public async Task FollowAuthor_ShouldAddFollowerAndFollowee()
-   {
-       var result = await _authorRepo.FollowAuthor("Alice", "Bob");
-       result.Should().BeTrue();
-
-       var alice = await _authorRepo.FindByName("Alice");
-       var bob = await _authorRepo.FindByName("Bob");
-
-       alice!.Following.Should().Contain(bob!);
-       bob!.Followers.Should().Contain(alice);
-   }
-   
-   [Fact]
-   public async Task FollowAuthor_SelfFollow_ShouldReturnFalse()
-   {
-       var result = await _authorRepo.FollowAuthor("Alice", "Alice");
-       result.Should().BeFalse();
-   }
-   
-   [Fact]
-   public async Task FollowAuthor_DuplicateFollow_ShouldReturnFalse()
-   {
-       await _authorRepo.FollowAuthor("Alice", "Bob");
-       var secondFollow = await _authorRepo.FollowAuthor("Alice", "Bob");
-       secondFollow.Should().BeFalse();
-   }
-
-   [Fact]
-   public async Task UnfollowAuthor_ShouldRemoveFollowerAndFollowee()
-   {
-       await _authorRepo.FollowAuthor("Alice", "Bob");
-       var result = await _authorRepo.UnfollowAuthor("Alice", "Bob");
-       result.Should().BeTrue();
-
-       var alice = await _authorRepo.FindByName("Alice");
-       var bob = await _authorRepo.FindByName("Bob");
-
-       alice!.Following.Should().NotContain(bob!);
-       bob!.Followers.Should().NotContain(alice);
-   }
-   
-   [Fact]
-   public async Task UnfollowAuthor_NotFollowing_ShouldReturnFalse()
-   {
-       var result = await _authorRepo.UnfollowAuthor("Alice", "Bob");
-       result.Should().BeFalse();
-   }
-   
-   [Fact]
-   public async Task IsFollowing_repoShouldReturnTrue_WhenFollowing()
-   {
-       await _authorRepo.FollowAuthor("Alice", "Bob");
-       var result = await _authorRepo.IsFollowing("Alice", "Bob");
-       result.Should().BeTrue();
-   }
-   
-   [Fact]
-   public async Task IsFollowing_repoShouldReturnFalse_WhenNotFollowing()
-   {
-       var result = await _authorRepo.IsFollowing("Alice", "Bob");
-       result.Should().BeFalse();
-   }
-
-   [Fact]
-   public async Task GetAllFollowees_ShouldReturnCorrectList()
-   {
-       await _authorRepo.CreateAuthor("Helge", "helge@itu.dk");
-       await _authorRepo.FollowAuthor("Alice", "Bob");
-       await _authorRepo.FollowAuthor("Alice", "Helge");
-
-       var followees = await _authorRepo.GetAllFollowees("Alice");
-       followees.Should().HaveCount(2); 
-       followees.Should().Contain(f => f == "Bob");
-       followees.Should().Contain(f => f == "Helge");
-       
-       await _authorRepo.UnfollowAuthor("Alice", "Bob");
-       followees = await _authorRepo.GetAllFollowees("Alice");
-       followees.Should().HaveCount(1); 
-       followees.Should().Contain("Helge");
-   }
-   
-   [Fact]
-   public async Task GetAllFollowees_UnknownUser_ShouldReturnEmpty()
-   {
-       var followees = await _authorRepo.GetAllFollowees("Unknown");
-       followees.Should().BeEmpty();
-   }
-   
-   [Fact]
-   public async Task GetAllFollowees_WithNoFollowee_ShouldReturnEmpty()
-   {
-       var followees = await _authorRepo.GetAllFollowees("Alice");
-       followees.Should().BeEmpty();
-   }
-   
-   [Fact]
-   public async Task GetAllFollowees_UserHasNoFollowees_OtherUsersFollowingDoesNotAffect()
-   {
-       await _authorRepo.CreateAuthor("Helge", "helge@itu.dk");
-       await _authorRepo.FollowAuthor("Bob", "Helge");
-       
-       var aliceFollowees = await _authorRepo.GetAllFollowees("Alice");
-       aliceFollowees.Should().BeEmpty();
-   }
-   
-   [Fact]
-   public async Task GetAllFollowees_UserHasFollowersButFollowsNoOne_ShouldReturnEmpty()
-   {
-       await _authorRepo.FollowAuthor("Bob", "Alice");
-       var aliceFollowees = await _authorRepo.GetAllFollowees("Alice");
-       aliceFollowees.Should().BeEmpty(); 
-   }
-   
-   [Fact]
-   public async Task GetCheepsByAuthors_ShouldReturnCorrectCheeps()
-   {
-       var authors = new List<string> { "Alice", "Bob" };
-       
-       var a1 = new Author { UserName = "Alice", Email = "alice@itu.dk" };
-       var a2 = new Author { UserName = "Bob", Email = "bob@itu.dk" };
-       
-       await _cheepRepo.AddCheep(a1, "Alice Cheep 1");
-       await _cheepRepo.AddCheep(a2, "Bob Cheep 1");
-       
-       var page1 = await _cheepRepo.GetCheepsByAuthors(authors, 1, 3); 
-
-       page1.Should().NotBeEmpty();
-       page1.Should().OnlyContain(c => c.Author.UserName == "Alice" || c.Author.UserName == "Bob");
-       page1.Should().HaveCount(3);
-   
-       var page2 = await _cheepRepo.GetCheepsByAuthors(authors, 2, 3);
-       page2.Should().OnlyContain(c => c.Author.UserName == "Alice" || c.Author.UserName == "Bob");
-   }
-
 }

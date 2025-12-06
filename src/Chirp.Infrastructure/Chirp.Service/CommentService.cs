@@ -23,9 +23,9 @@ public class CommentService : ICommentService
         return CommentDTO.ToDtos(comments);
     }
     
-    public async Task AddComment(Cheep cheep, string text)
+    public async Task<int> AddComment(Cheep cheep, Author author, string text)
     {
-        await _repo.AddComment(cheep, text);
+        return await _repo.AddComment(cheep, author, text);
     }
     
     public Task<bool> DeleteComment(int commentId)

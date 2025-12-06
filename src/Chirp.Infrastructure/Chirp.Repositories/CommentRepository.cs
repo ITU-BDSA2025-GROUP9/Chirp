@@ -28,19 +28,19 @@ public class CommentRepository : ICommentRepository
             .Take(pageSize)
             .ToListAsync();
     
-    public async Task AddComment(Cheep cheep, string text)
+    public async Task<int> AddComment(Cheep cheep, Author author, string text)
     {
         var comment = new Comment
         {
             Cheep = cheep,
-            Author = cheep.Author,
+            Author = author,
             Text = text,
             TimeStamp = DateTime.UtcNow.ToLocalTime()
         };
         
         _context.Comments.Add(comment);
-        cheep.Comments.Add(comment);
         await _context.SaveChangesAsync();
+        return comment.CommentId;
     }
     
     public async Task<bool> DeleteComment(int commentId)

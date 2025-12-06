@@ -44,7 +44,7 @@ public class CheepRepository : ICheepRepository
             .Take(pageSize)
             .ToListAsync();
     
-    public async Task AddCheep(Author author, string text)
+    public async Task<int> AddCheep(Author author, string text)
     {
         var cheep = new Cheep
         {
@@ -56,6 +56,7 @@ public class CheepRepository : ICheepRepository
         author.Cheeps.Add(cheep);
         await _context.Cheeps.AddAsync(cheep);
         await _context.SaveChangesAsync();
+        return cheep.CheepId;
     }
     
     public async Task<List<Cheep>> GetCheepsByAuthors(List<string> authors, int pageNumber, int pageSize)
