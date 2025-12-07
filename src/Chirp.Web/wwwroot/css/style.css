@@ -476,6 +476,12 @@ span.field-validation-error{
     color: white;
 }
 
+.comment-toggle{
+    margin-top: 10px;
+    color: #5778c4;
+    font-size: 15px;
+}
+
 .comment-footer form button:hover {
     background-color: #d8000c;
 }

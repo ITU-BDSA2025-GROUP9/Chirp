@@ -11,40 +11,30 @@ public class CommentService : ICommentService
 
     public CommentService(ICommentRepository repo) => _repo = repo;
     
-    public Task DeleteCommentAsync(int id)
-        => _repo.DeleteCommentAsync(id);
-
-    public async Task<IEnumerable<CommentDTO>> GetCommentsForCheepAsync(int cheepId)
+    public async Task<List<CommentDTO>> GetCommentsForCheep(int cheepId)
     {
-        var comments = await _repo.GetCommentsForCheepAsync(cheepId);
-
-        return comments.Select(CommentToDto);
+        var comments = await _repo.GetCommentsForCheep(cheepId);
+        return CommentDTO.ToDtos(comments);
     }
 
-    public async Task AddCommentAsync(int cheepId, int authorId, string content)
+    public async Task<List<CommentDTO>> GetCommentsByAuthor(string authorName, int pageNumber, int pageSize)
     {
-        var comment = new Comment
-        {
-            CheepId = cheepId,
-            AuthorId = authorId,
-            Content = content,
-            CreatedAt = DateTime.UtcNow
-        };
+        if (string.IsNullOrWhiteSpace(authorName)) throw new ArgumentException("Author is required", nameof(authorName));
+        if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
 
-        await _repo.AddCommentAsync(comment);
+        var comments = await _repo.GetCommentsByAuthor(authorName, pageNumber, pageSize);
+        return CommentDTO.ToDtos(comments);
     }
     
-     public static CommentDTO CommentToDto(Comment c) => new(
-        AuthorToDto(c.Author),
-        c.Content,
-        c.CreatedAt.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture),
-        c.Id
-    );
-     
-    public static AuthorDTO AuthorToDto(Author a) => new(
-        a.UserName!,
-        a.Email!,
-        a.ProfileImage
-    );
-
+    public async Task<int> AddComment(int cheepId, int authorId, string text)
+    {
+        if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Cheep text is required and cannot be null or empty", nameof(text));
+        if (text.Length > 160) throw new ArgumentException("Cheep text cannot exceed 160 characters.", nameof(text));
+        
+        return await _repo.AddComment(cheepId, authorId, text);
+    }
+    
+    public Task<bool> DeleteComment(int commentId)
+        => _repo.DeleteComment(commentId);
+  
 }

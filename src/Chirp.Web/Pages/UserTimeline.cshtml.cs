@@ -78,10 +78,10 @@ public class UserTimelineModel : ChirpPage
     public async Task<IActionResult> OnPostAddCommentAsync(int cheepId, string content)
     {
         var user = await GetCurrentUserAsync();
-        if (user == null)
+        if (user == null) 
             return RedirectToPage("/Account/Login");
-
-        await _commentService.AddCommentAsync(cheepId, user.Id, content);
+        
+        await _commentService.AddComment(cheepId, user.Id, content);
         return RedirectToPage("/UserTimeline");
     }
 
@@ -109,7 +109,7 @@ public class UserTimelineModel : ChirpPage
         if (user == null)
             return RedirectToPage("/Account/Login");
 
-        await _commentService.DeleteCommentAsync(commentId);
+        await _commentService.DeleteComment(commentId);
         return RedirectToPage("/UserTimeline");
     }
 

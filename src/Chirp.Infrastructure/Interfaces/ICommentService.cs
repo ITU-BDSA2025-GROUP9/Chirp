@@ -1,11 +1,12 @@
+using Chirp.Core;
 using Chirp.Core.DTO;
 
 namespace Chirp.Infrastructure.Interfaces;
 
 public interface ICommentService
 {
-    Task<IEnumerable<CommentDTO>> GetCommentsForCheepAsync(int cheepId);
-    Task AddCommentAsync(int cheepId, int authorId, string content);
-    Task DeleteCommentAsync(int id);
-
+    Task<List<CommentDTO>> GetCommentsForCheep(int cheepId);
+    Task<List<CommentDTO>> GetCommentsByAuthor(string authorName, int pageNumber, int pageSize);
+    Task<int> AddComment(int cheepId, int authorId, string text);
+    Task<bool> DeleteComment(int commentId);
 }

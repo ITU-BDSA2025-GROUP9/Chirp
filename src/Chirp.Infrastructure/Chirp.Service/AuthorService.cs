@@ -59,14 +59,14 @@ public class AuthorService : IAuthorService
         return await _repository.AuthorByNameExists(authorName);
     }
     
-    public async Task SetProfileImage(string authorName, string profileImage)
+    public async Task<bool> SetProfileImage(string authorName, string profileImage)
     {
         if (string.IsNullOrWhiteSpace(authorName)) 
             throw new ArgumentException("Author is required", nameof(authorName));
         if (string.IsNullOrWhiteSpace(profileImage)) 
             throw new ArgumentException("Profile image is required", nameof(profileImage));
         
-        await _repository.SetProfileImage(authorName, profileImage);
+        return await _repository.SetProfileImage(authorName, profileImage);
     }
     
     public async Task<List<string>> GetAllFollowees(string authorName)

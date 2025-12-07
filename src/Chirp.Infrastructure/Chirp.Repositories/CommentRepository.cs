@@ -12,28 +12,44 @@ public class CommentRepository : ICommentRepository
 
     public CommentRepository(ChirpDbContext context) => _context = context;
 
-    public async Task<IEnumerable<Comment>> GetCommentsForCheepAsync(int cheepId)
-    {
-        return await _context.Comments
+    public async Task<List<Comment>> GetCommentsForCheep(int cheepId) 
+        => await _context.Comments
             .Where(c => c.CheepId == cheepId)
-            .OrderBy(c => c.CreatedAt)
+            .OrderBy(c => c.TimeStamp)
             .Include(c => c.Author)
             .ToListAsync();
-    }
-
-    public async Task AddCommentAsync(Comment comment)
+    
+    public async Task<List<Comment>> GetCommentsByAuthor(string authorName, int pageNumber, int pageSize)
+        => await _context.Comments
+            .Include(c => c.Author)
+            .Where(c => c.Author.UserName == authorName)
+            .OrderByDescending(c => c.TimeStamp)
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+    
+    public async Task<int> AddComment(int cheepId, int authorId, string text)
     {
+        var comment = new Comment
+        {
+            CheepId = cheepId,
+            AuthorId = authorId,
+            Text = text,
+            TimeStamp = DateTime.UtcNow.ToLocalTime()
+        };
+        
         _context.Comments.Add(comment);
         await _context.SaveChangesAsync();
+        return comment.CommentId;
     }
     
-    public async Task DeleteCommentAsync(int id)
+    public async Task<bool> DeleteComment(int commentId)
     {
-        var comment = await _context.Comments.FindAsync(id);
-        if (comment != null)
-        {
-            _context.Comments.Remove(comment);
-            await _context.SaveChangesAsync();
-        }
+        var comment = await _context.Comments.FindAsync(commentId);
+        if (comment == null) return false;
+        
+        _context.Comments.Remove(comment);
+        await _context.SaveChangesAsync();
+        return true; 
     }
 }

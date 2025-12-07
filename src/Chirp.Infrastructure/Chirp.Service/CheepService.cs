@@ -16,17 +16,15 @@ namespace Chirp.Infrastructure.Chirp.Service;
 public class CheepService : ICheepService
 {
     private readonly ICheepRepository _repository;
-    private readonly ICommentService _commentService;
     /// <summary>
     /// Initializes a new instance of the <see cref="CheepService"/> class.
     /// </summary>
     /// <param name="repository">
     /// The repository responsible for interacting with the data store containing authors and cheeps.
     /// </param>
-    public CheepService(ICheepRepository repository, ICommentService commentService)
+    public CheepService(ICheepRepository repository)
     {
         _repository = repository;
-        _commentService = commentService;
     }
 
     /// <summary>
@@ -46,15 +44,8 @@ public class CheepService : ICheepService
     {
         if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
         var cheeps = await _repository.GetAllCheeps(pageNumber, pageSize);
-        
-        var list = cheeps.Select(CheepToDto).ToList();
-
-        foreach (var dto in list)
-        {
-            dto.Comments = (await _commentService.GetCommentsForCheepAsync(dto.CheepId)).ToList();
-        }
-
-        return list;
+       
+        return CheepDTO.ToDtos(cheeps);
     }
 
     /// <summary>
@@ -74,39 +65,19 @@ public class CheepService : ICheepService
     {
         if (string.IsNullOrWhiteSpace(authorName)) throw new ArgumentException("Author is required", nameof(authorName));
         if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
-        var cheeps = await _repository.GetCheepsByAuthor(authorName, pageNumber, pageSize);
         
-        var list = cheeps.Select(CheepToDto).ToList();
-
-        foreach (var dto in list)
-        {
-            dto.Comments = (await _commentService.GetCommentsForCheepAsync(dto.CheepId)).ToList();
-        }
-
-        return list;
+        var cheeps = await _repository.GetCheepsByAuthor(authorName, pageNumber, pageSize);
+        return CheepDTO.ToDtos(cheeps);
     }
 
-    public async Task AddCheep(Author author, string text)
+    public async Task<int> AddCheep(Author author, string text)
     {
         if (author == null) throw new ArgumentNullException("Author is required " + nameof(author));
         if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Cheep text is required and cannot be null or empty", nameof(text));
         if (text.Length > 160) throw new ArgumentException("Cheep text cannot exceed 160 characters.", nameof(text));
 
-        await _repository.AddCheep(author, text);
+        return await _repository.AddCheep(author, text);
     }
-    
-    public static CheepDTO CheepToDto(Cheep c) => new(
-        AuthorToDto(c.Author),
-        c.Text,
-        c.TimeStamp.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture),
-        c.CheepId
-    );
-    
-    public static AuthorDTO AuthorToDto(Author a) => new(
-        a.UserName!,
-        a.Email!,
-        a.ProfileImage
-    );
     
     public async Task<List<CheepDTO>> GetCheepsByAuthors(List<string> authors, int pageNumber, int pageSize)
     {
@@ -114,14 +85,7 @@ public class CheepService : ICheepService
         if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
         
         var cheeps = await _repository.GetCheepsByAuthors(authors, pageNumber, pageSize);
-        var list = cheeps.Select(CheepToDto).ToList();
-        
-        foreach (var dto in list)
-        {
-            dto.Comments = (await _commentService.GetCommentsForCheepAsync(dto.CheepId)).ToList();
-        }
-
-        return list;
+        return CheepDTO.ToDtos(cheeps);
     }
     
     public async Task<bool> DeleteCheep(int cheepId)
