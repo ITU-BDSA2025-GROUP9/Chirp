@@ -3,14 +3,18 @@
 @model IEnumerable<Chirp.Core.DTO.CommentDTO>
 @inject UserManager<Author> UserManager
 
-<div class="comments">
+<details class="comments">
+    <summary class="comment-toggle">
+        Comments (@Model.Count())
+    </summary>
+
     @foreach (var c in Model)
     {
         <div class="comment">
             <div class="comment-inner">
 
                 <img src="@(c.Author.ProfileImage ?? "/images/bird1-profile.png")"
-                     class="profilepicture" alt="" />
+                     class="profilepicture" alt=""/>
 
                 <div class="comment-body">
 
@@ -42,4 +46,4 @@
             </div>
         </div>
     }
-</div>
+</details>

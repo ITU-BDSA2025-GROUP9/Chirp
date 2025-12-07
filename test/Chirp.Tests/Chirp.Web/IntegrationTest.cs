@@ -226,7 +226,7 @@ public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
         var response = await _client.GetAsync("/");
         var content = await response.Content.ReadAsStringAsync();
         
-        content.Should().Contain("<div class=\"comments\">");
+        content.Should().Contain("<details class=\"comments\">");
     }
     
     [Fact]
@@ -235,7 +235,7 @@ public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
         var response = await _client.GetAsync("/Jacqualine Gilcoine");
         var content = await response.Content.ReadAsStringAsync();
         
-        content.Should().Contain("<div class=\"comments\">");
+        content.Should().Contain("<details class=\"comments\">");
     }
     
     [Fact]
