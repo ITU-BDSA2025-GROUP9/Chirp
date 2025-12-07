@@ -22,7 +22,7 @@ public class CheepService : ICheepService
     /// <param name="repository">
     /// The repository responsible for interacting with the data store containing authors and cheeps.
     /// </param>
-    public CheepService(ICheepRepository repository, ICommentService commentService)
+    public CheepService(ICheepRepository repository)
     {
         _repository = repository;
     }
@@ -86,11 +86,6 @@ public class CheepService : ICheepService
         
         var cheeps = await _repository.GetCheepsByAuthors(authors, pageNumber, pageSize);
         return CheepDTO.ToDtos(cheeps);
-    }
-
-    public async Task<Cheep?> GetCheepById(int cheepId)
-    {
-        return await _repository.GetCheepById(cheepId);
     }
     
     public async Task<bool> DeleteCheep(int cheepId)

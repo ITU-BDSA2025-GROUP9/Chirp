@@ -1,61 +1,41 @@
-using FluentAssertions;
-using System.Globalization;
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
-using Chirp.Infrastructure.Database; 
-using Chirp.Infrastructure.Repositories;
-using Chirp.Core.DTO;
 using Chirp.Core;
 using Chirp.Infrastructure.Chirp.Repositories;
 using Chirp.Infrastructure.Chirp.Service;
+using Chirp.Infrastructure.Database;
 using Chirp.Infrastructure.Interfaces;
+using FluentAssertions;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+namespace Chirp.Tests.Chirp.Infrastructure;
 
-namespace Chirp.Razor.Tests;
-public class UnitTests : IDisposable
-{ 
+public class AuthorServiceTests : IDisposable
+{
     private readonly SqliteConnection _connection;
     private readonly ChirpDbContext _context;
     
-    private readonly ICheepRepository _cheepRepo;
-    private readonly ICheepService _cheepService;
-    
-    private readonly IAuthorRepository _authorRepo;
     private readonly IAuthorService _authorService;
     
-    private readonly ICommentRepository _commentRepo;
-    private readonly ICommentService _commentService;
-
-    public UnitTests()
+    public AuthorServiceTests()
     {
         _connection = new SqliteConnection("Filename=:memory:");
         _connection.Open();
 
         var builder = new DbContextOptionsBuilder<ChirpDbContext>().UseSqlite(_connection);
         _context = new ChirpDbContext(builder.Options);
-        _context.Database.EnsureCreated();
-
+        _context.Database.EnsureCreated(); 
+        
         var a1 = new Author { UserName = "Alice", Email = "alice@itu.dk" };
         var a2 = new Author { UserName = "Bob", Email = "bob@itu.dk" };
+        var a3 = new Author { UserName = "Helge", Email = "helge@itu.dk" };
 
         _context.Authors.AddRange(
-            a1, a2
+            a1, a2, a3
         );
-
-        _context.Cheeps.AddRange(
-            new Cheep { Author = a1, Text = "Hello!", TimeStamp = DateTime.UtcNow },
-            new Cheep { Author = a1, Text = "Second cheep", TimeStamp = DateTime.UtcNow },
-            new Cheep { Author = a2, Text = "Third cheep", TimeStamp = DateTime.UtcNow }
-        );
-
+        
         _context.SaveChanges();
-        _commentRepo = new CommentRepository(_context);
-        _cheepRepo = new CheepRepository(_context);
-        _commentService = new CommentService(_commentRepo);
         
-        _cheepService = new CheepService(_cheepRepo, _commentService);
-        
-        _authorRepo = new AuthorRepository(_context);
-        _authorService = new AuthorService(_authorRepo);
+        var authorRepo = new AuthorRepository(_context);
+        _authorService = new AuthorService(authorRepo);
     }
 
     public void Dispose()
@@ -64,152 +44,10 @@ public class UnitTests : IDisposable
         _connection.Dispose();
     }
     
-   
-    
-   
-    [Fact]
-    public async Task GetCheepsByAuthor_ShouldReturnCorrectAuthor2()
-    {
-        var cheeps = await _cheepService.GetCheepsByAuthor("Alice", 1, 10);
-        
-        cheeps.Should().NotBeEmpty();
-        cheeps.Count.Should().Be(2);
-        cheeps.Should().OnlyContain(c => c.Author.Name == "Alice");
-        
-        var cheepsPage2 = await _cheepService.GetCheepsByAuthor("Alice", 2, 10);
-        cheepsPage2.Should().BeEmpty();
-    }
-    
-   [Fact]
-   public async Task GetAllCheeps_ShouldReturnCheeps2()
-   {
-       var cheeps = await _cheepService.GetCheeps(1, 10);
-
-       cheeps.Should().NotBeEmpty();
-       cheeps.Count.Should().Be(3);
-       cheeps.Should().OnlyContain(c => !string.IsNullOrWhiteSpace(c.Author.Name) && !string.IsNullOrWhiteSpace(c.Message) && !string.IsNullOrWhiteSpace(c.TimeStamp));
-
-       var cheepsPage2 = await _cheepService.GetCheeps(2, 10);
-       cheepsPage2.Should().BeEmpty();
-   }
-
-
-
-   [Theory]
-   [InlineData(-1)]
-   [InlineData(-2)]
-   [InlineData(0)]
-   public async Task GetCheeps_InvalidPage_ShouldThrow(int page)
-   {
-       Func<Task> act = async () => await _cheepService.GetCheeps(page, 10);
-
-       await act.Should().ThrowAsync<ArgumentOutOfRangeException>()
-           .WithMessage($"*Pagenumber must be greater than 0. Invalid pagenumber: {page}*");
-   }
-
-   [Theory]
-   [InlineData("")]
-   [InlineData("   ")]
-   [InlineData(null)]
-   public async Task GetCheepsByAuthor_InvalidAuthor_ShouldThrow(string author)
-   {
-       Func<Task> act = async () => await _cheepService.GetCheepsByAuthor(author, 1, 10);
-       await act.Should().ThrowAsync<ArgumentException>()
-           .WithMessage($"*Author is required*");
-   }
-
-   [Theory]
-   [InlineData("NonExisting123")]
-   [InlineData("....")]
-   [InlineData(".")]
-   public async Task GetCheepsFromAuthor_UnknownAuthor_ShouldReturnEmpty(string author)
-   {
-       var cheeps = await _cheepService.GetCheepsByAuthor(author, 1, 10);
-       cheeps.Should().BeEmpty();
-   }
-   
-   [Fact]
-   public async Task GetCheeps_EmptyPage_ShouldReturnEmptyList()
-   {
-       var cheeps = await _cheepService.GetCheeps(10, 10);
-       cheeps.Should().BeEmpty();
-   }
-    
-   [Fact]
-   public async Task AddCheep_ValidAuthorAndText()
-   {
-       var author = new Author { UserName = "Alice", Email = "alice@itu.dk" };
-       await _cheepService.AddCheep(author, "Test");
-
-       var cheeps = await _cheepService.GetCheepsByAuthor("Alice", 1, 10);
-       cheeps.Should().NotBeEmpty();
-       cheeps.Count.Should().Be(3);
-       
-       cheeps.Should().ContainSingle(c => c.Author.Name == "Alice" && c.Message == "Test");
-   }
-   
-   [Fact]
-   public async Task AddCheep_InvalidText_ShouldThrowException()
-   {
-       var longCheep = new string('x', 161);
-
-       var author = new Author { UserName = "Helge", Email = "helge@itu.dk" };
-       Func<Task> act = async () => await _cheepService.AddCheep(author, longCheep);
-
-       await act.Should().ThrowAsync<ArgumentException>()
-           .WithMessage("*cannot exceed 160 characters*");
-   }
-   
-   [Fact]
-   public async Task AddCheep_160lengthText_ShouldNotThrowException()
-   {
-       var longCheep = new string('x', 160);
-       var author = new Author { UserName = "Helge", Email = "helge@itu.dk" };
-       Func<Task> act = async () => await _cheepService.AddCheep(author, longCheep);
-
-       await act.Should().NotThrowAsync<ArgumentException>();
-   }
-   
-   [Fact]
-   public async Task AddCheepAuthor_InvalidText_ShouldThrowException()
-   {
-       var longCheep = new string('x', 161);
-       var author = new Author { UserName = "Helge", Email = "helge@itu.dk" };
-
-       Func<Task> act = async () => await _cheepService.AddCheep(author, longCheep);
-
-       await act.Should().ThrowAsync<ArgumentException>()
-           .WithMessage("*cannot exceed 160 characters*");
-   }
-   
-   [Fact]
-   public async Task AddCheepAuthor_160lengthText_ShouldNotThrowException()
-   {
-       var longCheep = new string('x', 160);
-       var author = new Author { UserName = "Helge", Email = "helge@itu.dk" };
-
-       Func<Task> act = async () => await _cheepService.AddCheep(author, longCheep);
-
-       await act.Should().NotThrowAsync<ArgumentException>();
-   }
-   
-   [Theory]
-   [InlineData("")]
-   [InlineData("   ")]
-   [InlineData(null)]
-   public async Task AddCheep_InvalidText_ShouldThrowException2(string text)
-   {
-       var author = new Author { UserName = "Alice", Email = "alice@itu.dk" };
-       Func<Task> act = async () => await _cheepService.AddCheep(author, text);
-       await act.Should().ThrowAsync<ArgumentException>()
-           .WithMessage("*Cheep text is required and cannot be null or empty*");
-   }
-   
    [Fact]
    public async Task FollowAuthor_ShouldAllowValidFollow()
    {
        var result = await _authorService.FollowAuthor("Alice", "Bob");
-       
        result.Should().BeTrue();
        
        var isFollowing = await _authorService.IsFollowing("Alice", "Bob");
@@ -224,7 +62,6 @@ public class UnitTests : IDisposable
        await act.Should().ThrowAsync<InvalidOperationException>()
            .WithMessage("You cannot follow yourself.");
    }
-   
    
    [Theory]
    [InlineData(null, "Bob")]
@@ -251,9 +88,6 @@ public class UnitTests : IDisposable
        var isFollowing = await _authorService.IsFollowing("Alice", "Bob");
        isFollowing.Should().BeTrue();
    }
-   
-   
-
    
    [Fact]
    public async Task FollowAuthor_FolloweeDoesNotExist_ShouldReturnFalse()
@@ -299,9 +133,9 @@ public class UnitTests : IDisposable
    [Fact]
    public async Task UnfollowAuthor_ShouldNotAffectOtherFollowers()
    {
-       await _authorRepo.CreateAuthor("Helge", "helge@itu.dk");
        await _authorService.FollowAuthor("Alice", "Bob");
        await _authorService.FollowAuthor("Helge", "Bob");
+       
        await _authorService.UnfollowAuthor("Alice", "Bob");
 
        var result =  await _authorService.IsFollowing("Helge", "Bob");
@@ -376,5 +210,117 @@ public class UnitTests : IDisposable
    {
        var result = await _authorService.IsFollowing("Unknown", "Alice");
        result.Should().BeFalse();
+   }
+   
+   [Fact]
+   public async Task DeleteAuthor_ShouldDelete_WhenAuthorExists()
+   {
+       var result = await _authorService.DeleteAuthor("Alice");
+       result.Should().BeTrue();
+       
+       _context.Authors.Should().NotContain(a => a.UserName == "Alice");
+   }
+
+   [Fact]
+   public async Task DeleteAuthor_ShouldReturnFalse_WhenAuthorDoesNotExist()
+   {
+       var result = await _authorService.DeleteAuthor("Unknown");
+       result.Should().BeFalse();
+       
+       _context.Authors.Should().NotContain(a => a.UserName == "Unknown");
+   }
+
+   [Theory]
+   [InlineData(null)]
+   [InlineData("")]
+   [InlineData("   ")]
+   public async Task DeleteAuthor_InvalidName_ShouldThrow(string name)
+   {
+       Func<Task> act = () => _authorService.DeleteAuthor(name);
+       await act.Should().ThrowAsync<ArgumentException>()
+           .WithMessage("*Author is required*");
+   }
+   
+   [Fact]
+   public async Task AuthorByNameExists_ShouldReturnTrue_WhenAuthorExists()
+   {
+       var result = await _authorService.AuthorByNameExists("Alice");
+       result.Should().BeTrue();
+   }
+   
+   [Theory]
+   [InlineData(null)]
+   [InlineData("")]
+   [InlineData("   ")]
+   [InlineData("Unknown")]
+   public async Task AuthorByNameExists_ShouldReturnFalse(string name)
+   {
+       var result = await _authorService.AuthorByNameExists(name);
+       result.Should().BeFalse();
+   }
+   
+   [Fact]
+   public async Task SetProfileImage_ShouldReturnTrue_WhenValid()
+   {
+       _context.Authors.Should().Contain(a => a.UserName == "Alice" && a.ProfileImage != "image.png");
+       
+       var result = await _authorService.SetProfileImage("Alice", "image.png");
+       result.Should().BeTrue();
+       _context.Authors.Should().Contain(a => a.UserName == "Alice" && a.ProfileImage == "image.png");
+   }
+
+   [Theory]
+   [InlineData(null, "image.png")]
+   [InlineData("", "image.png")]
+   [InlineData("   ", "image.png")]
+   [InlineData("Alice", null)]
+   [InlineData("Alice", "")]
+   [InlineData("Alice", "   ")]
+   public async Task SetProfileImage_InvalidArguments_ShouldThrow(string author, string img)
+   {
+       Func<Task> act = () => _authorService.SetProfileImage(author, img);
+       await act.Should().ThrowAsync<ArgumentException>();
+   }
+   
+   [Fact]
+   public async Task GetAllFollowees_ShouldReturnFollowees()
+   {
+       await _authorService.FollowAuthor("Alice", "Bob");
+       await _authorService.FollowAuthor("Alice", "Helge");
+
+       var result = await _authorService.GetAllFollowees("Alice");
+       result.Should().Contain(["Bob", "Helge"]);
+   }
+   
+   [Theory]
+   [InlineData(null)]
+   [InlineData("")]
+   [InlineData("   ")]
+   public async Task GetAllFollowees_ShouldThrow(string name)
+   {
+       Func<Task> act = () => _authorService.GetAllFollowees(name);
+       await act.Should().ThrowAsync<ArgumentException>()
+           .WithMessage("*Author is required*");
+   }
+   
+   [Fact]
+   public async Task GetAllFolloweesAndSelf_ShouldIncludeSelf()
+   {
+       await _authorService.FollowAuthor("Alice", "Bob");
+       await _authorService.FollowAuthor("Alice", "Helge");
+
+       var result = await _authorService.GetAllFolloweesAndSelf("Alice");
+       result.Should().Contain(["Bob", "Helge", "Alice"]);
+   }
+   
+   [Theory]
+   [InlineData(null)]
+   [InlineData("")]
+   [InlineData("   ")]
+   public async Task GetAllFolloweesAndSelf_ShouldThrow(string name)
+   {
+       Func<Task> act = () => _authorService.GetAllFolloweesAndSelf(name);
+       await act.Should().ThrowAsync<ArgumentException>()
+           .WithMessage("*Author is required*");;
    }
 }

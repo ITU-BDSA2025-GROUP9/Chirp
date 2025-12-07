@@ -5,7 +5,6 @@ using Chirp.Infrastructure.Repositories;
 using FluentAssertions;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-
 namespace Chirp.Tests.Chirp.Infrastructure;
 
 public class CheepRepositoryTests : IDisposable
@@ -179,7 +178,6 @@ public class CheepRepositoryTests : IDisposable
         result.Should().BeEmpty();
     }
     
-    
     [Fact]
     public async Task AddCheep_ShouldAddCheepToDB()
     {
@@ -214,6 +212,7 @@ public class CheepRepositoryTests : IDisposable
         var result = await _cheepRepo.DeleteCheep(cheepId);
         
         result.Should().BeTrue();
+        _context.Cheeps.Should().NotContain(c => c.CheepId == cheepId);
     }
     
     [Fact]
@@ -237,7 +236,9 @@ public class CheepRepositoryTests : IDisposable
     public async Task DeleteCheep_ShouldReturnFalse_WhenNotExist()
     {
         var result = await _cheepRepo.DeleteCheep(999);
+        
         result.Should().BeFalse(); 
+        _context.Cheeps.Should().NotContain(c => c.CheepId == 999);
     }
     
     [Fact]

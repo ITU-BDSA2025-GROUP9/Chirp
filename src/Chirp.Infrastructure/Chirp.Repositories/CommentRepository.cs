@@ -28,12 +28,12 @@ public class CommentRepository : ICommentRepository
             .Take(pageSize)
             .ToListAsync();
     
-    public async Task<int> AddComment(Cheep cheep, Author author, string text)
+    public async Task<int> AddComment(int cheepId, int authorId, string text)
     {
         var comment = new Comment
         {
-            Cheep = cheep,
-            Author = author,
+            CheepId = cheepId,
+            AuthorId = authorId,
             Text = text,
             TimeStamp = DateTime.UtcNow.ToLocalTime()
         };
