@@ -1,9 +1,12 @@
 ---
 title: _Chirp!_ Project Report
-subtitle: ITU BDSA 2024 Group `<no>`
+subtitle: ITU BDSA 2025 Group 9
 author:
-- "Helge Pfeiffer <ropf@itu.dk>"
-- "Adrian Hoff <adho@itu.dk>"
+- "Kristine Nielsen <krini@itu.dk>"
+- "Isabella Bjerre Wahl <iswa@itu.dk>"
+- "Nickolaj Toft Carman <nitc@itu.dk>"
+- "Mikkel Dybro Hansen <midh@itu.dk>"
+- "Marcus Alexander Ryssel Mader <almm@itu.dk>"
 numbersections: true
 ---
 
