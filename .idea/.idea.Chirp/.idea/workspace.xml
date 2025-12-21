@@ -15,8 +15,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7266b04b-ac72-49d8-a177-c097c4b18dec" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/report.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/report.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chirp.Web/App_Data/chirp.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chirp.Web/App_Data/chirp.db" afterDir="false" />
     </list>
     <list id="5953e8f1-b027-4a29-853c-9f653d3b12b4" name="Changes by Kristine" comment="" />
     <list id="24ec59c7-267e-4645-a192-980babdfa0ab" name="Changes by marcus" comment="" />
@@ -53,22 +53,22 @@
     &quot;assignee&quot;: &quot;IDKINANN&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/ITU-BDSA2025-GROUP9/Chirp.git",
-    "accountId": "6aac44b0-e0f0-4cad-98fd-caa286f9454b"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ITU-BDSA2025-GROUP9/Chirp.git&quot;,
+    &quot;accountId&quot;: &quot;6aac44b0-e0f0-4cad-98fd-caa286f9454b&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "ITU-BDSA2025-GROUP9",
-    "repository": "Chirp"
+    &quot;owner&quot;: &quot;ITU-BDSA2025-GROUP9&quot;,
+    &quot;repository&quot;: &quot;Chirp&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/obj/Chirp.Razor.csproj.nuget.dgspec.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Chirp.Razor/obj/project.assets.json" root0="FORCE_HIGHLIGHTING" />
@@ -76,7 +76,7 @@
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="Toolset" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -93,7 +93,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "https-redirect",
+    "git-widget-placeholder": "report",
     "last_opened_file_path": "/home/marcus/Documents/uni/Analysis design and software/exercise",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -247,6 +247,7 @@
       <workItem from="1761729968148" duration="3457000" />
       <workItem from="1761743908443" duration="3016000" />
       <workItem from="1762366258540" duration="1268000" />
+      <workItem from="1766322116441" duration="3494000" />
     </task>
     <task id="LOCAL-00001" summary="Added Azure functionality + several new classes.&#10;should work with azure once workflows are set up for it.">
       <option name="closed" value="true" />

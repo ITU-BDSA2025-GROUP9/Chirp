@@ -30,6 +30,8 @@ Here comes a description of our domain model.
 # Process
 
 ## Build, test, release, and deployment
+![Illustration of the _Chirp!_ event process as UML class diagram.](docs/Images/UML diagram BTRD.png)
+
 
 ## Team work
 
