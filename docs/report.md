@@ -34,7 +34,7 @@ Here comes a description of our domain model.
 
 The UML diagram shows the pocess of building, testing, releasing, and deploying _Chirp!_ to our GitHub and Azure Web App.
 The workflow trigger is dependent on the type of action that occurs in the repository.
-Push with the Tag `v*` where * represents the next release version, etc "v1.0", will trigger the release workflow, while making a pull request will trigger the Test workflow.
+Push with the Tag `v*` where * represents the next release version, e.g "v1.0", will trigger the release workflow, while making a pull request will trigger the Test workflow.
 Accepting the Pull request will trigger a merge to main and trigger both the test and the Build and deploy workflow,
 which will deploy the application to Azure. Afterwards each workflow will trigger the Release workflow, handles its own
 straightforward steps and does not depend on the other workflows.
