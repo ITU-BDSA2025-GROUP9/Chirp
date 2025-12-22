@@ -30,7 +30,7 @@ Here comes a description of our domain model.
 # Process
 
 ## Build, test, release, and deployment
-![Illustration of the _Chirp!_ event process as UML class diagram.](docs/Images/Github Actions.png)
+![Illustration of the _Chirp!_ event process as UML class diagram.](docs/Images/Github Action.png)
 
 The UML diagram shows the pocess of building, testing, releasing, and deploying _Chirp!_ to our GitHub and Azure Web App.
 The workflow trigger is dependent on the type of action that occurs in the repository.
