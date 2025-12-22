@@ -49,6 +49,7 @@ All the workflows follow a similar pattern, where they set up, restores and buil
 # Ethics
 
 ## License
+We chose an MIT license for our project. It leaves many opportunities for others to use our project, while still giving us credit for our work without creating any obligations towards us. We felt this fit the project best.
 
 ## LLMs, ChatGPT, CoPilot, and others
 During the development of our project, Large Language Models (LLMs) were used for various parts of 
