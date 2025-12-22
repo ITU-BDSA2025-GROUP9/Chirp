@@ -15,7 +15,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7266b04b-ac72-49d8-a177-c097c4b18dec" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chirp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/report.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/report.md" afterDir="false" />
     </list>
     <list id="5953e8f1-b027-4a29-853c-9f653d3b12b4" name="Changes by Kristine" comment="" />
     <list id="24ec59c7-267e-4645-a192-980babdfa0ab" name="Changes by marcus" comment="" />
@@ -85,24 +84,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Project.Chirp.CLI.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "report",
-    "last_opened_file_path": "/home/marcus/Documents/uni/Analysis design and software/exercise",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.Chirp.CLI.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;report&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/marcus/Documents/uni/Analysis design and software/exercise&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Project.Chirp.CLI">
     <configuration name="Chirp.CLI" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -246,7 +245,7 @@
       <workItem from="1761729968148" duration="3457000" />
       <workItem from="1761743908443" duration="3016000" />
       <workItem from="1762366258540" duration="1268000" />
-      <workItem from="1766322116441" duration="5142000" />
+      <workItem from="1766322116441" duration="6577000" />
     </task>
     <task id="LOCAL-00001" summary="Added Azure functionality + several new classes.&#10;should work with azure once workflows are set up for it.">
       <option name="closed" value="true" />
