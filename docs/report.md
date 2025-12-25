@@ -54,7 +54,13 @@ All the workflows follow a similar pattern, where they set up, restores and buil
 # Ethics
 
 ## License
-We chose an MIT license for our project. It leaves many opportunities for others to use our project, while still giving us credit for our work without creating any obligations towards us. We felt this fit the project best.
+We chose an MIT License for our project. An MIT License leaves many opportunities for others to use our project,
+while still giving us credit for our work without creating any obligations towards us. We felt this fit the project
+best, as it matches the context in which the project was developed. That is, it was created in an educational context,
+and we therefore, as a group, believe that others also should be allowed to use, read and learn from our code. 
+The license is simple, permissive, and compatible with the dependencies in our _.csproj_ files. For these reasons, 
+we consider the MIT License to be the best fit for this project, whereas a more restrictive license would likely 
+be more appropriate for an actual commercial product or application.
 
 ## LLMs, ChatGPT, CoPilot, and others
 During the development of our project, Large Language Models (LLMs) were used for various parts of
