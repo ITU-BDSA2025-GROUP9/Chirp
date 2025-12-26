@@ -19,12 +19,17 @@ Here comes a description of our domain model.
 
 ![Illustration of the _Chirp!_ data model as UML class diagram.](Images/domain_model.png)
 
+\newpage
+
 ## Architecture — In the small
 
 A description ...
+
 ![Illustration of the _Chirp!_ system architecture as an onion architecture diagram.](Images/onion.png){width=80%}
 
 A more detailed diagram for each layer ...
+
+\newpage
 
 ## Architecture of deployed application
 
@@ -32,18 +37,23 @@ A more detailed diagram for each layer ...
 
 ## Sequence of functionality/calls trough _Chirp!_
 
+\newpage
 # Process
 
 ## Build, test, release, and deployment
-![Illustration of the _Chirp!_ event process as UML class diagram.](Images/github_action.png){width=50%}
+This UML activity diagram shows the process of building, testing, releasing, and deploying _Chirp!_ to our GitHub and Azure Web App.
+In our project, we have three distinct workflows: a _release_ workflow for publishing the application, a _test_ workflow for building
+and testing the application, and a _deploy_ workflow for deploying the application to Azure.
 
-The UML diagram shows the pocess of building, testing, releasing, and deploying _Chirp!_ to our GitHub and Azure Web App.
-The workflow trigger is dependent on the type of action that occurs in the repository.
-Push with the Tag `v*` where * represents the next release version, e.g "v1.0", will trigger the release workflow, while making a pull request will trigger the Test workflow.
-Accepting the Pull request will trigger a merge to main and trigger both the test and the Build and deploy workflow,
-which will deploy the application to Azure. Afterwards each workflow will trigger the Release workflow, handles its own
-straightforward steps and does not depend on the other workflows.
-All the workflows follow a similar pattern, where they set up, restores and builds the project before handling their independent tasks.
+![Illustration of the _Chirp!_ event process as UML class diagram.](Images/github_action.png){width=43%}
+
+The workflow that is triggered depends on the type of action performed in the repository. A push with a tag named `v*`,
+where `*` represents the release version (e.g., `v1.0.1`), triggers the _release_ workflow. Creating a pull request triggers the
+_test_ workflow, while accepting and merging a pull request into the main branch triggers both the _test_ and _deploy_ workflows.
+
+Once triggered, each workflow executes its own set of straightforward steps and does not depend on the others.
+All workflows follow a similar structure, where they set up, restore and build the project, before handling their respective
+independent tasks.
 
 ## Team work
 
@@ -61,6 +71,7 @@ and we therefore, as a group, believe that others also should be allowed to use,
 The license is simple, permissive, and compatible with the dependencies in our _.csproj_ files. For these reasons, 
 we consider the MIT License to be the best fit for this project, whereas a more restrictive license would likely 
 be more appropriate for an actual commercial product or application.
+
 
 ## LLMs, ChatGPT, CoPilot, and others
 During the development of our project, Large Language Models (LLMs) were used for various parts of
