@@ -22,12 +22,34 @@ Here comes a description of our domain model.
 \newpage
 
 ## Architecture — In the small
+Our _Chirp!_ application is structured according to the _Onion architecture_ pattern. In other words, 
+our system architecture is organized into concentric layers, where external dependencies always point 
+inwards, from the outermost layer to the center. The reasoning for using such an architecture design is
+that it can make the application easier to maintain and test (i.e. it allows for testing, replacing and
+modifying loosely coupled components separately). 
 
-A description ...
+The onion architecture can be divided into the following layers: _domain_, _repository_, _service_ 
+and _UI_ layer. In our implementation, these layers are reflected in the structure of our code. 
+That is, we have split the application into separate projects and directories, namely _Chirp.Core_, 
+_Chirp.Infrastructure_, and _Chirp.Web_, as well as a separate test directory containing _Chirp.Tests_ and 
+_Chirp.PlaywrightTests_.
 
 ![Illustration of the _Chirp!_ system architecture as an onion architecture diagram.](Images/onion.png){width=80%}
 
-A more detailed diagram for each layer ...
+The _domain_ layer is the innermost layer and contains our domain entities, such as _Author_, _Cheep_ and _Comment_ - as well as their 
+corresponding DTOs. These do not have any external dependencies, and therefore, act as the inner core, _Chirp.Core_, of our application. 
+The _repository_ layer is part of _Chirp.Infrastructure_ and is responsible for data access. It handles interaction with the database,
+including retrieving, storing, and mapping domain data. The _service_ layer, also located in _Chirp.Infrastructure_, contains the application
+services and acts as an intermediary between the UI layer and the repository layer. The UI layer is the outermost layer and is responsible
+for the user interface, _Chirp.Web_, and contains the testing infrastructure through _Chirp.Tests_ and _Chirp.PlaywrightTests_.
+
+The following diagram illustrates this structure as a package diagram, where each layer is represented using a distinct color.
+Blue represents the _UI_ layer, green the _service_ layer, orange the _repository_ layer, and yellow the _domain_ layer. To keep the diagram
+readable and focused on the architectural structure, not all directories and files are shown. It shows how the code is organized across layers 
+following the onion architecture, omitting individual inner files, such as for example _AuthorService_, _CommentService_, and _CheepService_ 
+within the _Service_ directory. The same applies to the other innermost directories shown in the diagram.  
+
+![Package diagram illustrating the organization of _Chirp!_ across the onion architecture layers.](Images/onion_package-diagram.png)
 
 \newpage
 
