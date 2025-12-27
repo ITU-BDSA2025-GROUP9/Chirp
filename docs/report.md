@@ -54,6 +54,7 @@ within the _Service_ directory. The same applies to the other innermost director
 \newpage
 
 ## Architecture of deployed application
+![Illustration of the _Chirp!_ system architecture as an onion architecture diagram.](Images/Deployment%20Diagram%20Chirp%20CLI.png){width=80%}
 
 ## User activities
 
