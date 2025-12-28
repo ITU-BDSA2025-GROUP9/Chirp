@@ -115,27 +115,29 @@ independent tasks.
 ### Project Board Status
 ![Screenshot of the project board](Images/projectboard.png)
 
-The screenshot above shows the project board status immediately before hand-in. The board is organized into three columns: *Todo*, *In Progress*, and *Done*, representing the current state of each task.
+The screenshot above shows the project board status shortly before hand-in. The board is organized into three columns: *Todo*, *In Progress*, and *Done*, representing the current state of each task.
 
 At the time of hand-in, the majority of tasks have been completed and placed in the Done column. These include major refactorings, maintainability improvements, and completed user stories related to the core functionality of *Chirp!*.
 
-However, a small number of tasks is unresolved:
+However, a small number of tasks are still, as of now, unresolved:
 
 [Chirp #112](https://github.com/ITU-BDSA2025-GROUP9/Chirp/issues/112) - **Improve and extend documentation** - 
-This task concerns further improving and polishing the project documentation. While the most critical documentation is present, additional refinements for long-term maintainability were not completed before the deadline.
+This task concerns further improving and polishing the project documentation. While the most critical documentation is present, additional refinements for long-term maintainability were not completed, before this screenshot was taken.
 
-[Chirp #117](https://github.com/ITU-BDSA2025-GROUP9/Chirp/issues/117) - **Show user comments on the user information page** - This feature would allow users to see all their own comments on their 'about me' page. The functionality was planned but not fully implemented before hand-in.
+[Chirp #117](https://github.com/ITU-BDSA2025-GROUP9/Chirp/issues/117) - **Show user comments on the user information page** - This feature would allow users to see all their own comments on their 'about me' page. The functionality was planned but not fully implemented.
+
+\newpage 
 
 Additionally, two tasks were still _In Progress_:
 
-[Chirp #109](https://github.com/ITU-BDSA2025-GROUP9/Chirp/issues/109) - **Add tests for Wild-Style features** - Some tests were implemented during development, but comprehensive coverage of all Wild-Style features was not completed in time.
+[Chirp #109](https://github.com/ITU-BDSA2025-GROUP9/Chirp/issues/109) - **Add tests for Wild-Style features** - Some tests were implemented during development, but comprehensive coverage of all Wild-Style features have not yet been completed, as these features still need to be covered by Playwright tests.
 
-[Chirp #118](https://github.com/ITU-BDSA2025-GROUP9/Chirp/issues/118) - **Complete the project report** - This represents final report writing and polishing, which was still ongoing at the time the screenshot was taken.
+[Chirp #118](https://github.com/ITU-BDSA2025-GROUP9/Chirp/issues/118) - **Complete the project report** - This issue represents the final writing and polishing of the project report, which was still ongoing at the time, the screenshot was taken.
 
-All core application functionality has been implemented, while remaining unresolved tasks mainly concern documentation, additional tests, and minor feature extensions rather.
+All core application functionalities have been implemented, while the remaining unresolved tasks mainly concern documentation, additional tests, and minor feature extensions.
 
 ### Development workflow
-![Screenshot of the project board](Images/teamwork_mermaid_chart_activity_flow.svg)
+![Illustration of development process from issue creation to main branch merge](Images/teamwork_mermaid_chart_activity_flow.png)
 
 1. **Issue creation** - New work criteria were created as GitHub issues and formulated as short user stories. Each issue described a concrete task, feature, or refactoring goal.
 
@@ -146,6 +148,8 @@ All core application functionality has been implemented, while remaining unresol
 4. **Completion and review** - Once a task was implemented and tested locally, a pull request was made and the corresponding branch was merged into the main branch after a review, ensuring that the main branch always contained a working version of the system. The issue was lastly marked as *Done* on the project board.
 
 Larger tasks (such as refactoring or architectural changes) were sometimes split into smaller follow-up issues. This allowed incremental improvements without blocking overall progress.
+
+\newpage
 
 ## How to make _Chirp!_ work locally
 This section describes the exact steps needed to get *Chirp!* running on a fresh machine, including required tools, configuration, and what you should expect to see.
@@ -167,7 +171,7 @@ Check that .NET is installed with:
 dotnet --version
 ```
 
-### 1. Clone the Repository
+### Clone the Repository
 
 Open a terminal and execute:
 
@@ -176,7 +180,7 @@ git clone https://github.com/ITU-BDSA2025-GROUP9/Chirp.git
 cd Chirp
 ```
 
-### 2. Restore Dependencies and Build
+### Restore Dependencies and Build
 From the repository root, run:
 
 ``` bash
@@ -189,32 +193,56 @@ dotnet build
 - The solution builds successfully with no errors
 
 
-### 3. Trust the HTTPS development certificate (first-time only)
+### Trust the HTTPS development certificate (first-time only)
 Our *Chirp!* application runs on HTTPS locally. On a fresh machine, trusting the dev cert avoids browser warnings and OAuth callback issues:
 ```bash
 dotnet dev-certs https --trust
 ```
 
-### 4. Configure GitHub OAuth
-Chirp uses GitHub authentication and reads two configuration values:
-- authentication_github_clientId
-- authentication_github_clientSecret
+\newpage
 
-These values are required to enable GitHub login. Without them, authentication features cannot be used.
+### Configure GitHub OAuth
+_Chirp!_ uses GitHub authentication and reads two configuration values:
 
-#### 4.1 Create a GitHub OAuth App
-Go to GitHub: Settings → Developer settings → OAuth Apps → New OAuth App
+- `authentication_github_clientId`
+- `authentication_github_clientSecret`
+
+These values are required to enable GitHub login. Without them, authentication via GitHub will not be possible.
+Including our own development secrets in a public repository is considered a bad practice, therefore, these values are 
+not provided. Thus, to enable GitHub authentication in a local environment, a GitHub OAuth App must be created 
+and its secrets configured accordingly. Otherwise, GitHub authentication is available 
+through our deployed application on Azure.
+
+
+#### Create a GitHub OAuth App
+\
+Go to GitHub: 
+
+_Settings → Developer settings → OAuth Apps → New OAuth App_
+
 Create an app with:
-- Homepage URL: [https://localhost:xxxx]() (use the HTTPS URL printed in the terminal output)
-- Authorization callback URL: [https://localhost:xxxx/signin-github]()
 
-Copy the generated Client ID and Client Secret
+- _Homepage URL:_
 
-#### 4.2 Set credentials locally using .NET User Secrets
+`https://localhost:xxxx`
+(use the HTTPS URL printed in the terminal output)
+
+- _Authorization callback URL:_
+
+`https://localhost:xxxx/signin-github`
+
+Copy the generated Client ID and Client Secret.
+
+
+#### Set credentials locally using .NET User Secrets
+\
 From the repository root:
 ```bash
-dotnet user-secrets set "authentication_github_clientId" "<CLIENT_ID>" --project src/Chirp.Web
-dotnet user-secrets set "authentication_github_clientSecret" "<CLIENT_SECRET>" --project src/Chirp.Web
+dotnet user-secrets set "authentication_github_clientId" 
+"<CLIENT_ID>" --project src/Chirp.Web
+
+dotnet user-secrets set "authentication_github_clientSecret" 
+"<CLIENT_SECRET>" --project src/Chirp.Web
 ```
 
 *(Optional)* verify secrets:
@@ -222,28 +250,32 @@ dotnet user-secrets set "authentication_github_clientSecret" "<CLIENT_SECRET>" -
 dotnet user-secrets list --project src/Chirp.Web
 ```
 Expected output includes:
-- authentication_github_clientId = ...
-- authentication_github_clientSecret = ...
 
-### 5. Run the web application
+- `authentication_github_clientId = ...`
+- `authentication_github_clientSecret = ...`
+
+\newpage
+
+### Run the web application
 From the repository root:
 
 ```bash
 dotnet run --project src/Chirp.Web
 ```
 Expected terminal output includes that the app is listening on URLs similar to:
-- https://localhost:7140
-- http://localhost:5198
+
+- `https://localhost:7140`
+- `http://localhost:5198`
 
 Open the HTTPS URL printed in the terminal output.
 
-
 ### What you should see
-When the app is running and you open the site:
-- The site loads without a crash
-- You can view pages such as the public timeline
-- You can click Login and authenticate via GitHub
-- After login, you should be redirected back to Chirp
+When the app is running, and you open the site:
+
+- The site loads without a crash.
+- You can view pages such as the public timeline.
+- You can click Login and authenticate via GitHub.
+- After login, you should be redirected back to _Chirp_.
 
 ### Database behavior
 Our *Chirp!* application uses SQLite and applies migrations automatically on startup.
