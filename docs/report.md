@@ -56,9 +56,42 @@ within the _Service_ directory. The same applies to the other innermost director
 ## Architecture of deployed application
 ![Illustration of the _Chirp!_ system architecture as an onion architecture diagram.](Images/Deployment%20Diagram%20Chirp%20CLI.png){width=80%}
 
+\newpage
 ## User activities
 
-## Sequence of functionality/calls trough _Chirp!_
+In the following section, three UML activity diagrams illustrate typical user scenarios and the user journey through our 
+_Chirp!_ application, starting from a non-authorized user and ending with an authorized user.
+
+The first diagram shows what a user can do when they are _not logged in_. In this state, the user can view the public 
+timeline, view the private timelines of other users by clicking on their usernames or decide to authenticate by viewing
+the login or register page. 
+
+![UML activity diagram illustrating the user journey of a non-authorized user through _Chirp!_](Images/user_activity_nonauthorized.png) 
+
+If the user decides to log in, they must choose between logging in with an existing account or registering a new one. 
+Both options can be done using either a local account login or an external GitHub login. This is illustrated in the second
+diagram. After successful authentication, the user is logged in and returned to the public timeline as an authorized user.
+
+\newpage
+
+![UML activity diagram illustrating the authentication flow in _Chirp!_](Images/user_activity_authentication.png)
+
+The final diagram shows what an authorized user can do, i.e. when the user is _logged in_. An authorized user can view 
+the public timeline, view their own private timeline, and view the private timelines of other users. From each of these, 
+the user can follow or unfollow other users, post or delete cheeps, unfold collapsed comments, comment on cheeps, and 
+delete their own comments. An authorized user can also choose to view their own personal about-me page or log out of 
+the application. From the about-me page, the user can change their profile picture, download their personal information,
+or delete their account.  
+
+\newpage
+
+![UML activity diagram illustrating the user journey of an authorized user in _Chirp!_](Images/user_activity_authorized.png)
+
+To keep this diagram simple and readable, the action “_Return to current page_” represents that, after completing an 
+activity, the user is returned to the page they were previously viewing. For example, if a user posts a cheep while
+viewing their private timeline, they will stay / return to their private timeline once the action is done. 
+
+## Sequence of functionality/calls through _Chirp!_
 
 \newpage
 # Process
