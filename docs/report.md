@@ -29,15 +29,15 @@ that it can make the application easier to maintain and test (i.e. it allows for
 modifying loosely coupled components separately). 
 
 The onion architecture can be divided into the following layers: _domain_, _repository_, _service_ 
-and _UI_ layer. In our implementation, these layers are reflected in the structure of our code. 
-That is, we have split the application into separate projects and directories, namely _Chirp.Core_, 
+and _UI_. In our implementation, these layers are reflected in the structure of the code. 
+That is, the application is split into separate projects and directories, namely _Chirp.Core_, 
 _Chirp.Infrastructure_, and _Chirp.Web_, as well as a separate test directory containing _Chirp.Tests_ and 
 _Chirp.PlaywrightTests_.
 
 ![Illustration of the _Chirp!_ system architecture as an onion architecture diagram.](Images/onion.png){width=80%}
 
 The _domain_ layer is the innermost layer and contains our domain entities, such as _Author_, _Cheep_ and _Comment_ - as well as their 
-corresponding DTOs. These do not have any external dependencies, and therefore, act as the inner core, _Chirp.Core_, of our application. 
+corresponding DTOs. These do not have any external dependencies, and therefore act as the inner core, _Chirp.Core_, of our application. 
 The _repository_ layer is part of _Chirp.Infrastructure_ and is responsible for data access. It handles interaction with the database,
 including retrieving, storing, and mapping domain data. The _service_ layer, also located in _Chirp.Infrastructure_, contains the application
 services and acts as an intermediary between the UI layer and the repository layer. The UI layer is the outermost layer and is responsible
@@ -63,7 +63,7 @@ In the following section, three UML activity diagrams illustrate typical user sc
 _Chirp!_ application, starting from a non-authorized user and ending with an authorized user.
 
 The first diagram shows what a user can do when they are _not logged in_. In this state, the user can view the public 
-timeline, view the private timelines of other users by clicking on their usernames or decide to authenticate by viewing
+timeline, view the timelines of other users by clicking on their usernames or decide to authenticate by viewing
 the login or register page. 
 
 ![UML activity diagram illustrating the user journey of a non-authorized user through _Chirp!_](Images/user_activity_nonauthorized.png) 
@@ -77,7 +77,7 @@ diagram. After successful authentication, the user is logged in and returned to 
 ![UML activity diagram illustrating the authentication flow in _Chirp!_](Images/user_activity_authentication.png)
 
 The final diagram shows what an authorized user can do, i.e. when the user is _logged in_. An authorized user can view 
-the public timeline, view their own private timeline, and view the private timelines of other users. From each of these, 
+the public timeline, view their own timeline, and view the timelines of other users. From each of these, 
 the user can follow or unfollow other users, post or delete cheeps, unfold collapsed comments, comment on cheeps, and 
 delete their own comments. An authorized user can also choose to view their own personal about-me page or log out of 
 the application. From the about-me page, the user can change their profile picture, download their personal information,
@@ -89,7 +89,7 @@ or delete their account.
 
 To keep this diagram simple and readable, the action “_Return to current page_” represents that, after completing an 
 activity, the user is returned to the page they were previously viewing. For example, if a user posts a cheep while
-viewing their private timeline, they will stay / return to their private timeline once the action is done. 
+viewing their own timeline, they will either stay or return to their own timeline once the action is done.
 
 ## Sequence of functionality/calls through _Chirp!_
 
@@ -112,8 +112,147 @@ All workflows follow a similar structure, where they set up, restore and build t
 independent tasks.
 
 ## Team work
+### Project Board Status
+![Screenshot of the project board](Images/projectboard.png)
+
+The screenshot above shows the project board status immediately before hand-in. The board is organized into three columns: *Todo*, *In Progress*, and *Done*, representing the current state of each task.
+
+At the time of hand-in, the majority of tasks have been completed and placed in the Done column. These include major refactorings, maintainability improvements, and completed user stories related to the core functionality of *Chirp!*.
+
+However, a small number of tasks is unresolved:
+
+[Chirp #112](https://github.com/ITU-BDSA2025-GROUP9/Chirp/issues/112) - **Improve and extend documentation** - 
+This task concerns further improving and polishing the project documentation. While the most critical documentation is present, additional refinements for long-term maintainability were not completed before the deadline.
+
+[Chirp #117](https://github.com/ITU-BDSA2025-GROUP9/Chirp/issues/117) - **Show user comments on the user information page** - This feature would allow users to see all their own comments on their 'about me' page. The functionality was planned but not fully implemented before hand-in.
+
+Additionally, two tasks were still _In Progress_:
+
+[Chirp #109](https://github.com/ITU-BDSA2025-GROUP9/Chirp/issues/109) - **Add tests for Wild-Style features** - Some tests were implemented during development, but comprehensive coverage of all Wild-Style features was not completed in time.
+
+[Chirp #118](https://github.com/ITU-BDSA2025-GROUP9/Chirp/issues/118) - **Complete the project report** - This represents final report writing and polishing, which was still ongoing at the time the screenshot was taken.
+
+All core application functionality has been implemented, while remaining unresolved tasks mainly concern documentation, additional tests, and minor feature extensions rather.
+
+### Development workflow
+![Screenshot of the project board](Images/teamwork_mermaid_chart_activity_flow.svg)
+
+1. **Issue creation** - New work criteria were created as GitHub issues and formulated as short user stories. Each issue described a concrete task, feature, or refactoring goal.
+
+2. **Task planning and prioritization** - Issues were added to the project board and initially placed in the *Todo* column. During planning, tasks were discussed and prioritized based on importance and dependencies.
+
+3. **Development phase** - When work on a task started, the corresponding issue was moved to *In Progress*. Development was performed on a separate *feature branch*, ensuring that unfinished or experimental code did not affect the main branch.
+
+4. **Completion and review** - Once a task was implemented and tested locally, a pull request was made and the corresponding branch was merged into the main branch after a review, ensuring that the main branch always contained a working version of the system. The issue was lastly marked as *Done* on the project board.
+
+Larger tasks (such as refactoring or architectural changes) were sometimes split into smaller follow-up issues. This allowed incremental improvements without blocking overall progress.
 
 ## How to make _Chirp!_ work locally
+This section describes the exact steps needed to get *Chirp!* running on a fresh machine, including required tools, configuration, and what you should expect to see.
+
+### Prerequisites
+Before cloning the project, ensure the following tools are installed:
+
+- **Git**
+- **.NET SDK 8.0**
+- A modern web browser
+- *(Optional but recommended)* Visual Studio or Rider
+
+> The application uses **SQLite**, so no external database server is required.
+
+
+Check that .NET is installed with:
+
+```bash
+dotnet --version
+```
+
+### 1. Clone the Repository
+
+Open a terminal and execute:
+
+```bash
+git clone https://github.com/ITU-BDSA2025-GROUP9/Chirp.git
+cd Chirp
+```
+
+### 2. Restore Dependencies and Build
+From the repository root, run:
+
+``` bash
+dotnet restore
+dotnet build
+```
+
+**Expected outcome**
+- All NuGet packages are restored
+- The solution builds successfully with no errors
+
+
+### 3. Trust the HTTPS development certificate (first-time only)
+Our *Chirp!* application runs on HTTPS locally. On a fresh machine, trusting the dev cert avoids browser warnings and OAuth callback issues:
+```bash
+dotnet dev-certs https --trust
+```
+
+### 4. Configure GitHub OAuth
+Chirp uses GitHub authentication and reads two configuration values:
+- authentication_github_clientId
+- authentication_github_clientSecret
+
+These values are required to enable GitHub login. Without them, authentication features cannot be used.
+
+#### 4.1 Create a GitHub OAuth App
+Go to GitHub: Settings → Developer settings → OAuth Apps → New OAuth App
+Create an app with:
+- Homepage URL: [https://localhost:xxxx]() (use the HTTPS URL printed in the terminal output)
+- Authorization callback URL: [https://localhost:xxxx/signin-github]()
+
+Copy the generated Client ID and Client Secret
+
+#### 4.2 Set credentials locally using .NET User Secrets
+From the repository root:
+```bash
+dotnet user-secrets set "authentication_github_clientId" "<CLIENT_ID>" --project src/Chirp.Web
+dotnet user-secrets set "authentication_github_clientSecret" "<CLIENT_SECRET>" --project src/Chirp.Web
+```
+
+*(Optional)* verify secrets:
+```bash
+dotnet user-secrets list --project src/Chirp.Web
+```
+Expected output includes:
+- authentication_github_clientId = ...
+- authentication_github_clientSecret = ...
+
+### 5. Run the web application
+From the repository root:
+
+```bash
+dotnet run --project src/Chirp.Web
+```
+Expected terminal output includes that the app is listening on URLs similar to:
+- https://localhost:7140
+- http://localhost:5198
+
+Open the HTTPS URL printed in the terminal output.
+
+
+### What you should see
+When the app is running and you open the site:
+- The site loads without a crash
+- You can view pages such as the public timeline
+- You can click Login and authenticate via GitHub
+- After login, you should be redirected back to Chirp
+
+### Database behavior
+Our *Chirp!* application uses SQLite and applies migrations automatically on startup.
+A database file is stored under the web project directory:
+```bash
+src/Chirp.Web/App_Data/chirp.db
+```
+If the database does not exist, it will be created. If migrations exist, they will be applied automatically.
+
 
 ## How to run test suite locally
 
