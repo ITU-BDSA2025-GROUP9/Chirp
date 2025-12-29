@@ -35,6 +35,9 @@ public class Cheep
     /// </summary>
     public Author Author { get; set; } = null!;
     
+    /// <summary>
+    /// A list of comments there are specific for one cheep
+    /// </summary>
     public List<Comment> Comments { get; set; } = new();
 
 }

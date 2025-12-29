@@ -1,5 +1,8 @@
 using Chirp.Core;
 namespace Chirp.Infrastructure.Interfaces;
+/// <summary>
+/// Abstraction for accessing and managing authors.
+/// </summary>
 public interface IAuthorRepository
 {
     Task<Author> CreateAuthor(string name, string email);

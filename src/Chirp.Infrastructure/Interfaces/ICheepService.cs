@@ -1,6 +1,9 @@
 using Chirp.Core;
 using Chirp.Core.DTO;
 namespace Chirp.Infrastructure.Interfaces;
+/// <summary>
+/// Abstraction for retrieving and managing Cheep posts.
+/// </summary>
 public interface ICheepService
 {
     Task<List<CheepDTO>> GetCheeps(int pageNumber, int pageSize);

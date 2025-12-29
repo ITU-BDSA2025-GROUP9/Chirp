@@ -1,5 +1,7 @@
 namespace Chirp.Infrastructure.Interfaces;
-
+/// <summary>
+/// Abstraction for author follow state and basic profile management.
+/// </summary>
 public interface IAuthorService
 {
     Task<bool> FollowAuthor(string followerName, string followeeName);
