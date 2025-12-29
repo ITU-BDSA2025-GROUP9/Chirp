@@ -15,9 +15,27 @@ linkcolor: blue
 
 ## Domain model
 
-Here comes a description of our domain model.
+The domain model of our _Chirp!_ application represent the core concepts of our system. In the project are these
+located in _Chirp.core_.
 
-![Illustration of the _Chirp!_ data model as UML class diagram.](Images/domain_model.png)
+The domain consist of three entities: Author, Cheep and Comment. An author represent a user in the system, who can
+create cheeps and comments, follow other authors and be followed. A Cheep represent the message posted to our platform
+by a author and contains text, a timestamp and the author who created it. A Cheep can have multiple Comments. A Comment 
+contains text and are posted by a single author.
+
+The relation between these entities are clearly modeled trough the lines between the entities. An author can create
+multiple cheeps, while a cheep only can have one author. A cheep can then also have multiple comments and each comment
+are accosicated to exactly one cheep and author. These relations reflect the core rules and structure of our
+application domain.
+
+ASP.NET indetity is used for authentication, which is an external part of our program, and therefore illustrated as an
+external dependency on the domain model. The _Author_ entity is inherites from _IdentityUser_ allowing the domain to 
+stay free of any authentication logic. This is also why we have to draw the ASP.NET identity in a package for itself.
+
+In our _Chirp.core_ folder we also store our DTO's. These are intentionally omitted from the domain model diagram since
+DTO's are note a part of the core domain concepts but are used for transfering data. 
+
+![Illustration of the _Chirp!_ domain model as UML class diagram](Images/DomainModel.png)
 
 \newpage
 
