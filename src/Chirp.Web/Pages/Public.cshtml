@@ -27,6 +27,17 @@
                     </div>
                     @cheep.Message
                     <small>&mdash; @cheep.TimeStamp</small>
+
+                    @await Html.PartialAsync("Shared/_CommentPartial", cheep.Comments)
+
+                    @if (User.Identity?.IsAuthenticated ?? false)
+                    {
+                        <form method="post" class="CommentFeature" asp-page-handler="AddComment">
+                            <input type="hidden" name="CheepId" value="@cheep.CheepId" />
+                            <input type="text" class= "WriteComment" name="Content" placeholder="Write a comment..." required />
+                            <button class= "followbtn" type="submit">Comment</button>
+                        </form>
+                    }
                   
                 </li>
             }

@@ -18,10 +18,8 @@ public class CheepRepository : ICheepRepository
     /// Initializes a new instance of the <see cref="CheepRepository"/> class.
     /// </summary>
     /// <param name="context">The <see cref="ChirpDbContext"/> used for database access.</param>
-    public CheepRepository(ChirpDbContext context)
-    {
-        _context = context;
-    }
+    public CheepRepository(ChirpDbContext context) => _context = context;
+    
     /// <summary>
     /// Retrieves a paginated list of all cheeps from the database.
     /// </summary>
@@ -34,6 +32,8 @@ public class CheepRepository : ICheepRepository
     public async Task<List<Cheep>> GetAllCheeps(int pageNumber, int pageSize)
         => await _context.Cheeps
             .Include(c => c.Author)
+            .Include(c => c.Comments)
+            .ThenInclude(comment => comment.Author)
             .OrderByDescending(c => c.TimeStamp)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
@@ -52,19 +52,20 @@ public class CheepRepository : ICheepRepository
     public async Task<List<Cheep>> GetCheepsByAuthor(string authorName, int pageNumber, int pageSize)
         => await _context.Cheeps
             .Include(c => c.Author)
+            .Include(c => c.Comments)
+            .ThenInclude(comment => comment.Author)
             .Where(c => c.Author.UserName == authorName)
             .OrderByDescending(c => c.TimeStamp)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();
-
     /// <summary>
     /// Creates a new cheep in the database associated with an existing author.
     /// Also create a new <see cref="Cheep"/> object
     /// </summary>
     /// <param name="author">The <see cref="Author"/> posting the cheep. Must already exist in the database context.</param>
     /// <param name="text">The content of the cheep message.</param>
-    public async Task AddCheep(Author author, string text)
+    public async Task<int> AddCheep(Author author, string text)
     {
         var cheep = new Cheep
         {
@@ -73,8 +74,10 @@ public class CheepRepository : ICheepRepository
             TimeStamp = DateTime.UtcNow.ToLocalTime()
         };
 
+        author.Cheeps.Add(cheep);
         await _context.Cheeps.AddAsync(cheep);
         await _context.SaveChangesAsync();
+        return cheep.CheepId;
     }
 
     /// <summary>
@@ -91,13 +94,24 @@ public class CheepRepository : ICheepRepository
     {
         return await _context.Cheeps
             .Include(c => c.Author)
+            .Include(c => c.Comments)
+            .ThenInclude(comment => comment.Author)
             .Where(c => authors.Contains(c.Author.UserName!))
             .OrderByDescending(c => c.TimeStamp)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();
     }
-
+    
+    public async Task<Cheep?> GetCheepById(int cheepId)
+    {
+        return await _context.Cheeps
+            .Include(c => c.Author)                      
+            .Include(c => c.Comments)                    
+            .ThenInclude(comment => comment.Author) 
+            .FirstOrDefaultAsync(c => c.CheepId == cheepId);
+    }
+    
     /// <summary>
     /// Deletes a cheep by its  ID from the database.
     /// </summary>

@@ -16,7 +16,6 @@ namespace Chirp.Infrastructure.Chirp.Service;
 public class CheepService : ICheepService
 {
     private readonly ICheepRepository _repository;
-
     /// <summary>
     /// Initializes a new instance of the <see cref="CheepService"/> class.
     /// </summary>
@@ -45,8 +44,8 @@ public class CheepService : ICheepService
     {
         if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
         var cheeps = await _repository.GetAllCheeps(pageNumber, pageSize);
-        
-        return cheeps.Select(CheepToDto).ToList();
+       
+        return CheepDTO.ToDtos(cheeps);
     }
 
     /// <summary>
@@ -66,11 +65,10 @@ public class CheepService : ICheepService
     {
         if (string.IsNullOrWhiteSpace(authorName)) throw new ArgumentException("Author is required", nameof(authorName));
         if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
-        var cheeps = await _repository.GetCheepsByAuthor(authorName, pageNumber, pageSize);
         
-        return cheeps.Select(CheepToDto).ToList();
+        var cheeps = await _repository.GetCheepsByAuthor(authorName, pageNumber, pageSize);
+        return CheepDTO.ToDtos(cheeps);
     }
-    
     /// <summary>
     /// Creates and persists a new Cheep post created by the specified <see cref="Author"/>.
     /// </summary>
@@ -80,43 +78,14 @@ public class CheepService : ICheepService
     /// The timestamp is set automatically at creation time inside the repository.
     /// Changes are committed immediately.
     /// </remarks>
-    public async Task AddCheep(Author author, string text)
+    public async Task<int> AddCheep(Author author, string text)
     {
         if (author == null) throw new ArgumentNullException("Author is required " + nameof(author));
         if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Cheep text is required and cannot be null or empty", nameof(text));
         if (text.Length > 160) throw new ArgumentException("Cheep text cannot exceed 160 characters.", nameof(text));
 
-        await _repository.AddCheep(author, text);
+        return await _repository.AddCheep(author, text);
     }
-    
-    /// <summary>
-    /// Maps a <see cref="Cheep"/> into UI friendly<see cref="CheepDTO"/> object.
-    /// </summary>
-    /// <param name="c">The <see cref="Cheep"/> to transform.</param>
-    /// <returns>A populated <see cref="CheepDTO"/> containing author data, text, formatted timestamp, and cheep ID.</returns>
-    /// <remarks>
-    /// This is a lightweight projection used to avoid exposing EF-tracked entities outside the infrastructure layer.
-    /// </remarks>
-    public static CheepDTO CheepToDto(Cheep c) => new(
-        AuthorToDto(c.Author),
-        c.Text,
-        c.TimeStamp.ToString("MM/dd/yy HH:mm:ss", CultureInfo.InvariantCulture),
-        c.CheepId
-    );
-    
-    /// <summary>
-    /// Maps an <see cref="Author"/> entity into a UI friendly <see cref="AuthorDTO"/> object.
-    /// </summary>
-    /// <param name="a">The <see cref="Author"/> entity to transform.</param>
-    /// <returns>A populated <see cref="AuthorDTO"/> containing username, email, and profile image reference.</returns>
-    /// <remarks>
-    /// This transformation prevents leaking persistence concerns into higher layers of the application.
-    /// </remarks>
-    public static AuthorDTO AuthorToDto(Author a) => new(
-        a.UserName!,
-        a.Email!,
-        a.ProfileImage
-    );
     
     /// <summary>
     /// Retrieves cheeps authored by any username in the provided list.
@@ -132,7 +101,7 @@ public class CheepService : ICheepService
         if (pageNumber <= 0) throw new ArgumentOutOfRangeException($"Pagenumber must be greater than 0. Invalid pagenumber: {pageNumber}");
         
         var cheeps = await _repository.GetCheepsByAuthors(authors, pageNumber, pageSize);
-        return cheeps.Select(CheepToDto).ToList();
+        return CheepDTO.ToDtos(cheeps);
     }
     
     /// <summary>

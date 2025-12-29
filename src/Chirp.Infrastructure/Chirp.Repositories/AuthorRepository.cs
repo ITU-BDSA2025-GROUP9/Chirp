@@ -15,10 +15,7 @@ public class AuthorRepository : IAuthorRepository
     /// Initializes a new instance of the <see cref="AuthorRepository"/> class.
     /// </summary>
     /// <param name="context">used for database access.</param>
-    public AuthorRepository(ChirpDbContext context)
-    {
-        _context = context;
-    }
+    public AuthorRepository(ChirpDbContext context) => _context = context;
     
     /// <summary>
     /// Creates a new author object and adds the author to the database.
@@ -139,7 +136,6 @@ public class AuthorRepository : IAuthorRepository
             a.UserName == followerName &&
             a.Following.Any(f => f.UserName == followeeName));
     }
-
     /// <summary>
     /// Deletes an author and removes all associated data and relationships.
     /// Ensures follow references and authored cheeps are cleaned up before removal.
@@ -180,19 +176,22 @@ public class AuthorRepository : IAuthorRepository
         if (string.IsNullOrWhiteSpace(authorName)) return false;
         return await _context.Authors.AnyAsync(a => a.UserName == authorName);
     }
-
     /// <summary>
     /// Sets the profile image path of an existing author.
     /// return immediately if author does not exist.
     /// </summary>
     /// <param name="authorName">Username of the author to set profile picture.</param>
     /// <param name="profileImage">The new profile image path to assign.</param>
-    public async Task SetProfileImage(string authorName, string profileImage)
+    public async Task<bool> SetProfileImage(string authorName, string profileImage)
     {
-        var author = await _context.Authors.FirstOrDefaultAsync(a => a.UserName == authorName);
-        if (author == null) return;
+        var author = await _context.Authors
+            .FirstOrDefaultAsync(a => a.UserName == authorName);
+
+        if (author == null)
+            return false;
 
         author.ProfileImage = profileImage;
         await _context.SaveChangesAsync();
+        return true;
     }
 }

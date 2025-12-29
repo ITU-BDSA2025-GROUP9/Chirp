@@ -4,7 +4,6 @@ using Chirp.Infrastructure.Interfaces;
 using Chirp.Web.Pages.Shared;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace Chirp.Web.Pages;
 
 public class PublicModel : ChirpPage
@@ -12,8 +11,13 @@ public class PublicModel : ChirpPage
     [BindProperty]
     public InputModel Input { get; set; } = new();
     
-    public PublicModel(ICheepService cheepService, IAuthorService authorService, UserManager<Author> userManager)
-        : base(cheepService, authorService, userManager) {}
+    private readonly ICommentService _commentService;
+
+    public PublicModel(ICheepService cheepService, IAuthorService authorService, UserManager<Author> userManager, ICommentService commentService)
+        : base(cheepService, authorService, userManager)
+    {
+        _commentService = commentService;
+    }
 
     public async Task<IActionResult> OnGetAsync()
     {
@@ -67,6 +71,26 @@ public class PublicModel : ChirpPage
         if (currentUser == null) return RedirectToPage("/Account/Login");
 
         await AuthorService.FollowAuthor(currentUser.UserName!, author);
+        return RedirectToPage("/Public");
+    }
+
+    public async Task<IActionResult> OnPostAddCommentAsync(int cheepId, string content)
+    {
+        var user = await GetCurrentUserAsync();
+        if (user == null) 
+            return RedirectToPage("/Account/Login");
+        
+        await _commentService.AddComment(cheepId, user.Id, content);
+        return RedirectToPage("Public");
+    }
+
+    public async Task<IActionResult> OnPostDeleteCommentAsync(int commentId)
+    {
+        var user = await GetCurrentUserAsync();
+        if (user == null)
+            return RedirectToPage("/Account/Login");
+
+        await _commentService.DeleteComment(commentId);
         return RedirectToPage("/Public");
     }
 }

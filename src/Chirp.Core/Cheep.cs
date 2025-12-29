@@ -34,4 +34,7 @@ public class Cheep
     /// Navigation property linking this cheep to its author.
     /// </summary>
     public Author Author { get; set; } = null!;
+    
+    public List<Comment> Comments { get; set; } = new();
+
 }

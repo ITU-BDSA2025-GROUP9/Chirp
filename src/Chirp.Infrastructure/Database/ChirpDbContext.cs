@@ -42,6 +42,8 @@ public class ChirpDbContext : IdentityDbContext<Author, IdentityRole<int>, int>
     /// </remarks>
     public DbSet<Cheep> Cheeps { get; set; } = null!;
 
+    public DbSet<Comment> Comments { get; set; } = null!;
+    
     /// <summary>
     /// Configures entity relationships, table names, and column mappings for the database schema.
     /// </summary>
@@ -78,5 +80,36 @@ public class ChirpDbContext : IdentityDbContext<Author, IdentityRole<int>, int>
                 .WithMany(a => a.Cheeps)
                 .HasForeignKey(c => c.AuthorId);
         });
+        
+        // --- Comment entity mapping ---
+        modelBuilder.Entity<Comment>(entity =>
+        {
+            // Table name
+            entity.ToTable("comment");
+
+            // Primary key
+            entity.HasKey(c => c.CommentId);
+
+            entity.Property(c => c.CommentId).HasColumnName("comment_id");
+            entity.Property(c => c.Text).HasColumnName("text");
+            entity.Property(c => c.TimeStamp).HasColumnName("pub_date");
+
+            // Foreign keys
+            entity.Property(c => c.CheepId).HasColumnName("message_id");
+            entity.Property(c => c.AuthorId).HasColumnName("author_id");
+
+            // Comment → Cheep relationship
+            entity.HasOne(c => c.Cheep)
+                .WithMany(c => c.Comments)
+                .HasForeignKey(c => c.CheepId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Comment → Author relationship
+            entity.HasOne(c => c.Author)
+                .WithMany() // Add a list to the author class maybe
+                .HasForeignKey(c => c.AuthorId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
     }
 }

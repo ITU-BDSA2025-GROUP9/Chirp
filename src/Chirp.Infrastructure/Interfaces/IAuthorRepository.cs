@@ -14,5 +14,5 @@ public interface IAuthorRepository
     Task<bool> IsFollowing(string followerName, string followeeName);
     Task<bool> DeleteAuthor(string authorName);
     Task<bool> AuthorByNameExists(string authorName);
-    Task SetProfileImage(string authorName, string profileImage);
+    Task<bool> SetProfileImage(string authorName, string profileImage);
 }
