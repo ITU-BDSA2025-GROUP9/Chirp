@@ -54,24 +54,26 @@ within the _Service_ directory. The same applies to the other innermost director
 \newpage
 
 ## Architecture of deployed application
-The following two diagrams illustrates the deployed archetecture of our first version of Cirp "Chirp.CLI", and our final version of Chirp "Chirp.Web".
-The diagrams illustrates the general communication flow between the user and the deployed application.
+The following two diagrams illustrates the deployed architecture of our first version of _Chirp!_ "_Chirp.CLI_", and our final version of _Chirp!_ "_Chirp.Web_".
+The diagrams illustrates the communication flow between the user, i.e. client, and the deployed application.
 
-![Illustration of the _Chirp!_ system architecture as an onion architecture diagram.](Images/Deployment%20Diagram%20Chirp%20CLI.png){width=80%}
+![Illustration of the deployed architecture of the _Chirp.CLI_ application.](Images/Deployment%20Diagram%20Chirp%20CLI.png)
 
-In the above diagram, the user can see the communication flow between the user and the Chirp.CLI client application.
-Chirp.CLI allows the user to make use of commands to read existing cheeps and post new cheeps, which are sent as HTTPS requests to the backend service. 
-The diagram also illustrates the server-side persistence architecture, where the CSVDBService depends on the SimpleDB repository, which in turn persists data in the chirp_service_db.csv file.
-This clearly shows how data flows from the client through the server and into persistent storage.
 
-![Illustration of the _Chirp!_ system architecture as an onion architecture diagram.](Images/UML%20Razor%20pages%20deployed.png){width=80%}
+The above diagram show, how _Chirp.CLI_ allows the user to make use of commands to read existing cheeps and post new cheeps, which are sent as HTTPS requests to the backend service. 
+The diagram also illustrates the server-side persistence architecture, where the _CSVDBService_ depends on the _SimpleDB_ repository, which in turn persists data in the _chirp_service_db.csv_ file.
+This shows how data flows from the client through the server and into storage.
 
-The diagram illustrates the deployed architecture of the Chirp.Web. Users access the system through a web browser running on a client device,
-which communicates with the Chirp.Web application hosted on an Azure App Service via HTTPS. The web application runs on the .NET 8 runtime and is responsible for rendering the user interface and handling incoming HTTP requests.
-Persistent data storage is managed using Entity Framework Core with a SQLite database file (chirp.db) deployed together with the application on the App Service.
-User authentication can be handled through GitHub OAuth, with Chirp.Web communicating securely with the authentication provider over HTTPS using the OAuth 2.0 protocol. 
+![Illustration of the deployed architecture of the _Chirp.Web_ application.](Images/UML%20Razor%20pages%20deployed.png)
+
+\newpage
+
+The diagram illustrates the deployed architecture of the _Chirp.Web_. Users access the system through a web browser, which communicates with the _Chirp.Web_ 
+application hosted on an Azure App Service via HTTPS. The web application is responsible for rendering the user interface and handling incoming HTTP requests.
+The application uses EF Core with a SQLite database file (_chirp.db_) for data storage, and supports authentication via GitHub OAuth.
 This diagram shows how the client, server, storage, and authentication components interact in the deployed system.
 \newpage
+
 ## User activities
 
 In the following section, three UML activity diagrams illustrate typical user scenarios and the user journey through our 
@@ -132,7 +134,7 @@ independent tasks.
 
 The screenshot above shows the project board status shortly before hand-in. The board is organized into three columns: *Todo*, *In Progress*, and *Done*, representing the current state of each task.
 
-At the time of hand-in, the majority of tasks have been completed and placed in the Done column. These include major refactorings, maintainability improvements, and completed user stories related to the core functionality of *Chirp!*.
+At the time of hand-in, the majority of tasks have been completed and placed in the _Done_ column. These include major refactorings, maintainability improvements, and completed user stories related to the core functionality of *Chirp!*.
 
 However, a small number of tasks are still, as of now, unresolved:
 
@@ -290,7 +292,7 @@ When the app is running, and you open the site:
 - The site loads without a crash.
 - You can view pages such as the public timeline.
 - You can click Login and authenticate via GitHub.
-- After login, you should be redirected back to _Chirp_.
+- After login, you should be redirected back to _Chirp!_.
 
 ### Database behavior
 Our *Chirp!* application uses SQLite and applies migrations automatically on startup.
