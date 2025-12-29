@@ -2,7 +2,9 @@ using Chirp.Core;
 using Chirp.Core.DTO;
 
 namespace Chirp.Infrastructure.Interfaces;
-
+/// <summary>
+/// Abstraction for accessing and managing comments.
+/// </summary>
 public interface ICommentRepository
 {
     Task<List<Comment>> GetCommentsForCheep(int cheepId);

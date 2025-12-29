@@ -44,12 +44,21 @@ public class AuthorDTO
         ProfileImage = profileImage;
     }
     
+    /// <summary>
+    /// Maps a <see cref="Author"/> to the <see cref="AuthorDTO"/>
+    /// </summary>
+    /// <param name="a">The author name we which to map.</param>
     public static AuthorDTO ToDto(Author a) => new(
         a.UserName!,
         a.Email!,
         a.ProfileImage
     );
     
+    /// <summary>
+    /// Maps a list of <see cref="Author"/> to the <see cref="AuthorDTO"/>
+    /// It throws and exeception if author list is empty
+    /// </summary>
+    /// <param name="authors">A list of authors, that we wish to map</param>
     public static List<AuthorDTO> ToDtos(List<Author> authors)
     {
         if (authors == null)

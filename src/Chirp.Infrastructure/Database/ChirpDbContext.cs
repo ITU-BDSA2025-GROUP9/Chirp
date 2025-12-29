@@ -41,7 +41,10 @@ public class ChirpDbContext : IdentityDbContext<Author, IdentityRole<int>, int>
     /// Each <see cref="Cheep"/> has one <see cref="Author"/> as its creator.
     /// </remarks>
     public DbSet<Cheep> Cheeps { get; set; } = null!;
-
+    
+    /// <summary>
+    /// Gets or sets the collection of comments stored in the database
+    /// </summary>
     public DbSet<Comment> Comments { get; set; } = null!;
     
     /// <summary>

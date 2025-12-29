@@ -103,6 +103,15 @@ public class CheepRepository : ICheepRepository
             .ToListAsync();
     }
     
+    /// <summary>
+    /// Retrieves a single <see cref="Cheep"/> from the database by using its id
+    /// </summary>
+    /// <param name="cheepId">The unique id of a cheep</param>
+    /// <returns>
+    ///The matching <see cref="Cheep"/> including its
+    /// <see cref="Author"/> and potential <see cref="Comment"/>,
+    /// or null if no cheep exists with that id
+    /// </returns>
     public async Task<Cheep?> GetCheepById(int cheepId)
     {
         return await _context.Cheeps
