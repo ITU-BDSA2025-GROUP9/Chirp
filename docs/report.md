@@ -10,30 +10,33 @@ author:
 numbersections: true
 linkcolor: blue
 ---
+![](Images/ITU_logo.jpg)
+\newpage
 
 # Design and Architecture of _Chirp!_
 
 ## Domain model
 
-The domain model of our _Chirp!_ application represent the core concepts of our system. In the project are these
-located in _Chirp.core_.
+The domain model of our _Chirp!_ application represent the core concepts of our system. In the project, these are
+located in _Chirp.Core_.
 
-The domain consist of three entities: Author, Cheep and Comment. An author represent a user in the system, who can
-create cheeps and comments, follow other authors and be followed. A Cheep represent the message posted to our platform
-by a author and contains text, a timestamp and the author who created it. A Cheep can have multiple Comments. A Comment 
+The domain consist of three entities: _Author_, _Cheep_ and _Comment_. An author represent a user in the system, who can
+create cheeps and comments, follow other authors and be followed. A cheep represent the message posted to our platform
+by a author and contains text, a timestamp and the author who created it. A cheep can have multiple comments. A comment 
 contains text and are posted by a single author.
 
-The relation between these entities are clearly modeled trough the lines between the entities. An author can create
+In the following diagram, the relation between these entities are clearly modeled through the lines between the entities. An author can create
 multiple cheeps, while a cheep only can have one author. A cheep can then also have multiple comments and each comment
-are accosicated to exactly one cheep and author. These relations reflect the core rules and structure of our
+are associated to exactly one cheep and author. These relations reflect the core rules and structure of our
 application domain.
 
-ASP.NET indetity is used for authentication, which is an external part of our program, and therefore illustrated as an
-external dependency on the domain model. The _Author_ entity is inherites from _IdentityUser_ allowing the domain to 
+
+ASP.NET identity is used for authentication, which is an external part of our program, and therefore illustrated as an
+external dependency on the domain model. The _Author_ entity inherits from _IdentityUser_ allowing the domain to 
 stay free of any authentication logic. This is also why we have to draw the ASP.NET identity in a package for itself.
 
-In our _Chirp.core_ folder we also store our DTO's. These are intentionally omitted from the domain model diagram since
-DTO's are note a part of the core domain concepts but are used for transfering data. 
+In our _Chirp.Core_ folder, we also store our DTO's. These are intentionally omitted from the domain model diagram since
+DTO's are not a part of the core domain concepts, but are used for transferring data. 
 
 ![Illustration of the _Chirp!_ domain model as UML class diagram](Images/DomainModel.png)
 
@@ -52,7 +55,7 @@ That is, the application is split into separate projects and directories, namely
 _Chirp.Infrastructure_, and _Chirp.Web_, as well as a separate test directory containing _Chirp.Tests_ and 
 _Chirp.PlaywrightTests_.
 
-![Illustration of the _Chirp!_ system architecture as an onion architecture diagram.](Images/onion.png){width=80%}
+![Illustration of the _Chirp!_ system architecture as an onion architecture diagram. Made using _Visual Paradigm Online_ tool for _Circle Maps_.](Images/onion.png){width=80%}
 
 The _domain_ layer is the innermost layer and contains our domain entities, such as _Author_, _Cheep_ and _Comment_ - as well as their 
 corresponding DTOs. These do not have any external dependencies, and therefore act as the inner core, _Chirp.Core_, of our application. 
@@ -382,3 +385,15 @@ and an outdated database in Azure (See [GitHub Issue #24](https://github.com/ITU
 In conclusion, we found that LLMs, when used appropriately, can significantly speed up the
 development process. However, they should be used in moderation, and while convenient, they
 can also introduce inefficiencies if completely and uncritically relied upon. 
+
+\newpage
+# Appendix
+
+## Project links
+
+- _GitHub Repository:_ \
+[https://github.com/ITU-BDSA2025-GROUP9/Chirp](https://github.com/ITU-BDSA2025-GROUP9/Chirp)
+
+- _Azure Web App:_ \
+[https://bdsagroup9chirprazor-ekabaabpd3g4cvg6.swedencentral-01.azurewebsites.net/](https://bdsagroup9chirprazor-ekabaabpd3g4cvg6.swedencentral-01.azurewebsites.net/)
+ 
