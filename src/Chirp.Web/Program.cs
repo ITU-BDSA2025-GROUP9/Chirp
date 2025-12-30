@@ -6,6 +6,7 @@ using Chirp.Infrastructure.Chirp.Repositories;
 using Chirp.Infrastructure.Chirp.Service;
 using Chirp.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 /// <summary>
@@ -13,6 +14,9 @@ using Microsoft.EntityFrameworkCore;
 /// Configures the database, dependency injection, and the ASP.NET Core request pipeline.
 /// </summary>
 var builder = WebApplication.CreateBuilder(args);
+
+var isPlaywright =
+    Environment.GetEnvironmentVariable("CHIRP_PLAYWRIGHT") == "true";
 
 /// <summary>
 /// Determine environment and set database root path.
@@ -31,8 +35,23 @@ builder.Services.AddSession();
 /// Register Entity Framework Core with SQLite backend.
 /// The context manages access to Author and Cheep entities.
 /// </summary>
-builder.Services.AddDbContext<ChirpDbContext>(opt =>
-    opt.UseSqlite($"Data Source={dbPath}"));
+if (isPlaywright)
+{
+    var connection = new Microsoft.Data.Sqlite.SqliteConnection("DataSource=:memory:");
+    connection.Open();
+
+    builder.Services.AddSingleton<Microsoft.Data.Sqlite.SqliteConnection>(connection);
+    builder.Services.AddDbContext<ChirpDbContext>(options =>
+    {
+        options.UseSqlite(connection);
+    });
+}
+else
+{
+    builder.Services.AddDbContext<ChirpDbContext>(options =>
+        options.UseSqlite($"Data Source={dbPath}"));
+}
+
 
 builder.Services.AddDefaultIdentity<Author>(options =>  
         options.SignIn.RequireConfirmedAccount = true)      
@@ -82,18 +101,24 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ChirpDbContext>();
 
-    if (db.Database.IsRelational())
+    if (isPlaywright)
     {
-        // Normal run
-        db.Database.Migrate();
-        Chirp.Infrastructure.Data.DbInitializer.SeedDatabase(db);
+        var cs = db.Database.GetDbConnection().ConnectionString;
+        if (!cs.Contains(":memory:"))
+            throw new InvalidOperationException("Playwright tests are using the real database!");
+
+        db.Database.EnsureCreated();
+
+        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<Author>>();
+        SeedPlaywrightUsers(db, userManager);
     }
     else
     {
-        // Run for testing in memory (in future)
-        db.Database.EnsureCreated();
+        db.Database.Migrate();
+        Chirp.Infrastructure.Data.DbInitializer.SeedDatabase(db);
     }
 }
+
 
 
 /// <summary>
@@ -122,6 +147,48 @@ app.MapRazorPages();
 /// </summary>
 var logger = app.Services.GetRequiredService<ILogger<Program>>();
 logger.LogInformation("Chirp.Razor started using database: {Path}", dbPath);
+
+static void SeedPlaywrightUsers(
+    ChirpDbContext db,
+    UserManager<Author> userManager)
+{
+    if (db.Users.Any())
+        return;
+
+    var test = new Author
+    {
+        UserName = "test",
+        Email = "test@test.test",
+        EmailConfirmed = true
+    };
+
+    var testMe = new Author
+    {
+        UserName = "testMe",
+        Email = "testme@test.test",
+        EmailConfirmed = true
+    };
+
+    userManager.CreateAsync(test, "!Test123").GetAwaiter().GetResult();
+    userManager.CreateAsync(testMe, "!Test123").GetAwaiter().GetResult();
+
+    db.Cheeps.AddRange(
+        new Cheep
+        {
+            AuthorId = test.Id,
+            Text = "Cheep from test",
+            TimeStamp = DateTime.UtcNow.AddMinutes(-5)
+        },
+        new Cheep
+        {
+            AuthorId = testMe.Id,
+            Text = "Hello from testMe",
+            TimeStamp = DateTime.UtcNow.AddMinutes(-1)
+        }
+    );
+    db.SaveChanges();
+}
+
 
 /// <summary>
 /// Start the web host.

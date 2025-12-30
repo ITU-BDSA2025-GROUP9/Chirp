@@ -337,6 +337,40 @@ If the database does not exist, it will be created. If migrations exist, they wi
 
 
 ## How to run test suite locally
+### Requirements:
+- .NET 8.0
+- Playwright browsers
+
+To run all tests, run this from the repository root _Chirp/_:
+
+    dotnet build
+    dotnet test
+
+To run individual tests, you can give the specific test directory after _dotnet test_ like so:
+
+    dotnet test Chirp/test/.../...
+
+### Installing playwright browsers locally
+If needed, you can install the playwright browsers with the following command:
+
+    pwsh bin/Debug/net8.0/playwright.ps1 install
+If powershell is not on the local machine, you must acquire it.
+
+### Description of test suites
+The test suite is split into two main directories. The Unit tests and Integration tests are located in the generic
+directory _Chirp.Tests_, while the End-to-end tests live in the _Chirp.PlaywrightTests_ directory. 
+The unit tests are directly focused on workings within the application and are organised according to which class
+their tests refer to. A few examples of architecture tested by these are:
+the DTO's, active deletion, or correct interaction between the different entities.  
+Integration tests lie in the subdirectory _Chirp_Web_ and test for the correct rendering of the web application without using
+a browser, through the ASP.NET Core (WebApplicationFactory). These tests both check for the existence of implemented features
+like comments, but is also used to ensure that the pagination works as expected.
+
+End-2-end tests are used to ensure that the behaviour of a generic user, works as intended on the site, thereby simulating small
+targeted user flows. such as logging in, posting a cheep, viewing the personal timeline, and so on.
+Unlike the unit and integration tests, the End-to-end tests run against a real running instance of the application
+and its database. This database is isolated from the actual applications database, so there is no pollution from the test
+to the project's database.
 
 # Ethics
 This section addresses ethical considerations related to the development of *Chirp!*, focusing primarily on licensing choices and the use of Large Language Models (LLMs) during the project. We describe the reasons behind selecting an open-source license and reflect on how LLMs were used as development tools, including both their benefits and limitations, as well as considerations regarding transparency and responsibility.

@@ -28,6 +28,8 @@ public class PlaywrightTestBase
             UseShellExecute = false,
         };
 
+        startInfo.Environment["CHIRP_PLAYWRIGHT"] = "true";
+
         _webProcess = Process.Start(startInfo)
             ?? throw new InvalidOperationException("Failed to start Chirp.Web process.");
 
