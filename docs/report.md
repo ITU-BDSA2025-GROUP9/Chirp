@@ -11,13 +11,13 @@ numbersections: true
 linkcolor: blue
 ---
 ![](Images/ITU_logo.jpg)
-\newpage
+
+\vspace{4em}
 
 # Introduction
-This report documents the design, implementation, and collaboration process behind *Chirp!*, an application developed as part of the Analysis, Design and Software Architecture course project.
+This report documents the design, implementation, and collaboration process behind *Chirp!*, an application developed as part of the _Analysis, Design and Software Architecture_ course project in 2025.
 
-The purpose of the report is to describe the system’s functionality, architectural decisions, and development workflow, as well as to provide clear instructions for running the application locally.
-
+The purpose of the report is to describe the system’s functionality, architectural decisions, and development workflow, as well as to provide clear instructions for running and testing the application locally.
 
 # Design and Architecture of _Chirp!_
 
@@ -29,8 +29,8 @@ This section describes the design of *Chirp!* at multiple levels, including the 
 The domain model of our _Chirp!_ application represent the core concepts of our system. In the project, these are
 located in _Chirp.Core_.
 
-The domain consist of three entities: _Author_, _Cheep_ and _Comment_. An author represent a user in the system, who can
-create cheeps and comments, follow other authors and be followed. A cheep represent the message posted to our platform
+The domain consist of three entities: _Author_, _Cheep_ and _Comment_. An author represents a user in the system, who can
+create cheeps and comments, follow other authors and be followed. A cheep represents the message posted to our platform
 by a author and contains text, a timestamp and the author who created it. A cheep can have multiple comments. A comment 
 contains text and are posted by a single author.
 
@@ -138,12 +138,13 @@ To keep this diagram simple and readable, the action _“Return to current page�
 activity, the user is returned to the page they were previously viewing. For example, if a user posts a cheep while
 viewing their own timeline, they will either stay or return to their own timeline once the action is done.
 
+\newpage
 ## Sequence of functionality/calls through _Chirp!_
 
 ![UML Sequence diagram over unauthenticated user through _Chirp!_](Images/Sequence%20Diagram%20unauth.png)
 
 This diagram shows the various calls and replies the application makes throughout the process of rendering the page upon
-HTTP request. As the user is unauthorized, some calls have been omitted for simplicity (as stated in the note). These would
+a HTTP request. As the user is unauthorized, some calls have been omitted for simplicity (as stated in the note). These would
 be the cheep box or the personal timeline. The calls to static elements like images or css have also been omitted.
 
 \newpage
@@ -180,9 +181,9 @@ However, a small number of tasks are still, as of now, unresolved:
 [Chirp #112](https://github.com/ITU-BDSA2025-GROUP9/Chirp/issues/112) - **Improve and extend documentation** - 
 This task concerns further improving and polishing the project documentation. While the most critical documentation is present, additional refinements for long-term maintainability were not completed, before this screenshot was taken.
 
-[Chirp #117](https://github.com/ITU-BDSA2025-GROUP9/Chirp/issues/117) - **Show user comments on the user information page** - This feature would allow users to see all their own comments on their 'about me' page. The functionality was planned but not fully implemented.
+\newpage
 
-\newpage 
+[Chirp #117](https://github.com/ITU-BDSA2025-GROUP9/Chirp/issues/117) - **Show user comments on the user information page** - This feature would allow users to see all their own comments on their 'about me' page. The functionality was planned but not fully implemented.
 
 Additionally, two tasks were still _In Progress_:
 
@@ -205,7 +206,15 @@ All core application functionalities have been implemented, while the remaining 
 
 Larger tasks (such as refactoring or architectural changes) were sometimes split into smaller follow-up issues. This allowed incremental improvements without blocking overall progress.
 
-\newpage
+This workflow represents how most of the project work was structured. However, it was not followed strictly at 
+all times - in particular, during the early stages of the project. Because group members often worked closely 
+together — either physically or online — pull requests were not used as a forum for code discussion. Team members
+were typically already aware of the changes being made, which meant that reviews often consisted of brief comments
+(e.g., “Looks good”) rather than actual discussion. Nevertheless, the use of pull requests was still useful, as it 
+allowed us to prevent code with failing tests from being merged into the main branch. Since much of the work was 
+done collaboratively, we also sometimes forgot to add each other as co-authors on commits, even when the work was 
+done jointly.
+
 
 ## How to make _Chirp!_ work locally
 This section describes the exact steps needed to get *Chirp!* running on a fresh machine, including required tools, configuration, and what you should expect to see.
@@ -255,8 +264,6 @@ Our *Chirp!* application runs on HTTPS locally. On a fresh machine, trusting the
 dotnet dev-certs https --trust
 ```
 
-\newpage
-
 ### Configure GitHub OAuth
 _Chirp!_ uses GitHub authentication and reads two configuration values:
 
@@ -289,7 +296,7 @@ Create an app with:
 
 Copy the generated Client ID and Client Secret.
 
-
+\newpage
 #### Set credentials locally using .NET User Secrets
 \
 From the repository root:
@@ -309,8 +316,6 @@ Expected output includes:
 
 - `authentication_github_clientId = ...`
 - `authentication_github_clientSecret = ...`
-
-\newpage
 
 ### Run the web application
 From the repository root:
@@ -343,28 +348,28 @@ If the database does not exist, it will be created. If migrations exist, they wi
 
 
 ## How to run test suite locally
-### Requirements:
-- .NET 8.0
-- Playwright browsers
+### Prerequisites
+- **.NET 8.0**
+- **Playwright browsers**
 
 To run all tests, run this from the repository root _Chirp/_:
 
     dotnet build
     dotnet test
 
-To run individual tests, you can give the specific test directory after _dotnet test_ like so:
+To run individual tests, you may choose the specific test directory after _dotnet test_:
 
     dotnet test Chirp/test/.../...
 
 ### Installing playwright browsers locally
-If needed, you can install the playwright browsers with the following command:
+If needed, you may install the playwright browsers with the following command:
 
     pwsh bin/Debug/net8.0/playwright.ps1 install
-If powershell is not on the local machine, you must acquire it.
+If you do not have powershell on your local machine, you must acquire it.
 
 ### Description of test suites
-The test suite is split into two main directories. The Unit tests and Integration tests are located in the generic
-directory _Chirp.Tests_, while the End-to-end tests live in the _Chirp.PlaywrightTests_ directory. 
+The test suite is split into two main directories. The Unit tests and Integration tests are located in the
+directory _Chirp.Tests_, while the end-to-end tests are located in the _Chirp.PlaywrightTests_ directory. 
 The unit tests are directly focused on workings within the application and are organised according to which class
 their tests refer to. A few examples of architecture tested by these are:
 the DTO's, active deletion, or correct interaction between the different entities.  
@@ -372,9 +377,9 @@ Integration tests lie in the subdirectory _Chirp_Web_ and test for the correct r
 a browser, through the ASP.NET Core (WebApplicationFactory). These tests both check for the existence of implemented features
 like comments, but is also used to ensure that the pagination works as expected.
 
-End-2-end tests are used to ensure that the behaviour of a generic user, works as intended on the site, thereby simulating small
-targeted user flows. such as logging in, posting a cheep, viewing the personal timeline, and so on.
-Unlike the unit and integration tests, the End-to-end tests run against a real running instance of the application
+End-2-end tests are used to ensure that the behaviour of a generic user works as intended on the site. Thereby, simulating small
+targeted user flows, such as logging in, posting a cheep, viewing the personal timeline, and so on.
+Unlike the unit and integration tests, the end-to-end tests run against a real running instance of the application
 and its database. This database is isolated from the actual applications database, so there is no pollution from the test
 to the project's database.
 
@@ -444,7 +449,6 @@ The development process was organized using GitHub issues and a project board, a
 
 Overall, the project demonstrates the use of collaborative development practices, version control, and structured workflows in the implementation of a web application.
 
-\newpage
 # Appendix
 
 ## Project links
