@@ -13,7 +13,16 @@ linkcolor: blue
 ![](Images/ITU_logo.jpg)
 \newpage
 
+# Introduction
+This report documents the design, implementation, and collaboration process behind *Chirp!*, an application developed as part of the Analysis, Design and Software Architecture course project.
+
+The purpose of the report is to describe the system’s functionality, architectural decisions, and development workflow, as well as to provide clear instructions for running the application locally.
+
+
 # Design and Architecture of _Chirp!_
+
+This section describes the design of *Chirp!* at multiple levels, including the domain model, internal and deployed architecture, and user interaction flows. The section focuses on how the core concepts of the system are modeled, how responsibilities are structured across architectural layers, and how users interact with the application through user scenarios.
+
 
 ## Domain model
 
@@ -75,7 +84,7 @@ within the _Service_ directory. The same applies to the other innermost director
 \newpage
 
 ## Architecture of deployed application
-The following two diagrams illustrates the deployed architecture of our first version of _Chirp!_ "_Chirp.CLI_", and our final version of _Chirp!_ "_Chirp.Web_".
+The following two diagrams illustrates the deployed architecture of our first version of _Chirp! "Chirp.CLI"_, and our final version of _Chirp! "Chirp.Web"_.
 The diagrams illustrates the communication flow between the user, i.e. client, and the deployed application.
 
 ![Illustration of the deployed architecture of the _Chirp.CLI_ application.](Images/Deployment%20Diagram%20Chirp%20CLI.png)
@@ -89,7 +98,7 @@ This shows how data flows from the client through the server and into storage.
 
 \newpage
 
-The diagram illustrates the deployed architecture of the _Chirp.Web_. Users access the system through a web browser, which communicates with the _Chirp.Web_ 
+The diagram illustrates the deployed architecture of _Chirp.Web_. Users access the system through a web browser, which communicates with the _Chirp.Web_ 
 application hosted on an Azure App Service via HTTPS. The web application is responsible for rendering the user interface and handling incoming HTTP requests.
 The application uses EF Core with a SQLite database file (_chirp.db_) for data storage, and supports authentication via GitHub OAuth.
 This diagram shows how the client, server, storage, and authentication components interact in the deployed system.
@@ -125,7 +134,7 @@ or delete their account.
 
 ![UML activity diagram illustrating the user journey of an authorized user in _Chirp!_](Images/user_activity_authorized.png)
 
-To keep this diagram simple and readable, the action “_Return to current page_” represents that, after completing an 
+To keep this diagram simple and readable, the action _“Return to current page”_ represents that, after completing an 
 activity, the user is returned to the page they were previously viewing. For example, if a user posts a cheep while
 viewing their own timeline, they will either stay or return to their own timeline once the action is done.
 
@@ -134,8 +143,11 @@ viewing their own timeline, they will either stay or return to their own timelin
 \newpage
 # Process
 
+This section describes the processes used during the development of *Chirp!*, covering build, test, release, and deployment workflows, as well as team collaboration and development practices. The section outlines how automation was used to ensure consistent builds and deployments, how work was organized and tracked within the team, and how the application can be built, tested, and run locally.
+
+
 ## Build, test, release, and deployment
-This UML activity diagram shows the process of building, testing, releasing, and deploying _Chirp!_ to our GitHub and Azure Web App.
+The following UML activity diagram shows the process of building, testing, releasing, and deploying _Chirp!_ to our GitHub and Azure Web App.
 In our project, we have three distinct workflows: a _release_ workflow for publishing the application, a _test_ workflow for building
 and testing the application, and a _deploy_ workflow for deploying the application to Azure.
 
@@ -327,6 +339,7 @@ If the database does not exist, it will be created. If migrations exist, they wi
 ## How to run test suite locally
 
 # Ethics
+This section addresses ethical considerations related to the development of *Chirp!*, focusing primarily on licensing choices and the use of Large Language Models (LLMs) during the project. We describe the reasons behind selecting an open-source license and reflect on how LLMs were used as development tools, including both their benefits and limitations, as well as considerations regarding transparency and responsibility.
 
 ## License
 We chose an MIT License for our project. An MIT License leaves many opportunities for others to use our project,
@@ -343,8 +356,8 @@ During the development of our project, Large Language Models (LLMs) were used fo
 the project, primarily ChatGPT. Although LLMs were used throughout the project, we were not always
 fully transparent about their use and did not consistently add, for instance, ChatGPT as a co-author
 to all commits, where it was actually used. The primary reason for this was that at the beginning of
-the project, we were not aware that this was required. Once we were informed and reminded of this,
-we began to apply it to our commits. However, there were still instances where we simply forgot to
+the project, we were not aware of this requirement. Once we were informed,
+we began to apply it to our commits. However, there were still instances where we forgot to
 add it as a co-author, particularly when the use of LLMs was minimal and not a significant part of
 the changes in a commit.
 
@@ -352,11 +365,10 @@ The primary use of LLMs during our project was for error handling and debugging.
 situations in which we encountered that changes to the code caused significant parts of the
 system to break. As a result, we had to identify where the issues had occurred, and how to resolve
 them, sometimes while dealing with a large number of exceptions simultaneously. This was not always
-straightforward, and LLMs were, therefore, particularly helpful in such situations. In these cases, we
+straightforward, and LLMs were particularly helpful in such situations. In these cases, we
 would, for instance, provide ChatGPT with the broken code and the associated exceptions and prompt it
 to suggest how to handle these. This was for the most part useful, when frustration had begun to build,
-and we could not resolve the issue on our own, as it often provided us with insight into the mistakes
-we had made. In many instances, the underlying problems were caused by simple or easily overlooked
+and we could not resolve the issue on our own, as it often provided us with insight into our mistakes. In many instances, the underlying problems were caused by simple or easily overlooked
 coding mistakes. Therefore, the LLMs offered us an additional perspective that helped us resolve
 these issues efficiently.
 
@@ -366,16 +378,15 @@ parts of the generated code while still implementing the final solution properly
 also decided to use ChatGPT for image generation, creating the profile pictures in our project that
 depict different colored birds. We chose this, because we wanted images that fit the bird-themed concept
 of _Chirp!_ while maintaining a clean user interface design, and since none of us had the necessary skills
-or time to create these images ourselves, using ChatGPT provided us with a fast and easy solution.
+nor time to create these images, using ChatGPT provided us with a fast and easy solution.
 
 The advantage of LLMs is that they provide a useful tool when one is uncertain or stuck, offering 
-guidance on how to handle it, and since they are always available, they can help more quickly than,
-for instance, a teaching assistant, who is limited by time and day. Therefore, LLMs can in most cases
-speed up the development.
+guidance on how to handle it, and since they are always available, they can help more quickly than e.g. a teaching assistant, who is limited by time and day. Therefore, LLMs can in some cases
+speed up development.
 
 However, LLMs can sometimes also be misleading. We found that, since the LLM lacks full knowledge of
 the project that only we as the developers possess, it occasionally provided incorrect guidance, which
-slowed our development down rather than speed it up. A significant example of this occurred during
+slowed our development down rather than sped it up. A significant example of this occurred during
 the deployment of our application to Azure. For a long time, we believed that our GitHub Action workflow was the
 reason the application would not deploy automatically and display the new content, after integrating
 the EF Core database. Following guidance from ChatGPT, we spent considerable time adjusting the
@@ -385,6 +396,13 @@ and an outdated database in Azure (See [GitHub Issue #24](https://github.com/ITU
 In conclusion, we found that LLMs, when used appropriately, can significantly speed up the
 development process. However, they should be used in moderation, and while convenient, they
 can also introduce inefficiencies if completely and uncritically relied upon. 
+
+# Conclusion
+In this project, we developed *Chirp!* as a functioning web application with core social features such as user timelines, posting, and following. 
+
+The development process was organized using GitHub issues and a project board, allowing tasks to be tracked from initial description through implementation and integration.
+
+Overall, the project demonstrates the use of collaborative development practices, version control, and structured workflows in the implementation of a web application.
 
 \newpage
 # Appendix
