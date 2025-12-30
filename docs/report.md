@@ -140,6 +140,12 @@ viewing their own timeline, they will either stay or return to their own timelin
 
 ## Sequence of functionality/calls through _Chirp!_
 
+![UML Sequence diagram over unauthenticated user through _Chirp!_](Images/Sequence%20Diagram%20unauth.png)
+
+This diagram shows the various calls and replies the application makes throughout the process of rendering the page upon
+HTTP request. As the user is unauthorized, some calls have been omitted for simplicity (as stated in the note). These would
+be the cheep box or the personal timeline. The calls to static elements like images or css have also been omitted.
+
 \newpage
 # Process
 
