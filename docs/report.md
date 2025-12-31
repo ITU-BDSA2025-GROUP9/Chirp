@@ -353,18 +353,19 @@ If the database does not exist, it will be created. If migrations exist, they wi
 - **Playwright browsers**
 
 To run all tests, run this from the repository root _Chirp/_:
-
+```bash
     dotnet build
     dotnet test
-
+```
 To run individual tests, you may choose the specific test directory after _dotnet test_:
-
+```bash
     dotnet test Chirp/test/.../...
-
+```
 ### Installing playwright browsers locally
 If needed, you may install the playwright browsers with the following command:
-
+```bash
     pwsh bin/Debug/net8.0/playwright.ps1 install
+```
 If you do not have powershell on your local machine, you must acquire it.
 
 ### Description of test suites
